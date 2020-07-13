@@ -10,8 +10,8 @@ Dialog::Dialog(QWidget *parent)
     ui->setupUi(this);
     vehicle = new Vehicle(this);
     Fact * factSpeed = vehicle->speedFact();
-    float f = (factSpeed->rawValue()).value<float>();
-    ui->label_TestValue->setText(QString("float is %1").arg(f));
+
+    ui->label_TestValue->setText(factSpeed->rawValueString());
 }
 
 Dialog::~Dialog()
