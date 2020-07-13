@@ -1,0 +1,15 @@
+release/Fact.o
+release/FactGroup.o
+release/FactMetaData.o
+release/Tool.o
+release/Toolbox.o
+release/Vehicle.o
+release/main.o
+release/dialog.o
+release/moc_Fact.o
+release/moc_FactGroup.o
+release/moc_FactMetaData.o
+release/moc_Tool.o
+release/moc_Toolbox.o
+release/moc_Vehicle.o
+release/moc_dialog.o

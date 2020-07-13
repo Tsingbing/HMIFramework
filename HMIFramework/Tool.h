@@ -3,14 +3,20 @@
 
 #include <QObject>
 
+class Toolbox;
+
 class Tool : public QObject
 {
     Q_OBJECT
 public:
-    explicit Tool(QObject *parent = nullptr);
+    Tool(Toolbox* toolbox);
+
+    virtual void setToolbox(Toolbox* toolbox);
 
 signals:
 
+protected:
+    Toolbox* _toolbox;
 };
 
 #endif // TOOL_H

@@ -2,6 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include "Vehicle.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
@@ -16,6 +17,7 @@ public:
     ~Dialog();
 
 private:
+    Vehicle *vehicle;
     Ui::Dialog *ui;
 };
 #endif // DIALOG_H
