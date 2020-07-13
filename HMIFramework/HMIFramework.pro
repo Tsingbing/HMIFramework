@@ -16,25 +16,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Dialog.cpp \
+    Dialog2.cpp \
     Fact.cpp \
     FactGroup.cpp \
     FactMetaData.cpp \
     Tool.cpp \
     Toolbox.cpp \
     Vehicle.cpp \
+    VehicleManager.cpp \
+    XApplication.cpp \
     main.cpp \
     dialog.cpp
 
 HEADERS += \
+    Dialog.h \
+    Dialog2.h \
     Fact.h \
     FactGroup.h \
     FactMetaData.h \
     Tool.h \
     Toolbox.h \
     Vehicle.h \
+    VehicleManager.h \
+    XApplication.h \
     dialog.h
 
 FORMS += \
+    Dialog.ui \
+    Dialog2.ui \
     dialog.ui
 
 # Default rules for deployment.

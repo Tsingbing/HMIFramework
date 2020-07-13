@@ -1,6 +1,9 @@
-#include "VehicleManager.h"
+﻿#include "VehicleManager.h"
+#include "Vehicle.h"
 
-VehicleManager::VehicleManager()
+void VehicleManager::setToolbox(Toolbox *toolbox)
 {
+    //Tool::setToolbox(toolbox);
 
+    _activeVehicle = new Vehicle(this);
 }

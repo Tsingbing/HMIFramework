@@ -1,4 +1,4 @@
-#include "Fact.h"
+﻿#include "Fact.h"
 
 Fact::Fact(QObject *parent)
     : QObject(parent)
@@ -34,7 +34,7 @@ QString Fact::shortDescription() const
     //        return _metaData->shortDescription();
     //    } else {
     //        qWarning() << kMissingMetadata << name();
-    //        return QString();
+            return QString();
     //    }
 }
 
