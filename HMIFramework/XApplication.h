@@ -25,4 +25,7 @@ private:
     QDialog* dlg = nullptr;
 };
 
+
+XApplication* XApp(void);
+
 #endif // XAPPLICATION_H
