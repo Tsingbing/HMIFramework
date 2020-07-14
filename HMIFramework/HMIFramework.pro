@@ -26,8 +26,7 @@ SOURCES += \
     Vehicle.cpp \
     VehicleManager.cpp \
     XApplication.cpp \
-    main.cpp \
-    dialog.cpp
+    main.cpp
 
 HEADERS += \
     Dialog.h \
@@ -39,13 +38,11 @@ HEADERS += \
     Toolbox.h \
     Vehicle.h \
     VehicleManager.h \
-    XApplication.h \
-    dialog.h
+    XApplication.h
 
 FORMS += \
     Dialog.ui \
-    Dialog2.ui \
-    dialog.ui
+    Dialog2.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

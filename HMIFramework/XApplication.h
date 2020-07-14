@@ -5,7 +5,7 @@
 #include <QObject>
 
 class Toolbox;
-
+class QDialog;
 class XApplication : public QApplication
 {
     Q_OBJECT
@@ -16,8 +16,13 @@ public:
 
     Toolbox* toolbox(void) {return _toolbox;}
 
+    void _initForAppBoot();
+
+    static XApplication*  _app;   ///< Our own singleton. Should be reference directly by qgcApp
+
 private:
     Toolbox* _toolbox = nullptr;
+    QDialog* dlg = nullptr;
 };
 
 #endif // XAPPLICATION_H

@@ -1,12 +1,18 @@
-﻿#include "Dialog.h"
-
-#include <QApplication>
+﻿#include <QApplication>
 #include <XApplication.h>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
-    XApplication a(argc, argv);
-    Dialog w;
-    w.show();
-    return a.exec();
+    XApplication *app = new XApplication(argc, argv);
+    Q_CHECK_PTR(app);
+
+    app->_initForAppBoot();
+
+    int exitCode = app->exec();
+
+    delete app;
+
+    qDebug() << "After app delete";
+    return exitCode;
 }
