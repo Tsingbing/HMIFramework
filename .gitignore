@@ -1,5 +1,18 @@
-# This file is used to ignore files which are generated
+X# This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
+**/debug/
+
+# Build files
+**/build/
+
+# Makefile files
+**.target
+**.dat
+**.debug
+**.Release
+
+# QRC files
+qrc_**.cpp
 
 *~
 *.autosave
