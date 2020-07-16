@@ -13,6 +13,7 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
+    //connect(ve->speedFact(),&Fact::valueChanged,ui->label,&QLabel::set)
     ui->label->setText(ve->speedFact()->rawValueString());
 }
 

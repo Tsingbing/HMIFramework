@@ -25,6 +25,8 @@ public:
     FactMetaData* metaData() { return _metaData; }
 
 signals:
+    void valueChanged(QVariant value);
+    void rawValueChanged(QVariant value);
 
 protected:
     QString _variantToString(const QVariant& variant, int decimalPlaces) const;

@@ -30,6 +30,7 @@ private:
 
 protected:
     QMap<QString, Fact*>            _nameToFactMap;
+    QMap<QString, FactMetaData*>    _nameToFactMetaDataMap;
     QStringList                     _factNames;
 };
 

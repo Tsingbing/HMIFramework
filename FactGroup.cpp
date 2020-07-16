@@ -4,7 +4,7 @@ FactGroup::FactGroup(int updateRateMsecs, const QString &metaDataFile, QObject *
     : QObject(parent)
     , _updateRateMSecs(updateRateMsecs)
 {
-
+    _setupTimer();
 }
 
 void FactGroup::_updateAllValues()
