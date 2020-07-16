@@ -16,15 +16,15 @@ public:
 
     Toolbox* toolbox(void) {return _toolbox;}
 
-    void _initForAppBoot();
+    void _initForAppBoot(); ///< 初始化
 
-    static XApplication*  _app;   ///< Our own singleton. Should be reference directly by qgcApp
+    static XApplication*  _app;   ///< 单例，直接被XApp()返回引用。
 
 private:
     Toolbox* _toolbox = nullptr;
     QDialog* dlg = nullptr;
+    QDialog* dlg2 = nullptr;
 };
-
 
 XApplication* XApp(void);
 

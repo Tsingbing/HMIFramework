@@ -13,7 +13,8 @@ class VehicleManager : public Tool
 public:
     VehicleManager(Toolbox* toolbox);
 
-    // Override from QGCTool
+    Vehicle*    activeVehicle() {return _activeVehicle;}
+    ///< 覆写Tool函数
     virtual void setToolbox(Toolbox *toolbox);
 
 private:
