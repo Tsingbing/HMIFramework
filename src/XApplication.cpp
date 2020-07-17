@@ -1,9 +1,9 @@
 ﻿#include "XApplication.h"
 #include "Toolbox.h"
-
+#include <QSettings>
 #include "Dialog.h"
 #include "Dialog2.h"
-
+#include <QDebug>
 
 XApplication* XApplication::_app = nullptr;
 
@@ -11,15 +11,23 @@ XApplication::XApplication(int &argc, char *argv[])
     : QApplication (argc, argv)
 {
     _app = this;
+    setApplicationName(APPLICATION_NAME);
+    setOrganizationName(ORG_NAME);
+    setApplicationVersion(QString(GIT_VERSION));
+
+    // Set settings format
+    QSettings::setDefaultFormat(QSettings::IniFormat);
+    QSettings settings;
+    qDebug() << "Settings location" << settings.fileName() << "Is writable?:" << settings.isWritable();
+
     _toolbox = new Toolbox(this);
     _toolbox->setChildToolboxes();
-
 }
 
 XApplication::~XApplication()
 {
     if (dlg) {
-       delete dlg;
+        delete dlg;
     }
     delete _toolbox;
     _app = nullptr;

@@ -4,17 +4,15 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
-# The following define makes your compiler emit warnings if you use
-# any Qt feature that has been marked deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-# You can also make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+#
+# 品牌
+#
 
+DEFINES += APPLICATION_NAME=\"\\\"HMIFramework\\\"\"
+DEFINES += ORG_NAME=\"\\\"umltech.org\\\"\"
+DEFINES += GIT_VERSION=\"\\\"$$GIT_VERSION\\\"\"
 
 # 设置构建目录
 OBJECTS_DIR  = $${OUT_PWD}/obj
@@ -23,26 +21,23 @@ UI_DIR       = $${OUT_PWD}/ui
 RCC_DIR      = $${OUT_PWD}/rcc
 
 # 设置版本号（从git获取）
-
 exists ($$PWD/.git) {
     GIT_DESCRIBE = $$system(git --git-dir $$PWD/.git --work-tree $$PWD describe --always --tags)
     GIT_BRANCH   = $$system(git --git-dir $$PWD/.git --work-tree $$PWD rev-parse --abbrev-ref HEAD)
     GIT_HASH     = $$system(git --git-dir $$PWD/.git --work-tree $$PWD rev-parse --short HEAD)
     GIT_TIME     = $$system(git --git-dir $$PWD/.git --work-tree $$PWD show --oneline --format=\"%ci\" -s HEAD)
 
-    # determine if we're on a tag matching vX.Y.Z (stable release)
     contains(GIT_DESCRIBE, v[0-9]+.[0-9]+.[0-9]+) {
-        # release version "vX.Y.Z"
+        # 发布版本 "vX.Y.Z"
         GIT_VERSION = $${GIT_DESCRIBE}
         VERSION      = $$replace(GIT_DESCRIBE, "v", "")
         VERSION      = $$replace(VERSION, "-", ".")
         VERSION      = $$section(VERSION, ".", 0, 3)
     } else {
-        # development version "Development branch:sha date"
+        # 开发版本 "Development branch:sha date"
         GIT_VERSION = "Development $${GIT_BRANCH}:$${GIT_HASH} $${GIT_TIME}"
         VERSION         = 0.0.0
     }
-
     message(HMI $${GIT_VERSION})
 
 } else {
