@@ -1,4 +1,4 @@
-#include "Dialog2.h"
+﻿#include "Dialog2.h"
 #include "ui_Dialog2.h"
 
 #include "XApplication.h"
@@ -16,6 +16,9 @@ Dialog2::Dialog2(QWidget *parent) :
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
     ui->label->setText(ve->speedFact()->rawValueString());
     qDebug() << ve->rotatingSpeedFact()->rawValueString();
+    qDebug() << ve->rotatingSpeedFact()->shortDescription();
+    qDebug() << ve->rotatingSpeedFact()->rawMax();
+    qDebug() << ve->rotatingSpeedFact()->rawMin();
 }
 
 Dialog2::~Dialog2()

@@ -1,4 +1,4 @@
-#include "Vehicle.h"
+﻿#include "Vehicle.h"
 #include <QSettings>
 
 const char* Vehicle::_speedFactName =            "speed";
@@ -20,6 +20,10 @@ Vehicle::Vehicle(QObject *parent)
         FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeInt32, "RotatingSpeed", this);
         metaData->setShortDescription("Rotating Speed");
         metaData->setDecimalPlaces(3);
+        metaData->setRawUnits("RPS");
+        metaData->setRawMax(2500);
+        metaData->setRawMin(0);
+
         //metaData->
         _rotatingSpeedFact = new Fact(metaData, this);
         _rotatingSpeedFact->setRawValue(789);

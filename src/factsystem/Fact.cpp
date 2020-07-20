@@ -62,17 +62,32 @@ int Fact::decimalPlaces() const
 
 QVariant Fact::rawMax() const
 {
-
+    if (_metaData) {
+        return _metaData->rawMax();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QVariant(0);
+    }
 }
 
 QVariant Fact::rawMin() const
 {
-
+    if (_metaData) {
+        return _metaData->rawMin();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QVariant(0);
+    }
 }
 
 QString Fact::rawUnits() const
 {
-
+    if (_metaData) {
+        return _metaData->rawUnits();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QString();
+    }
 }
 
 QString Fact::rawValueString() const

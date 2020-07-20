@@ -1,4 +1,4 @@
-#include "FactMetaData.h"
+﻿#include "FactMetaData.h"
 
 const char* FactMetaData::_decimalPlacesJsonKey =       "decimalPlaces";
 const char* FactMetaData::_nameJsonKey =                "name";
@@ -23,7 +23,7 @@ FactMetaData::FactMetaData(FactMetaData::ValueType_t type, const QString name, Q
 
 int FactMetaData::decimalPlaces() const
 {
-
+    return _decimalPlaces;
 }
 
 QVariant FactMetaData::rawDefaultValue() const
