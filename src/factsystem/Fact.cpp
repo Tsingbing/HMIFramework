@@ -1,4 +1,6 @@
 ﻿#include "Fact.h"
+#include <QDebug>
+static const char* kMissingMetadata = "Meta data pointer missing";
 
 Fact::Fact(QObject *parent)
     : QObject(parent)
@@ -18,6 +20,16 @@ Fact::Fact(QString name, FactMetaData::ValueType_t type, QObject *parent)
     setMetaData(metaData);
 }
 
+Fact::Fact(FactMetaData *metaData, QObject *parent)
+    : QObject(parent)
+    , _name(metaData->name())
+    , _rawValue(0)
+    , _type(metaData->type())
+    , _metaData(metaData)
+{
+
+}
+
 QString Fact::name() const
 {
     return _name;
@@ -30,17 +42,42 @@ FactMetaData::ValueType_t Fact::type() const
 
 QString Fact::shortDescription() const
 {
-    //    if (_metaData) {
-    //        return _metaData->shortDescription();
-    //    } else {
-    //        qWarning() << kMissingMetadata << name();
-            return QString();
-    //    }
+    if (_metaData) {
+        return _metaData->shortDescription();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QString();
+    }
+}
+
+int Fact::decimalPlaces() const
+{
+    if (_metaData) {
+        return _metaData->decimalPlaces();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return FactMetaData::kDefaultDecimalPlaces;
+    }
+}
+
+QVariant Fact::rawMax() const
+{
+
+}
+
+QVariant Fact::rawMin() const
+{
+
+}
+
+QString Fact::rawUnits() const
+{
+
 }
 
 QString Fact::rawValueString() const
 {
-    return _variantToString(rawValue(), 2);
+    return _variantToString(rawValue(), decimalPlaces());
 }
 
 void Fact::setRawValue(const QVariant &value)
@@ -101,18 +138,18 @@ QString Fact::_variantToString(const QVariant &variant, int decimalPlaces) const
     case FactMetaData::valueTypeBool:
         valueString = variant.toBool() ? tr("true") : tr("false");
         break;
-//    case FactMetaData::valueTypeElapsedTimeInSeconds:
-//    {
-//        double dValue = variant.toDouble();
-//        if (qIsNaN(dValue)) {
-//            valueString = QStringLiteral("--:--:--");
-//        } else {
-//            QTime time(0, 0, 0, 0);
-//            time = time.addSecs(dValue);
-//            valueString = time.toString(QStringLiteral("hh:mm:ss"));
-//        }
-//    }
-//        break;
+        //    case FactMetaData::valueTypeElapsedTimeInSeconds:
+        //    {
+        //        double dValue = variant.toDouble();
+        //        if (qIsNaN(dValue)) {
+        //            valueString = QStringLiteral("--:--:--");
+        //        } else {
+        //            QTime time(0, 0, 0, 0);
+        //            time = time.addSecs(dValue);
+        //            valueString = time.toString(QStringLiteral("hh:mm:ss"));
+        //        }
+        //    }
+        //        break;
     default:
         valueString = variant.toString();
         break;

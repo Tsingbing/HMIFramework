@@ -11,9 +11,11 @@ public:
     Vehicle(QObject* parent = nullptr);
 
     Fact* speedFact() {return & _speedFact;}
+    Fact* rotatingSpeedFact() { return _rotatingSpeedFact;}
 
 private:
     Fact _speedFact;
+    Fact* _rotatingSpeedFact;
 
     static const char* _speedFactName;
 

@@ -6,6 +6,7 @@
 #include "VehicleManager.h"
 #include "FactGroup.h"
 #include "Vehicle.h"
+#include <QDebug>
 
 Dialog2::Dialog2(QWidget *parent) :
     QDialog(parent),
@@ -14,6 +15,7 @@ Dialog2::Dialog2(QWidget *parent) :
     ui->setupUi(this);
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
     ui->label->setText(ve->speedFact()->rawValueString());
+    qDebug() << ve->rotatingSpeedFact()->rawValueString();
 }
 
 Dialog2::~Dialog2()

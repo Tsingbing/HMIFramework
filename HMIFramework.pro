@@ -27,6 +27,8 @@ exists ($$PWD/.git) {
     GIT_HASH     = $$system(git --git-dir $$PWD/.git --work-tree $$PWD rev-parse --short HEAD)
     GIT_TIME     = $$system(git --git-dir $$PWD/.git --work-tree $$PWD show --oneline --format=\"%ci\" -s HEAD)
 
+    # 设置设备标号
+
     contains(GIT_DESCRIBE, v[0-9]+.[0-9]+.[0-9]+) {
         # 发布版本 "vX.Y.Z"
         GIT_VERSION = $${GIT_DESCRIBE}
