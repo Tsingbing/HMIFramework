@@ -55,6 +55,82 @@ void FactMetaData::setRawMin(const QVariant &rawMin)
     }
 }
 
+bool FactMetaData::convertAndValidateRaw(const QVariant &rawValue, bool convertOnly, QVariant &typedValue, QString &errorString)
+{
+    bool convertOk = false;
+
+    errorString.clear();
+
+    switch (type()) {
+    case FactMetaData::valueTypeInt8:
+    case FactMetaData::valueTypeInt16:
+    case FactMetaData::valueTypeInt32:
+        typedValue = QVariant(rawValue.toInt(&convertOk));
+        if (!convertOnly && convertOk) {
+            if (typedValue < rawMin() || typedValue > rawMax()) {
+                errorString = tr("Value must be within %1 and %2").arg(rawMin().toInt()).arg(rawMax().toInt());
+            }
+        }
+        break;
+    case FactMetaData::valueTypeInt64:
+        typedValue = QVariant(rawValue.toLongLong(&convertOk));
+        if (!convertOnly && convertOk) {
+            if (typedValue < rawMin() || typedValue > rawMax()) {
+                errorString = tr("Value must be within %1 and %2").arg(rawMin().toInt()).arg(rawMax().toInt());
+            }
+        }
+        break;
+    case FactMetaData::valueTypeUint8:
+    case FactMetaData::valueTypeUint16:
+    case FactMetaData::valueTypeUint32:
+        typedValue = QVariant(rawValue.toUInt(&convertOk));
+        if (!convertOnly && convertOk) {
+            if (typedValue < rawMin() || typedValue > rawMax()) {
+                errorString = tr("Value must be within %1 and %2").arg(rawMin().toUInt()).arg(rawMax().toUInt());
+            }
+        }
+        break;
+    case FactMetaData::valueTypeUint64:
+        typedValue = QVariant(rawValue.toULongLong(&convertOk));
+        if (!convertOnly && convertOk) {
+            if (typedValue < rawMin() || typedValue > rawMax()) {
+                errorString = tr("Value must be within %1 and %2").arg(rawMin().toUInt()).arg(rawMax().toUInt());
+            }
+        }
+        break;
+    case FactMetaData::valueTypeFloat:
+        typedValue = QVariant(rawValue.toFloat(&convertOk));
+        if (!convertOnly && convertOk) {
+            if (typedValue < rawMin() || typedValue > rawMax()) {
+                errorString = tr("Value must be within %1 and %2").arg(rawMin().toDouble()).arg(rawMax().toDouble());
+            }
+        }
+        break;
+    case FactMetaData::valueTypeDouble:
+        typedValue = QVariant(rawValue.toDouble(&convertOk));
+        if (!convertOnly && convertOk) {
+            if (typedValue < rawMin() || typedValue > rawMax()) {
+                errorString = tr("Value must be within %1 and %2").arg(rawMin().toDouble()).arg(rawMax().toDouble());
+            }
+        }
+        break;
+    case FactMetaData::valueTypeString:
+        convertOk = true;
+        typedValue = QVariant(rawValue.toString());
+        break;
+    case FactMetaData::valueTypeBool:
+        convertOk = true;
+        typedValue = QVariant(rawValue.toBool());
+        break;
+    }
+
+    if (!convertOk) {
+        errorString += tr("Invalid number");
+    }
+
+    return convertOk && errorString.isEmpty();
+}
+
 
 QVariant FactMetaData::_minForType() const
 {

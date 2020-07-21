@@ -97,23 +97,23 @@ QString Fact::rawValueString() const
 
 void Fact::setRawValue(const QVariant &value)
 {
-    _rawValue.setValue(value);
-    //    if (_metaData) {
-    //        QVariant    typedValue;
-    //        QString     errorString;
+    if (_metaData) {
+        QVariant    typedValue;
+        QString     errorString;
 
-    //        if (_metaData->convertAndValidateRaw(value, true /* convertOnly */, typedValue, errorString)) {
-    //            if (typedValue != _rawValue) {
-    //                _rawValue.setValue(typedValue);
-    //                _sendValueChangedSignal(cookedValue());
-    //                //-- Must be in this order
-    //                emit _containerRawValueChanged(rawValue());
-    //                emit rawValueChanged(_rawValue);
-    //            }
-    //        }
-    //    } else {
-    //        qWarning() << kMissingMetadata << name();
-    //    }
+        if (_metaData->convertAndValidateRaw(value, false /* convertOnly */, typedValue, errorString)) {
+            if (typedValue != _rawValue) {
+                _rawValue.setValue(typedValue);
+                //_sendValueChangedSignal(cookedValue());
+                //-- Must be in this order
+                //emit _containerRawValueChanged(rawValue());
+                //emit rawValueChanged(_rawValue);
+            }
+        }
+        qWarning() << errorString ;
+    } else {
+        qWarning() << kMissingMetadata << name();
+    }
 }
 
 void Fact::setMetaData(FactMetaData *metaData, bool setDefaultFromMetaData)

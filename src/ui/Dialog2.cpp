@@ -15,6 +15,8 @@ Dialog2::Dialog2(QWidget *parent) :
     ui->setupUi(this);
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
     ui->label->setText(ve->speedFact()->rawValueString());
+
+    qDebug() << ve->rotatingSpeedFact()->rawValueString();
     qDebug() << ve->rotatingSpeedFact()->rawValueString();
     qDebug() << ve->rotatingSpeedFact()->shortDescription();
     qDebug() << ve->rotatingSpeedFact()->rawMax();

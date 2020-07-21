@@ -1,4 +1,4 @@
-#ifndef FACTMETADATA_H
+﻿#ifndef FACTMETADATA_H
 #define FACTMETADATA_H
 
 #include <QObject>
@@ -47,6 +47,14 @@ public:
     void setRawMin                  (const QVariant& rawMin);
     void setDecimalPlaces           (int decimalPlaces)                 { _decimalPlaces = decimalPlaces; }
     void setRawDefaultValue         (const QVariant& rawDefaultValue);
+
+    /// 转换和校验数据
+    ///     @参数 rawValue: 要转换的值，可以是字符串
+    ///     @参数 convertOnly: true：仅转换为正确的类型，不针对元数据进行验证
+    ///     @参数 typeValue: 转换后的值
+    ///     @参数 errorString: 如果转换失败，将显示错误字符串，因为用户可见，所以值是处理后的值
+    /// @returns false：转换失败，赋值errorString
+    bool convertAndValidateRaw(const QVariant& rawValue, bool convertOnly, QVariant& typedValue, QString& errorString);
 
     static const int kDefaultDecimalPlaces = 3;  ///< Default value for decimal places if not specified/known
     static const int kUnknownDecimalPlaces = -1; ///< Number of decimal places to specify is not known

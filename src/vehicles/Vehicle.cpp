@@ -5,15 +5,25 @@ const char* Vehicle::_speedFactName =            "speed";
 
 Vehicle::Vehicle(QObject *parent)
     : FactGroup(_vehicleUIUpdateRateMSecs, ":/json/Vehicle/VehicleFact.json", parent)
-    , _speedFact(_speedFactName, FactMetaData::valueTypeDouble)
 {
-    _speedFact.setRawValue(5.1011111);
+//    QSettings settings;
+//    settings.setValue("test", true);
+//    settings.beginGroup("speed");
+//    settings.setValue("speed", _speedFact->rawValue());
+//    settings.endGroup();
+    {
+        //速度
+        FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeDouble, "Speed", this);
+        metaData->setShortDescription("Speed");
+        metaData->setDecimalPlaces(3);
+        metaData->setRawUnits("km/h");
+        metaData->setRawMax(60);
+        metaData->setRawMin(0);
 
-    QSettings settings;
-    settings.setValue("test", true);
-    settings.beginGroup("speed");
-    settings.setValue("speed", _speedFact.rawValue());
-    settings.endGroup();
+        //metaData->
+        _speedFact = new Fact(metaData, this);
+        _speedFact->setRawValue(50.6666);
+    }
 
     {
         //转速
@@ -26,6 +36,6 @@ Vehicle::Vehicle(QObject *parent)
 
         //metaData->
         _rotatingSpeedFact = new Fact(metaData, this);
-        _rotatingSpeedFact->setRawValue(789);
+        _rotatingSpeedFact->setRawValue(7089.6666);
     }
 }
