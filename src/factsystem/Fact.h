@@ -29,6 +29,10 @@ public:
     QString         rawValueString          (void) const;
 
     void setRawValue        (const QVariant& value);
+
+    /// Sets the meta data associated with the Fact.
+    ///     @param metaData FactMetaData for Fact
+    ///     @param setDefaultFromMetaData true: set the fact value to the default specified in the meta data
     void setMetaData(FactMetaData* metaData, bool setDefaultFromMetaData = false);
 
     FactMetaData* metaData() { return _metaData; }

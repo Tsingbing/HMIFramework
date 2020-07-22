@@ -16,11 +16,11 @@ Dialog2::Dialog2(QWidget *parent) :
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
     ui->label->setText(ve->speedFact()->rawValueString());
 
-    qDebug() << ve->rotatingSpeedFact()->rawValueString();
+    qDebug() << ve->speedFact()->rawValueString();
     qDebug() << ve->rotatingSpeedFact()->rawValueString();
     qDebug() << ve->rotatingSpeedFact()->shortDescription();
-    qDebug() << ve->rotatingSpeedFact()->rawMax();
-    qDebug() << ve->rotatingSpeedFact()->rawMin();
+//    qDebug() << ve->rotatingSpeedFact()->rawMax();
+//    qDebug() << ve->rotatingSpeedFact()->rawMin();
 }
 
 Dialog2::~Dialog2()

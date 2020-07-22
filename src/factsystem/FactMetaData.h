@@ -56,12 +56,12 @@ public:
     /// @returns false：转换失败，赋值errorString
     bool convertAndValidateRaw(const QVariant& rawValue, bool convertOnly, QVariant& typedValue, QString& errorString);
 
-    static const int kDefaultDecimalPlaces = 3;  ///< Default value for decimal places if not specified/known
-    static const int kUnknownDecimalPlaces = -1; ///< Number of decimal places to specify is not known
+    static const int kDefaultDecimalPlaces = 3;     ///< Default value for decimal places if not specified/known
+    static const int kUnknownDecimalPlaces = -1;    ///< Number of decimal places to specify is not known
 
 private:
-    QVariant _minForType(void) const;
-    QVariant _maxForType(void) const;
+    QVariant _minForType(void) const;   ///< 类型最小值
+    QVariant _maxForType(void) const;   ///< 类型最小值
 
     ValueType_t     _type;                  ///< must be first for correct constructor init
     QString         _name;                  ///< 名称

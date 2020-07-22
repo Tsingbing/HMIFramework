@@ -12,6 +12,4 @@ void VehicleManager::setToolbox(Toolbox *toolbox)
     Tool::setToolbox(toolbox);
 
     _activeVehicle = new Vehicle(this);
-
-    //_toolbox->
 }

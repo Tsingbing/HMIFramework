@@ -17,7 +17,7 @@ Fact::Fact(QString name, FactMetaData::ValueType_t type, QObject *parent)
     , _metaData(nullptr)
 {
     FactMetaData* metaData = new FactMetaData(_type,"", this);
-    setMetaData(metaData);
+    setMetaData(metaData,true /* setDefaultFromMetaData */);
 }
 
 Fact::Fact(FactMetaData *metaData, QObject *parent)
@@ -27,7 +27,7 @@ Fact::Fact(FactMetaData *metaData, QObject *parent)
     , _type(metaData->type())
     , _metaData(metaData)
 {
-
+    setMetaData(metaData,true /* setDefaultFromMetaData */);
 }
 
 QString Fact::name() const
@@ -57,6 +57,19 @@ int Fact::decimalPlaces() const
     } else {
         qWarning() << kMissingMetadata << name();
         return FactMetaData::kDefaultDecimalPlaces;
+    }
+}
+
+QVariant Fact::rawDefaultValue() const
+{
+    if (_metaData) {
+        //if (!_metaData->defaultValueAvailable()) {
+        //    qDebug() << "Access to unavailable default value";
+       // }
+        return _metaData->rawDefaultValue();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QVariant(0);
     }
 }
 
@@ -101,7 +114,7 @@ void Fact::setRawValue(const QVariant &value)
         QVariant    typedValue;
         QString     errorString;
 
-        if (_metaData->convertAndValidateRaw(value, false /* convertOnly */, typedValue, errorString)) {
+        if (_metaData->convertAndValidateRaw(value, true /* convertOnly */, typedValue, errorString)) {
             if (typedValue != _rawValue) {
                 _rawValue.setValue(typedValue);
                 //_sendValueChangedSignal(cookedValue());
@@ -118,11 +131,11 @@ void Fact::setRawValue(const QVariant &value)
 
 void Fact::setMetaData(FactMetaData *metaData, bool setDefaultFromMetaData)
 {
-    //    _metaData = metaData;
-    //    if (setDefaultFromMetaData) {
-    //        setRawValue(rawDefaultValue());
-    //    }
-    //    emit valueChanged(cookedValue());
+    _metaData = metaData;
+    if (setDefaultFromMetaData) {
+        setRawValue(rawDefaultValue());
+    }
+    //emit valueChanged(cookedValue());
 }
 
 QString Fact::_variantToString(const QVariant &variant, int decimalPlaces) const

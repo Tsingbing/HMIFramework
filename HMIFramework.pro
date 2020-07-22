@@ -69,8 +69,8 @@ SOURCES += \
     src/main.cpp \
     src/settings/SettingsGroup.cpp \
     src/settings/SettingsManager.cpp \
+    src/ui/Dialog.cpp \
     src/ui/Dialog2.cpp \
-    src/ui/dialog.cpp \
     src/vehicles/Vehicle.cpp \
     src/vehicles/VehicleManager.cpp
 
@@ -83,14 +83,14 @@ HEADERS += \
     src/factsystem/FactMetaData.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \
+    src/ui/Dialog.h \
     src/ui/Dialog2.h \
-    src/ui/dialog.h \
     src/vehicles/Vehicle.h \
     src/vehicles/VehicleManager.h
 
 FORMS += \
     src/ui/Dialog2.ui \
-    src/ui/dialog.ui
+    src/ui/Dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

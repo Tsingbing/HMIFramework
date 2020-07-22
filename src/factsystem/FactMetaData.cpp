@@ -1,4 +1,5 @@
 ﻿#include "FactMetaData.h"
+#include <QDebug>
 
 const char* FactMetaData::_decimalPlacesJsonKey =       "decimalPlaces";
 const char* FactMetaData::_nameJsonKey =                "name";
@@ -52,6 +53,15 @@ void FactMetaData::setRawMin(const QVariant &rawMin)
         //                   << ", value attempted: " << rawMin
         //                   << ", type: " << type() << ", min for type: " << _minForType();
         _rawMin = _minForType();
+    }
+}
+
+void FactMetaData::setRawDefaultValue(const QVariant &rawDefaultValue)
+{
+    if(_type == valueTypeString || (_rawMin <= rawDefaultValue && rawDefaultValue <= _rawMax)){
+        _rawDefaultValue = rawDefaultValue;
+    } else {
+        qWarning() << "Attempt to set default value which is outside min/max range.";
     }
 }
 
