@@ -66,6 +66,7 @@ SOURCES += \
     src/factsystem/Fact.cpp \
     src/factsystem/FactGroup.cpp \
     src/factsystem/FactMetaData.cpp \
+    src/links/LinkManager.cpp \
     src/main.cpp \
     src/settings/SettingsGroup.cpp \
     src/settings/SettingsManager.cpp \
@@ -81,6 +82,7 @@ HEADERS += \
     src/factsystem/Fact.h \
     src/factsystem/FactGroup.h \
     src/factsystem/FactMetaData.h \
+    src/links/LinkManager.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \
     src/ui/Dialog.h \

@@ -30,9 +30,9 @@ public:
 
     void setRawValue        (const QVariant& value);
 
-    /// Sets the meta data associated with the Fact.
-    ///     @param metaData FactMetaData for Fact
-    ///     @param setDefaultFromMetaData true: set the fact value to the default specified in the meta data
+    /// 设置与Fact相关的元数据
+    ///     @参数 metaData FactMetaData for Fact
+    ///     @参数 setDefaultFromMetaData true: set the fact value to the default specified in the meta data
     void setMetaData(FactMetaData* metaData, bool setDefaultFromMetaData = false);
 
     FactMetaData* metaData() { return _metaData; }

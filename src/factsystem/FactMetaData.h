@@ -80,7 +80,6 @@ private:
     static const char* _maxJsonKey;
     static const char* _decimalPlacesJsonKey;
     static const char* _defaultValueJsonKey;
-
 };
 
 #endif // FACTMETADATA_H
