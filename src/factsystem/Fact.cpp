@@ -4,9 +4,12 @@ static const char* kMissingMetadata = "Meta data pointer missing";
 
 Fact::Fact(QObject *parent)
     : QObject(parent)
-    , _metaData(nullptr)
+    , _rawValue (0)
+    , _type     (FactMetaData::valueTypeInt32)
+    , _metaData (nullptr)
 {
-
+    FactMetaData* metaData = new FactMetaData(_type, this);
+    setMetaData(metaData);
 }
 
 Fact::Fact(QString name, FactMetaData::ValueType_t type, QObject *parent)
@@ -16,16 +19,16 @@ Fact::Fact(QString name, FactMetaData::ValueType_t type, QObject *parent)
     , _type(type)
     , _metaData(nullptr)
 {
-    FactMetaData* metaData = new FactMetaData(_type,"", this);
+    FactMetaData* metaData = new FactMetaData(_type, this);
     setMetaData(metaData,true /* setDefaultFromMetaData */);
 }
 
 Fact::Fact(FactMetaData *metaData, QObject *parent)
-    : QObject(parent)
-    , _name(metaData->name())
-    , _rawValue(0)
-    , _type(metaData->type())
-    , _metaData(metaData)
+    : QObject   (parent)
+    , _name     (metaData->name())
+    , _rawValue (0)
+    , _type     (metaData->type())
+    , _metaData (metaData)
 {
     setMetaData(metaData,true /* setDefaultFromMetaData */);
 }
@@ -37,7 +40,14 @@ QString Fact::name() const
 
 FactMetaData::ValueType_t Fact::type() const
 {
-    return _type;
+    //此处逻辑有点问题，返回metaData的类型。
+    if (_metaData) {
+        return _metaData->type();
+    } else {
+        qWarning() << kMissingMetadata << type();
+        //return 0; // 需要确定返回值。。。
+    }
+    //return _type;
 }
 
 QString Fact::shortDescription() const
@@ -65,7 +75,7 @@ QVariant Fact::rawDefaultValue() const
     if (_metaData) {
         //if (!_metaData->defaultValueAvailable()) {
         //    qDebug() << "Access to unavailable default value";
-       // }
+        // }
         return _metaData->rawDefaultValue();
     } else {
         qWarning() << kMissingMetadata << name();
@@ -123,7 +133,6 @@ void Fact::setRawValue(const QVariant &value)
                 //emit rawValueChanged(_rawValue);
             }
         }
-        qWarning() << errorString ;
     } else {
         qWarning() << kMissingMetadata << name();
     }

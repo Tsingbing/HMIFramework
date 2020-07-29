@@ -13,6 +13,10 @@ class FactGroup : public QObject
 public:
     FactGroup(int updateRateMsecs, const QString& metaDataFile, QObject* parent = nullptr);
 
+    /// @return Fact for specified name, NULL if not found
+    Fact* getFact(const QString& name);
+    QStringList factNames(void) const { return _factNames; }
+
 signals:
 
 protected:
@@ -20,6 +24,7 @@ protected:
 
 protected:
     void _addFact(Fact* fact, const QString& name);
+    void _loadFromJsonArray(const QJsonArray jsonArray);
 
 protected slots:
     virtual void _updateAllValues(void);

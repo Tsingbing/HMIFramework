@@ -1,43 +1,35 @@
 ﻿#include "Vehicle.h"
 #include <QSettings>
 
-const char* Vehicle::_speedFactName =            "speed";
+const char* Vehicle::_carSpeedFactName          = "carSpeed";
+const char* Vehicle::_rotatingSpeedFactName     = "rotatingSpeed";
+const char* Vehicle::_oilPressureFactName       = "oilPressure";
+const char* Vehicle::_waterTemperatureFactName  = "waterTemperature";
+const char* Vehicle::_airPressureFactName       = "airPressure";
+
+int Vehicle::testValue = 11;
 
 Vehicle::Vehicle(QObject *parent)
-    : FactGroup(_vehicleUIUpdateRateMSecs, ":/json/Vehicle/VehicleFact.json", parent)
+    : FactGroup(_vehicleUIUpdateRateMSecs, ":/hmi/json/VehicleFact.json", parent)
 {
-    {
-        //速度
-        FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeDouble, "Speed", this);
-        metaData->setShortDescription("Speed");
-        metaData->setDecimalPlaces(3);
-        metaData->setRawUnits("km/h");
-        metaData->setRawDefaultValue(QVariant(10));
-        metaData->setRawMax(60);
-        metaData->setRawMin(0);
+    _addFact(&_carSpeedFact,           _carSpeedFactName);
+    _addFact(&_rotatingSpeedFact,   _rotatingSpeedFactName);
+    //_carSpeedFact.setRawValue(50.6666);
+    //_rotatingSpeedFact.setRawValue(6666.5555);
+    _setupTimer();
+}
 
-        _speedFact = new Fact(metaData, this);
-        //_speedFact->setRawValue(50.6666);
-    }
+void Vehicle::_updateValue()
+{
+    if(testValue++ > 10000)
+        testValue = 0;
+    _carSpeedFact.setRawValue(QVariant(testValue));
+}
 
-    {
-        //转速
-        FactMetaData* metaData = new FactMetaData(FactMetaData::valueTypeInt32, "RotatingSpeed", this);
-        metaData->setShortDescription("Rotating Speed");
-        metaData->setDecimalPlaces(3);
-        metaData->setRawUnits("RPS");
-        metaData->setRawDefaultValue(QVariant(110));
-        metaData->setRawMax(2500);
-        metaData->setRawMin(0);
-
-        _rotatingSpeedFact = new Fact(metaData, this);
-        //_rotatingSpeedFact->setRawValue(7089.6666);
-    }
-
-    QSettings settings;
-    settings.setValue("test", true);
-    settings.beginGroup("speed");
-    settings.setValue("speed", _speedFact->rawValueString());
-    settings.endGroup();
-
+void Vehicle::_setupTimer()
+{
+    connect(&_updateTime, &QTimer::timeout, this, &Vehicle::_updateValue);
+    _updateTime.setSingleShot(false);
+    _updateTime.setInterval(10);
+    _updateTime.start();
 }

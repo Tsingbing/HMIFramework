@@ -10,14 +10,31 @@ class Vehicle : public FactGroup
 public:
     Vehicle(QObject* parent = nullptr);
 
-    Fact* speedFact() {return _speedFact;}
-    Fact* rotatingSpeedFact() { return _rotatingSpeedFact;}
+    Fact* carSpeedFact() {return &_carSpeedFact;}
+    Fact* rotatingSpeedFact() { return &_rotatingSpeedFact;}
+    Fact* oilPressureFact() { return &_oilPressureFact;}
+    Fact* waterTemperatureFact() { return &_waterTemperatureFact;}
+    Fact* airPressureFact() { return &_airPressureFact;}
+private slots:
+    void _updateValue();
 
 private:
-    Fact* _speedFact;
-    Fact* _rotatingSpeedFact;
+    void _setupTimer();
+    QTimer _updateTime;
 
-    static const char* _speedFactName;
+    Fact _carSpeedFact;
+    Fact _rotatingSpeedFact;
+    Fact _oilPressureFact;
+    Fact _waterTemperatureFact;
+    Fact _airPressureFact;
+
+    static int testValue;
+
+    static const char* _carSpeedFactName;
+    static const char* _rotatingSpeedFactName;
+    static const char* _oilPressureFactName;
+    static const char* _waterTemperatureFactName;
+    static const char* _airPressureFactName;
 
     static const int _vehicleUIUpdateRateMSecs = 100;
 };

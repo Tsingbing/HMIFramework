@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     XApplication *app = new XApplication(argc, argv);
-    Q_CHECK_PTR(app);
+    //Q_CHECK_PTR(app);
 
     app->_initForAppBoot();
 

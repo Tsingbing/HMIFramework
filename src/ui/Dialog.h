@@ -2,7 +2,7 @@
 #define DIALOG_H
 
 #include <QDialog>
-
+#include <QVariant>
 namespace Ui {
 class Dialog;
 }
@@ -14,6 +14,9 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
+
+private slots:
+    void _carUpdated(QVariant value);
 
 private:
     Ui::Dialog *ui;

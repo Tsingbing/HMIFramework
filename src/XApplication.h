@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QObject>
+#include <QElapsedTimer>
 
 class Toolbox;
 class QDialog;
@@ -20,7 +21,11 @@ public:
 
     static XApplication*  _app;   ///< 单例，直接被XApp()返回引用。
 
+    uint64_t  msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
+
 private:
+    QElapsedTimer       _msecsElapsedTime;
+
     Toolbox* _toolbox = nullptr;
     QDialog* dlg = nullptr;
     QDialog* dlg2 = nullptr;

@@ -40,7 +40,7 @@ exists ($$PWD/.git) {
         GIT_VERSION = "Development $${GIT_BRANCH}:$${GIT_HASH} $${GIT_TIME}"
         VERSION         = 0.0.0
     }
-    message(HMI $${GIT_VERSION})
+    #message(HMI $${GIT_VERSION})
 
 } else {
     GIT_VERSION     = None
@@ -66,6 +66,7 @@ SOURCES += \
     src/factsystem/Fact.cpp \
     src/factsystem/FactGroup.cpp \
     src/factsystem/FactMetaData.cpp \
+    src/factsystem/JsonHelper.cc \
     src/links/LinkManager.cpp \
     src/main.cpp \
     src/settings/SettingsGroup.cpp \
@@ -82,6 +83,7 @@ HEADERS += \
     src/factsystem/Fact.h \
     src/factsystem/FactGroup.h \
     src/factsystem/FactMetaData.h \
+    src/factsystem/JsonHelper.h \
     src/links/LinkManager.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \
@@ -98,3 +100,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    HMIFramework.qrc

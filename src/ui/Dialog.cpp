@@ -6,6 +6,7 @@
 #include "VehicleManager.h"
 #include "FactGroup.h"
 #include "Vehicle.h"
+#include <QDebug>
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -13,11 +14,17 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
-    //connect(ve->speedFact(),&Fact::valueChanged,ui->label,&QLabel::set)
-    ui->label->setText(ve->speedFact()->rawValueString());
+    connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);
+
+    //qDebug() << ve->getFact("carSpeed")->type();
 }
 
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+void Dialog::_carUpdated(QVariant value)
+{
+    ui->label->setText(value.toString());
 }

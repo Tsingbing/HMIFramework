@@ -29,7 +29,13 @@ public:
         valueTypeBool,
     } ValueType_t;
 
+    FactMetaData(ValueType_t type, QObject* parent = nullptr);
     FactMetaData(FactMetaData::ValueType_t type, const QString name, QObject *parent);
+
+    static QMap<QString, FactMetaData*> createMapFromJsonFile(const QString& jsonFilename, QObject* metaDataParent);
+    static QMap<QString, FactMetaData*> createMapFromJsonArray(const QJsonArray jsonArray, QMap<QString, QString>& defineMap, QObject* metaDataParent);
+
+    static FactMetaData* createFromJsonObject(const QJsonObject& json, QMap<QString, QString>& defineMap, QObject* metaDataParent);
 
     ValueType_t     type                    (void) const { return _type; }
     QString         name                    (void) const { return _name; }
@@ -58,6 +64,8 @@ public:
 
     static const int kDefaultDecimalPlaces = 3;     ///< Default value for decimal places if not specified/known
     static const int kUnknownDecimalPlaces = -1;    ///< Number of decimal places to specify is not known
+
+    static ValueType_t stringToType(const QString& typeString, bool& unknownType);
 
 private:
     QVariant _minForType(void) const;   ///< 类型最小值
