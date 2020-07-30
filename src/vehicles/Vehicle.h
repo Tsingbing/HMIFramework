@@ -36,7 +36,7 @@ private:
     static const char* _waterTemperatureFactName;
     static const char* _airPressureFactName;
 
-    static const int _vehicleUIUpdateRateMSecs = 100;
+    static const int _vehicleUIUpdateRateMSecs = 1000;
 };
 
 #endif // VEHICLE_H

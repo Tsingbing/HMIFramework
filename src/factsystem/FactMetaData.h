@@ -45,6 +45,9 @@ public:
     QVariant        rawMin                  (void) const { return _rawMin; }
     int             decimalPlaces           (void) const;
     QVariant        rawDefaultValue         (void) const;
+    QVariant        cookedDefaultValue      (void) const { return defaultTranslator(rawDefaultValue()); }
+    QString         cookedUnits             (void) const { return rawUnits(); }
+
 
     void setName                    (const QString& name)               { _name = name; }
     void setShortDescription        (const QString& shortDescription)   { _shortDescription = shortDescription; }
@@ -67,9 +70,16 @@ public:
 
     static ValueType_t stringToType(const QString& typeString, bool& unknownType);
 
+    ///< translators 是转换rawvalue和cookedvalue（待实现）
+    /// 例如：英寸转米 feetToMeters（rawvalue是英寸，cookedvalue是米）
+    ///
+    /// 内置转换器（默认是不转换）
+    static QVariant defaultTranslator(const QVariant& from) { return from; }
+
 private:
     QVariant _minForType(void) const;   ///< 类型最小值
     QVariant _maxForType(void) const;   ///< 类型最小值
+
 
     ValueType_t     _type;                  ///< must be first for correct constructor init
     QString         _name;                  ///< 名称

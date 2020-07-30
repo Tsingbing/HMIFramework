@@ -113,9 +113,35 @@ QString Fact::rawUnits() const
     }
 }
 
+QString Fact::units() const
+{
+    if (_metaData) {
+        return _metaData->cookedUnits();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QString();
+    }
+}
+
+QVariant Fact::value() const
+{
+    if (_metaData) {
+        return _metaData->defaultTranslator(_rawValue); //默认转换器
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return _rawValue;
+    }
+}
+
+
 QString Fact::rawValueString() const
 {
     return _variantToString(rawValue(), decimalPlaces());
+}
+
+QString Fact::valueString() const
+{
+    return _variantToString(value(), decimalPlaces());
 }
 
 void Fact::setRawValue(const QVariant &value)
@@ -131,6 +157,7 @@ void Fact::setRawValue(const QVariant &value)
                 //-- Must be in this order
                 //emit _containerRawValueChanged(rawValue());
                 //emit rawValueChanged(_rawValue);
+                emit valueChanged(value);
             }
         }
     } else {

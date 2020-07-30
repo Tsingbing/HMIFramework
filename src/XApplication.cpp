@@ -13,14 +13,14 @@ XApplication::XApplication(int &argc, char *argv[])
     _app = this;
    // _msecsElapsedTime.start();
 
-//    setApplicationName(APPLICATION_NAME);
-//    setOrganizationName(ORG_NAME);
-//    setApplicationVersion(QString(GIT_VERSION));
+    setApplicationName(APPLICATION_NAME);
+    setOrganizationName(ORG_NAME);
+    setApplicationVersion(QString(GIT_VERSION));
 
     // Set settings format
-    //QSettings::setDefaultFormat(QSettings::IniFormat);
-    //QSettings settings;
-    //qDebug() << "Settings location" << settings.fileName() << "Is writable?:" << settings.isWritable();
+    QSettings::setDefaultFormat(QSettings::IniFormat);
+    QSettings settings;
+    qDebug() << "Settings location" << settings.fileName() << "Is writable?:" << settings.isWritable();
 
     _toolbox = new Toolbox(this);
     _toolbox->setChildToolboxes();

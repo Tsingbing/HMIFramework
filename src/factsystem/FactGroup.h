@@ -20,7 +20,7 @@ public:
 signals:
 
 protected:
-    int _updateRateMSecs;
+    int _updateRateMSecs;   ///< Fact::valueChanged信号的更新频率，0：立即更新
 
 protected:
     void _addFact(Fact* fact, const QString& name);

@@ -25,8 +25,11 @@ public:
     QVariant        rawMax                  (void) const;
     QVariant        rawMin                  (void) const;
     QString         rawUnits                (void) const;
+    QString         units                   (void) const;
     QVariant        rawValue                (void) const { return _rawValue; }
+    QVariant        value                   (void) const;   /// 转换处理之后的值
     QString         rawValueString          (void) const;
+    QString         valueString             (void) const;
 
     void setRawValue        (const QVariant& value);
 

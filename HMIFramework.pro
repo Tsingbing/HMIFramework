@@ -40,7 +40,7 @@ exists ($$PWD/.git) {
         GIT_VERSION = "Development $${GIT_BRANCH}:$${GIT_HASH} $${GIT_TIME}"
         VERSION         = 0.0.0
     }
-    #message(HMI $${GIT_VERSION})
+    message(HMI $${GIT_VERSION})
 
 } else {
     GIT_VERSION     = None

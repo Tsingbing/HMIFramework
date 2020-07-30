@@ -8,20 +8,24 @@
 #include "Vehicle.h"
 #include <QDebug>
 
+
 Dialog2::Dialog2(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog2)
 {
     ui->setupUi(this);
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
-    ui->label->setText(ve->rotatingSpeedFact()->rawValueString());
 
-//    qDebug() << ve->speedFact()->rawValueString();
-    qDebug() << ve->rotatingSpeedFact()->rawValueString();
-    qDebug() << ve->rotatingSpeedFact()->shortDescription();
+    ///< fact 变化值和ui显示 连接
+    connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog2::_carUpdated);
 }
 
 Dialog2::~Dialog2()
 {
     delete ui;
+}
+
+void Dialog2::_carUpdated(QVariant value)
+{
+    ui->label->setText(value.toString());
 }

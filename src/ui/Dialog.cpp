@@ -14,6 +14,8 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
+
+    ///< fact 变化值和ui显示 连接
     connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);
 
     //qDebug() << ve->getFact("carSpeed")->type();

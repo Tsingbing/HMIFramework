@@ -14,13 +14,14 @@ Vehicle::Vehicle(QObject *parent)
 {
     _addFact(&_carSpeedFact,           _carSpeedFactName);
     _addFact(&_rotatingSpeedFact,   _rotatingSpeedFactName);
-    //_carSpeedFact.setRawValue(50.6666);
-    //_rotatingSpeedFact.setRawValue(6666.5555);
     _setupTimer();
 }
 
 void Vehicle::_updateValue()
 {
+    ///< 测试：变化的速度值
+    /// 在ui获取fact值
+    /// 例如 connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);
     if(testValue++ > 10000)
         testValue = 0;
     _carSpeedFact.setRawValue(QVariant(testValue));
