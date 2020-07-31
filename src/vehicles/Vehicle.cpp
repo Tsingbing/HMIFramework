@@ -7,10 +7,10 @@ const char* Vehicle::_oilPressureFactName       = "oilPressure";
 const char* Vehicle::_waterTemperatureFactName  = "waterTemperature";
 const char* Vehicle::_airPressureFactName       = "airPressure";
 
-int Vehicle::testValue = 11;
+int Vehicle::testValue = 1; //测试用
 
 Vehicle::Vehicle(QObject *parent)
-    : FactGroup(_vehicleUIUpdateRateMSecs, ":/hmi/json/VehicleFact.json", parent)
+    : FactGroup(_vehicleUIUpdateRateMSecs, ":/json/VehicleFact.json", parent)
 {
     _addFact(&_carSpeedFact,           _carSpeedFactName);
     _addFact(&_rotatingSpeedFact,   _rotatingSpeedFactName);

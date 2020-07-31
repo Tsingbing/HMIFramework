@@ -18,6 +18,14 @@ public:
 private slots:
     void _carUpdated(QVariant value);
 
+    void on_pushButton_menu_clicked();
+
+    void on_pushButton_system_set_clicked();
+
+    void on_pushButton_set2main_clicked();
+
+    void on_pushButton_mainset_F10_clicked();
+
 private:
     Ui::Dialog *ui;
 };

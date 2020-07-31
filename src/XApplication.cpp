@@ -17,7 +17,7 @@ XApplication::XApplication(int &argc, char *argv[])
     setOrganizationName(ORG_NAME);
     setApplicationVersion(QString(GIT_VERSION));
 
-    // Set settings format
+    // 设置 settings 格式
     QSettings::setDefaultFormat(QSettings::IniFormat);
     QSettings settings;
     qDebug() << "Settings location" << settings.fileName() << "Is writable?:" << settings.isWritable();
@@ -41,13 +41,13 @@ void XApplication::_initForAppBoot()
     Q_CHECK_PTR(dlg);
     dlg->show();
     //qDebug() << "timestamp = " << msecsSinceBoot();
-    dlg2 = new Dialog2();
-    Q_CHECK_PTR(dlg2);
-    dlg2->show();
+//    dlg2 = new Dialog2();
+//    Q_CHECK_PTR(dlg2);
+//    dlg2->show();
     //qDebug() << "timestamp = " << msecsSinceBoot();
 }
 
-/// @brief Returns the XApplication object singleton.
+///  返回 XApplication 单例对象.
 XApplication* XApp(void)
 {
     return XApplication::_app;

@@ -6,50 +6,1203 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>761</width>
-    <height>536</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>200</y>
-     <width>72</width>
-     <height>15</height>
-    </rect>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
    </property>
-   <property name="text">
-    <string>Test:</string>
+   <property name="topMargin">
+    <number>0</number>
    </property>
-  </widget>
-  <widget class="QTabWidget" name="tabWidget">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>240</y>
-     <width>135</width>
-     <height>80</height>
-    </rect>
+   <property name="rightMargin">
+    <number>0</number>
    </property>
-   <property name="currentIndex">
-    <number>1</number>
+   <property name="bottomMargin">
+    <number>0</number>
    </property>
-   <widget class="QWidget" name="tab">
-    <attribute name="title">
-     <string>Tab 1</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="tab_2">
-    <attribute name="title">
-     <string>Tab 2</string>
-    </attribute>
-   </widget>
-  </widget>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="autoFillBackground">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget#sysSetting{image: url(:/images/ui/images/UI_wd/main_set.jpg);}</string>
+     </property>
+     <widget class="QWidget" name="main">
+      <property name="styleSheet">
+       <string notr="true">QWidget#main{image: url(:/images/background-image);}</string>
+      </property>
+      <widget class="QLabel" name="label_260">
+       <property name="geometry">
+        <rect>
+         <x>27</x>
+         <y>320</y>
+         <width>54</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255, 255, 255)</string>
+       </property>
+       <property name="text">
+        <string>切断</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_jingyin">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>549</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>消音</string>
+       </property>
+       <property name="shortcut">
+        <string>F2</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_info">
+       <property name="geometry">
+        <rect>
+         <x>559</x>
+         <y>549</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>故障信息</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>F8</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_weixiu">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>549</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>维修保养</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="shortcut">
+        <string>1</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_259">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>380</y>
+         <width>54</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255, 255, 255)</string>
+       </property>
+       <property name="text">
+        <string>切根</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>320</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255, 255, 255)</string>
+       </property>
+       <property name="text">
+        <string>转速</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_menu">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>549</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>菜单</string>
+       </property>
+       <property name="shortcut">
+        <string>F1</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_system_set">
+       <property name="geometry">
+        <rect>
+         <x>720</x>
+         <y>549</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>系统设置</string>
+       </property>
+       <property name="shortcut">
+        <string>F10</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_runhua">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>549</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>润滑</string>
+       </property>
+       <property name="shortcut">
+        <string>F3</string>
+       </property>
+      </widget>
+      <widget class="QFrame" name="vehicle">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>300</y>
+         <width>411</width>
+         <height>221</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame#vehicle{image: url(:/images/vehicles-image);}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_qieshao_3">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>0</y>
+          <width>101</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../../HMIFramework.qrc">:/images/ui/images/gzj_new/qxxz_green.png</pixmap>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QLabel" name="label_258">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>420</y>
+         <width>54</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255, 255, 255)</string>
+       </property>
+       <property name="text">
+        <string>风机</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_261">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>470</y>
+         <width>54</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255, 255, 255)</string>
+       </property>
+       <property name="text">
+        <string>输送</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_io_status">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>549</y>
+         <width>81</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>控制器
+信息</string>
+       </property>
+       <property name="shortcut">
+        <string>F4</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="menu">
+      <property name="styleSheet">
+       <string notr="true">QWidget#menu{image: url(:/images/ui/images/UI_wd/menu2.jpg);}</string>
+      </property>
+      <widget class="QLabel" name="label_186">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>90</y>
+         <width>200</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>菜单页面</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_41">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>140</y>
+         <width>200</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string> F1 — 设备信息</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_49">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>240</y>
+         <width>200</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F10 — 返回</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_48">
+       <property name="geometry">
+        <rect>
+         <x>309</x>
+         <y>190</y>
+         <width>201</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string> F2 — 二维码</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F1">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F1</string>
+       </property>
+       <property name="shortcut">
+        <string>F1</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F4">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F4</string>
+       </property>
+       <property name="shortcut">
+        <string>F4</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F10">
+       <property name="geometry">
+        <rect>
+         <x>720</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F10</string>
+       </property>
+       <property name="shortcut">
+        <string>F10</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F7">
+       <property name="geometry">
+        <rect>
+         <x>480</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F7</string>
+       </property>
+       <property name="shortcut">
+        <string>F7</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F6">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F6</string>
+       </property>
+       <property name="shortcut">
+        <string>F6</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F3">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F3</string>
+       </property>
+       <property name="shortcut">
+        <string>F3</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F5">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F5</string>
+       </property>
+       <property name="shortcut">
+        <string>F5</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_mainset_F2">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>F2</string>
+       </property>
+       <property name="shortcut">
+        <string>F2</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="sysSetting">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <widget class="QPushButton" name="pushButton_sub">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>减少</string>
+       </property>
+       <property name="shortcut">
+        <string>F6</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_set2main">
+       <property name="geometry">
+        <rect>
+         <x>720</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>主界面</string>
+       </property>
+       <property name="shortcut">
+        <string>F10</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_up">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>向上</string>
+       </property>
+       <property name="shortcut">
+        <string>F2</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_right">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>向右</string>
+       </property>
+       <property name="shortcut">
+        <string>F4</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_left">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>向左</string>
+       </property>
+       <property name="shortcut">
+        <string>F3</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_add">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>增加</string>
+       </property>
+       <property name="shortcut">
+        <string>F5</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_sure">
+       <property name="geometry">
+        <rect>
+         <x>640</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>确认</string>
+       </property>
+       <property name="shortcut">
+        <string>1</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_down">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>550</y>
+         <width>80</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>向下</string>
+       </property>
+       <property name="shortcut">
+        <string>F1</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_35">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>90</y>
+         <width>51</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>设置</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_37">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>90</y>
+         <width>31</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap>:/NEWFILE_QRC/shezhitubiao.png</pixmap>
+       </property>
+      </widget>
+      <widget class="QStackedWidget" name="stackedWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>150</y>
+         <width>411</width>
+         <height>291</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <widget class="QWidget" name="page_3">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(8, 11, 16);</string>
+        </property>
+        <widget class="QLabel" name="label_21">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>40</y>
+           <width>91</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>当前机型：</string>
+         </property>
+        </widget>
+        <widget class="QFrame" name="frame">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>180</y>
+           <width>71</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_11">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>130</y>
+           <width>90</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>料斗型</string>
+         </property>
+        </widget>
+        <widget class="QRadioButton" name="radioButton_12">
+         <property name="geometry">
+          <rect>
+           <x>240</x>
+           <y>130</y>
+           <width>90</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>臂架型</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="page_4"/>
+      </widget>
+      <widget class="QListWidget" name="listWidget">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>150</y>
+         <width>133</width>
+         <height>259</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="gridSize">
+        <size>
+         <width>0</width>
+         <height>35</height>
+        </size>
+       </property>
+       <item>
+        <property name="text">
+         <string>机型选择</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
+        </property>
+        <property name="background">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>16</red>
+           <green>16</green>
+           <blue>16</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>润滑时长</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>手动/自动</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>倾角设置</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>参数标定</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
+        </property>
+        <property name="background">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </property>
+        <property name="foreground">
+         <brush brushstyle="NoBrush">
+          <color alpha="255">
+           <red>255</red>
+           <green>255</green>
+           <blue>255</blue>
+          </color>
+         </brush>
+        </property>
+       </item>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../HMIFramework.qrc"/>
+ </resources>
  <connections/>
 </ui>

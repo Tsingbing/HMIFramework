@@ -1,5 +1,39 @@
 <RCC>
-    <qresource prefix="/hmi/json">
+    <qresource prefix="/json">
         <file alias="VehicleFact.json">src/vehicles/VehicleFact.json</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="background-image">ui/images/main3.jpg</file>
+        <file alias="vehicles-image">ui/images/dow.png</file>
+        <file>ui/images/gzj_new/cz_green.png</file>
+        <file>ui/images/gzj_new/cz_white.png</file>
+        <file>ui/images/gzj_new/fjsj_green.png</file>
+        <file>ui/images/gzj_new/fjsj_white.png</file>
+        <file>ui/images/gzj_new/fjxz_geen.png</file>
+        <file>ui/images/gzj_new/fjxz_white.png</file>
+        <file>ui/images/gzj_new/fzsj_green.png</file>
+        <file>ui/images/gzj_new/fzsj_white.png</file>
+        <file>ui/images/gzj_new/fzxz_green.png</file>
+        <file>ui/images/gzj_new/fzxz_white.png</file>
+        <file>ui/images/gzj_new/gdxz_green.png</file>
+        <file>ui/images/gzj_new/gdxz_white.png</file>
+        <file>ui/images/gzj_new/jiaoduBaojing.png</file>
+        <file>ui/images/gzj_new/jiaoduBaojing11.png</file>
+        <file>ui/images/gzj_new/ldsj_green.png</file>
+        <file>ui/images/gzj_new/ldsj_white.png</file>
+        <file>ui/images/gzj_new/qg_green.png</file>
+        <file>ui/images/gzj_new/qg_white.png</file>
+        <file>ui/images/gzj_new/qxsj_green.png</file>
+        <file>ui/images/gzj_new/qxsj_white.png</file>
+        <file>ui/images/gzj_new/qxxz_green.png</file>
+        <file>ui/images/gzj_new/qxxz_white.png</file>
+        <file>ui/images/gzj_new/sysj_green.png</file>
+        <file>ui/images/gzj_new/sysj_white.png</file>
+        <file>ui/images/gzj_new/syxz_green.png</file>
+        <file>ui/images/gzj_new/syxz_white.png</file>
+        <file>ui/images/gzj_new/syzy_green.png</file>
+        <file>ui/images/gzj_new/syzy_white.png</file>
+        <file>ui/images/UI_wd/menu2.jpg</file>
+        <file>ui/images/UI_wd/main_set.jpg</file>
     </qresource>
 </RCC>

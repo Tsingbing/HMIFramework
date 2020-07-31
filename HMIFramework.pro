@@ -94,7 +94,8 @@ HEADERS += \
 
 FORMS += \
     src/ui/Dialog2.ui \
-    src/ui/Dialog.ui
+    src/ui/Dialog.ui \
+    src/ui/Menu.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
