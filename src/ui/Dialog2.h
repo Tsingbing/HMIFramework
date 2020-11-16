@@ -4,8 +4,9 @@
 #include <QDialog>
 #include <QVariant>
 
-namespace Ui {
-class Dialog2;
+namespace Ui
+{
+    class Dialog2;
 }
 
 class Dialog2 : public QDialog
@@ -13,7 +14,7 @@ class Dialog2 : public QDialog
     Q_OBJECT
 
 public:
-    explicit Dialog2(QWidget *parent = nullptr);
+    explicit Dialog2(QWidget *parent = 0);
     ~Dialog2();
 
 private slots:

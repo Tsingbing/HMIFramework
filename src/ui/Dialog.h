@@ -3,8 +3,10 @@
 
 #include <QDialog>
 #include <QVariant>
-namespace Ui {
-class Dialog;
+#include "Vehicle.h"
+namespace Ui
+{
+    class Dialog;
 }
 
 class Dialog : public QDialog
@@ -12,7 +14,7 @@ class Dialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = nullptr);
+    explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
 private slots:
@@ -28,6 +30,7 @@ private slots:
 
 private:
     Ui::Dialog *ui;
+    Vehicle * ve;
 };
 
 #endif // DIALOG_H

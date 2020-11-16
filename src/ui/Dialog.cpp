@@ -13,12 +13,12 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-    Vehicle * ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
+    ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
 
     ///< fact 变化值和ui显示 连接
     connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);
 
-    ///< qDebug() << ve->getFact("carSpeed")->type();
+    qDebug() <<"===============================" <<ve->getFact("carSpeed")->type() << ve->getFact("carSpeed")->units();
 }
 
 Dialog::~Dialog()
@@ -28,7 +28,7 @@ Dialog::~Dialog()
 
 void Dialog::_carUpdated(QVariant value)
 {
-    ui->label->setText(value.toString());
+    ui->label->setText(value.toString() + ve->getFact("carSpeed")->units());
 }
 
 void Dialog::on_pushButton_menu_clicked()

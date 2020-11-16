@@ -1,4 +1,4 @@
-#ifndef FACT_H
+﻿#ifndef FACT_H
 #define FACT_H
 
 #include "FactMetaData.h"
@@ -11,11 +11,11 @@ class Fact : public QObject
 {
     Q_OBJECT
 public:
-    Fact(QObject *parent = nullptr);
-    Fact(QString name, FactMetaData::ValueType_t type, QObject* parent = nullptr);
+    Fact(QObject *parent = 0);
+    Fact(QString name, FactMetaData::ValueType_t type, QObject* parent = 0);
 
     /// Creates a Fact using the name and type from metaData.
-    Fact(FactMetaData* metaData, QObject* parent = nullptr);
+    Fact(FactMetaData* metaData, QObject* parent = 0);
 
     QString         name                    (void) const;
     FactMetaData::ValueType_t type          (void) const;

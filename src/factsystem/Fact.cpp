@@ -6,7 +6,7 @@ Fact::Fact(QObject *parent)
     : QObject(parent)
     , _rawValue (0)
     , _type     (FactMetaData::valueTypeInt32)
-    , _metaData (nullptr)
+    , _metaData (0)
 {
     FactMetaData* metaData = new FactMetaData(_type, this);
     setMetaData(metaData);
@@ -17,7 +17,7 @@ Fact::Fact(QString name, FactMetaData::ValueType_t type, QObject *parent)
     , _name(name)
     , _rawValue(0)
     , _type(type)
-    , _metaData(nullptr)
+    , _metaData(0)
 {
     FactMetaData* metaData = new FactMetaData(_type, this);
     setMetaData(metaData,true /* setDefaultFromMetaData */);

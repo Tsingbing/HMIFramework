@@ -5,12 +5,11 @@
 
 class VehicleManager;
 
-///< 它用于管理我们所有的顶级服务/工具
 class Toolbox : public QObject
 {
     Q_OBJECT
 public:
-    Toolbox(QObject *parent = nullptr);
+    Toolbox(QObject *parent = 0);
 
     VehicleManager* vehicleManager() {return _vehicleManager;}
 
@@ -19,7 +18,7 @@ signals:
 private:
     void setChildToolboxes();
 
-    VehicleManager* _vehicleManager = nullptr;
+    VehicleManager* _vehicleManager = 0;
 
     friend class XApplication;
 };

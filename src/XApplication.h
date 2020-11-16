@@ -26,9 +26,9 @@ public:
 private:
     QElapsedTimer       _msecsElapsedTime;
 
-    Toolbox* _toolbox = nullptr;
-    QDialog* dlg = nullptr;
-    QDialog* dlg2 = nullptr;
+    Toolbox* _toolbox = 0;
+    QDialog* dlg = 0;
+    QDialog* dlg2 = 0;
 };
 
 XApplication* XApp(void);

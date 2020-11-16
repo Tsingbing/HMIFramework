@@ -17,7 +17,7 @@ FactGroup::FactGroup(int updateRateMsecs, const QString &metaDataFile, QObject *
 
 Fact *FactGroup::getFact(const QString &name)
 {
-    Fact* fact = nullptr;
+    Fact* fact = 0;
 
     if (_nameToFactMap.contains(name)) {
         fact = _nameToFactMap[name];

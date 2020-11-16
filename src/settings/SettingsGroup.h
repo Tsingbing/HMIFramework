@@ -7,10 +7,9 @@ class SettingsGroup : public QObject
 {
     Q_OBJECT
 public:
-    explicit SettingsGroup(QObject *parent = nullptr);
+    explicit SettingsGroup(QObject *parent = 0);
 
 signals:
-
 };
 
 #endif // SETTINGSGROUP_H

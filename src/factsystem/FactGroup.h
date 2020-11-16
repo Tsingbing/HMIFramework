@@ -1,4 +1,4 @@
-#ifndef FACTGROUP_H
+﻿#ifndef FACTGROUP_H
 #define FACTGROUP_H
 
 #include <QObject>
@@ -11,7 +11,7 @@ class FactGroup : public QObject
 {
     Q_OBJECT
 public:
-    FactGroup(int updateRateMsecs, const QString& metaDataFile, QObject* parent = nullptr);
+    FactGroup(int updateRateMsecs, const QString& metaDataFile, QObject* parent = 0);
 
     /// @return Fact for specified name, NULL if not found
     Fact* getFact(const QString& name);
