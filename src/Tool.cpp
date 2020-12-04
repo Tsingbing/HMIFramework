@@ -3,7 +3,7 @@
 
 Tool::Tool(Toolbox *toolbox)
     : QObject(toolbox)
-    , _toolbox(0)
+    , _toolbox(nullptr)
 {
 //qDebug() << QString(APPLICATION_NAME);
 }

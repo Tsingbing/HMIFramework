@@ -67,6 +67,7 @@ SOURCES += \
     src/factsystem/FactGroup.cpp \
     src/factsystem/FactMetaData.cpp \
     src/factsystem/JsonHelper.cc \
+    src/links/LinkInterface.cpp \
     src/links/LinkManager.cpp \
     src/main.cpp \
     src/settings/SettingsGroup.cpp \
@@ -84,6 +85,7 @@ HEADERS += \
     src/factsystem/FactGroup.h \
     src/factsystem/FactMetaData.h \
     src/factsystem/JsonHelper.h \
+    src/links/LinkInterface.h \
     src/links/LinkManager.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \

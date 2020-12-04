@@ -5,7 +5,7 @@
 #include "Dialog2.h"
 #include <QDebug>
 
-XApplication* XApplication::_app = 0;
+XApplication* XApplication::_app = nullptr;
 
 XApplication::XApplication(int &argc, char *argv[])
     : QApplication (argc, argv)
