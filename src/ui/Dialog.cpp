@@ -4,6 +4,7 @@
 #include "XApplication.h"
 #include "Toolbox.h"
 #include "VehicleManager.h"
+#include "LinkManager.h"
 #include "FactGroup.h"
 #include "Vehicle.h"
 #include <QDebug>
@@ -14,6 +15,7 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
+    cl = XApp()->toolbox()->linkManager()->canlink();
 
     ///< fact 变化值和ui显示 连接
     connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);

@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include "Tool.h"
+#include "CanLink.h"
+#include "CanLinkProtocol.h"
 
 /// @说明 管理通讯连接
 ///
@@ -14,7 +16,19 @@ class LinkManager : public Tool
 public:
     LinkManager(Toolbox* toolbox);
     ~LinkManager();
+    CanLink* canlink() {return _canlink;}
 
+    LinkInterface* createConnectedLink(CanLinkConfiguration* config);
+    bool connectLink(LinkInterface* link);
+    void disconnectLink(LinkInterface* link);
+
+    ///< 覆写Tool函数
+    virtual void setToolbox(Toolbox *toolbox);
+private:
+
+private:
+    CanLink *_canlink = nullptr;
+    CanLinkProtocol *_canlinkProtocol = nullptr;
 };
 
 #endif // LINKMANAGER_H

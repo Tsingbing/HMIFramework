@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QVariant>
 #include "Vehicle.h"
+#include "CanLink.h"
+
 namespace Ui
 {
     class Dialog;
@@ -14,7 +16,7 @@ class Dialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = 0);
+    explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
 
 private slots:
@@ -31,6 +33,7 @@ private slots:
 private:
     Ui::Dialog *ui;
     Vehicle * ve;
+    CanLink * cl;
 };
 
 #endif // DIALOG_H

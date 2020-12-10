@@ -37,7 +37,7 @@ XApplication::~XApplication()
 
 void XApplication::_initForAppBoot()
 {
-    dlg = new Dialog();
+    dlg = new Dialog2();
     Q_CHECK_PTR(dlg);
     dlg->show();
     //qDebug() << "timestamp = " << msecsSinceBoot();

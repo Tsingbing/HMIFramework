@@ -58,6 +58,7 @@ INCLUDEPATH += \
     src/factsystem \
     src/vehicles \
     src/settings \
+    src/links \
     src/ui
 
 SOURCES += \

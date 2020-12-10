@@ -15,12 +15,20 @@ class LinkInterface : public QThread
     Q_OBJECT
 
 public:
-    virtual void requestReset() = 0;
+    //virtual void requestReset() = 0;
 
     virtual bool isConnected() const = 0;
 
     /* Connection characteristics */
-    virtual qint64 getConnectionSpeed() const = 0;
+    //virtual qint64 getConnectionSpeed() const = 0;
+
+    /**
+     * @brief Connect this interface logically
+     *
+     * @return True if connection could be established, false otherwise
+     **/
+    virtual bool _connect(void) = 0;
+    virtual void _disconnect(void) = 0;
 
 protected:
     LinkInterface();
@@ -30,9 +38,7 @@ private slots:
 
 signals:
     void bytesRecived(LinkInterface* link, QByteArray data);
-
     void connected();
-
     void disconnected();
 };
 

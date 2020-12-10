@@ -4,22 +4,24 @@
 #include <QObject>
 
 class VehicleManager;
+class LinkManager;
 
 class Toolbox : public QObject
 {
     Q_OBJECT
 public:
-    Toolbox(QObject *parent = 0);
+    Toolbox(QObject *parent = nullptr);
 
     VehicleManager* vehicleManager() {return _vehicleManager;}
+    LinkManager* linkManager() {return _linkManager;}
 
 signals:
 
 private:
     void setChildToolboxes();
 
-    VehicleManager* _vehicleManager = 0;
-
+    VehicleManager* _vehicleManager = nullptr;
+    LinkManager*     _linkManager   = nullptr;
     friend class XApplication;
 };
 
