@@ -1,4 +1,5 @@
 QT       += core gui
+QT += serialbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -67,6 +68,9 @@ SOURCES += \
     src/factsystem/FactGroup.cpp \
     src/factsystem/FactMetaData.cpp \
     src/factsystem/JsonHelper.cc \
+    src/links/CanLink.cpp \
+    src/links/CanLinkDecoder.cpp \
+    src/links/CanLinkProtocol.cpp \
     src/links/LinkInterface.cpp \
     src/links/LinkManager.cpp \
     src/main.cpp \
@@ -85,6 +89,10 @@ HEADERS += \
     src/factsystem/FactGroup.h \
     src/factsystem/FactMetaData.h \
     src/factsystem/JsonHelper.h \
+    src/links/CanLink.h \
+    src/links/CanLink.h \
+    src/links/CanLinkDecoder.h \
+    src/links/CanLinkProtocol.h \
     src/links/LinkInterface.h \
     src/links/LinkManager.h \
     src/settings/SettingsGroup.h \

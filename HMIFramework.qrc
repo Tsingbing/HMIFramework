@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/json">
         <file alias="VehicleFact.json">src/vehicles/VehicleFact.json</file>
+        <file>src/links/canData.json</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="background-image">ui/images/main3.jpg</file>
@@ -35,5 +36,8 @@
         <file>ui/images/gzj_new/syzy_white.png</file>
         <file>ui/images/UI_wd/menu2.jpg</file>
         <file>ui/images/UI_wd/main_set.jpg</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>src/links/canData.json</file>
     </qresource>
 </RCC>

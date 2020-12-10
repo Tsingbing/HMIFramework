@@ -1,0 +1,234 @@
+{
+	"taskModeSupport": 1,
+	"modleVersion": 4,
+	"configVersion": "110104210000",
+	"carPara": [
+		{
+			"canID": "18FEF700",
+			"startBit": 48,
+			"bitNum": 16,
+			"carMult": 0.05,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEEE00",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": -40
+		},
+		{
+			"canID": "0CF00400",
+			"startBit": 24,
+			"bitNum": 16,
+			"carMult": 0.125,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 16,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "0CF00400",
+			"startBit": 16,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": -125
+		},
+		{
+			"canID": "18FEEE00",
+			"startBit": 8,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": -40
+		},
+		{
+			"canID": "18FEEE00",
+			"startBit": 16,
+			"bitNum": 16,
+			"carMult": 0.03125,
+			"carAdd": -273
+		},
+		{
+			"canID": "18FEF500",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 0.5,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 16,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEF500",
+			"startBit": 24,
+			"bitNum": 16,
+			"carMult": 0.03125,
+			"carAdd": -273
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEE500",
+			"startBit": 0,
+			"bitNum": 32,
+			"carMult": 0.05,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FF9603",
+			"startBit": 0,
+			"bitNum": 16,
+			"carMult": 0.00390625,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEE000",
+			"startBit": 0,
+			"bitNum": 32,
+			"carMult": 0.125,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEE000",
+			"startBit": 32,
+			"bitNum": 32,
+			"carMult": 0.125,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEE900",
+			"startBit": 0,
+			"bitNum": 32,
+			"carMult": 0.5,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEE900",
+			"startBit": 32,
+			"bitNum": 32,
+			"carMult": 0.5,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEEF00",
+			"startBit": 24,
+			"bitNum": 8,
+			"carMult": 4,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEEF00",
+			"startBit": 24,
+			"bitNum": 8,
+			"carMult": 4,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEF200",
+			"startBit": 16,
+			"bitNum": 16,
+			"carMult": 0.001953125,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "18FEEF00",
+			"startBit": 16,
+			"bitNum": 8,
+			"carMult": 0.4,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 16,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": 0
+		},
+		{
+			"canID": "FFFFFFFF",
+			"startBit": 0,
+			"bitNum": 8,
+			"carMult": 1,
+			"carAdd": 0
+		}
+	],
+	"platfPara": [],
+	"reportPack": [],
+	"needSavePara": [
+		{
+			"protId": "BC",
+			"packId": "000C",
+			"paraIndex": 14,
+			"paraLen": 4,
+			"paraType": "COMMON_DATA",
+			"paraName": "总行驶里程",
+			"dataFrom": 5014
+		},
+		{
+			"protId": "BC",
+			"packId": "000C",
+			"paraIndex": 16,
+			"paraLen": 4,
+			"paraType": "COMMON_DATA",
+			"paraName": "累计油耗",
+			"dataFrom": 5016
+		},
+		{
+			"protId": "BC",
+			"packId": "000C",
+			"paraIndex": 11,
+			"paraLen": 4,
+			"paraType": "COMMON_DATA",
+			"paraName": "发动机累计运行时间",
+			"dataFrom": 5011
+		}
+	]
+}
