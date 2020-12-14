@@ -49,6 +49,11 @@ void CanLink::_disconnect()
     }
 }
 
+void CanLink::_writeBytes(const QByteArray)
+{
+
+}
+
 bool CanLink::isConnected() const
 {
 
@@ -60,9 +65,12 @@ CanLink::CanLink(CanLinkConfiguration& config)
 
 }
 
-void CanLink::_writeBytes(const QByteArray data)
+void CanLink::writeCanFrame(const QCanBusFrame &frame)
 {
+    if (!_port)
+        return;
 
+    _port->writeFrame(frame);
 }
 
 void CanLink::_readBytes()

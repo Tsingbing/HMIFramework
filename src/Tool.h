@@ -4,7 +4,7 @@
 #include <QObject>
 
 class Toolbox;
-
+class XApplication;
 /*
 所有工具都必须是Toolbox的父级，并经历两个阶段的创建。在构造函数中，
 工具箱只应传递给Tool构造函数以进行正确的父子关系。不应在受保护成员中引用或设置它。
@@ -14,7 +14,7 @@ class Tool : public QObject
 {
     Q_OBJECT
 public:
-    Tool(Toolbox* toolbox);
+    Tool(XApplication* app,Toolbox* toolbox);
 
     // 如果重写此方法，则必须调用基类。
     virtual void setToolbox(Toolbox* toolbox);
@@ -22,6 +22,7 @@ public:
 signals:
 
 protected:
+    XApplication *_app;
     Toolbox* _toolbox;
 };
 

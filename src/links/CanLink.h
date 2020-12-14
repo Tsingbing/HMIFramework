@@ -30,6 +30,7 @@ public:
     QString getName() const;
     bool    isConnected() const override;
     CanLink(CanLinkConfiguration& config);
+    void writeCanFrame(const QCanBusFrame &frame);
 
 private:
     // From LinkInterface
@@ -37,7 +38,8 @@ private:
     void    _disconnect             (void) override;
 
 private slots:
-    void _writeBytes(const QByteArray data) override;
+    void _writeBytes(const QByteArray) override;
+
     void _readBytes(void);
     bool _hardwareConnect(QCanBusDevice::CanBusError& error, QString& errorString);
 

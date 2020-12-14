@@ -36,8 +36,6 @@
         <file>ui/images/gzj_new/syzy_white.png</file>
         <file>ui/images/UI_wd/menu2.jpg</file>
         <file>ui/images/UI_wd/main_set.jpg</file>
-    </qresource>
-    <qresource prefix="/">
-        <file>src/links/canData.json</file>
+        <file>ui/images/zcwjj/main_set.jpg</file>
     </qresource>
 </RCC>

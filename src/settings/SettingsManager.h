@@ -9,7 +9,7 @@ class SettingsManager : public Tool
 {
     Q_OBJECT
 public:
-    SettingsManager(Toolbox* toolbox);
+    SettingsManager(XApplication* app, Toolbox* toolbox);
 
     // Override from Tool
     virtual void setToolbox(Toolbox *toolbox);

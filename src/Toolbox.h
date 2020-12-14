@@ -3,17 +3,20 @@
 
 #include <QObject>
 
+class XApplication;
 class VehicleManager;
 class LinkManager;
+class CanLinkProtocol;
 
 class Toolbox : public QObject
 {
     Q_OBJECT
 public:
-    Toolbox(QObject *parent = nullptr);
+    Toolbox(XApplication *app);
 
     VehicleManager* vehicleManager() {return _vehicleManager;}
     LinkManager* linkManager() {return _linkManager;}
+    CanLinkProtocol *canLinkProtocol() {return _canLinkProtocol;}
 
 signals:
 
@@ -22,6 +25,7 @@ private:
 
     VehicleManager* _vehicleManager = nullptr;
     LinkManager*     _linkManager   = nullptr;
+    CanLinkProtocol* _canLinkProtocol = nullptr;
     friend class XApplication;
 };
 

@@ -1,7 +1,7 @@
 #include "SettingsManager.h"
 
-SettingsManager::SettingsManager(Toolbox *toolbox)
-    : Tool(toolbox)
+SettingsManager::SettingsManager(XApplication* app, Toolbox *toolbox)
+    : Tool(app, toolbox)
 {
 
 }

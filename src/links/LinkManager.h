@@ -14,7 +14,7 @@ class LinkManager : public Tool
 {
     Q_OBJECT
 public:
-    LinkManager(Toolbox* toolbox);
+    LinkManager(XApplication* app,Toolbox* toolbox);
     ~LinkManager();
     CanLink* canlink() {return _canlink;}
 

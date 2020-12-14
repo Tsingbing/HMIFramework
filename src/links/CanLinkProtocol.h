@@ -3,13 +3,21 @@
 
 #include <QObject>
 #include "LinkInterface.h"
+#include "VehicleManager.h"
+#include "XApplication.h"
+#include "Toolbox.h"
 #include <QCanBusFrame>
 
-class CanLinkProtocol : public QObject
+class CanLinkProtocol : public Tool
 {
     Q_OBJECT
 public:
-    explicit CanLinkProtocol(QObject *parent = nullptr);
+    explicit CanLinkProtocol(XApplication *app, Toolbox *toolbox);
+    ~CanLinkProtocol() override;
+
+    // Override from QGCTool
+    void setToolbox(Toolbox* toolbox) override;
+
     /** @brief Get the protocol version */
     QString getVersion() {
         return "1.2";
@@ -19,6 +27,9 @@ signals:
 public slots:
     /** @brief Receive bytes from a communication interface */
     void receiveBytes(LinkInterface* link, QCanBusFrame canbusframe);
+
+private:
+    Vehicle *ve;
 };
 
 #endif // CANLINKPROTOCOL_H

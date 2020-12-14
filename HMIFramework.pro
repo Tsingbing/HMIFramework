@@ -70,7 +70,6 @@ SOURCES += \
     src/factsystem/FactMetaData.cpp \
     src/factsystem/JsonHelper.cc \
     src/links/CanLink.cpp \
-    src/links/CanLinkDecoder.cpp \
     src/links/CanLinkProtocol.cpp \
     src/links/LinkInterface.cpp \
     src/links/LinkManager.cpp \
@@ -92,7 +91,6 @@ HEADERS += \
     src/factsystem/JsonHelper.h \
     src/links/CanLink.h \
     src/links/CanLink.h \
-    src/links/CanLinkDecoder.h \
     src/links/CanLinkProtocol.h \
     src/links/LinkInterface.h \
     src/links/LinkManager.h \
