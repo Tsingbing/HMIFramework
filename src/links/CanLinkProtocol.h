@@ -2,7 +2,6 @@
 #define CANLINKPROTOCOL_H
 
 #include <QObject>
-#include "LinkInterface.h"
 #include "VehicleManager.h"
 #include "XApplication.h"
 #include "Toolbox.h"

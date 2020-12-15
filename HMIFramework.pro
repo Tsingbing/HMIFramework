@@ -89,7 +89,6 @@ HEADERS += \
     src/factsystem/FactMetaData.h \
     src/factsystem/JsonHelper.h \
     src/links/CanLink.h \
-    src/links/CanLink.h \
     src/links/CanLinkProtocol.h \
     src/links/LinkManager.h \
     src/settings/SettingsGroup.h \
@@ -112,3 +111,5 @@ else: unix:!android: target.path = /home/root/client
 
 RESOURCES += \
     HMIFramework.qrc
+
+DISTFILES +=

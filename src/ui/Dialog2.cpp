@@ -27,11 +27,6 @@ Dialog2::~Dialog2()
     delete ui;
 }
 
-void Dialog2::_carUpdated(QVariant value)
-{
-    ui->label->setText(value.toString());
-}
-
 void Dialog2::on_pushButton_menu_F4_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->main);

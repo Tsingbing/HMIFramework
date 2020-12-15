@@ -2,6 +2,7 @@
 #include "Vehicle.h"
 #include "LinkManager.h"
 #include <QSettings>
+#include <QDebug>
 
 const char* Vehicle::_carSpeedFactName          = "carSpeed";
 const char* Vehicle::_oilPressureFactName       = "oilPressure";
@@ -26,7 +27,6 @@ Vehicle::Vehicle(QObject *parent)
     : FactGroup(_vehicleUIUpdateRateMSecs, ":/json/VehicleFact.json", parent)
 {
     _addFact(&_carSpeedFact,            _carSpeedFactName);
-    _addFact(&_rotatingSpeedFact,       _rotatingSpeedFactName);
     _addFact(&_teleRSSIFact,            _teleRSSIFactName);
     _addFact(&_supplyVoltageFact,       _supplyVoltageFactName);
     _addFact(&_fuelLevelFact,           _fuelLevelFactName);
@@ -39,7 +39,7 @@ Vehicle::Vehicle(QObject *parent)
     _addFact(&_XDegreeFact,             _XDegreeFactName);
     _addFact(&_YDegreeFact,             _YDegreeFactName);
     _addFact(&_workHoursFact,           _workHoursFactName);
-    _setupTimer();
+
     cl = XApp()->toolbox()->linkManager()->canlink();
 }
 
@@ -103,20 +103,8 @@ void Vehicle::sendPoChaiQuickSwitch(bool b)
     cl->writeCanFrame(frame);
 }
 
-void Vehicle::_updateValue()
+void Vehicle::_updateAllValues()
 {
-    ///< 测试：变化的速度值
-    /// 在ui获取fact值
-    /// 例如 connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);
-    if(testValue++ > 10000)
-        testValue = 0;
-    _carSpeedFact.setRawValue(QVariant(testValue));
-}
-
-void Vehicle::_setupTimer()
-{
-    connect(&_updateTime, &QTimer::timeout, this, &Vehicle::_updateValue);
-    _updateTime.setSingleShot(false);
-    _updateTime.setInterval(10);
-    _updateTime.start();
+    //qDebug() << "updateAllValues ";
+    FactGroup::_updateAllValues();
 }

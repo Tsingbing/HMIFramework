@@ -39,12 +39,9 @@ public:
     void sendPoChaiQuickSwitch(bool b);
 
 private slots:
-    void _updateValue();
+    void _updateAllValues() override;
 
 private:
-    void _setupTimer();
-    QTimer _updateTime;
-
     Fact _carSpeedFact;
     Fact _oilPressureFact;
     Fact _airPressureFact;

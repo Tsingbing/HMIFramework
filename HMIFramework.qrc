@@ -38,4 +38,5 @@
         <file>ui/images/UI_wd/main_set.jpg</file>
         <file>ui/images/zcwjj/main_set.jpg</file>
     </qresource>
+    <qresource prefix="/qml"/>
 </RCC>

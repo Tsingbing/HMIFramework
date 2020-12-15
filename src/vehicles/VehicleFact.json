@@ -28,7 +28,7 @@
     "units":            ""
 },
 {
-    "name":             "teleRSSI",
+    "name":             "telePower",
     "shortDescription": "遥控电池电量",
     "type":             "uint8",
     "units":            ""

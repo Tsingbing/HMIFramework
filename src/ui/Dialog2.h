@@ -21,26 +21,15 @@ public:
     ~Dialog2();
 
 private slots:
-    void _carUpdated(QVariant value);
-
     void on_pushButton_menu_F4_2_clicked();
-
     void on_pushButton_menu_F5_2_clicked();
-
     void on_pushButton_menu_F4_clicked();
-
     void on_pushButton_menu_F5_clicked();
-
     void on_pushButton_frontLight_clicked();
-
     void on_pushButton_backLight_clicked();
-
     void on_pushButton_alarmLight_clicked();
-
     void on_pushButton_pochaiduan_clicked();
-
     void on_pushButton_wajueduan_clicked();
-
     void on_pushButton_pochaiduanquick_clicked();
 
 private:

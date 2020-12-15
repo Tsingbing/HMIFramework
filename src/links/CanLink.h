@@ -2,7 +2,6 @@
 #define CANLINK_H
 
 #include <QObject>
-#include "LinkInterface.h"
 #include <QCanBusDevice>
 #include <QCanBus>
 

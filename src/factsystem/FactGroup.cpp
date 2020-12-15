@@ -17,7 +17,7 @@ FactGroup::FactGroup(int updateRateMsecs, const QString &metaDataFile, QObject *
 
 Fact *FactGroup::getFact(const QString &name)
 {
-    Fact* fact = 0;
+    Fact* fact = nullptr;
 
     if (_nameToFactMap.contains(name)) {
         fact = _nameToFactMap[name];
@@ -55,6 +55,7 @@ void FactGroup::_updateAllValues()
         //fact->sendDeferredValueChangedSignal();
         emit fact->valueChanged();
     }
+    //qDebug() << "FactGroup::_updateAllValues()";
 }
 
 void FactGroup::_setupTimer()
