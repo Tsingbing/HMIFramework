@@ -22,7 +22,7 @@ void CanLinkProtocol::setToolbox(Toolbox *toolbox)
 
 }
 
-void CanLinkProtocol::receiveBytes(LinkInterface *link, QCanBusFrame canbusframe)
+void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
 {
     QString view;
 

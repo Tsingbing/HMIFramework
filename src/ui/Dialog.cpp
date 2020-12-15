@@ -18,7 +18,7 @@ Dialog::Dialog(QWidget *parent) :
     cl = XApp()->toolbox()->linkManager()->canlink();
 
     ///< fact 变化值和ui显示 连接
-    connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);
+    //connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog::_carUpdated);
 
     qDebug() <<"===============================" <<ve->getFact("carSpeed")->type() << ve->getFact("carSpeed")->units();
 }

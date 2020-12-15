@@ -157,7 +157,7 @@ void Fact::setRawValue(const QVariant &value)
                 //-- Must be in this order
                 //emit _containerRawValueChanged(rawValue());
                 //emit rawValueChanged(_rawValue);
-                emit valueChanged(value);
+                emit valueChanged();
             }
         }
     } else {

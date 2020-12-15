@@ -18,8 +18,8 @@ Dialog2::Dialog2(QWidget *parent) :
     cl = XApp()->toolbox()->linkManager()->canlink();
 
     ///< fact 变化值和ui显示 连接
-    connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog2::_carUpdated);
-    connect(ve->supplyVoltageFact(),&Fact::valueChanged,[=](QVariant value){ui->label_dianya->setText(value.toString());});
+    //connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog2::_carUpdated);
+    connect(ve->supplyVoltageFact(),&Fact::valueChanged,[=](){ui->label_dianya->setText(ve->supplyVoltageFact()->valueString());});
 }
 
 Dialog2::~Dialog2()

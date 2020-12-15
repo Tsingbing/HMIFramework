@@ -41,7 +41,7 @@ public:
     FactMetaData* metaData() { return _metaData; }
 
 signals:
-    void valueChanged(QVariant value);
+    void valueChanged();
     void rawValueChanged(QVariant value);
 
 protected:

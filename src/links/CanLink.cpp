@@ -1,47 +1,21 @@
 #include "CanLink.h"
 #include <QDebug>
 
-CanLinkConfiguration::CanLinkConfiguration(const QString &name)
-{
-    _pluginName =  "socketcan";
-    _deviceInterfaceName = "can0";
-}
-
-CanLinkConfiguration::CanLinkConfiguration(CanLinkConfiguration* copy)
-{
-    //_pluginName = copy->_pluginName;
-    //_deviceInterfaceName = copy->_deviceInterfaceName;
-}
-
-CanLinkConfiguration::~CanLinkConfiguration()
-{
-
-}
-
-
-QString CanLink::getName() const
-{
-
-}
-
-bool CanLink::_connect()
+bool CanLink::Connect()
 {
     qDebug() << "CONNECT CALLED";
-
-    _disconnect();
+    Disconnect();
 
     QCanBusDevice::CanBusError   error;
     QString                      errorString;
 
-    // Initialize the connection
     if (!_hardwareConnect(error, errorString)) {
-        //qDebug() << "can0 jianli";
         return false;
     }
     return true;
 }
 
-void CanLink::_disconnect()
+void CanLink::Disconnect()
 {
     if (_port) {
         _port->deleteLater();
@@ -49,18 +23,8 @@ void CanLink::_disconnect()
     }
 }
 
-void CanLink::_writeBytes(const QByteArray)
-{
 
-}
-
-bool CanLink::isConnected() const
-{
-
-}
-
-CanLink::CanLink(CanLinkConfiguration& config)
-    : _canConfig(&config)
+CanLink::CanLink()
 {
 
 }
@@ -80,19 +44,17 @@ void CanLink::_readBytes()
     //qDebug() << "_readBytes " ;
     while (_port->framesAvailable()) {
         const QCanBusFrame frame = _port->readFrame();
-        emit canframesRecived(this, frame);
+        emit canframesRecived(frame);
     }
 }
+
 /// Performs the actual hardware port connection.
 ///     @param[out] error if failed
 ///     @param[out] error string if failed
 /// @return success/fail
 bool CanLink::_hardwareConnect(QCanBusDevice::CanBusError &error, QString &errorString)
 {
-    QString pluginName = _canConfig->pluginName();
-    QString deviceInterfaceName = _canConfig->deviceInterfaceName();
-
-    _port = QCanBus::instance()->createDevice(pluginName, deviceInterfaceName, &errorString);
+    _port = QCanBus::instance()->createDevice(QStringLiteral("socketcan"), QStringLiteral("can0"), &errorString);
     connect(_port, &QCanBusDevice::framesReceived, this, &CanLink::_readBytes);
     if (!_port) {
         error = _port->error();

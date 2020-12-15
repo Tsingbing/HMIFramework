@@ -18,10 +18,6 @@ public:
     ~LinkManager();
     CanLink* canlink() {return _canlink;}
 
-    LinkInterface* createConnectedLink(CanLinkConfiguration* config);
-    bool connectLink(LinkInterface* link);
-    void disconnectLink(LinkInterface* link);
-
     ///< 覆写Tool函数
     virtual void setToolbox(Toolbox *toolbox);
 private:

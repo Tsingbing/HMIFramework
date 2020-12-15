@@ -53,7 +53,7 @@ void FactGroup::_updateAllValues()
 {
     for(Fact* fact: _nameToFactMap) {
         //fact->sendDeferredValueChangedSignal();
-        emit fact->valueChanged(fact->value());
+        emit fact->valueChanged();
     }
 }
 

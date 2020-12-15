@@ -71,7 +71,6 @@ SOURCES += \
     src/factsystem/JsonHelper.cc \
     src/links/CanLink.cpp \
     src/links/CanLinkProtocol.cpp \
-    src/links/LinkInterface.cpp \
     src/links/LinkManager.cpp \
     src/main.cpp \
     src/settings/SettingsGroup.cpp \
@@ -92,7 +91,6 @@ HEADERS += \
     src/links/CanLink.h \
     src/links/CanLink.h \
     src/links/CanLinkProtocol.h \
-    src/links/LinkInterface.h \
     src/links/LinkManager.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \

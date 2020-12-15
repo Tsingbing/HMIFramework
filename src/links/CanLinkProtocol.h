@@ -26,7 +26,7 @@ signals:
 
 public slots:
     /** @brief Receive bytes from a communication interface */
-    void receiveBytes(LinkInterface* link, QCanBusFrame canbusframe);
+    void receiveBytes(QCanBusFrame canbusframe);
 
 private:
     Vehicle *ve;
