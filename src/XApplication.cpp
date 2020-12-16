@@ -32,7 +32,7 @@ XApplication::~XApplication()
         delete dlg;
     }
     delete _toolbox;
-    _app = 0;
+    _app = nullptr;
 }
 
 void XApplication::_initForAppBoot()

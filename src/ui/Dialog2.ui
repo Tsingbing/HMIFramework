@@ -36,7 +36,7 @@ QWidget#main{image: url(:/images/ui/images/zcwjj/main_set.jpg);}
 QWidget#page_2{image: url(:/images/ui/images/zcwjj/main_set.jpg);}</string>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="main">
     <property name="autoFillBackground">
@@ -197,6 +197,16 @@ QWidget#page_2{image: url(:/images/ui/images/zcwjj/main_set.jpg);}</string>
      </property>
      <property name="text">
       <string>挖掘端锁定开关</string>
+     </property>
+    </widget>
+    <widget class="SoftKeyLineEdit" name="lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>330</x>
+       <y>80</y>
+       <width>113</width>
+       <height>25</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -743,6 +753,13 @@ color: rgb(255, 255, 255);</string>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SoftKeyLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>softkeylineedit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -6,10 +6,12 @@
 #include "LinkManager.h"
 #include "Vehicle.h"
 #include "CanLink.h"
+#include "softkeylineedit.h"
+
 
 namespace Ui
 {
-    class Dialog2;
+class Dialog2;
 }
 
 class Dialog2 : public QDialog
@@ -36,6 +38,7 @@ private:
     Ui::Dialog2 *ui;
     Vehicle * ve;
     CanLink * cl;
+    //NumKeyboard * numkeyboard;
 };
 
 #endif // DIALOG2_H

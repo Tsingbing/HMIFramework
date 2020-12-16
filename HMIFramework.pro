@@ -16,10 +16,10 @@ DEFINES += ORG_NAME=\"\\\"umltech.org\\\"\"
 DEFINES += GIT_VERSION=\"\\\"$$GIT_VERSION\\\"\"
 
 # 设置构建目录
-OBJECTS_DIR  = $${OUT_PWD}/obj
-MOC_DIR      = $${OUT_PWD}/moc
-UI_DIR       = $${OUT_PWD}/ui
-RCC_DIR      = $${OUT_PWD}/rcc
+OBJECTS_DIR  = $${OUT_PWD}/build/obj
+MOC_DIR      = $${OUT_PWD}/build/moc
+UI_DIR       = $${OUT_PWD}/build/ui
+RCC_DIR      = $${OUT_PWD}/build/rcc
 
 # 设置版本号（从git获取）
 exists ($$PWD/.git) {
@@ -77,6 +77,8 @@ SOURCES += \
     src/settings/SettingsManager.cpp \
     src/ui/Dialog.cpp \
     src/ui/Dialog2.cpp \
+    src/ui/numkeyboard.cpp \
+    src/ui/softkeylineedit.cpp \
     src/vehicles/Vehicle.cpp \
     src/vehicles/VehicleManager.cpp
 
@@ -95,13 +97,16 @@ HEADERS += \
     src/settings/SettingsManager.h \
     src/ui/Dialog.h \
     src/ui/Dialog2.h \
+    src/ui/numkeyboard.h \
+    src/ui/softkeylineedit.h \
     src/vehicles/Vehicle.h \
     src/vehicles/VehicleManager.h
 
 FORMS += \
     src/ui/Dialog2.ui \
     src/ui/Dialog.ui \
-    src/ui/Menu.ui
+    src/ui/Menu.ui \
+    src/ui/numkeyboard.ui
 #
 TARGET = run
 # Default rules for deployment.
