@@ -48,7 +48,11 @@ public:
     QVariant rawDefaultValue(void) const;
     QVariant cookedDefaultValue(void) const { return defaultTranslator(rawDefaultValue()); }
     QString cookedUnits(void) const { return rawUnits(); }
+    QStringList     enumStrings             (void) const { return _enumStrings; }
+    QVariantList    enumValues              (void) const { return _enumValues; }
 
+    /// Used to add new values to the enum lists after the meta data has been loaded
+    void addEnumInfo(const QString& name, const QVariant& value);
     void setName(const QString &name) { _name = name; }
     void setShortDescription(const QString &shortDescription) { _shortDescription = shortDescription; }
     void setRawUnits(const QString &rawUnits) { _rawUnits = rawUnits; }
@@ -88,6 +92,8 @@ private:
     QVariant _rawMin;          ///< 原始值最小值
     int _decimalPlaces;        ///< 小数点位数
     QVariant _rawDefaultValue; ///< 默认原始值
+    QStringList     _enumStrings;
+    QVariantList    _enumValues;
 
     static const char *_typeJsonKey;
     static const char *_nameJsonKey;
@@ -97,6 +103,8 @@ private:
     static const char *_maxJsonKey;
     static const char *_decimalPlacesJsonKey;
     static const char *_defaultValueJsonKey;
+    static const char* _enumStringsJsonKey;
+    static const char* _enumValuesJsonKey;
 };
 
 #endif // FACTMETADATA_H

@@ -37,69 +37,90 @@
     "name":             "supplyVoltage",
     "shortDescription": "车载端电源电压",
     "type":             "float",
-    "decimalPlaces":    2,
-    "units":            "V"
+    "decimalPlaces":    1,
+    "units":            " V"
 },
 {
     "name":             "fuelLevel",
     "shortDescription": "燃油油位",
     "type":             "uint8",
-    "units":            ""
+    "units":            " %"
 },
 {
     "name":             "rotatingSpeed",
     "shortDescription": "发动机转速",
-    "type":             "double",
-    "decimalPlaces":    2,
-    "units":            "rpm"
+    "type":             "uint32",
+    "units":            " rpm",
+    "enumStrings":      "None,None,2D Lock,3D Lock,3D DGPS Lock,3D RTK GPS Lock (float),3D RTK GPS Lock (fixed),Static (fixed)",
+    "enumValues":       "0,1,2,3,4,5,6,7"
 },
 {
     "name":             "waterTemperature",
     "shortDescription": "水温",
-    "type":             "uint8",
-    "units":            "Mpa"
+    "decimalPlaces":    1,
+    "type":             "double",
+    "units":            " C"
+},
+{
+    "name":             "oilTemperature",
+    "shortDescription": "油温",
+    "decimalPlaces":    1,
+    "type":             "double",
+    "units":            "C"
 },
 {
     "name":             "mainPumpPressure",
     "shortDescription": "主泵压力",
     "type":             "uint32",
-    "units":            "Mpa"
+    "units":            " Mpa"
+},
+{
+    "name":             "frontPumpPressure",
+    "shortDescription": "前泵压力",
+    "type":             "uint32",
+    "units":            " Mpa"
+},
+{
+    "name":             "backPumpPressure",
+    "shortDescription": "后泵压力",
+    "type":             "uint32",
+    "units":            " Mpa"
 },
 {
     "name":             "oxygenConcentration",
     "shortDescription": "氧气浓度百分比",
     "type":             "uint8",
-    "units":            "%"
+    "units":            " %"
 },
 {
     "name":             "combustibleGasConcentration",
     "shortDescription": "可燃气体浓度百分比",
     "type":             "uint8",
-    "units":            "%"
+    "units":            " %"
 },
 {
     "name":             "AmbientTemperaturen",
     "shortDescription": "环境温度",
     "type":             "double",
     "decimalPlaces":    2,
-    "units":            "C"
+    "units":            " C"
 },
 {
     "name":             "XDegree",
     "shortDescription": "车辆横向倾角度数",
-    "type":             "uint8",
-    "units":            "deg"
+    "type":             "int8",
+    "units":            " deg"
 },
 {
     "name":             "YDegree",
     "shortDescription": "车辆纵向倾角度数",
-    "type":             "uint8",
-    "units":            "deg"
+    "type":             "int8",
+    "units":            " deg"
 },
 {
     "name":             "workHours",
     "shortDescription": "车辆工作小时数",
     "type":             "uint32",
-    "units":            "Hours"
+    "units":            " Hours"
 }
 ]

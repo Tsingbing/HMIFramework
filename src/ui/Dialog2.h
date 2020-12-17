@@ -6,8 +6,6 @@
 #include "LinkManager.h"
 #include "Vehicle.h"
 #include "CanLink.h"
-#include "softkeylineedit.h"
-
 
 namespace Ui
 {
@@ -23,22 +21,19 @@ public:
     ~Dialog2();
 
 private slots:
-    void on_pushButton_menu_F4_2_clicked();
-    void on_pushButton_menu_F5_2_clicked();
-    void on_pushButton_menu_F4_clicked();
-    void on_pushButton_menu_F5_clicked();
-    void on_pushButton_frontLight_clicked();
-    void on_pushButton_backLight_clicked();
-    void on_pushButton_alarmLight_clicked();
-    void on_pushButton_pochaiduan_clicked();
-    void on_pushButton_wajueduan_clicked();
-    void on_pushButton_pochaiduanquick_clicked();
+    void _updateValues();
+
+private:
+    void _setupTimer();
+    QTimer _updateTimer;
 
 private:
     Ui::Dialog2 *ui;
+
+    QStringList _warningList;
+    QStringList _warningAllList;
     Vehicle * ve;
     CanLink * cl;
-    //NumKeyboard * numkeyboard;
 };
 
 #endif // DIALOG2_H

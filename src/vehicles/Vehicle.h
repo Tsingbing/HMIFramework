@@ -19,11 +19,14 @@ public:
     Fact *airPressureFact() { return &_airPressureFact; }
 
     Fact *teleRSSIFact() { return &_teleRSSIFact; }
-    Fact *supplyVoltageFact() { return &_supplyVoltageFact; }
-    Fact *fuelLevelFact() { return &_fuelLevelFact; }
-    Fact *rotatingSpeedFact() { return &_rotatingSpeedFact; }
-    Fact *waterTemperatureFact() { return &_waterTemperatureFact; }
-    Fact *mainPumpPressureFact() { return &_mainPumpPressureFact; }
+    Fact *supplyVoltageFact() { return &_supplyVoltageFact; }   //电源电压
+    Fact *fuelLevelFact() { return &_fuelLevelFact; }           //燃油压力
+    Fact *rotatingSpeedFact() { return &_rotatingSpeedFact; }   //发动机转速
+    Fact *waterTemperatureFact() { return &_waterTemperatureFact; }//水温
+    Fact *oilTemperatureFact() { return &_oilTemperatureFact; } //油温
+    Fact *mainPumpPressureFact() { return &_mainPumpPressureFact; } //主泵压力
+    Fact *frontPumpPressureFact() { return &_frontPumpPressureFact; } //前泵压力
+    Fact *backPumpPressureFact() { return &_backPumpPressureFact; } //后泵压力
     Fact *oxygenConcentrationFact() { return &_oxygenConcentrationFact; }
     Fact *combustibleGasConcentrationFact() { return &_combustibleGasConcentrationFact; }
     Fact *AmbientTemperaturenFact() { return &_AmbientTemperaturenFact; }
@@ -31,12 +34,17 @@ public:
     Fact *YDegreeFact() { return &_YDegreeFact; }
     Fact *workHoursFact() { return &_workHoursFact; }
 
-    void sendFrontLightSwitch(bool b);
-    void sendBackLightSwitch(bool b);
-    void sendAlarmSwitch(bool b);
-    void sendPoChaiLockSwitch(bool b);
-    void sendWajueLockSwitch(bool b);
-    void sendPoChaiQuickSwitch(bool b);
+public:
+    QStringList warningList;
+    int dianyaWarning = 0;
+    int shuiwenWarning = 0;
+    int zhuansuWarning = 0;
+    int ranyouWarning = 0;
+    int youwenWarning = 0;
+    int qianbengWarning = 0;
+    int houbengWarning = 0;
+    int xWarning = 0;
+    int yWarning = 0;
 
 private slots:
     void _updateAllValues() override;
@@ -51,7 +59,10 @@ private:
     Fact _fuelLevelFact;
     Fact _rotatingSpeedFact;
     Fact _waterTemperatureFact;
+    Fact _oilTemperatureFact;
     Fact _mainPumpPressureFact;
+    Fact _frontPumpPressureFact;
+    Fact _backPumpPressureFact;
     Fact _oxygenConcentrationFact;
     Fact _combustibleGasConcentrationFact;
     Fact _AmbientTemperaturenFact;
@@ -69,7 +80,10 @@ private:
     static const char *_fuelLevelFactName;
     static const char *_rotatingSpeedFactName;
     static const char *_waterTemperatureFactName;
+    static const char *_oilTemperatureFactName;
     static const char *_mainPumpPressureFactName;
+    static const char *_frontPumpPressureFactName;
+    static const char *_backPumpPressureFactName;
     static const char *_oxygenConcentrationFactName;
     static const char *_combustibleGasConcentrationFactName;
     static const char *_AmbientTemperaturenFactName;
@@ -77,9 +91,10 @@ private:
     static const char *_YDegreeFactName;
     static const char *_workHoursFactName;
 
-    static const int _vehicleUIUpdateRateMSecs = 1000;
+    static const int _vehicleUIUpdateRateMSecs = 200;
 
     CanLink *cl = nullptr;
+    QStringList _warningEnum;
 };
 
 #endif // VEHICLE_H

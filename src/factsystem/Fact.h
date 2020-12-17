@@ -30,7 +30,8 @@ public:
     QVariant        value                   (void) const;   /// 转换处理之后的值
     QString         rawValueString          (void) const;
     QString         valueString             (void) const;
-
+    QStringList     enumStrings             (void) const;
+    QVariantList    enumValues              (void) const;
     void setRawValue        (const QVariant& value);
 
     /// 设置与Fact相关的元数据

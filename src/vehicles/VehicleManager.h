@@ -4,6 +4,7 @@
 #include <QObject>
 #include <Tool.h>
 #include <Toolbox.h>
+
 class Vehicle;
 
 class VehicleManager : public Tool

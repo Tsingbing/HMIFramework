@@ -16,6 +16,8 @@ const char* FactMetaData::_unitsJsonKey =               "units";
 const char* FactMetaData::_defaultValueJsonKey =        "defaultValue";
 const char* FactMetaData::_minJsonKey =                 "min";
 const char* FactMetaData::_maxJsonKey =                 "max";
+const char* FactMetaData::_enumStringsJsonKey =         "enumStrings";
+const char* FactMetaData::_enumValuesJsonKey  =         "enumValues";
 
 FactMetaData::FactMetaData(FactMetaData::ValueType_t type, QObject *parent)
     : QObject(parent)
@@ -116,6 +118,8 @@ FactMetaData *FactMetaData::createFromJsonObject(const QJsonObject &json, QMap<Q
         { _maxJsonKey,                  QJsonValue::Double, false },
         //{ _hasControlJsonKey,           QJsonValue::Bool,   false },
         //{ _qgcRebootRequiredJsonKey,    QJsonValue::Bool,   false },
+        { _enumValuesJsonKey,           QJsonValue::String, false },
+        { _enumStringsJsonKey,          QJsonValue::String, false },
     };
     if (!JsonHelper::validateKeys(json, keyInfoList, errorString)) {
         qWarning() << errorString;
@@ -140,7 +144,7 @@ FactMetaData *FactMetaData::createFromJsonObject(const QJsonObject &json, QMap<Q
             QString     errorString;
 
             if (metaData->convertAndValidateRaw(enumValues[i], false /* validate */, enumVariant, errorString)) {
-                //metaData->addEnumInfo(enumStrings[i], enumVariant);
+                metaData->addEnumInfo(enumStrings[i], enumVariant);
             } else {
                 qWarning() << "Invalid enum value, name:" << metaData->name()
                            << " type:" << metaData->type()
@@ -217,6 +221,12 @@ int FactMetaData::decimalPlaces() const
 QVariant FactMetaData::rawDefaultValue() const
 {
     return _rawDefaultValue;
+}
+
+void FactMetaData::addEnumInfo(const QString &name, const QVariant &value)
+{
+    _enumStrings << name;
+    _enumValues << value;
 }
 
 void FactMetaData::setRawMax(const QVariant &rawMax)

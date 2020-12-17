@@ -144,6 +144,26 @@ QString Fact::valueString() const
     return _variantToString(value(), decimalPlaces());
 }
 
+QStringList Fact::enumStrings() const
+{
+    if (_metaData) {
+        return _metaData->enumStrings();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QStringList();
+    }
+}
+
+QVariantList Fact::enumValues() const
+{
+    if (_metaData) {
+        return _metaData->enumValues();
+    } else {
+        qWarning() << kMissingMetadata << name();
+        return QVariantList();
+    }
+}
+
 void Fact::setRawValue(const QVariant &value)
 {
     if (_metaData) {

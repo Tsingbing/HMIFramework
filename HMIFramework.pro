@@ -75,7 +75,6 @@ SOURCES += \
     src/main.cpp \
     src/settings/SettingsGroup.cpp \
     src/settings/SettingsManager.cpp \
-    src/ui/Dialog.cpp \
     src/ui/Dialog2.cpp \
     src/ui/numkeyboard.cpp \
     src/ui/softkeylineedit.cpp \
@@ -95,7 +94,6 @@ HEADERS += \
     src/links/LinkManager.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \
-    src/ui/Dialog.h \
     src/ui/Dialog2.h \
     src/ui/numkeyboard.h \
     src/ui/softkeylineedit.h \
@@ -104,8 +102,6 @@ HEADERS += \
 
 FORMS += \
     src/ui/Dialog2.ui \
-    src/ui/Dialog.ui \
-    src/ui/Menu.ui \
     src/ui/numkeyboard.ui
 #
 TARGET = run

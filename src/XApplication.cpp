@@ -1,7 +1,6 @@
 ﻿#include "XApplication.h"
 #include "Toolbox.h"
 #include <QSettings>
-#include "Dialog.h"
 #include "Dialog2.h"
 #include <QDebug>
 
