@@ -27,11 +27,21 @@ public:
     QString         rawUnits                (void) const;
     QString         units                   (void) const;
     QVariant        rawValue                (void) const { return _rawValue; }
-    QVariant        value                   (void) const;   /// 转换处理之后的值
+    QVariant        cookedValue             (void) const;   /// 转换处理之后的值
     QString         rawValueString          (void) const;
-    QString         valueString             (void) const;
+    QString         cookedValueString       (void) const;
 
     void setRawValue        (const QVariant& value);
+    void setCookedValue     (const QVariant& value);
+
+    // The following methods allow you to defer sending of the valueChanged signals in order to implement
+    // rate limited signalling for ui performance. Used by FactGroup for example.
+
+    void setSendValueChangedSignals (bool sendValueChangedSignals);
+    bool sendValueChangedSignals (void) const { return _sendValueChangedSignals; }
+    bool deferredValueChangeSignal(void) const { return _deferredValueChangeSignal; }
+    void clearDeferredValueChangeSignal(void) { _deferredValueChangeSignal = false; }
+    void sendDeferredValueChangedSignal(void);
 
     /// 设置与Fact相关的元数据
     ///     @参数 metaData FactMetaData for Fact
@@ -41,14 +51,18 @@ public:
     FactMetaData* metaData() { return _metaData; }
 
 signals:
-    void valueChanged();
+    void valueChanged(QVariant value);
     void rawValueChanged(QVariant value);
+    void sendValueChangedSignalsChanged(bool sendValueChangedSignals);
 
 protected:
     QString _variantToString(const QVariant& variant, int decimalPlaces) const;
+    void _sendValueChangedSignal(QVariant value);
 
     QString                     _name;
     QVariant                    _rawValue;
+    bool                        _sendValueChangedSignals;
+    bool                        _deferredValueChangeSignal;
     FactMetaData::ValueType_t   _type;
     FactMetaData*               _metaData;
 };

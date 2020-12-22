@@ -69,13 +69,14 @@ SOURCES += \
     src/factsystem/FactGroup.cpp \
     src/factsystem/FactMetaData.cpp \
     src/factsystem/JsonHelper.cc \
+    src/factsystem/SettingsFact.cpp \
     src/links/CanLink.cpp \
     src/links/CanLinkProtocol.cpp \
     src/links/LinkManager.cpp \
     src/main.cpp \
+    src/settings/AppSettings.cpp \
     src/settings/SettingsGroup.cpp \
     src/settings/SettingsManager.cpp \
-    src/ui/Dialog.cpp \
     src/ui/Dialog2.cpp \
     src/ui/numkeyboard.cpp \
     src/ui/softkeylineedit.cpp \
@@ -90,12 +91,13 @@ HEADERS += \
     src/factsystem/FactGroup.h \
     src/factsystem/FactMetaData.h \
     src/factsystem/JsonHelper.h \
+    src/factsystem/SettingsFact.h \
     src/links/CanLink.h \
     src/links/CanLinkProtocol.h \
     src/links/LinkManager.h \
+    src/settings/AppSettings.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \
-    src/ui/Dialog.h \
     src/ui/Dialog2.h \
     src/ui/numkeyboard.h \
     src/ui/softkeylineedit.h \
@@ -104,8 +106,6 @@ HEADERS += \
 
 FORMS += \
     src/ui/Dialog2.ui \
-    src/ui/Dialog.ui \
-    src/ui/Menu.ui \
     src/ui/numkeyboard.ui
 #
 TARGET = run

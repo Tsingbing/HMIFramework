@@ -19,9 +19,12 @@ Fact *FactGroup::getFact(const QString &name)
 {
     Fact* fact = nullptr;
 
-    if (_nameToFactMap.contains(name)) {
+    if (_nameToFactMap.contains(name))
+    {
         fact = _nameToFactMap[name];
-    } else {
+    }
+    else
+    {
         qWarning() << "Unknown Fact" << name;
     }
 
@@ -30,13 +33,15 @@ Fact *FactGroup::getFact(const QString &name)
 
 void FactGroup::_addFact(Fact *fact, const QString &name)
 {
-    if (_nameToFactMap.contains(name)) {
+    if (_nameToFactMap.contains(name))
+    {
         qWarning() << "Duplicate Fact" << name;
         return;
     }
 
-    //fact->setSendValueChangedSignals(_updateRateMSecs == 0);
-    if (_nameToFactMetaDataMap.contains(name)) {
+    fact->setSendValueChangedSignals(_updateRateMSecs == 0);
+    if (_nameToFactMetaDataMap.contains(name))
+    {
         fact->setMetaData(_nameToFactMetaDataMap[name]);
     }
     _nameToFactMap[name] = fact;
@@ -51,16 +56,17 @@ void FactGroup::_loadFromJsonArray(const QJsonArray jsonArray)
 
 void FactGroup::_updateAllValues()
 {
-    for(Fact* fact: _nameToFactMap) {
-        //fact->sendDeferredValueChangedSignal();
-        emit fact->valueChanged();
+    for(Fact* fact: _nameToFactMap)
+    {
+        fact->sendDeferredValueChangedSignal();
     }
     //qDebug() << "FactGroup::_updateAllValues()";
 }
 
 void FactGroup::_setupTimer()
 {
-    if (_updateRateMSecs > 0) {
+    if (_updateRateMSecs > 0)
+    {
         connect(&_updateTimer, &QTimer::timeout, this, &FactGroup::_updateAllValues);
         _updateTimer.setSingleShot(false);
         _updateTimer.setInterval(_updateRateMSecs);

@@ -6,7 +6,7 @@ Tool::Tool(XApplication* app,Toolbox *toolbox)
     , _app(app)
     , _toolbox(nullptr)
 {
-//qDebug() << QString(APPLICATION_NAME);
+    //qDebug() << QString(APPLICATION_NAME);
 }
 
 void Tool::setToolbox(Toolbox *toolbox)

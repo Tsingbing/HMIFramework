@@ -2,6 +2,7 @@
 
 SettingsManager::SettingsManager(XApplication* app, Toolbox *toolbox)
     : Tool(app, toolbox)
+    , _appSettings(nullptr)
 {
 
 }
@@ -9,4 +10,5 @@ SettingsManager::SettingsManager(XApplication* app, Toolbox *toolbox)
 void SettingsManager::setToolbox(Toolbox *toolbox)
 {
     _toolbox = toolbox;
+    _appSettings = new AppSettings(this);
 }

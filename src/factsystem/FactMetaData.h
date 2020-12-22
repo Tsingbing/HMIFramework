@@ -38,23 +38,60 @@ public:
 
     static FactMetaData *createFromJsonObject(const QJsonObject &json, QMap<QString, QString> &defineMap, QObject *metaDataParent);
 
-    ValueType_t type(void) const { return _type; }
-    QString name(void) const { return _name; }
-    QString shortDescription(void) const { return _shortDescription; }
-    QString rawUnits(void) const { return _rawUnits; }
-    QVariant rawMax(void) const { return _rawMax; }
-    QVariant rawMin(void) const { return _rawMin; }
+    ValueType_t type(void) const
+    {
+        return _type;
+    }
+    QString name(void) const
+    {
+        return _name;
+    }
+    QString shortDescription(void) const
+    {
+        return _shortDescription;
+    }
+    QString rawUnits(void) const
+    {
+        return _rawUnits;
+    }
+    QVariant rawMax(void) const
+    {
+        return _rawMax;
+    }
+    QVariant rawMin(void) const
+    {
+        return _rawMin;
+    }
     int decimalPlaces(void) const;
     QVariant rawDefaultValue(void) const;
-    QVariant cookedDefaultValue(void) const { return defaultTranslator(rawDefaultValue()); }
-    QString cookedUnits(void) const { return rawUnits(); }
+    QVariant cookedDefaultValue(void) const
+    {
+        return defaultTranslator(rawDefaultValue());
+    }
+    bool defaultValueAvailable(void) const { return _defaultValueAvailable; }
+    QString cookedUnits(void) const
+    {
+        return rawUnits();
+    }
 
-    void setName(const QString &name) { _name = name; }
-    void setShortDescription(const QString &shortDescription) { _shortDescription = shortDescription; }
-    void setRawUnits(const QString &rawUnits) { _rawUnits = rawUnits; }
+    void setName(const QString &name)
+    {
+        _name = name;
+    }
+    void setShortDescription(const QString &shortDescription)
+    {
+        _shortDescription = shortDescription;
+    }
+    void setRawUnits(const QString &rawUnits)
+    {
+        _rawUnits = rawUnits;
+    }
     void setRawMax(const QVariant &rawMax);
     void setRawMin(const QVariant &rawMin);
-    void setDecimalPlaces(int decimalPlaces) { _decimalPlaces = decimalPlaces; }
+    void setDecimalPlaces(int decimalPlaces)
+    {
+        _decimalPlaces = decimalPlaces;
+    }
     void setRawDefaultValue(const QVariant &rawDefaultValue);
 
     /// 转换和校验数据
@@ -74,7 +111,12 @@ public:
     /// 例如：英寸转米 feetToMeters（rawvalue是英寸，cookedvalue是米）
     ///
     /// 内置转换器（默认是不转换）
-    static QVariant defaultTranslator(const QVariant &from) { return from; }
+    static QVariant defaultTranslator(const QVariant &from)
+    {
+        return from;
+    }
+
+    static const char* FileType;
 
 private:
     QVariant _minForType(void) const; ///< 类型最小值
@@ -88,7 +130,10 @@ private:
     QVariant _rawMin;          ///< 原始值最小值
     int _decimalPlaces;        ///< 小数点位数
     QVariant _rawDefaultValue; ///< 默认原始值
+    bool _defaultValueAvailable; ///< 可获取默认值
 
+    static const char* _jsonMetaDataDefinesName;
+    static const char* _jsonMetaDataFactsName;
     static const char *_typeJsonKey;
     static const char *_nameJsonKey;
     static const char *_shortDescriptionJsonKey;

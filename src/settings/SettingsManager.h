@@ -4,6 +4,7 @@
 #include <QObject>
 #include "Tool.h"
 #include "Toolbox.h"
+#include "AppSettings.h"
 
 class SettingsManager : public Tool
 {
@@ -13,6 +14,14 @@ public:
 
     // Override from Tool
     virtual void setToolbox(Toolbox *toolbox);
+
+    AppSettings* appSettings(void)
+    {
+        return _appSettings;
+    }
+
+private:
+    AppSettings* _appSettings;
 };
 
 #endif // SETTINGSMANAGER_H

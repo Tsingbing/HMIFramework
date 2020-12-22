@@ -32,7 +32,7 @@ void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
             .arg(canbusframe.timeStamp().seconds(), 10, 10, QLatin1Char(' '))
             .arg(canbusframe.timeStamp().microSeconds() / 100, 3, 10, QLatin1Char('0'));
 
-    qDebug() << time << view;
+    //qDebug() << time << view;
 
     quint32 frameId = canbusframe.frameId();
     QByteArray payload =  canbusframe.payload();
@@ -40,7 +40,7 @@ void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
     int baojing = 0;
 
     switch (frameId) {
-    case 0x0000001 :
+    case 0x10F51001 :
     {
         //qDebug() << "payload 0x10F51001: " << payload.toHex(':');
         //系统电压
@@ -53,7 +53,6 @@ void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
         value = payload.at(2) + ((payload.at(3)&0x0F)  << 8);
         baojing = ((payload.at(3)&0xF0) >> 4);
         double shuiwen = value * 0.1 - 400;
-
 
         //发动机转速
         value = payload.at(4) + ((payload.at(5)&0x0F)  << 8);
@@ -74,6 +73,7 @@ void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
         value = payload.at(6) + ((payload.at(7)&0x0F)  << 8);
         baojing = ((payload.at(7)&0xF0) >> 4);
         double youwen = value * 0.1 - 400;
+
     }
         break;
     case 0x10F51301 :

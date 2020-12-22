@@ -7,6 +7,7 @@ class XApplication;
 class VehicleManager;
 class LinkManager;
 class CanLinkProtocol;
+class SettingsManager;
 
 class Toolbox : public QObject
 {
@@ -14,10 +15,23 @@ class Toolbox : public QObject
 public:
     Toolbox(XApplication *app);
 
-    VehicleManager* vehicleManager() {return _vehicleManager;}
-    LinkManager* linkManager() {return _linkManager;}
-    CanLinkProtocol *canLinkProtocol() {return _canLinkProtocol;}
+    VehicleManager* vehicleManager()
+    {
+        return _vehicleManager;
+    }
+    LinkManager* linkManager()
+    {
+        return _linkManager;
+    }
+    CanLinkProtocol *canLinkProtocol()
+    {
+        return _canLinkProtocol;
+    }
 
+    SettingsManager* settingsManager ()
+    {
+        return _settingsManager;
+    }
 signals:
 
 private:
@@ -26,6 +40,8 @@ private:
     VehicleManager* _vehicleManager = nullptr;
     LinkManager*     _linkManager   = nullptr;
     CanLinkProtocol* _canLinkProtocol = nullptr;
+    SettingsManager* _settingsManager = nullptr;
+
     friend class XApplication;
 };
 
