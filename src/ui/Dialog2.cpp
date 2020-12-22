@@ -7,7 +7,7 @@
 #include "FactGroup.h"
 #include "Vehicle.h"
 #include <QDebug>
-
+#include "SettingsManager.h"
 
 Dialog2::Dialog2(QWidget *parent) :
     QDialog(parent),
@@ -16,10 +16,11 @@ Dialog2::Dialog2(QWidget *parent) :
     ui->setupUi(this);
     ve = XApp()->toolbox()->vehicleManager()->activeVehicle();
     cl = XApp()->toolbox()->linkManager()->canlink();
-
+    sm = XApp()->toolbox()->settingsManager();
     ///< fact 变化值和ui显示 连接
-    //connect(ve->carSpeedFact(),&Fact::valueChanged,this,&Dialog2::_carUpdated);
-    connect(ve->supplyVoltageFact(),&Fact::valueChanged,[=](){ui->label_dianya->setText(ve->supplyVoltageFact()->valueString());});
+    connect(ve->supplyVoltageFact(),&Fact::valueChanged,[=](QVariant value){ui->label_dianya->setText(ve->supplyVoltageFact()->cookedValueString());});
+    ui->lineEdit->setText(sm->appSettings()->language()->cookedValue().toString());
+    //sm->appSettings()->language()->setRawValue(100);
 }
 
 Dialog2::~Dialog2()
@@ -87,4 +88,19 @@ void Dialog2::on_pushButton_pochaiduanquick_clicked()
     static bool b = false;
     b = !b;
     ve->sendPoChaiQuickSwitch(b);
+}
+
+void Dialog2::on_lineEdit_returnPressed()
+{
+
+}
+
+void Dialog2::on_lineEdit_editingFinished()
+{
+
+}
+
+void Dialog2::on_lineEdit_textChanged(const QString &arg1)
+{
+    sm->appSettings()->language()->setRawValue(ui->lineEdit->text());
 }

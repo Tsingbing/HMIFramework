@@ -25,6 +25,7 @@ int Vehicle::testValue = 1; //测试用
 
 Vehicle::Vehicle(QObject *parent)
     : FactGroup(_vehicleUIUpdateRateMSecs, ":/json/VehicleFact.json", parent)
+    , _supplyVoltageFact(_rotatingSpeedFactName, FactMetaData::valueTypeFloat)
 {
     _addFact(&_carSpeedFact,            _carSpeedFactName);
     _addFact(&_teleRSSIFact,            _teleRSSIFactName);

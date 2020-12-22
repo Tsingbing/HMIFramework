@@ -33,11 +33,17 @@ private slots:
     void on_pushButton_pochaiduan_clicked();
     void on_pushButton_wajueduan_clicked();
     void on_pushButton_pochaiduanquick_clicked();
+    void on_lineEdit_returnPressed();
+
+    void on_lineEdit_editingFinished();
+
+    void on_lineEdit_textChanged(const QString &arg1);
 
 private:
     Ui::Dialog2 *ui;
     Vehicle * ve;
     CanLink * cl;
+    SettingsManager *sm;
     //NumKeyboard * numkeyboard;
 };
 

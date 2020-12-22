@@ -77,7 +77,7 @@ private:
     static const char *_YDegreeFactName;
     static const char *_workHoursFactName;
 
-    static const int _vehicleUIUpdateRateMSecs = 1000;
+    static const int _vehicleUIUpdateRateMSecs = 0;
 
     CanLink *cl = nullptr;
 };
