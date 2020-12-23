@@ -1,14 +1,14 @@
-#include "XApplication.h"
 #include "Toolbox.h"
-#include "VehicleManager.h"
 #include "LinkManager.h"
 #include "SettingsManager.h"
+#include "VehicleManager.h"
+#include "XApplication.h"
 
 Toolbox::Toolbox(XApplication* app)
 {
     _settingsManager = new SettingsManager(app, this);
-    _linkManager  = new LinkManager(app, this);
-    _vehicleManager = new VehicleManager(app, this);
+    _linkManager     = new LinkManager(app, this);
+    _vehicleManager  = new VehicleManager(app, this);
     _canLinkProtocol = new CanLinkProtocol(app, this);
 }
 

@@ -1,7 +1,7 @@
 #include "Tool.h"
 #include "Toolbox.h"
 
-Tool::Tool(XApplication* app,Toolbox *toolbox)
+Tool::Tool(XApplication* app, Toolbox* toolbox)
     : QObject(toolbox)
     , _app(app)
     , _toolbox(nullptr)
@@ -9,7 +9,7 @@ Tool::Tool(XApplication* app,Toolbox *toolbox)
     //qDebug() << QString(APPLICATION_NAME);
 }
 
-void Tool::setToolbox(Toolbox *toolbox)
+void Tool::setToolbox(Toolbox* toolbox)
 {
     _toolbox = toolbox;
 }

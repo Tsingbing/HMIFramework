@@ -11,15 +11,14 @@ class VehicleManager : public Tool
     Q_OBJECT
 
 public:
-    VehicleManager(XApplication *app,Toolbox* toolbox);
+    VehicleManager(XApplication* app, Toolbox* toolbox);
 
-    Vehicle*    activeVehicle() {return _activeVehicle;}
+    Vehicle* activeVehicle() { return _activeVehicle; }
     ///< 覆写Tool函数
-    virtual void setToolbox(Toolbox *toolbox);
+    virtual void setToolbox(Toolbox* toolbox);
 
 private:
-    Vehicle*    _activeVehicle;
-
+    Vehicle* _activeVehicle;
 };
 
 #endif // VEHICLEMANAGER_H

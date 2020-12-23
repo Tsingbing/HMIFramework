@@ -14,7 +14,7 @@ class Tool : public QObject
 {
     Q_OBJECT
 public:
-    Tool(XApplication* app,Toolbox* toolbox);
+    Tool(XApplication* app, Toolbox* toolbox);
 
     // 如果重写此方法，则必须调用基类。
     virtual void setToolbox(Toolbox* toolbox);
@@ -22,8 +22,8 @@ public:
 signals:
 
 protected:
-    XApplication *_app;
-    Toolbox* _toolbox;
+    XApplication* _app;
+    Toolbox*      _toolbox;
 };
 
 #endif // TOOL_H

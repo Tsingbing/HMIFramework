@@ -1,14 +1,12 @@
 ﻿#include "VehicleManager.h"
 #include "Vehicle.h"
 
-
-VehicleManager::VehicleManager(XApplication* app, Toolbox *toolbox)
-    : Tool(app,toolbox)
+VehicleManager::VehicleManager(XApplication* app, Toolbox* toolbox)
+    : Tool(app, toolbox)
 {
-
 }
 
-void VehicleManager::setToolbox(Toolbox *toolbox)
+void VehicleManager::setToolbox(Toolbox* toolbox)
 {
     Tool::setToolbox(toolbox);
 

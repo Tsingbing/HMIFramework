@@ -6,10 +6,11 @@ bool CanLink::Connect()
     qDebug() << "CONNECT CALLED";
     Disconnect();
 
-    QCanBusDevice::CanBusError   error;
-    QString                      errorString;
+    QCanBusDevice::CanBusError error;
+    QString                    errorString;
 
-    if (!_hardwareConnect(error, errorString)) {
+    if (!_hardwareConnect(error, errorString))
+    {
         return false;
     }
     return true;
@@ -17,17 +18,14 @@ bool CanLink::Connect()
 
 void CanLink::Disconnect()
 {
-    if (_port) {
+    if (_port)
+    {
         _port->deleteLater();
         _port = nullptr;
     }
 }
 
-
-CanLink::CanLink()
-{
-
-}
+CanLink::CanLink() {}
 
 void CanLink::writeCanFrame(const QCanBusFrame &frame)
 {
@@ -41,10 +39,11 @@ void CanLink::_readBytes()
 {
     if (!_port)
         return;
-    //qDebug() << "_readBytes " ;
-    while (_port->framesAvailable()) {
+    // qDebug() << "_readBytes " ;
+    while (_port->framesAvailable())
+    {
         const QCanBusFrame frame = _port->readFrame();
-        emit canframesRecived(frame);
+        emit               canframesRecived(frame);
     }
 }
 
@@ -54,14 +53,18 @@ void CanLink::_readBytes()
 /// @return success/fail
 bool CanLink::_hardwareConnect(QCanBusDevice::CanBusError &error, QString &errorString)
 {
-    _port = QCanBus::instance()->createDevice(QStringLiteral("socketcan"), QStringLiteral("can0"), &errorString);
+    _port = QCanBus::instance()->createDevice(QStringLiteral("socketcan"), QStringLiteral("can0"),
+                                              &errorString);
     connect(_port, &QCanBusDevice::framesReceived, this, &CanLink::_readBytes);
-    if (!_port) {
+    if (!_port)
+    {
         error = _port->error();
         delete _port;
         _port = nullptr;
         return false;
-    } else {
+    }
+    else
+    {
         _port->connectDevice();
     }
     return true;

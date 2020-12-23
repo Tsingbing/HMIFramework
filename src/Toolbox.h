@@ -13,7 +13,7 @@ class Toolbox : public QObject
 {
     Q_OBJECT
 public:
-    Toolbox(XApplication *app);
+    Toolbox(XApplication* app);
 
     VehicleManager* vehicleManager()
     {
@@ -23,12 +23,12 @@ public:
     {
         return _linkManager;
     }
-    CanLinkProtocol *canLinkProtocol()
+    CanLinkProtocol* canLinkProtocol()
     {
         return _canLinkProtocol;
     }
 
-    SettingsManager* settingsManager ()
+    SettingsManager* settingsManager()
     {
         return _settingsManager;
     }
@@ -37,8 +37,8 @@ signals:
 private:
     void setChildToolboxes();
 
-    VehicleManager* _vehicleManager = nullptr;
-    LinkManager*     _linkManager   = nullptr;
+    VehicleManager*  _vehicleManager  = nullptr;
+    LinkManager*     _linkManager     = nullptr;
     CanLinkProtocol* _canLinkProtocol = nullptr;
     SettingsManager* _settingsManager = nullptr;
 

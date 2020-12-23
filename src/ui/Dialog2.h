@@ -1,13 +1,12 @@
 #ifndef DIALOG2_H
 #define DIALOG2_H
 
-#include <QDialog>
-#include <QVariant>
+#include "CanLink.h"
 #include "LinkManager.h"
 #include "Vehicle.h"
-#include "CanLink.h"
 #include "softkeylineedit.h"
-
+#include <QDialog>
+#include <QVariant>
 
 namespace Ui
 {
@@ -34,15 +33,13 @@ private slots:
     void on_pushButton_wajueduan_clicked();
     void on_pushButton_pochaiduanquick_clicked();
     void on_lineEdit_returnPressed();
-
     void on_lineEdit_editingFinished();
-
     void on_lineEdit_textChanged(const QString &arg1);
 
 private:
-    Ui::Dialog2 *ui;
-    Vehicle * ve;
-    CanLink * cl;
+    Ui::Dialog2 *    ui;
+    Vehicle *        ve;
+    CanLink *        cl;
     SettingsManager *sm;
     //NumKeyboard * numkeyboard;
 };

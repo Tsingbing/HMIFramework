@@ -1,10 +1,10 @@
 ﻿#include <QApplication>
-#include <XApplication.h>
 #include <QDebug>
+#include <XApplication.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    XApplication *app = new XApplication(argc, argv);
+    XApplication* app = new XApplication(argc, argv);
     Q_CHECK_PTR(app);
 
     app->_initForAppBoot();

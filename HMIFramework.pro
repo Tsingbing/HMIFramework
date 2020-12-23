@@ -78,6 +78,7 @@ SOURCES += \
     src/settings/SettingsGroup.cpp \
     src/settings/SettingsManager.cpp \
     src/ui/Dialog2.cpp \
+    src/ui/MessageDialog.cpp \
     src/ui/numkeyboard.cpp \
     src/ui/softkeylineedit.cpp \
     src/vehicles/Vehicle.cpp \
@@ -99,6 +100,7 @@ HEADERS += \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \
     src/ui/Dialog2.h \
+    src/ui/MessageDialog.h \
     src/ui/numkeyboard.h \
     src/ui/softkeylineedit.h \
     src/vehicles/Vehicle.h \
@@ -106,6 +108,7 @@ HEADERS += \
 
 FORMS += \
     src/ui/Dialog2.ui \
+    src/ui/MessageDialog.ui \
     src/ui/numkeyboard.ui
 #
 TARGET = run

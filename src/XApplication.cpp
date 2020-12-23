@@ -1,13 +1,13 @@
 ﻿#include "XApplication.h"
-#include "Toolbox.h"
-#include <QSettings>
 #include "Dialog2.h"
+#include "Toolbox.h"
 #include <QDebug>
+#include <QSettings>
 
-XApplication* XApplication::_app = nullptr;
+XApplication *XApplication::_app = nullptr;
 
 XApplication::XApplication(int &argc, char *argv[])
-    : QApplication (argc, argv)
+    : QApplication(argc, argv)
 {
     _app = this;
     // _msecsElapsedTime.start();
@@ -20,8 +20,6 @@ XApplication::XApplication(int &argc, char *argv[])
     QSettings::setDefaultFormat(QSettings::IniFormat);
     QSettings settings;
     qDebug() << "Settings location" << settings.fileName() << "Is writable?:" << settings.isWritable();
-
-    settings.setValue("demo", "xueqingbing");
 
     _toolbox = new Toolbox(this);
     _toolbox->setChildToolboxes();
@@ -50,7 +48,7 @@ void XApplication::_initForAppBoot()
 }
 
 ///  返回 XApplication 单例对象.
-XApplication* XApp(void)
+XApplication *XApp(void)
 {
     return XApplication::_app;
 }

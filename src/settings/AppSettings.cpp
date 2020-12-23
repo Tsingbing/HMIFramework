@@ -1,18 +1,17 @@
 #include "AppSettings.h"
 
-const char* AppSettings::name = "App";
-const char* AppSettings::settingsGroup = "";
+const char *AppSettings::name          = "App";
+const char *AppSettings::settingsGroup = "";
+const char *AppSettings::languageName  = "language";
 
-const char* AppSettings::languageName = "language";
-
-AppSettings::AppSettings(QObject* parent)
+AppSettings::AppSettings(QObject *parent)
     : SettingsGroup(name, settingsGroup, parent)
 {
-    SettingsFact* languageFact = qobject_cast<SettingsFact*>(language());
+    SettingsFact *languageFact = qobject_cast<SettingsFact *>(language());
     connect(languageFact, &Fact::rawValueChanged, this, &AppSettings::_languageChanged);
 }
 
-Fact* AppSettings::language()
+Fact *AppSettings::language()
 {
     if (!_languageFact)
     {
@@ -23,5 +22,4 @@ Fact* AppSettings::language()
 
 void AppSettings::_languageChanged()
 {
-
 }

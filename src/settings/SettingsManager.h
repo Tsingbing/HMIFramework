@@ -1,10 +1,10 @@
 #ifndef SETTINGSMANAGER_H
 #define SETTINGSMANAGER_H
 
-#include <QObject>
+#include "AppSettings.h"
 #include "Tool.h"
 #include "Toolbox.h"
-#include "AppSettings.h"
+#include <QObject>
 
 class SettingsManager : public Tool
 {
@@ -13,12 +13,9 @@ public:
     SettingsManager(XApplication* app, Toolbox* toolbox);
 
     // Override from Tool
-    virtual void setToolbox(Toolbox *toolbox);
+    virtual void setToolbox(Toolbox* toolbox);
 
-    AppSettings* appSettings(void)
-    {
-        return _appSettings;
-    }
+    AppSettings* appSettings(void) { return _appSettings; }
 
 private:
     AppSettings* _appSettings;

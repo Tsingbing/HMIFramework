@@ -1,11 +1,11 @@
 #include "FactGroup.h"
 #include "JsonHelper.h"
 
-#include <QJsonDocument>
-#include <QJsonParseError>
-#include <QJsonArray>
 #include <QDebug>
 #include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonParseError>
 
 FactGroup::FactGroup(int updateRateMsecs, const QString &metaDataFile, QObject *parent)
     : QObject(parent)
@@ -17,11 +17,11 @@ FactGroup::FactGroup(int updateRateMsecs, const QString &metaDataFile, QObject *
 
 Fact *FactGroup::getFact(const QString &name)
 {
-    Fact* fact = nullptr;
+    Fact *fact = nullptr;
 
     if (_nameToFactMap.contains(name))
     {
-        fact = _nameToFactMap[name];
+        fact = _nameToFactMap[ name ];
     }
     else
     {
@@ -42,9 +42,9 @@ void FactGroup::_addFact(Fact *fact, const QString &name)
     fact->setSendValueChangedSignals(_updateRateMSecs == 0);
     if (_nameToFactMetaDataMap.contains(name))
     {
-        fact->setMetaData(_nameToFactMetaDataMap[name]);
+        fact->setMetaData(_nameToFactMetaDataMap[ name ]);
     }
-    _nameToFactMap[name] = fact;
+    _nameToFactMap[ name ] = fact;
     _factNames.append(name);
 }
 
@@ -56,11 +56,11 @@ void FactGroup::_loadFromJsonArray(const QJsonArray jsonArray)
 
 void FactGroup::_updateAllValues()
 {
-    for(Fact* fact: _nameToFactMap)
+    for (Fact *fact : _nameToFactMap)
     {
         fact->sendDeferredValueChangedSignal();
     }
-    //qDebug() << "FactGroup::_updateAllValues()";
+    // qDebug() << "FactGroup::_updateAllValues()";
 }
 
 void FactGroup::_setupTimer()

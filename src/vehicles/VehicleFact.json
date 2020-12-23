@@ -1,105 +1,103 @@
 [
-
-{
-    "name":             "carSpeed",
-    "shortDescription": "车速",
-    "type":             "uint8",
-    "decimalPlaces":    1,
-    "units":            "km/h"
-},
-{
-    "name":             "oilPressure",
-    "shortDescription": "机油压力",
-    "type":             "uint32",
-    "units":            "Mpa"
-},
-
-{
-    "name":             "airPressure",
-    "shortDescription": "气压",
-    "type":             "float",
-    "decimalPlaces":    2,
-    "units":            "Mpa"
-},
-{
-    "name":             "teleRSSI",
-    "shortDescription": "遥控通信强度",
-    "type":             "uint8",
-    "units":            ""
-},
-{
-    "name":             "telePower",
-    "shortDescription": "遥控电池电量",
-    "type":             "uint8",
-    "units":            ""
-},
-{
-    "name":             "supplyVoltage",
-    "shortDescription": "车载端电源电压",
-    "type":             "float",
-    "decimalPlaces":    2,
-    "units":            "V"
-},
-{
-    "name":             "fuelLevel",
-    "shortDescription": "燃油油位",
-    "type":             "uint8",
-    "units":            ""
-},
-{
-    "name":             "rotatingSpeed",
-    "shortDescription": "发动机转速",
-    "type":             "double",
-    "decimalPlaces":    2,
-    "units":            "rpm"
-},
-{
-    "name":             "waterTemperature",
-    "shortDescription": "水温",
-    "type":             "uint8",
-    "units":            "Mpa"
-},
-{
-    "name":             "mainPumpPressure",
-    "shortDescription": "主泵压力",
-    "type":             "uint32",
-    "units":            "Mpa"
-},
-{
-    "name":             "oxygenConcentration",
-    "shortDescription": "氧气浓度百分比",
-    "type":             "uint8",
-    "units":            "%"
-},
-{
-    "name":             "combustibleGasConcentration",
-    "shortDescription": "可燃气体浓度百分比",
-    "type":             "uint8",
-    "units":            "%"
-},
-{
-    "name":             "AmbientTemperaturen",
-    "shortDescription": "环境温度",
-    "type":             "double",
-    "decimalPlaces":    2,
-    "units":            "C"
-},
-{
-    "name":             "XDegree",
-    "shortDescription": "车辆横向倾角度数",
-    "type":             "uint8",
-    "units":            "deg"
-},
-{
-    "name":             "YDegree",
-    "shortDescription": "车辆纵向倾角度数",
-    "type":             "uint8",
-    "units":            "deg"
-},
-{
-    "name":             "workHours",
-    "shortDescription": "车辆工作小时数",
-    "type":             "uint32",
-    "units":            "Hours"
-}
+    {
+        "name": "carSpeed",
+        "shortDescription": "车速",
+        "type": "uint8",
+        "decimalPlaces": 1,
+        "units": "km/h"
+    },
+    {
+        "name": "oilPressure",
+        "shortDescription": "机油压力",
+        "type": "uint32",
+        "units": "Mpa"
+    },
+    {
+        "name": "airPressure",
+        "shortDescription": "气压",
+        "type": "float",
+        "decimalPlaces": 2,
+        "units": "Mpa"
+    },
+    {
+        "name": "teleRSSI",
+        "shortDescription": "遥控通信强度",
+        "type": "uint8",
+        "units": ""
+    },
+    {
+        "name": "telePower",
+        "shortDescription": "遥控电池电量",
+        "type": "uint8",
+        "units": ""
+    },
+    {
+        "name": "supplyVoltage",
+        "shortDescription": "车载端电源电压",
+        "type": "float",
+        "decimalPlaces": 2,
+        "units": "V"
+    },
+    {
+        "name": "fuelLevel",
+        "shortDescription": "燃油油位",
+        "type": "uint8",
+        "units": ""
+    },
+    {
+        "name": "rotatingSpeed",
+        "shortDescription": "发动机转速",
+        "type": "double",
+        "decimalPlaces": 2,
+        "units": "rpm"
+    },
+    {
+        "name": "waterTemperature",
+        "shortDescription": "水温",
+        "type": "uint8",
+        "units": "Mpa"
+    },
+    {
+        "name": "mainPumpPressure",
+        "shortDescription": "主泵压力",
+        "type": "uint32",
+        "units": "Mpa"
+    },
+    {
+        "name": "oxygenConcentration",
+        "shortDescription": "氧气浓度百分比",
+        "type": "uint8",
+        "units": "%"
+    },
+    {
+        "name": "combustibleGasConcentration",
+        "shortDescription": "可燃气体浓度百分比",
+        "type": "uint8",
+        "units": "%"
+    },
+    {
+        "name": "AmbientTemperaturen",
+        "shortDescription": "环境温度",
+        "type": "double",
+        "decimalPlaces": 2,
+        "units": "C"
+    },
+    {
+        "name": "XDegree",
+        "shortDescription": "车辆横向倾角度数",
+        "type": "uint8",
+        "units": "deg"
+    },
+    {
+        "name": "YDegree",
+        "shortDescription": "车辆纵向倾角度数",
+        "type": "uint8",
+        "units": "deg"
+    },
+    {
+        "name": "workHours",
+        "shortDescription": "车辆工作小时数",
+        "type": "uint32",
+        "units": "Hours"
+    }
 ]

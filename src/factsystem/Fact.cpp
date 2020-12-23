@@ -1,14 +1,14 @@
 ﻿#include "Fact.h"
 #include <QDebug>
-static const char* kMissingMetadata = "Meta data pointer missing";
+static const char *kMissingMetadata = "Meta data pointer missing";
 
 Fact::Fact(QObject *parent)
     : QObject(parent)
-    , _rawValue (0)
-    , _type     (FactMetaData::valueTypeInt32)
-    , _metaData (nullptr)
+    , _rawValue(0)
+    , _type(FactMetaData::valueTypeInt32)
+    , _metaData(nullptr)
 {
-    FactMetaData* metaData = new FactMetaData(_type, this);
+    FactMetaData *metaData = new FactMetaData(_type, this);
     setMetaData(metaData);
 }
 
@@ -19,29 +19,23 @@ Fact::Fact(QString name, FactMetaData::ValueType_t type, QObject *parent)
     , _type(type)
     , _metaData(nullptr)
 {
-    FactMetaData* metaData = new FactMetaData(_type, this);
-    setMetaData(metaData,true /* setDefaultFromMetaData */);
+    FactMetaData *metaData = new FactMetaData(_type, this);
+    setMetaData(metaData, true /* setDefaultFromMetaData */);
 }
 
 Fact::Fact(FactMetaData *metaData, QObject *parent)
-    : QObject   (parent)
-    , _name     (metaData->name())
-    , _rawValue (0)
-    , _type     (metaData->type())
-    , _metaData (metaData)
+    : QObject(parent)
+    , _name(metaData->name())
+    , _rawValue(0)
+    , _type(metaData->type())
+    , _metaData(metaData)
 {
-    setMetaData(metaData,true /* setDefaultFromMetaData */);
+    setMetaData(metaData, true /* setDefaultFromMetaData */);
 }
 
-QString Fact::name() const
-{
-    return _name;
-}
+QString Fact::name() const { return _name; }
 
-FactMetaData::ValueType_t Fact::type() const
-{
-    return _type;
-}
+FactMetaData::ValueType_t Fact::type() const { return _type; }
 
 QString Fact::shortDescription() const
 {
@@ -73,7 +67,8 @@ QVariant Fact::rawDefaultValue() const
 {
     if (_metaData)
     {
-        if (!_metaData->defaultValueAvailable()) {
+        if (!_metaData->defaultValueAvailable())
+        {
             qDebug() << "Access to unavailable default value";
         }
         return _metaData->rawDefaultValue();
@@ -150,32 +145,26 @@ QVariant Fact::cookedValue() const
     }
 }
 
+QString Fact::rawValueString() const { return _variantToString(rawValue(), decimalPlaces()); }
 
-QString Fact::rawValueString() const
-{
-    return _variantToString(rawValue(), decimalPlaces());
-}
-
-QString Fact::cookedValueString() const
-{
-    return _variantToString(cookedValue(), decimalPlaces());
-}
+QString Fact::cookedValueString() const { return _variantToString(cookedValue(), decimalPlaces()); }
 
 void Fact::setRawValue(const QVariant &value)
 {
     if (_metaData)
     {
-        QVariant    typedValue;
-        QString     errorString;
+        QVariant typedValue;
+        QString  errorString;
 
-        if (_metaData->convertAndValidateRaw(value, true /* convertOnly */, typedValue, errorString))
+        if (_metaData->convertAndValidateRaw(value, true /* convertOnly */, typedValue,
+                                             errorString))
         {
             if (typedValue != _rawValue)
             {
                 _rawValue.setValue(typedValue);
                 _sendValueChangedSignal(cookedValue());
                 //-- Must be in this order
-                //emit _containerRawValueChanged(rawValue());
+                // emit _containerRawValueChanged(rawValue());
                 emit rawValueChanged(_rawValue);
             }
         }
@@ -188,37 +177,45 @@ void Fact::setRawValue(const QVariant &value)
 
 void Fact::setCookedValue(const QVariant &value)
 {
-    if (_metaData) {
+    if (_metaData)
+    {
         setRawValue(value);
-    } else {
+    }
+    else
+    {
         qWarning() << kMissingMetadata << name();
     }
 }
 
-void Fact::setSendValueChangedSignals (bool sendValueChangedSignals)
+void Fact::setSendValueChangedSignals(bool sendValueChangedSignals)
 {
-    if (sendValueChangedSignals != _sendValueChangedSignals) {
+    if (sendValueChangedSignals != _sendValueChangedSignals)
+    {
         _sendValueChangedSignals = sendValueChangedSignals;
     }
 }
 
 void Fact::_sendValueChangedSignal(QVariant value)
 {
-    if (_sendValueChangedSignals) {
+    if (_sendValueChangedSignals)
+    {
         emit valueChanged(value);
-        //qDebug() << "sendValueChangedSignalsChanged";
+        // qDebug() << "sendValueChangedSignalsChanged";
         _deferredValueChangeSignal = false;
-    } else {
+    }
+    else
+    {
         _deferredValueChangeSignal = true;
     }
 }
 
 void Fact::sendDeferredValueChangedSignal(void)
 {
-    if (_deferredValueChangeSignal) {
+    if (_deferredValueChangeSignal)
+    {
         _deferredValueChangeSignal = false;
         emit valueChanged(cookedValue());
-        //qDebug() << "sendDeferredValueChangedSignal";
+        // qDebug() << "sendDeferredValueChangedSignal";
     }
 }
 
@@ -238,50 +235,48 @@ QString Fact::_variantToString(const QVariant &variant, int decimalPlaces) const
 
     switch (type())
     {
-    case FactMetaData::valueTypeFloat:
-    {
-        float fValue = variant.toFloat();
-        if (qIsNaN(fValue))
+        case FactMetaData::valueTypeFloat:
         {
-            valueString = QStringLiteral("--.--");
+            float fValue = variant.toFloat();
+            if (qIsNaN(fValue))
+            {
+                valueString = QStringLiteral("--.--");
+            }
+            else
+            {
+                valueString = QString("%1").arg(fValue, 0, 'f', decimalPlaces);
+            }
         }
-        else
+        break;
+        case FactMetaData::valueTypeDouble:
         {
-            valueString = QString("%1").arg(fValue, 0, 'f', decimalPlaces);
+            double dValue = variant.toDouble();
+            if (qIsNaN(dValue))
+            {
+                valueString = QStringLiteral("--.--");
+            }
+            else
+            {
+                valueString = QString("%1").arg(dValue, 0, 'f', decimalPlaces);
+            }
         }
-    }
         break;
-    case FactMetaData::valueTypeDouble:
-    {
-        double dValue = variant.toDouble();
-        if (qIsNaN(dValue))
-        {
-            valueString = QStringLiteral("--.--");
-        }
-        else
-        {
-            valueString = QString("%1").arg(dValue, 0, 'f', decimalPlaces);
-        }
-    }
-        break;
-    case FactMetaData::valueTypeBool:
-        valueString = variant.toBool() ? tr("true") : tr("false");
-        break;
-        //    case FactMetaData::valueTypeElapsedTimeInSeconds:
-        //    {
-        //        double dValue = variant.toDouble();
-        //        if (qIsNaN(dValue)) {
-        //            valueString = QStringLiteral("--:--:--");
-        //        } else {
-        //            QTime time(0, 0, 0, 0);
-        //            time = time.addSecs(dValue);
-        //            valueString = time.toString(QStringLiteral("hh:mm:ss"));
-        //        }
-        //    }
-        //        break;
-    default:
-        valueString = variant.toString();
-        break;
+        case FactMetaData::valueTypeBool:
+            valueString = variant.toBool() ? tr("true") : tr("false");
+            break;
+            //    case FactMetaData::valueTypeElapsedTimeInSeconds:
+            //    {
+            //        double dValue = variant.toDouble();
+            //        if (qIsNaN(dValue)) {
+            //            valueString = QStringLiteral("--:--:--");
+            //        } else {
+            //            QTime time(0, 0, 0, 0);
+            //            time = time.addSecs(dValue);
+            //            valueString = time.toString(QStringLiteral("hh:mm:ss"));
+            //        }
+            //    }
+            //        break;
+        default: valueString = variant.toString(); break;
     }
 
     return valueString;
