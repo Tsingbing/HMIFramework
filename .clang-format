@@ -1,0 +1,108 @@
+# 基于那个配置文件
+BasedOnStyle: LLVM
+# 访问说明符的偏移(public private)
+AccessModifierOffset: -4
+# 括号之后,水平对齐参数: Align DontAlign AlwaysBreak
+AlignAfterOpenBracket: Align
+# 连续的赋值时,对齐所有的等号
+AlignConsecutiveAssignments: true
+# 连续声明时，对齐所有声明的变量名
+AlignConsecutiveDeclarations: true
+# 左对齐换行(使用反斜杠换行)的反斜杠 
+AlignEscapedNewlinesLeft: true
+# 水平对齐二元和三元表达式的操作数 
+AlignOperands: true
+# 对齐连续的尾随的注释  
+AlignTrailingComments: true
+# 允许函数声明的所有参数在放在下一行  
+AllowAllParametersOfDeclarationOnNextLine: true
+# 允许短的块放在同一行  
+AllowShortBlocksOnASingleLine : true
+# 允许短的case标签放在同一行
+AllowShortCaseLabelsOnASingleLine: true
+# 允许短的函数放在同一行: None, InlineOnly(定义在类中), Empty(空函数), Inline(定义在类中，空函数), All 
+AllowShortFunctionsOnASingleLine: Empty
+# 是否允许短if单行 If true, if (a) return; 可以放到同一行
+AllowShortIfStatementsOnASingleLine: false
+# 允许短的循环保持在同一行   
+AllowShortLoopsOnASingleLine: false 
+# 总是在定义返回类型后换行(deprecated)   
+AlwaysBreakAfterDefinitionReturnType: None
+# 每行字符的限制，0表示没有限制 
+# 大括号换行，只有当BreakBeforeBraces设置为Custom时才有效
+BraceWrapping:   
+  # class定义后面
+  AfterClass:    true
+  # 控制语句后面
+  AfterControlStatement:    true
+  # enum定义后面
+  AfterEnum:    true
+  # 函数定义后面
+  AfterFunction:    true
+  # 命名空间定义后面
+  AfterNamespace:    true
+  # ObjC定义后面
+  AfterObjCDeclaration:    true
+  # struct定义后面
+  AfterStruct:    true
+  # union定义后面
+  AfterUnion:    true
+  # catch之前
+  BeforeCatch:    true
+  # else之前
+  BeforeElse:    true
+  # 缩进大括号
+  IndentBraces:    false
+# 在二元运算符前换行: None(在操作符后换行), NonAssignment(在非赋值的操作符前换行), All(在操作符前换行)
+BreakBeforeBinaryOperators:    NonAssignment
+# 在大括号前换行: Attach(始终将大括号附加到周围的上下文), Linux(除函数、命名空间和类定义，与Attach类似), 
+#   Mozilla(除枚举、函数、记录定义，与Attach类似), Stroustrup(除函数定义、catch、else，与Attach类似), 
+#   Allman(总是在大括号前换行), GNU(总是在大括号前换行，并对于控制语句的大括号增加额外的缩进), WebKit(在函数前换行), Custom
+#   注：这里认为语句块也属于函数
+BreakBeforeBraces:    Custom
+# 在三元运算符前换行
+BreakBeforeTernaryOperators:    true
+# 在构造函数的初始化列表的逗号前换行
+BreakConstructorInitializersBeforeComma:    true 
+ColumnLimit: 0
+# 描述具有特殊意义的注释的正则表达式，它不应该被分割为多行或以其它方式改变
+CommentPragmas: '^ IWYU pragma:'
+# 语言: None Cpp Java Objc Protp
+Language: Cpp 
+#指针的*的挨着哪边
+PointerAlignment: Left
+#缩进宽度
+IndentWidth: 4
+# 连续的空行保留几行
+MaxEmptyLinesToKeep: 1
+# 在 @property 后面添加空格, \@property (readonly) 而不是 \@property(readonly).
+ObjCSpaceAfterProperty: true
+# OC block后面的缩进
+ObjCBlockIndentWidth: 4
+# 是否允许短方法单行
+AllowShortFunctionsOnASingleLine: true
+# 换行的时候对齐操作符
+#AlignOperands: true
+# 中括号两边空格 [] 
+SpacesInSquareBrackets: true
+# 小括号两边添加空格
+SpacesInParentheses : false
+#等号两边的空格
+SpaceBeforeAssignmentOperators: true
+# 容器类的空格 例如 OC的字典
+SpacesInContainerLiterals: true
+#缩进
+IndentWrappedFunctionNames: true
+#在block从空行开始
+KeepEmptyLinesAtTheStartOfBlocks: true
+#在构造函数初始化时按逗号断行，并以冒号对齐
+BreakConstructorInitializersBeforeComma: true
+#括号后添加空格
+SpaceAfterCStyleCast: false
+# 允许排序#include, 造成编译错误
+SortIncludes: true 
+# 缩进case 标签
+IndentCaseLabels: true 
+#tab键盘的宽度
+TabWidth: 4
+UseTab: Never
