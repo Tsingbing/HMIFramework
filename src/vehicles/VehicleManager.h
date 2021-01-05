@@ -13,9 +13,16 @@ class VehicleManager : public Tool
 public:
     VehicleManager(XApplication* app, Toolbox* toolbox);
 
+    Q_PROPERTY(Vehicle* activeVehicle READ activeVehicle WRITE setActiveVehicle NOTIFY activeVehicleChanged)
+
     Vehicle* activeVehicle() { return _activeVehicle; }
+    void     setActiveVehicle(Vehicle* vehicle);
+
     ///< 覆写Tool函数
     virtual void setToolbox(Toolbox* toolbox);
+
+signals:
+    void activeVehicleChanged(Vehicle* activeVehicle);
 
 private:
     Vehicle* _activeVehicle;

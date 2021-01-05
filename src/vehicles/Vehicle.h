@@ -13,7 +13,7 @@ class Vehicle : public FactGroup
     Q_OBJECT
 public:
     Vehicle(QObject* parent = nullptr);
-
+    Q_PROPERTY(int id READ id CONSTANT)
     Fact* carSpeedFact() { return &_carSpeedFact; }
     Fact* oilPressureFact() { return &_oilPressureFact; }
     Fact* airPressureFact() { return &_airPressureFact; }
@@ -37,6 +37,9 @@ public:
     void sendPoChaiLockSwitch(bool b);
     void sendWajueLockSwitch(bool b);
     void sendPoChaiQuickSwitch(bool b);
+
+    // Property accesors
+    int id() { return _id; }
 
 private slots:
     void _updateAllValues() override;
@@ -78,6 +81,7 @@ private:
     static const char* _workHoursFactName;
 
     static const int _vehicleUIUpdateRateMSecs = 500;
+    static const int _id                       = 100;
 
     CanLink* cl = nullptr;
 };

@@ -6,9 +6,12 @@ VehicleManager::VehicleManager(XApplication* app, Toolbox* toolbox)
 {
 }
 
+void VehicleManager::setActiveVehicle(Vehicle* /*vehicle*/)
+{
+}
+
 void VehicleManager::setToolbox(Toolbox* toolbox)
 {
     Tool::setToolbox(toolbox);
-
     _activeVehicle = new Vehicle(this);
 }

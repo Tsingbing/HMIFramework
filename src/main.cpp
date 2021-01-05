@@ -7,6 +7,7 @@ int main(int argc, char* argv[])
     XApplication* app = new XApplication(argc, argv);
     Q_CHECK_PTR(app);
 
+    app->_initCommon();
     app->_initForAppBoot();
 
     int exitCode = app->exec();

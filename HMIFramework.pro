@@ -64,6 +64,7 @@ INCLUDEPATH += \
     src/ui
 
 SOURCES += \
+    src/HMIQmlGlobal.cpp \
     src/Tool.cpp \
     src/Toolbox.cpp \
     src/XApplication.cpp \
@@ -87,6 +88,7 @@ SOURCES += \
     src/vehicles/VehicleManager.cpp
 
 HEADERS += \
+    src/HMIQmlGlobal.h \
     src/Tool.h \
     src/Toolbox.h \
     src/XApplication.h \

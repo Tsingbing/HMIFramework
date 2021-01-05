@@ -8,6 +8,6 @@
         <file>ui/images/zcwjj/main_set.jpg</file>
     </qresource>
     <qresource prefix="/qml">
-        <file>ui/main.qml</file>
+        <file alias="main.qml">ui/main.qml</file>
     </qresource>
 </RCC>

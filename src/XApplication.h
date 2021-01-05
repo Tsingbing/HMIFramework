@@ -11,6 +11,7 @@
 class QQmlApplicationEngine;
 class Toolbox;
 class QDialog;
+
 class XApplication : public QApplication
 {
     Q_OBJECT
@@ -22,6 +23,7 @@ public:
     static XApplication* _app; ///< 单例，直接被XApp()返回引用。
     Toolbox*             toolbox(void) { return _toolbox; }
     void                 _initForAppBoot(); ///< 初始化
+    void                 _initCommon();
     QQuickItem*          mainRootWindow();
     uint64_t             msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
 

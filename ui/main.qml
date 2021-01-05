@@ -3,6 +3,8 @@ import QtQuick.Controls 2.4
 import QtQuick.Dialogs  1.3
 import QtQuick.Window 2.12
 
+import HMI 1.0
+
 ApplicationWindow {
     id:  mainWindow
     visible: true
@@ -12,8 +14,17 @@ ApplicationWindow {
 
     Component.onCompleted: {
         //mainWindow.showFullScreen()
-        console.info("hello world")
+        console.info(globals.activeVehicle.id)
     }
+    //-------------------------------------------------------------------------
+    //-- Global Scope Variables
+
+    QtObject {
+        id: globals
+
+        readonly property var activeVehicle : HMI.vehicleManager.activeVehicle
+    }
+
     Image {
         id: image
         anchors.fill: parent
@@ -31,7 +42,7 @@ ApplicationWindow {
             id: button
             x: 270
             y: 152
-            text: qsTr("Button")
+            text: qsTr("activeVehicle.id")
             onClicked: console.info("button pressed!")
         }
 
