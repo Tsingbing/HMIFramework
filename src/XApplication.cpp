@@ -2,11 +2,12 @@
 #include "Dialog2.h"
 #include "Toolbox.h"
 #include <QDebug>
+#include <QQmlApplicationEngine>
 #include <QSettings>
 
-XApplication *XApplication::_app = nullptr;
+XApplication* XApplication::_app = nullptr;
 
-XApplication::XApplication(int &argc, char *argv[])
+XApplication::XApplication(int& argc, char* argv[])
     : QApplication(argc, argv)
 {
     _app = this;
@@ -37,9 +38,13 @@ XApplication::~XApplication()
 
 void XApplication::_initForAppBoot()
 {
-    dlg = new Dialog2();
-    Q_CHECK_PTR(dlg);
-    dlg->show();
+    _qmlAppEngine = new QQmlApplicationEngine(this);
+    _qmlAppEngine->addImportPath("qrc:/qml");
+    _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/ui/main.qml")));
+
+    //    dlg = new Dialog2();
+    //    Q_CHECK_PTR(dlg);
+    //    dlg->show();
     //qDebug() << "timestamp = " << msecsSinceBoot();
     //    dlg2 = new Dialog2();
     //    Q_CHECK_PTR(dlg2);
@@ -47,8 +52,24 @@ void XApplication::_initForAppBoot()
     //qDebug() << "timestamp = " << msecsSinceBoot();
 }
 
+QQuickItem* XApplication::mainRootWindow()
+{
+    if (!_mainRootWindow)
+    {
+        _mainRootWindow = reinterpret_cast<QQuickItem*>(_rootQmlObject());
+    }
+    return _mainRootWindow;
+}
+
+QObject* XApplication::_rootQmlObject()
+{
+    if (_qmlAppEngine && _qmlAppEngine->rootObjects().size())
+        return _qmlAppEngine->rootObjects()[ 0 ];
+    return nullptr;
+}
+
 ///  返回 XApplication 单例对象.
-XApplication *XApp(void)
+XApplication* XApp(void)
 {
     return XApplication::_app;
 }

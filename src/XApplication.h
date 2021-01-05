@@ -3,8 +3,12 @@
 
 #include <QApplication>
 #include <QElapsedTimer>
+#include <QMetaMethod>
+#include <QMetaObject>
 #include <QObject>
+#include <QQuickItem>
 
+class QQmlApplicationEngine;
 class Toolbox;
 class QDialog;
 class XApplication : public QApplication
@@ -15,20 +19,22 @@ public:
     XApplication(int& argc, char* argv[]);
     ~XApplication();
 
-    Toolbox* toolbox(void) { return _toolbox; }
-
-    void _initForAppBoot(); ///< 初始化
-
     static XApplication* _app; ///< 单例，直接被XApp()返回引用。
+    Toolbox*             toolbox(void) { return _toolbox; }
+    void                 _initForAppBoot(); ///< 初始化
+    QQuickItem*          mainRootWindow();
+    uint64_t             msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
 
-    uint64_t msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
+private:
+    QObject* _rootQmlObject();
 
 private:
     QElapsedTimer _msecsElapsedTime;
+    Toolbox*      _toolbox        = nullptr;
+    QQuickItem*   _mainRootWindow = nullptr;
+    QDialog*      dlg             = nullptr;
 
-    Toolbox* _toolbox = nullptr;
-    QDialog* dlg      = nullptr;
-    QDialog* dlg2     = nullptr;
+    QQmlApplicationEngine* _qmlAppEngine = nullptr;
 };
 
 XApplication* XApp(void);

@@ -1,5 +1,7 @@
 QT       += core gui
 QT += serialbus
+QT += quick
+QT += qml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
