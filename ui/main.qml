@@ -4,6 +4,7 @@ import QtQuick.Dialogs  1.3
 import QtQuick.Window 2.12
 
 import HMI 1.0
+import HMI.FactSystem 1.0
 
 ApplicationWindow {
     id:  mainWindow
@@ -14,15 +15,19 @@ ApplicationWindow {
 
     Component.onCompleted: {
         //mainWindow.showFullScreen()
+
         console.info(globals.activeVehicle.id)
+        console.info(globals.activeVehicle.supplyVoltageFact.valueString)
+        console.info(globals.fact1.valueString)
     }
     //-------------------------------------------------------------------------
     //-- Global Scope Variables
-
     QtObject {
         id: globals
 
         readonly property var activeVehicle : HMI.vehicleManager.activeVehicle
+        property Fact fact: activeVehicle.supplyVoltageFact
+        property Fact fact1: activeVehicle.rotatingSpeedFact
     }
 
     Image {
@@ -42,7 +47,7 @@ ApplicationWindow {
             id: button
             x: 270
             y: 152
-            text: qsTr("activeVehicle.id")
+            text: qsTr(globals.fact.valueString)
             onClicked: console.info("button pressed!")
         }
 
@@ -59,19 +64,19 @@ ApplicationWindow {
         }
     }
 
-    MessageDialog {
-        title: "Overwrite?"
-        icon: StandardIcon.Question
-        text: "file.txt already exists.  Replace?"
-        detailedText: "To replace a file means that its existing contents will be lost. " +
-                      "The file that you are copying now will be copied over it instead."
-        standardButtons: StandardButton.Yes | StandardButton.YesToAll |
-                         StandardButton.No | StandardButton.NoToAll | StandardButton.Abort
-        Component.onCompleted: visible = true
-        onYes: console.log("copied")
-        onNo: console.log("didn't copy")
-        onRejected: console.log("aborted")
-    }
+//    MessageDialog {
+//        title: "Overwrite?"
+//        icon: StandardIcon.Question
+//        text: "file.txt already exists.  Replace?"
+//        detailedText: "To replace a file means that its existing contents will be lost. " +
+//                      "The file that you are copying now will be copied over it instead."
+//        standardButtons: StandardButton.Yes | StandardButton.YesToAll |
+//                         StandardButton.No | StandardButton.NoToAll | StandardButton.Abort
+//        Component.onCompleted: visible = true
+//        onYes: console.log("copied")
+//        onNo: console.log("didn't copy")
+//        onRejected: console.log("aborted")
+//    }
 }
 
 

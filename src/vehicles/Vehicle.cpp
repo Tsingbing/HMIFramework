@@ -25,7 +25,7 @@ int Vehicle::testValue = 1; //测试用
 
 Vehicle::Vehicle(QObject* parent)
     : FactGroup(_vehicleUIUpdateRateMSecs, ":/json/VehicleFact.json", parent)
-    , _supplyVoltageFact(_rotatingSpeedFactName, FactMetaData::valueTypeFloat)
+    , _supplyVoltageFact(_supplyVoltageFactName, FactMetaData::valueTypeFloat)
 {
     _addFact(&_carSpeedFact, _carSpeedFactName);
     _addFact(&_teleRSSIFact, _teleRSSIFactName);
@@ -40,6 +40,8 @@ Vehicle::Vehicle(QObject* parent)
     _addFact(&_XDegreeFact, _XDegreeFactName);
     _addFact(&_YDegreeFact, _YDegreeFactName);
     _addFact(&_workHoursFact, _workHoursFactName);
+
+    _supplyVoltageFact.setRawValue(QVariant(12.333));
 
     cl = XApp()->toolbox()->linkManager()->canlink();
 }

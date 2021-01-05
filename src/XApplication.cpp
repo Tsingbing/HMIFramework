@@ -1,5 +1,7 @@
 ﻿#include "XApplication.h"
 #include "Dialog2.h"
+#include "Fact.h"
+#include "FactMetaData.h"
 #include "HMIQmlGlobal.h"
 #include "Toolbox.h"
 #include <QDebug>
@@ -42,7 +44,7 @@ XApplication::~XApplication()
     {
         delete dlg;
     }
-    delete _toolbox;
+
     _app = nullptr;
 }
 
@@ -82,6 +84,12 @@ QObject* XApplication::_rootQmlObject()
     if (_qmlAppEngine && _qmlAppEngine->rootObjects().size())
         return _qmlAppEngine->rootObjects()[ 0 ];
     return nullptr;
+}
+
+void XApplication::_shutdown()
+{
+    delete _qmlAppEngine;
+    delete _toolbox;
 }
 
 ///  返回 XApplication 单例对象.

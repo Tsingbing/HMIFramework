@@ -14,6 +14,9 @@ class Vehicle : public FactGroup
 public:
     Vehicle(QObject* parent = nullptr);
     Q_PROPERTY(int id READ id CONSTANT)
+
+    Q_PROPERTY(Fact* supplyVoltageFact READ supplyVoltageFact CONSTANT)
+    Q_PROPERTY(Fact* rotatingSpeedFact READ rotatingSpeedFact CONSTANT)
     Fact* carSpeedFact() { return &_carSpeedFact; }
     Fact* oilPressureFact() { return &_oilPressureFact; }
     Fact* airPressureFact() { return &_airPressureFact; }

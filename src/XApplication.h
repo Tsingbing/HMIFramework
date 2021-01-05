@@ -27,6 +27,9 @@ public:
     QQuickItem*          mainRootWindow();
     uint64_t             msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
 
+    /// Shutdown the application object
+    void _shutdown();
+
 private:
     QObject* _rootQmlObject();
 

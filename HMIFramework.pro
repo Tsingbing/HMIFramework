@@ -71,6 +71,7 @@ SOURCES += \
     src/factsystem/Fact.cpp \
     src/factsystem/FactGroup.cpp \
     src/factsystem/FactMetaData.cpp \
+    src/factsystem/FactSystem.cc \
     src/factsystem/JsonHelper.cc \
     src/factsystem/SettingsFact.cpp \
     src/links/CanLink.cpp \
@@ -95,6 +96,7 @@ HEADERS += \
     src/factsystem/Fact.h \
     src/factsystem/FactGroup.h \
     src/factsystem/FactMetaData.h \
+    src/factsystem/FactSystem.h \
     src/factsystem/JsonHelper.h \
     src/factsystem/SettingsFact.h \
     src/links/CanLink.h \
@@ -123,5 +125,7 @@ else: unix:!android: target.path = /home/root/client
 
 RESOURCES += \
     HMIFramework.qrc
+
+QML_IMPORT_PATH += src/QmlControls
 
 DISTFILES +=

@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+class FactSystem;
 class XApplication;
 class VehicleManager;
 class LinkManager;
@@ -37,6 +38,7 @@ signals:
 private:
     void setChildToolboxes();
 
+    FactSystem*      _factSystem      = nullptr;
     VehicleManager*  _vehicleManager  = nullptr;
     LinkManager*     _linkManager     = nullptr;
     CanLinkProtocol* _canLinkProtocol = nullptr;

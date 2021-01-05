@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
     app->_initForAppBoot();
 
     int exitCode = app->exec();
-
+    app->_shutdown();
     delete app;
 
     qDebug() << "After app delete";

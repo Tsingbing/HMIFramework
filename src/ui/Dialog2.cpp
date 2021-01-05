@@ -18,9 +18,10 @@ Dialog2::Dialog2(QWidget* parent)
     cl = XApp()->toolbox()->linkManager()->canlink();
     sm = XApp()->toolbox()->settingsManager();
     ///< fact 变化值和ui显示 连接
-    connect(ve->supplyVoltageFact(), &Fact::valueChanged, [=](QVariant value) { ui->label_dianya->setText(ve->supplyVoltageFact()->cookedValueString()); });
-    ui->lineEdit->setText(sm->appSettings()->language()->cookedValue().toString());
+    //connect(ve->supplyVoltageFact(), &Fact::valueChanged, [=](QVariant value) { ui->label_dianya->setText(ve->supplyVoltageFact()->cookedValueString()); });
+    //ui->lineEdit->setText(sm->appSettings()->language()->cookedValue().toString());
     //sm->appSettings()->language()->setRawValue(100);
+    qDebug() << "_carSpeedFact " << ve->supplyVoltageFact()->name();
 }
 
 Dialog2::~Dialog2()

@@ -8,19 +8,29 @@
 #include <QJsonParseError>
 #include <QtMath>
 
-const char *FactMetaData::FileType                 = "FactMetaData";
-const char *FactMetaData::_jsonMetaDataDefinesName = "MetaData.Defines";
-const char *FactMetaData::_jsonMetaDataFactsName   = "MetaData.Facts";
-const char *FactMetaData::_decimalPlacesJsonKey    = "decimalPlaces";
-const char *FactMetaData::_nameJsonKey             = "name";
-const char *FactMetaData::_typeJsonKey             = "type";
-const char *FactMetaData::_shortDescriptionJsonKey = "shortDescription";
-const char *FactMetaData::_unitsJsonKey            = "units";
-const char *FactMetaData::_defaultValueJsonKey     = "default";
-const char *FactMetaData::_minJsonKey              = "min";
-const char *FactMetaData::_maxJsonKey              = "max";
+const char* FactMetaData::_decimalPlacesJsonKey    = "decimalPlaces";
+const char* FactMetaData::_nameJsonKey             = "name";
+const char* FactMetaData::_typeJsonKey             = "type";
+const char* FactMetaData::_shortDescriptionJsonKey = "shortDescription";
+const char* FactMetaData::_unitsJsonKey            = "units";
+const char* FactMetaData::_defaultValueJsonKey     = "defaultValue";
+const char* FactMetaData::_minJsonKey              = "min";
+const char* FactMetaData::_maxJsonKey              = "max";
+const char* FactMetaData::_enumStringsJsonKey      = "enumStrings";
+const char* FactMetaData::_enumValuesJsonKey       = "enumValues";
 
-FactMetaData::FactMetaData(FactMetaData::ValueType_t type, QObject *parent)
+FactMetaData::FactMetaData(QObject* parent)
+    : QObject(parent)
+    , _type(valueTypeInt32)
+    , _rawMax(_maxForType())
+    , _rawMin(_minForType())
+    , _decimalPlaces(kUnknownDecimalPlaces)
+    , _rawDefaultValue(0)
+    , _defaultValueAvailable(false)
+{
+}
+
+FactMetaData::FactMetaData(FactMetaData::ValueType_t type, QObject* parent)
     : QObject(parent)
     , _type(type)
     , _rawMax(_maxForType())
@@ -31,7 +41,7 @@ FactMetaData::FactMetaData(FactMetaData::ValueType_t type, QObject *parent)
 {
 }
 
-FactMetaData::FactMetaData(FactMetaData::ValueType_t type, const QString name, QObject *parent)
+FactMetaData::FactMetaData(FactMetaData::ValueType_t type, const QString name, QObject* parent)
     : QObject(parent)
     , _type(type)
     , _name(name)
@@ -39,13 +49,12 @@ FactMetaData::FactMetaData(FactMetaData::ValueType_t type, const QString name, Q
     , _rawMin(_minForType())
     , _decimalPlaces(kUnknownDecimalPlaces)
     , _rawDefaultValue(0)
-    , _defaultValueAvailable(false)
 {
 }
 
-QMap<QString, FactMetaData *> FactMetaData::createMapFromJsonFile(const QString &jsonFilename, QObject *metaDataParent)
+QMap<QString, FactMetaData*> FactMetaData::createMapFromJsonFile(const QString& jsonFilename, QObject* metaDataParent)
 {
-    QMap<QString, FactMetaData *> metaDataMap;
+    QMap<QString, FactMetaData*> metaDataMap;
 
     QFile jsonFile(jsonFilename);
     if (!jsonFile.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -64,7 +73,8 @@ QMap<QString, FactMetaData *> FactMetaData::createMapFromJsonFile(const QString 
         return metaDataMap;
     }
 
-    QJsonArray                                                  factArray;
+    QJsonArray factArray;
+
     QMap<QString /* define name */, QString /* define value */> defineMap;
 
     if (doc.isArray())
@@ -80,9 +90,9 @@ QMap<QString, FactMetaData *> FactMetaData::createMapFromJsonFile(const QString 
     return createMapFromJsonArray(factArray, defineMap, metaDataParent);
 }
 
-QMap<QString, FactMetaData *> FactMetaData::createMapFromJsonArray(const QJsonArray jsonArray, QMap<QString, QString> &defineMap, QObject *metaDataParent)
+QMap<QString, FactMetaData*> FactMetaData::createMapFromJsonArray(const QJsonArray jsonArray, QMap<QString, QString>& defineMap, QObject* metaDataParent)
 {
-    QMap<QString, FactMetaData *> metaDataMap;
+    QMap<QString, FactMetaData*> metaDataMap;
     for (int i = 0; i < jsonArray.count(); i++)
     {
         QJsonValue jsonValue = jsonArray.at(i);
@@ -92,7 +102,7 @@ QMap<QString, FactMetaData *> FactMetaData::createMapFromJsonArray(const QJsonAr
             continue;
         }
         QJsonObject   jsonObject = jsonValue.toObject();
-        FactMetaData *metaData   = createFromJsonObject(jsonObject, defineMap, metaDataParent);
+        FactMetaData* metaData   = createFromJsonObject(jsonObject, defineMap, metaDataParent);
         if (metaDataMap.contains(metaData->name()))
         {
             qWarning() << QStringLiteral("Duplicate fact name:") << metaData->name();
@@ -106,7 +116,7 @@ QMap<QString, FactMetaData *> FactMetaData::createMapFromJsonArray(const QJsonAr
     return metaDataMap;
 }
 
-FactMetaData *FactMetaData::createFromJsonObject(const QJsonObject &json, QMap<QString, QString> &defineMap, QObject *metaDataParent)
+FactMetaData* FactMetaData::createFromJsonObject(const QJsonObject& json, QMap<QString, QString>& defineMap, QObject* metaDataParent)
 {
     QString errorString;
 
@@ -119,19 +129,20 @@ FactMetaData *FactMetaData::createFromJsonObject(const QJsonObject &json, QMap<Q
         return new FactMetaData(valueTypeUint32, metaDataParent);
     }
 
-    QList<JsonHelper::KeyValidateInfo> keyInfoList =
-        {
-            {_nameJsonKey, QJsonValue::String, true},
-            {_typeJsonKey, QJsonValue::String, true},
-            {_shortDescriptionJsonKey, QJsonValue::String, false},
-            //{ _longDescriptionJsonKey,      QJsonValue::String, false },
-            {_unitsJsonKey, QJsonValue::String, false},
-            {_decimalPlacesJsonKey, QJsonValue::Double, false},
-            {_minJsonKey, QJsonValue::Double, false},
-            {_maxJsonKey, QJsonValue::Double, false},
-            //{ _hasControlJsonKey,           QJsonValue::Bool,   false },
-            //{ _qgcRebootRequiredJsonKey,    QJsonValue::Bool,   false },
-        };
+    QList<JsonHelper::KeyValidateInfo> keyInfoList = {
+        {_nameJsonKey, QJsonValue::String, true},
+        {_typeJsonKey, QJsonValue::String, true},
+        {_shortDescriptionJsonKey, QJsonValue::String, false},
+        //{ _longDescriptionJsonKey,      QJsonValue::String, false },
+        {_unitsJsonKey, QJsonValue::String, false},
+        {_decimalPlacesJsonKey, QJsonValue::Double, false},
+        {_minJsonKey, QJsonValue::Double, false},
+        {_maxJsonKey, QJsonValue::Double, false},
+        //{ _hasControlJsonKey,           QJsonValue::Bool,   false },
+        //{ _qgcRebootRequiredJsonKey,    QJsonValue::Bool,   false },
+        {_enumValuesJsonKey, QJsonValue::String, false},
+        {_enumStringsJsonKey, QJsonValue::String, false},
+    };
     if (!JsonHelper::validateKeys(json, keyInfoList, errorString))
     {
         qWarning() << errorString;
@@ -146,7 +157,7 @@ FactMetaData *FactMetaData::createFromJsonObject(const QJsonObject &json, QMap<Q
         return new FactMetaData(valueTypeUint32, metaDataParent);
     }
 
-    FactMetaData *metaData = new FactMetaData(type, metaDataParent);
+    FactMetaData* metaData = new FactMetaData(type, metaDataParent);
 
     metaData->_name = json[ _nameJsonKey ].toString();
 
@@ -160,7 +171,7 @@ FactMetaData *FactMetaData::createFromJsonObject(const QJsonObject &json, QMap<Q
 
             if (metaData->convertAndValidateRaw(enumValues[ i ], false /* validate */, enumVariant, errorString))
             {
-                //metaData->addEnumInfo(enumStrings[i], enumVariant);
+                metaData->addEnumInfo(enumStrings[ i ], enumVariant);
             }
             else
             {
@@ -184,31 +195,27 @@ FactMetaData *FactMetaData::createFromJsonObject(const QJsonObject &json, QMap<Q
         metaData->setRawUnits(json[ _unitsJsonKey ].toString());
     }
 
-    if (json.contains(_defaultValueJsonKey))
-    {
-        const QJsonValue jsonValue = json[ _defaultValueJsonKey ];
+    QString defaultValueJsonKey;
 
-        if (jsonValue.type() == QJsonValue::Null && (type == valueTypeFloat || type == valueTypeDouble))
+    if (defaultValueJsonKey.isEmpty() && json.contains(_defaultValueJsonKey))
+    {
+        defaultValueJsonKey = _defaultValueJsonKey;
+    }
+    if (!defaultValueJsonKey.isEmpty())
+    {
+        QVariant typedValue;
+        QString  errorString;
+        QVariant initialValue = json[ defaultValueJsonKey ].toVariant();
+        if (metaData->convertAndValidateRaw(initialValue, true /* convertOnly */, typedValue, errorString))
         {
-            metaData->setRawDefaultValue(type == valueTypeFloat ? std::numeric_limits<float>::quiet_NaN() : std::numeric_limits<double>::quiet_NaN());
+            metaData->setRawDefaultValue(typedValue);
         }
         else
         {
-            QVariant typedValue;
-            QString  errorString;
-            QVariant initialValue = jsonValue.toVariant();
-
-            if (metaData->convertAndValidateRaw(initialValue, true /* convertOnly */, typedValue, errorString))
-            {
-                metaData->setRawDefaultValue(typedValue);
-            }
-            else
-            {
-                qWarning() << "Invalid default value, name:" << metaData->name()
-                           << " type:" << metaData->type()
-                           << " value:" << initialValue
-                           << " error:" << errorString;
-            }
+            qWarning() << "Invalid default value, name:" << metaData->name()
+                       << " type:" << metaData->type()
+                       << " value:" << initialValue
+                       << " error:" << errorString;
         }
     }
 
@@ -258,18 +265,16 @@ int FactMetaData::decimalPlaces() const
 
 QVariant FactMetaData::rawDefaultValue() const
 {
-    if (_defaultValueAvailable)
-    {
-        return _rawDefaultValue;
-    }
-    else
-    {
-        qWarning() << "Attempt to access unavailable default value";
-        return QVariant(0);
-    }
+    return _rawDefaultValue;
 }
 
-void FactMetaData::setRawMax(const QVariant &rawMax)
+void FactMetaData::addEnumInfo(const QString& name, const QVariant& value)
+{
+    _enumStrings << name;
+    _enumValues << value;
+}
+
+void FactMetaData::setRawMax(const QVariant& rawMax)
 {
     if (rawMax > _maxForType())
     {
@@ -283,7 +288,7 @@ void FactMetaData::setRawMax(const QVariant &rawMax)
     }
 }
 
-void FactMetaData::setRawMin(const QVariant &rawMin)
+void FactMetaData::setRawMin(const QVariant& rawMin)
 {
     if (rawMin >= _minForType())
     {
@@ -299,7 +304,7 @@ void FactMetaData::setRawMin(const QVariant &rawMin)
     }
 }
 
-void FactMetaData::setRawDefaultValue(const QVariant &rawDefaultValue)
+void FactMetaData::setRawDefaultValue(const QVariant& rawDefaultValue)
 {
     if (_type == valueTypeString || (_rawMin <= rawDefaultValue && rawDefaultValue <= _rawMax))
     {
@@ -312,7 +317,7 @@ void FactMetaData::setRawDefaultValue(const QVariant &rawDefaultValue)
     }
 }
 
-bool FactMetaData::convertAndValidateRaw(const QVariant &rawValue, bool convertOnly, QVariant &typedValue, QString &errorString)
+bool FactMetaData::convertAndValidateRaw(const QVariant& rawValue, bool convertOnly, QVariant& typedValue, QString& errorString)
 {
     bool convertOk = false;
 
@@ -402,7 +407,7 @@ bool FactMetaData::convertAndValidateRaw(const QVariant &rawValue, bool convertO
     return convertOk && errorString.isEmpty();
 }
 
-FactMetaData::ValueType_t FactMetaData::stringToType(const QString &typeString, bool &unknownType)
+FactMetaData::ValueType_t FactMetaData::stringToType(const QString& typeString, bool& unknownType)
 {
     QStringList        knownTypeStrings;
     QList<ValueType_t> knownTypes;
