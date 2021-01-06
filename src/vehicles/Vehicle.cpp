@@ -41,9 +41,12 @@ Vehicle::Vehicle(QObject* parent)
     _addFact(&_YDegreeFact, _YDegreeFactName);
     _addFact(&_workHoursFact, _workHoursFactName);
 
-    _supplyVoltageFact.setRawValue(QVariant(12.333));
-
     cl = XApp()->toolbox()->linkManager()->canlink();
+}
+
+void Vehicle::forceArm()
+{
+    qDebug() << "forceArm-------";
 }
 
 void Vehicle::sendFrontLightSwitch(bool b)
@@ -108,6 +111,6 @@ void Vehicle::sendPoChaiQuickSwitch(bool b)
 
 void Vehicle::_updateAllValues()
 {
-    // qDebug() << "updateAllValues ";
+    //qDebug() << "updateAllValues ";
     FactGroup::_updateAllValues();
 }

@@ -17,9 +17,11 @@ public:
 
     Q_PROPERTY(Fact* supplyVoltageFact READ supplyVoltageFact CONSTANT)
     Q_PROPERTY(Fact* rotatingSpeedFact READ rotatingSpeedFact CONSTANT)
-    Fact* carSpeedFact() { return &_carSpeedFact; }
-    Fact* oilPressureFact() { return &_oilPressureFact; }
-    Fact* airPressureFact() { return &_airPressureFact; }
+
+    Q_INVOKABLE void forceArm();
+    Fact*            carSpeedFact() { return &_carSpeedFact; }
+    Fact*            oilPressureFact() { return &_oilPressureFact; }
+    Fact*            airPressureFact() { return &_airPressureFact; }
 
     Fact* teleRSSIFact() { return &_teleRSSIFact; }
     Fact* supplyVoltageFact() { return &_supplyVoltageFact; }

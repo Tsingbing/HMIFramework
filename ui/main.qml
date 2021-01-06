@@ -15,10 +15,10 @@ ApplicationWindow {
 
     Component.onCompleted: {
         //mainWindow.showFullScreen()
-
+        globals.activeVehicle.forceArm();
         console.info(globals.activeVehicle.id)
-        console.info(globals.activeVehicle.supplyVoltageFact.valueString)
-        console.info(globals.fact1.valueString)
+        console.info(globals.activeVehicle.supplyVoltageFact.cookedValueString)
+        console.info(globals.fact1.cookedValueString)
     }
     //-------------------------------------------------------------------------
     //-- Global Scope Variables

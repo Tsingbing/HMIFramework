@@ -14,8 +14,7 @@
 #include "Tool.h"
 #include "Toolbox.h"
 
-/// The components of the FactSystem are a Fact which holds an individual value. FactMetaData holds
-/// additional meta data associated with a Fact such as description, min/max ranges and so forth.
+///FactSystem是一个具有单个数值的Fact。FactMetaData保存与Fact相关联的附加元数据，如描述、最小/最大范围等。
 
 class FactSystem : public Tool
 {
