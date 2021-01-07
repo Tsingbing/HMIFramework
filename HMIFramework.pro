@@ -61,10 +61,12 @@ INCLUDEPATH += \
     src/vehicles \
     src/settings \
     src/links \
+    src/QmlControls \
     src/ui
 
 SOURCES += \
     src/HMIQmlGlobal.cpp \
+    src/QmlControls/ScreenToolsController.cc \
     src/Tool.cpp \
     src/Toolbox.cpp \
     src/XApplication.cpp \
@@ -90,6 +92,7 @@ SOURCES += \
 
 HEADERS += \
     src/HMIQmlGlobal.h \
+    src/QmlControls/ScreenToolsController.h \
     src/Tool.h \
     src/Toolbox.h \
     src/XApplication.h \
@@ -124,7 +127,8 @@ else: unix:!android: target.path = /home/root/client
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    HMIFramework.qrc
+    HMIFramework.qrc \
+    hmiimages.qrc
 
 QML_IMPORT_PATH += src/QmlControls
 

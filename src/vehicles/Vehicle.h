@@ -13,15 +13,16 @@ class Vehicle : public FactGroup
     Q_OBJECT
 public:
     Vehicle(QObject* parent = nullptr);
-    Q_PROPERTY(int id READ id CONSTANT)
 
+    Q_PROPERTY(int id READ id CONSTANT)
     Q_PROPERTY(Fact* supplyVoltageFact READ supplyVoltageFact CONSTANT)
     Q_PROPERTY(Fact* rotatingSpeedFact READ rotatingSpeedFact CONSTANT)
 
     Q_INVOKABLE void forceArm();
-    Fact*            carSpeedFact() { return &_carSpeedFact; }
-    Fact*            oilPressureFact() { return &_oilPressureFact; }
-    Fact*            airPressureFact() { return &_airPressureFact; }
+
+    Fact* carSpeedFact() { return &_carSpeedFact; }
+    Fact* oilPressureFact() { return &_oilPressureFact; }
+    Fact* airPressureFact() { return &_airPressureFact; }
 
     Fact* teleRSSIFact() { return &_teleRSSIFact; }
     Fact* supplyVoltageFact() { return &_supplyVoltageFact; }
@@ -53,7 +54,6 @@ private:
     Fact _carSpeedFact;
     Fact _oilPressureFact;
     Fact _airPressureFact;
-
     Fact _teleRSSIFact;
     Fact _supplyVoltageFact;
     Fact _fuelLevelFact;
@@ -85,7 +85,7 @@ private:
     static const char* _YDegreeFactName;
     static const char* _workHoursFactName;
 
-    static const int _vehicleUIUpdateRateMSecs = 500;
+    static const int _vehicleUIUpdateRateMSecs = 100; //0: 立即刷新
     static const int _id                       = 100;
 
     CanLink* cl = nullptr;

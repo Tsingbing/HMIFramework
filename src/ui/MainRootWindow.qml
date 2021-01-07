@@ -5,6 +5,7 @@ import QtQuick.Window 2.12
 
 import HMI 1.0
 import HMI.FactSystem 1.0
+import HMI.ScreenTools 1.0
 
 ApplicationWindow {
     id:  mainWindow
@@ -15,10 +16,15 @@ ApplicationWindow {
 
     Component.onCompleted: {
         //mainWindow.showFullScreen()
+
+        /* 测试代码
         globals.activeVehicle.forceArm();
         console.info(globals.activeVehicle.id)
-        console.info(globals.activeVehicle.supplyVoltageFact.cookedValueString)
-        console.info(globals.fact1.cookedValueString)
+        console.info(globals.activeVehicle.supplyVoltageFact.valueString)
+        console.info(globals.fact1.valueString)
+        */
+        console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
+
     }
     //-------------------------------------------------------------------------
     //-- Global Scope Variables
@@ -28,18 +34,20 @@ ApplicationWindow {
         readonly property var activeVehicle : HMI.vehicleManager.activeVehicle
         property Fact fact: activeVehicle.supplyVoltageFact
         property Fact fact1: activeVehicle.rotatingSpeedFact
+        property bool se:  ScreenTools.isMobile
+
     }
 
     Image {
         id: image
         anchors.fill: parent
-        source: "qrc:/images/ui/images/zcwjj/main_set.jpg"
+        source: "qrc:/qmlimages/main_set.jpg"
         fillMode: Image.PreserveAspectFit
 
         Switch {
             id: element
-            x: 261
-            y: 81
+            x: 280
+            y: 345
             text: qsTr("Switch")
         }
 
@@ -48,7 +56,10 @@ ApplicationWindow {
             x: 270
             y: 152
             text: qsTr(globals.fact.valueString)
-            onClicked: console.info("button pressed!")
+            onClicked: {
+                console.info("button pressed!")
+                mainWindow.showAnalyzeTool()
+            }
         }
 
         TextInput {
@@ -62,6 +73,14 @@ ApplicationWindow {
             clip: false
             font.pixelSize: 12
         }
+    }
+
+    function showAnalyzeTool(){
+        console.info("showAnalyzeTool")
+    }
+
+    function showSetupTool(){
+        console.info("showSetupTool")
     }
 
 //    MessageDialog {

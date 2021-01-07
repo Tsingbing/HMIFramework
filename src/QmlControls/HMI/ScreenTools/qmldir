@@ -1,0 +1,3 @@
+Module HMI.ScreenTools
+
+singleton ScreenTools 1.0 ScreenTools.qml

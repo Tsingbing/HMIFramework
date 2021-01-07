@@ -31,12 +31,11 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-QWidget#main{image: url(:/images/ui/images/zcwjj/main_set.jpg);}
-QWidget#page_2{image: url(:/images/ui/images/zcwjj/main_set.jpg);}</string>
+    <string notr="true">QWidget#main{image: url(:/qmlimages/main_set.jpg);}
+QWidget#page_2{image: url(:/qmlimages/main_set.jpg);}</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="main">
     <property name="autoFillBackground">

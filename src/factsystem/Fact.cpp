@@ -194,7 +194,7 @@ void Fact::_sendValueChangedSignal(QVariant value)
     if (_sendValueChangedSignals)
     {
         emit valueChanged(value);
-        qDebug() << "sendValueChangedSignalsChanged";
+        //qDebug() << "sendValueChangedSignalsChanged";
         _deferredValueChangeSignal = false;
     }
     else
@@ -209,7 +209,7 @@ void Fact::sendDeferredValueChangedSignal(void)
     {
         _deferredValueChangeSignal = false;
         emit valueChanged(cookedValue());
-        qDebug() << "sendDeferredValueChangedSignal";
+        //qDebug() << "sendDeferredValueChangedSignal";
     }
 }
 

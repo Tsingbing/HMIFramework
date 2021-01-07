@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/qmlimages">
+        <file alias="main_set.jpg">src/ui/toolbar/images/main_set.jpg</file>
+    </qresource>
+</RCC>

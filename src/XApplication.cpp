@@ -3,12 +3,21 @@
 #include "Fact.h"
 #include "FactMetaData.h"
 #include "HMIQmlGlobal.h"
+#include "ScreenToolsController.h"
 #include "Toolbox.h"
 #include <QDebug>
 #include <QQmlApplicationEngine>
 #include <QSettings>
 
 XApplication* XApplication::_app = nullptr;
+
+// Qml Singleton factories
+
+static QObject* screenToolsControllerSingletonFactory(QQmlEngine*, QJSEngine*)
+{
+    ScreenToolsController* screenToolsController = new ScreenToolsController;
+    return screenToolsController;
+}
 
 static QObject* HMIQmlGlobalSingletonFactory(QQmlEngine*, QJSEngine*)
 {
@@ -50,10 +59,12 @@ XApplication::~XApplication()
 
 void XApplication::_initForAppBoot()
 {
+    //QQuick UI 界面显示
     _qmlAppEngine = new QQmlApplicationEngine(this);
     _qmlAppEngine->addImportPath("qrc:/qml");
-    _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/main.qml")));
+    _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow.qml")));
 
+    //QWidget UI 界面显示
     //    dlg = new Dialog2();
     //    Q_CHECK_PTR(dlg);
     //    dlg->show();
@@ -68,6 +79,7 @@ void XApplication::_initCommon()
 
     // 注册 Qml Singletons
     qmlRegisterSingletonType<HMIQmlGlobal>("HMI", 1, 0, "HMI", HMIQmlGlobalSingletonFactory);
+    qmlRegisterSingletonType<ScreenToolsController>("HMI.ScreenToolsController", 1, 0, "ScreenToolsController", screenToolsControllerSingletonFactory);
 }
 
 QQuickItem* XApplication::mainRootWindow()
