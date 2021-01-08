@@ -86,11 +86,72 @@ QVariant Fact::rawDefaultValue() const
     }
 }
 
+QVariant Fact::cookedDefaultValue() const
+{
+    if (_metaData)
+    {
+        if (!_metaData->defaultValueAvailable())
+        {
+            qDebug() << "Access to unavailable default value";
+        }
+        return _metaData->cookedDefaultValue();
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return QVariant(0);
+    }
+}
+
+bool Fact::defaultValueAvailable() const
+{
+    if (_metaData)
+    {
+        return _metaData->defaultValueAvailable();
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return false;
+    }
+}
+
+QString Fact::cookedDefaultValueString() const
+{
+    return _variantToString(cookedDefaultValue(), decimalPlaces());
+}
+
 QVariant Fact::rawMax() const
 {
     if (_metaData)
     {
         return _metaData->rawMax();
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return QVariant(0);
+    }
+}
+
+QVariant Fact::cookedMax() const
+{
+    if (_metaData)
+    {
+        return _metaData->cookedMax();
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return QVariant(0);
+    }
+}
+
+QVariant Fact::cookedMin() const
+{
+    if (_metaData)
+    {
+        return _metaData->cookedMin();
     }
     else
     {
@@ -253,7 +314,7 @@ void Fact::setCookedValue(const QVariant& value)
 void Fact::setMetaData(FactMetaData* metaData, bool setDefaultFromMetaData)
 {
     _metaData = metaData;
-    if (setDefaultFromMetaData)
+    if (setDefaultFromMetaData && metaData->defaultValueAvailable())
     {
         setRawValue(rawDefaultValue());
     }

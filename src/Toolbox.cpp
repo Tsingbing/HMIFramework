@@ -4,6 +4,7 @@
 #include "SettingsManager.h"
 #include "VehicleManager.h"
 #include "XApplication.h"
+
 Toolbox::Toolbox(XApplication* app)
 {
     _settingsManager = new SettingsManager(app, this);

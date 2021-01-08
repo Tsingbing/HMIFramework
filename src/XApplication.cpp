@@ -76,7 +76,7 @@ void XApplication::_initCommon()
     static const char* kHMIVehicle = "HMI.Vehicle";
 
     qmlRegisterUncreatableType<Vehicle>(kHMIVehicle, 1, 0, "Vehicle", kRefOnly);
-
+    //qmlRegisterUncreatableType<SettingsManager>("HMI.SettingsManager", 1, 0, "SettingsManager", "Reference only");
     // 注册 Qml Singletons
     qmlRegisterSingletonType<HMIQmlGlobal>("HMI", 1, 0, "HMI", HMIQmlGlobalSingletonFactory);
     qmlRegisterSingletonType<ScreenToolsController>("HMI.ScreenToolsController", 1, 0, "ScreenToolsController", screenToolsControllerSingletonFactory);

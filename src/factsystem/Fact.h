@@ -22,13 +22,22 @@ public:
     Q_PROPERTY(QString valueString READ cookedValueString NOTIFY valueChanged)
     Q_PROPERTY(QVariant value READ cookedValue WRITE setCookedValue NOTIFY valueChanged)
     Q_PROPERTY(QVariant rawValue READ rawValue WRITE setRawValue NOTIFY rawValueChanged)
+    Q_PROPERTY(QVariant max READ cookedMax CONSTANT)
+    Q_PROPERTY(QVariant min READ cookedMin CONSTANT)
+    Q_PROPERTY(QVariant defaultValue READ cookedDefaultValue CONSTANT)
+    Q_PROPERTY(QString defaultValueString READ cookedDefaultValueString CONSTANT)
 
     QString                   name(void) const;
     FactMetaData::ValueType_t type(void) const;
     QString                   shortDescription(void) const;
     int                       decimalPlaces(void) const;
     QVariant                  rawDefaultValue(void) const;
+    QVariant                  cookedDefaultValue(void) const;
+    bool                      defaultValueAvailable(void) const;
+    QString                   cookedDefaultValueString(void) const;
     QVariant                  rawMax(void) const;
+    QVariant                  cookedMax(void) const;
+    QVariant                  cookedMin(void) const;
     QVariant                  rawMin(void) const;
     QString                   rawUnits(void) const;
     QString                   units(void) const;

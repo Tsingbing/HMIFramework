@@ -11,9 +11,9 @@
 const char* FactMetaData::_decimalPlacesJsonKey    = "decimalPlaces";
 const char* FactMetaData::_nameJsonKey             = "name";
 const char* FactMetaData::_typeJsonKey             = "type";
-const char* FactMetaData::_shortDescriptionJsonKey = "shortDescription";
+const char* FactMetaData::_shortDescriptionJsonKey = "shortDesc";
 const char* FactMetaData::_unitsJsonKey            = "units";
-const char* FactMetaData::_defaultValueJsonKey     = "defaultValue";
+const char* FactMetaData::_defaultValueJsonKey     = "default";
 const char* FactMetaData::_minJsonKey              = "min";
 const char* FactMetaData::_maxJsonKey              = "max";
 const char* FactMetaData::_enumStringsJsonKey      = "enumStrings";
@@ -133,13 +133,10 @@ FactMetaData* FactMetaData::createFromJsonObject(const QJsonObject& json, QMap<Q
         {_nameJsonKey, QJsonValue::String, true},
         {_typeJsonKey, QJsonValue::String, true},
         {_shortDescriptionJsonKey, QJsonValue::String, false},
-        //{ _longDescriptionJsonKey,      QJsonValue::String, false },
         {_unitsJsonKey, QJsonValue::String, false},
         {_decimalPlacesJsonKey, QJsonValue::Double, false},
         {_minJsonKey, QJsonValue::Double, false},
         {_maxJsonKey, QJsonValue::Double, false},
-        //{ _hasControlJsonKey,           QJsonValue::Bool,   false },
-        //{ _qgcRebootRequiredJsonKey,    QJsonValue::Bool,   false },
         {_enumValuesJsonKey, QJsonValue::String, false},
         {_enumStringsJsonKey, QJsonValue::String, false},
     };
@@ -256,6 +253,16 @@ FactMetaData* FactMetaData::createFromJsonObject(const QJsonObject& json, QMap<Q
     }
 
     return metaData;
+}
+
+QVariant FactMetaData::cookedMax() const
+{
+    return _rawMax;
+}
+
+QVariant FactMetaData::cookedMin() const
+{
+    return _rawMin;
 }
 
 int FactMetaData::decimalPlaces() const

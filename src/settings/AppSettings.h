@@ -9,14 +9,19 @@ class AppSettings : public SettingsGroup
 
 public:
     AppSettings(QObject* parent = nullptr);
+    Q_PROPERTY(Fact* appFontPointSize READ appFontPointSize CONSTANT)
+    Fact* appFontPointSize();
+
     static const char* name;
     static const char* settingsGroup;
+    static const char* appFontPointSizeName;
 
 private:
-    SettingsFact* _languageFact = nullptr;
+    SettingsFact* _appFontPointSizeFact = nullptr;
+    SettingsFact* _languageFact         = nullptr;
 
 public:
-    Fact* language();
+    Fact*              language();
     static const char* languageName;
 
 private slots:

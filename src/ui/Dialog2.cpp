@@ -20,7 +20,8 @@ Dialog2::Dialog2(QWidget* parent)
     ///< fact 变化值和ui显示 连接
     connect(ve->supplyVoltageFact(), &Fact::valueChanged, [=](QVariant value) { ui->label_dianya->setText(ve->supplyVoltageFact()->cookedValueString()); });
     //ui->lineEdit->setText(sm->appSettings()->language()->cookedValue().toString());
-    //sm->appSettings()->language()->setRawValue(100);
+    sm->appSettings()->language()->setRawValue(100);
+    sm->appSettings()->appFontPointSize()->setRawValue(15);
 }
 
 Dialog2::~Dialog2()

@@ -12,10 +12,14 @@ class SettingsManager : public Tool
 public:
     SettingsManager(XApplication* app, Toolbox* toolbox);
 
+    Q_PROPERTY(QObject* appSettings READ appSettings CONSTANT)
+
     // Override from Tool
     virtual void setToolbox(Toolbox* toolbox);
 
     AppSettings* appSettings(void) { return _appSettings; }
+    Q_PROPERTY(QString id READ id CONSTANT)
+    QString id() { return "10QQ0"; }
 
 private:
     AppSettings* _appSettings;

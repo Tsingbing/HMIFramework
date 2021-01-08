@@ -7,6 +7,7 @@ import QtQuick.Window   2.2
 import HMI                       1.0
 import HMI.ScreenToolsController 1.0
 
+
 /*!
  The ScreenTools Singleton provides information on HMI's standard font metrics. It also provides information on screen
  size which can be used to adjust user interface for varying available screen real estate.
@@ -97,10 +98,10 @@ Item {
        I've disabled (in release builds) until I figure out why. Changes require a restart for now.
     */
     Connections {
-//        target: HMI.settingsManager.appSettings.appFontPointSize
-//        onValueChanged: {
-//            _setBasePointSize(HMI.settingsManager.appSettings.appFontPointSize.value)
-//        }
+        target: HMI.settingsManager.appSettings.appFontPointSize
+        onValueChanged: {
+            _setBasePointSize(HMI.settingsManager.appSettings.appFontPointSize.value)
+        }
     }
 
     onRealPixelDensityChanged: {
@@ -154,18 +155,8 @@ Item {
         Component.onCompleted: {
             //-- First, compute platform, default size
             if(ScreenToolsController.isMobile) {
-                //-- Check iOS really tiny screens (iPhone 4s/5/5s)
-                if(ScreenToolsController.isiOS) {
-                    if(ScreenToolsController.isiOS && Screen.width < 570) {
-                        // For iPhone 4s size we don't fit with additional tweaks to fit screen,
-                        // we will just drop point size to make things fit. Correct size not yet determined.
-                        platformFontPointSize = 12;  // This will be lowered in a future pull
-                    } else {
-                        platformFontPointSize = 14;
-                    }
-                } else if((Screen.width / realPixelDensity) < 120) {
+                if((Screen.width / realPixelDensity) < 120) {
                     platformFontPointSize = 11;
-                // Other Android
                 } else {
                     platformFontPointSize = 14;
                 }
@@ -173,15 +164,15 @@ Item {
                 platformFontPointSize = _defaultFont.font.pointSize;
             }
             //-- See if we are using a custom size
-            //var _appFontPointSizeFact = HMI.settingsManager.appSettings.appFontPointSize
-            //var baseSize = _appFontPointSizeFact.value
+            var _appFontPointSizeFact = HMI.settingsManager.appSettings.appFontPointSize
+            var baseSize = _appFontPointSizeFact.value
             //-- Sanity check
-//            if(baseSize < _appFontPointSizeFact.min || baseSize > _appFontPointSizeFact.max) {
-//                baseSize = platformFontPointSize;
-//                _appFontPointSizeFact.value = baseSize
-//            }
+            if(baseSize < _appFontPointSizeFact.min || baseSize > _appFontPointSizeFact.max) {
+                baseSize = platformFontPointSize;
+                _appFontPointSizeFact.value = baseSize
+            }
             //-- Set size saved in settings
-            //_screenTools._setBasePointSize(baseSize);
+            _screenTools._setBasePointSize(baseSize);
         }
     }
 }

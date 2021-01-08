@@ -14,7 +14,8 @@ public:
     VehicleManager(XApplication* app, Toolbox* toolbox);
 
     Q_PROPERTY(Vehicle* activeVehicle READ activeVehicle WRITE setActiveVehicle NOTIFY activeVehicleChanged)
-
+    Q_PROPERTY(QString id READ id CONSTANT)
+    QString  id() { return "100id"; }
     Vehicle* activeVehicle() { return _activeVehicle; }
     void     setActiveVehicle(Vehicle* vehicle);
 

@@ -6,6 +6,7 @@ import QtQuick.Window 2.12
 import HMI 1.0
 import HMI.FactSystem 1.0
 import HMI.ScreenTools 1.0
+import HMI.SettingsManager 1.0
 
 ApplicationWindow {
     id:  mainWindow
@@ -21,9 +22,8 @@ ApplicationWindow {
         globals.activeVehicle.forceArm();
         console.info(globals.activeVehicle.id)
         console.info(globals.activeVehicle.supplyVoltageFact.valueString)
-        console.info(globals.fact1.valueString)
-        */
         console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
+       */ console.info(globals._appFontPointSize.value)
 
     }
     //-------------------------------------------------------------------------
@@ -34,8 +34,9 @@ ApplicationWindow {
         readonly property var activeVehicle : HMI.vehicleManager.activeVehicle
         property Fact fact: activeVehicle.supplyVoltageFact
         property Fact fact1: activeVehicle.rotatingSpeedFact
+        property Fact _appFontPointSize: HMI.settingsManager.appSettings.appFontPointSize
         property bool se:  ScreenTools.isMobile
-
+        property var se1:  HMI.vehicleManager.id
     }
 
     Image {

@@ -39,12 +39,15 @@ public:
 
     static FactMetaData* createFromJsonObject(const QJsonObject& json, QMap<QString, QString>& defineMap, QObject* metaDataParent);
 
-    ValueType_t  type(void) const { return _type; }
-    QString      name(void) const { return _name; }
-    QString      shortDescription(void) const { return _shortDescription; }
-    QString      rawUnits(void) const { return _rawUnits; }
-    QVariant     rawMax(void) const { return _rawMax; }
-    QVariant     rawMin(void) const { return _rawMin; }
+    ValueType_t type(void) const { return _type; }
+    QString     name(void) const { return _name; }
+    QString     shortDescription(void) const { return _shortDescription; }
+    QString     rawUnits(void) const { return _rawUnits; }
+    QVariant    rawMax(void) const { return _rawMax; }
+    QVariant    rawMin(void) const { return _rawMin; }
+    QVariant    cookedMax(void) const;
+    QVariant    cookedMin(void) const;
+
     int          decimalPlaces(void) const;
     QVariant     rawDefaultValue(void) const;
     QVariant     cookedDefaultValue(void) const { return defaultTranslator(rawDefaultValue()); }

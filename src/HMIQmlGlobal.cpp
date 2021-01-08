@@ -13,5 +13,6 @@ void HMIQmlGlobal::setToolbox(Toolbox* toolbox)
 {
     Tool::setToolbox(toolbox);
 
-    _vehicleManager = toolbox->vehicleManager();
+    _vehicleManager  = toolbox->vehicleManager();
+    _settingsManager = toolbox->settingsManager();
 }
