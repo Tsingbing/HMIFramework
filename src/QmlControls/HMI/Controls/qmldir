@@ -1,0 +1,4 @@
+Module HMI.Controls
+
+MainToolBar 1.0 MainToolBar.qml
+HMITabBar 1.0 HMITabBar.qml

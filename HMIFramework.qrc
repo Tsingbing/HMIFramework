@@ -9,5 +9,14 @@
         <file alias="HMI/ScreenTools/ScreenTools.qml">src/QmlControls/ScreenTools.qml</file>
         <file alias="HMI/FactSystem/qmldir">src/QmlControls/HMI/FactSystem/qmldir</file>
         <file alias="MainRootWindow.qml">src/ui/MainRootWindow.qml</file>
+        <file alias="HMI/Controls/qmldir">src/QmlControls/HMI/Controls/qmldir</file>
+        <file alias="HMI/Controls/MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>
+        <file alias="MainRootWindow1.qml">src/ui/MainRootWindow1.qml</file>
+        <file alias="MainRootWindow2.qml">src/ui/MainRootWindow2.qml</file>
+        <file alias="Page1Form.ui.qml">src/ui/Page1Form.ui.qml</file>
+        <file alias="Page2Form.ui.qml">src/ui/Page2Form.ui.qml</file>
+        <file alias="Page3Form.ui.qml">src/ui/Page3Form.ui.qml</file>
+        <file alias="Page4Form.ui.qml">src/ui/Page4Form.ui.qml</file>
+        <file alias="HMI/Controls/HMITabBar.qml">src/ui/toolbar/HMITabBar.qml</file>
     </qresource>
 </RCC>
