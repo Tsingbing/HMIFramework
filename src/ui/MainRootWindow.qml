@@ -27,13 +27,17 @@ ApplicationWindow {
 
         Page1Form {
         }
-
         Page2Form {
         }
         Page3Form {
         }
         Page4Form {
         }
+    }
+
+    HMILabel {
+        font.pointSize:ScreenTools.largeFontPointSize
+        text: "hello"
     }
 
     footer: HMITabBar{

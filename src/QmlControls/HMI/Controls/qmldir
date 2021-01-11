@@ -1,4 +1,40 @@
 Module HMI.Controls
+MainToolBar                             1.0 MainToolBar.qml
 
-MainToolBar 1.0 MainToolBar.qml
-HMITabBar 1.0 HMITabBar.qml
+HMIButton                               1.0 HMIButton.qml
+HMICheckBox                             1.0 HMICheckBox.qml
+HMIComboBox                             1.0 HMIComboBox.qml
+HMIFlickable                            1.0 HMIFlickable.qml
+HMIGroupBox                             1.0 HMIGroupBox.qml
+HMILabel                                1.0 HMILabel.qml
+HMIListView                             1.0 HMIListView.qml
+HMIMenu                                 1.0 HMIMenu.qml
+HMIMenuItem                             1.0 HMIMenuItem.qml
+HMIMenuSeparator                        1.0 HMIMenuSeparator.qml
+HMIMouseArea                            1.0 HMIMouseArea.qml
+HMIMovableItem                          1.0 HMIMovableItem.qml
+HMIOptionsComboBox                      1.0 HMIOptionsComboBox.qml
+HMIPipOverlay                           1.0 HMIPipOverlay.qml
+HMIPipState                             1.0 HMIPipState.qml
+HMIPopupDialog                          1.0 HMIPopupDialog.qml
+HMIPopupDialogContainer                 1.0 HMIPopupDialogContainer.qml
+HMIRadioButton                          1.0 HMIRadioButton.qml
+HMISlider                               1.0 HMISlider.qml
+HMISwitch                               1.0 HMISwitch.qml
+HMITabBar                               1.0 HMITabBar.qml
+HMITabButton                            1.0 HMITabButton.qml
+HMITextField                            1.0 HMITextField.qml
+HMIToolBarButton                        1.0 HMIToolBarButton.qml
+HMIToolInsets                           1.0 HMIToolInsets.qml
+HMIViewDialog                           1.0 HMIViewDialog.qml
+HMIViewDialogContainer                  1.0 HMIViewDialogContainer.qml
+HMIViewMessage                          1.0 HMIViewMessage.qml
+
+
+
+
+
+
+
+
+

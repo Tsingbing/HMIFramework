@@ -1,19 +1,18 @@
-﻿/*!
- *@file HMITabBar.qml
- *@brief 自定义TabBar
- *@version 1.0
- *@section LICENSE Copyright (C) 2020-2020 UMLsoft Corporation
-*/
-import QtQuick 2.7
+﻿import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import HMI.Palette 1.0
 
 TabBar {
     property alias myModel: myModel
     property int lastIndex: 0
-
+    HMIPalette { id:hmiPal; colorGroupEnabled: true }
     id: bar
     currentIndex: 0
+
+    Component.onCompleted: {
+        console.info(hmiPal.brandingBlue)
+    }
 
     ListModel {
         id: myModel

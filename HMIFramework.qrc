@@ -18,5 +18,33 @@
         <file alias="Page3Form.ui.qml">src/ui/Page3Form.ui.qml</file>
         <file alias="Page4Form.ui.qml">src/ui/Page4Form.ui.qml</file>
         <file alias="HMI/Controls/HMITabBar.qml">src/ui/toolbar/HMITabBar.qml</file>
+        <file alias="HMI/Controls/HMIViewMessage.qml">src/QmlControls/HMIViewMessage.qml</file>
+        <file alias="HMI/Controls/HMIViewDialogContainer.qml">src/QmlControls/HMIViewDialogContainer.qml</file>
+        <file alias="HMI/Controls/HMIViewDialog.qml">src/QmlControls/HMIViewDialog.qml</file>
+        <file alias="HMI/Controls/HMIToolInsets.qml">src/QmlControls/HMIToolInsets.qml</file>
+        <file alias="HMI/Controls/HMIToolBarButton.qml">src/QmlControls/HMIToolBarButton.qml</file>
+        <file alias="HMI/Controls/HMITextField.qml">src/QmlControls/HMITextField.qml</file>
+        <file alias="HMI/Controls/HMITabButton.qml">src/QmlControls/HMITabButton.qml</file>
+        <file alias="HMI/Controls/HMISwitch.qml">src/QmlControls/HMISwitch.qml</file>
+        <file alias="HMI/Controls/HMISlider.qml">src/QmlControls/HMISlider.qml</file>
+        <file alias="HMI/Controls/HMIRadioButton.qml">src/QmlControls/HMIRadioButton.qml</file>
+        <file alias="HMI/Controls/HMIPopupDialogContainer.qml">src/QmlControls/HMIPopupDialogContainer.qml</file>
+        <file alias="HMI/Controls/HMIPopupDialog.qml">src/QmlControls/HMIPopupDialog.qml</file>
+        <file alias="HMI/Controls/HMIPipState.qml">src/QmlControls/HMIPipState.qml</file>
+        <file alias="HMI/Controls/HMIPipOverlay.qml">src/QmlControls/HMIPipOverlay.qml</file>
+        <file alias="HMI/Controls/HMIOptionsComboBox.qml">src/QmlControls/HMIOptionsComboBox.qml</file>
+        <file alias="HMI/Controls/HMIMovableItem.qml">src/QmlControls/HMIMovableItem.qml</file>
+        <file alias="HMI/Controls/HMIMouseArea.qml">src/QmlControls/HMIMouseArea.qml</file>
+        <file alias="HMI/Controls/HMIMenuSeparator.qml">src/QmlControls/HMIMenuSeparator.qml</file>
+        <file alias="HMI/Controls/HMIMenuItem.qml">src/QmlControls/HMIMenuItem.qml</file>
+        <file alias="HMI/Controls/HMIMenu.qml">src/QmlControls/HMIMenu.qml</file>
+        <file alias="HMI/Controls/HMIListView.qml">src/QmlControls/HMIListView.qml</file>
+        <file alias="HMI/Controls/HMILabel.qml">src/QmlControls/HMILabel.qml</file>
+        <file alias="HMI/Controls/HMIGroupBox.qml">src/QmlControls/HMIGroupBox.qml</file>
+        <file alias="HMI/Controls/HMIButton.qml">src/QmlControls/HMIButton.qml</file>
+        <file alias="HMI/Controls/HMICheckBox.qml">src/QmlControls/HMICheckBox.qml</file>
+        <file alias="HMI/Controls/HMIComboBox.qml">src/QmlControls/HMIComboBox.qml</file>
+        <file alias="HMI/Controls/HMIColoredImage.qml">src/QmlControls/HMIColoredImage.qml</file>
+        <file alias="HMI/Controls/HMIFlickable.qml">src/QmlControls/HMIFlickable.qml</file>
     </qresource>
 </RCC>

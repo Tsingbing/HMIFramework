@@ -65,6 +65,7 @@ INCLUDEPATH += \
     src/ui
 
 SOURCES += \
+    src/HMIPalette.cc \
     src/HMIQmlGlobal.cpp \
     src/QmlControls/ScreenToolsController.cc \
     src/Tool.cpp \
@@ -91,6 +92,7 @@ SOURCES += \
     src/vehicles/VehicleManager.cpp
 
 HEADERS += \
+    src/HMIPalette.h \
     src/HMIQmlGlobal.h \
     src/QmlControls/ScreenToolsController.h \
     src/Tool.h \

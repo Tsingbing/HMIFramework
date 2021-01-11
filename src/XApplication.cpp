@@ -2,6 +2,7 @@
 #include "Dialog2.h"
 #include "Fact.h"
 #include "FactMetaData.h"
+#include "HMIPalette.h"
 #include "HMIQmlGlobal.h"
 #include "ScreenToolsController.h"
 #include "Toolbox.h"
@@ -74,6 +75,8 @@ void XApplication::_initCommon()
 {
     static const char* kRefOnly    = "Reference only";
     static const char* kHMIVehicle = "HMI.Vehicle";
+
+    qmlRegisterType<HMIPalette>("HMI.Palette", 1, 0, "HMIPalette");
 
     qmlRegisterUncreatableType<Vehicle>(kHMIVehicle, 1, 0, "Vehicle", kRefOnly);
     //qmlRegisterUncreatableType<SettingsManager>("HMI.SettingsManager", 1, 0, "SettingsManager", "Reference only");
