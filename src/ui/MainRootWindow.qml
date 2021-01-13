@@ -16,6 +16,33 @@ ApplicationWindow {
     width: 800
     height: 600
     title: qsTr("Stack")
+
+    Component.onCompleted: {
+        //mainWindow.showFullScreen()
+
+        /* 测试代码
+        globals.activeVehicle.forceArm();
+        console.info(globals.activeVehicle.id)
+        console.info(globals.activeVehicle.supplyVoltageFact.valueString)
+        console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
+       */ console.info(globals._appFontPointSize.value)
+
+    }
+
+    //-------------------------------------------------------------------------
+    //-- Global Scope Variables
+    QtObject {
+        id: globals
+
+        readonly property var activeVehicle : HMI.vehicleManager.activeVehicle
+        property Fact fact: activeVehicle.supplyVoltageFact
+        property Fact fact1: activeVehicle.rotatingSpeedFact
+        property Fact _appFontPointSize: HMI.settingsManager.appSettings.appFontPointSize
+        property bool se:  ScreenTools.isMobile
+        //property var se1:  HMI.vehicleManager.id
+        property string se1:  "HMI.vehicleManager.id"
+    }
+
     SwipeView {
         id: view
         anchors.fill: parent
@@ -33,11 +60,6 @@ ApplicationWindow {
         }
         Page4Form {
         }
-    }
-
-    HMILabel {
-        font.pointSize:ScreenTools.largeFontPointSize
-        text: "hello"
     }
 
     footer: HMITabBar{

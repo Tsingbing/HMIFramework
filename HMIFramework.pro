@@ -132,6 +132,8 @@ RESOURCES += \
     HMIFramework.qrc \
     hmiimages.qrc
 
-QML_IMPORT_PATH += src/QmlControls
+QML_IMPORT_PATH += $$PWD/src/QmlControls
 
-DISTFILES +=
+
+DISTFILES += \
+    src/QmlControls/HMI/Specific/qmldir

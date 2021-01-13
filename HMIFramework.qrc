@@ -10,7 +10,6 @@
         <file alias="HMI/FactSystem/qmldir">src/QmlControls/HMI/FactSystem/qmldir</file>
         <file alias="MainRootWindow.qml">src/ui/MainRootWindow.qml</file>
         <file alias="HMI/Controls/qmldir">src/QmlControls/HMI/Controls/qmldir</file>
-        <file alias="HMI/Controls/MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>
         <file alias="MainRootWindow1.qml">src/ui/MainRootWindow1.qml</file>
         <file alias="MainRootWindow2.qml">src/ui/MainRootWindow2.qml</file>
         <file alias="Page1Form.ui.qml">src/ui/Page1Form.ui.qml</file>
@@ -46,5 +45,12 @@
         <file alias="HMI/Controls/HMIComboBox.qml">src/QmlControls/HMIComboBox.qml</file>
         <file alias="HMI/Controls/HMIColoredImage.qml">src/QmlControls/HMIColoredImage.qml</file>
         <file alias="HMI/Controls/HMIFlickable.qml">src/QmlControls/HMIFlickable.qml</file>
+        <file alias="AppSettings.qml">src/ui/AppSettings.qml</file>
+        <file alias="AnalyzeView.qml">src/ui/AnalyzeView.qml</file>
+        <file alias="PlanView.qml">src/ui/PlanView.qml</file>
+        <file alias="SetupView.qml">src/ui/SetupView.qml</file>
+    </qresource>
+    <qresource prefix="/toolbar">
+        <file alias="MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>
     </qresource>
 </RCC>

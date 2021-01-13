@@ -4,6 +4,7 @@ import QtQuick.Dialogs  1.3
 import QtQuick.Window 2.12
 
 import HMI 1.0
+import HMI.Palette 1.0
 import HMI.FactSystem 1.0
 import HMI.ScreenTools 1.0
 import HMI.Controls      1.0
@@ -17,16 +18,94 @@ ApplicationWindow {
     title: qsTr("Hello World")
 
     Component.onCompleted: {
-        //mainWindow.showFullScreen()
-
-        /* 测试代码
-        globals.activeVehicle.forceArm();
-        console.info(globals.activeVehicle.id)
-        console.info(globals.activeVehicle.supplyVoltageFact.valueString)
-        console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
-       */ console.info(globals._appFontPointSize.value)
-
+        //console.info(globals._appFontPointSize.value)
     }
+
+
+    property var                _rgPreventViewSwitch:       [ false ]
+    readonly property real      _topBottomMargins:          ScreenTools.defaultFontPixelHeight * 0.5
+    //readonly property string    _mainToolbar:               HMI.corePlugin.options.mainToolbarUrl
+    //readonly property string    _planToolbar:               HMI.corePlugin.options.planToolbarUrl
+
+    //-------------------------------------------------------------------------
+    //-- Global Scope Variables
+
+    /// Current active Vehicle
+    property var                activeVehicle:              HMI.vehicleManager.activeVehicle
+    /// Indicates communication with vehicle is list (no heartbeats)
+    //property bool               communicationLost:          activeVehicle ? activeVehicle.connectionLost : false
+    //property string             formatedMessage:            activeVehicle ? activeVehicle.formatedMessage : ""
+    /// Indicates usable height between toolbar and footer
+    property real               availableHeight:            mainWindow.height - mainWindow.footer.height
+
+    property var                currentPlanMissionItem:     planMasterControllerPlan ? planMasterControllerPlan.missionController.currentPlanViewItem : null
+    property var                planMasterControllerPlan:   null
+    property var                planMasterControllerView:   null
+    property var                flightDisplayMap:           null
+
+    readonly property string    navButtonWidth:             ScreenTools.defaultFontPixelWidth * 24
+    readonly property real      defaultTextHeight:          ScreenTools.defaultFontPixelHeight
+    readonly property real      defaultTextWidth:           ScreenTools.defaultFontPixelWidth
+
+    /// Default color palette used throughout the UI
+    HMIPalette { id: hmiPal; colorGroupEnabled: true }
+
+    //-------------------------------------------------------------------------
+    //-- Global Scope Functions
+
+    /// Prevent view switching
+    function pushPreventViewSwitch() {
+        _rgPreventViewSwitch.push(true)
+    }
+
+    /// Allow view switching
+    function popPreventViewSwitch() {
+        if (_rgPreventViewSwitch.length == 1) {
+            console.warn("mainWindow.popPreventViewSwitch called when nothing pushed")
+            return
+        }
+        _rgPreventViewSwitch.pop()
+    }
+
+    /// @return true: View switches are not currently allowed
+    function preventViewSwitch() {
+        return _rgPreventViewSwitch[_rgPreventViewSwitch.length - 1]
+    }
+
+    function viewSwitch(isPlanView) {
+        settingsWindow.visible  = false
+        setupWindow.visible     = false
+        analyzeWindow.visible   = false
+        //flightView.visible      = false
+        planView.visible  = false
+        //        if(isPlanView) {
+        //            toolbar.source  = _planToolbar
+        //        } else {
+        //            toolbar.source  = _mainToolbar
+        //        }
+    }
+
+    function showPlanView() {
+        viewSwitch(false)
+        planView.visible = true
+    }
+
+    function showAnalyzeView() {
+        viewSwitch(false)
+        analyzeWindow.visible = true
+    }
+
+    function showSetupView() {
+        viewSwitch(false)
+        setupWindow.visible = true
+    }
+
+    function showSettingsView() {
+        viewSwitch(false)
+        settingsWindow.visible = true
+    }
+
+
     //-------------------------------------------------------------------------
     //-- Global Scope Variables
     QtObject {
@@ -41,105 +120,82 @@ ApplicationWindow {
     }
 
     //-------------------------------------------------------------------------
-    /// Main, full window background (Fly View)
+    /// Main, full window background
     background: Item {
         id:             rootBackground
         anchors.fill:   parent
+
+        Image {
+            id: image
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 1
+            anchors.leftMargin: 0
+            anchors.topMargin: -1
+            anchors.fill: parent
+            source: "qrc:/qmlimages/main_set.jpg"
+            fillMode: Image.PreserveAspectFit
+        }
     }
+
 
     //-------------------------------------------------------------------------
     /// Toolbar
-     MainToolBar {
-        id:         toolbar
-        anchors.top:     parent.top
-        //anchors.bottom:     parent.bottom
-        anchors.left:       parent.left
-        anchors.right:      parent.right
-        z: 3
-        height:     ScreenTools.toolbarHeight
-        visible:    true
-    }
-
-//    footer: LogReplayStatusBar {
-//        visible: QGroundControl.settingsManager.flyViewSettings.showLogReplayStatusBar.rawValue
-//    }
-
-    Image {
-        id: image
-        anchors.rightMargin: 0
-        anchors.bottomMargin: 1
-        anchors.leftMargin: 0
-        anchors.topMargin: -1
-        anchors.fill: parent
-        source: "qrc:/qmlimages/main_set.jpg"
-        fillMode: Image.PreserveAspectFit
-
-        Switch {
-            id: element
-            x: 280
-            y: 345
-            text: qsTr("Switch")
+    footer: ToolBar {
+        x: 200
+        width:          parent.width/2
+        height:         ScreenTools.toolbarHeight *2
+        visible:        true
+        background:     Rectangle {
+            color:  "transparent"	//transparent:透明  // qgcPal.globalTheme === HMIPalette.Light ? HMI.corePlugin.options.toolbarBackgroundLight : HMI.corePlugin.options.toolbarBackgroundDark
         }
-
-        Button {
-            id: button
-            x: 270
-            y: 152
-            text: qsTr(globals.fact.valueString)
-            onClicked: {
-                console.info("button pressed!")
-                mainWindow.showAnalyzeTool()
-            }
-        }
-
-        TextInput {
-            id: textInput
-            x: 280
-            y: 225
-            width: 80
-            height: 20
-            color: "#e9e7e7"
-            text: qsTr("Text Input")
-            clip: false
-            font.pixelSize: 12
-        }
-
-        Button {
-            id: button1
-            x: 0
-            y: 552
-            text: qsTr("F1")
-        }
-
-        Button {
-            id: button2
-            x: 102
-            y: 552
-            text: qsTr("F2")
+        Loader {
+            id:             toolbar
+            anchors.fill:   parent
+            source:         "qrc:/toolbar/MainToolBar.qml"
         }
     }
 
-    function showAnalyzeTool(){
-        console.info("showAnalyzeTool")
+    //    footer: LogReplayStatusBar {
+    //        visible: HMI.settingsManager.flyViewSettings.showLogReplayStatusBar.rawValue
+    //    }
+
+
+    //-------------------------------------------------------------------------
+    /// Plan View
+    Loader {
+        id:             planView
+        height:         mainWindow.height
+        visible:        false
+        source:         "PlanView.qml"
     }
 
-    function showSetupTool(){
-        console.info("showSetupTool")
+    //-------------------------------------------------------------------------
+    /// Settings
+    Loader {
+        id:             settingsWindow
+        height:         mainWindow.height
+        visible:        false
+        source:         "AppSettings.qml"
     }
 
-//    MessageDialog {
-//        title: "Overwrite?"
-//        icon: StandardIcon.Question
-//        text: "file.txt already exists.  Replace?"
-//        detailedText: "To replace a file means that its existing contents will be lost. " +
-//                      "The file that you are copying now will be copied over it instead."
-//        standardButtons: StandardButton.Yes | StandardButton.YesToAll |
-//                         StandardButton.No | StandardButton.NoToAll | StandardButton.Abort
-//        Component.onCompleted: visible = true
-//        onYes: console.log("copied")
-//        onNo: console.log("didn't copy")
-//        onRejected: console.log("aborted")
-//    }
+    //-------------------------------------------------------------------------
+    /// Setup
+    Loader {
+        id:             setupWindow
+        height:         mainWindow.height
+        visible:        false
+        source:         "SetupView.qml"
+    }
+
+    //-------------------------------------------------------------------------
+    /// Analyze
+    Loader {
+        id:             analyzeWindow
+        //anchors.fill:   parent
+        height:         mainWindow.height
+        visible:        false
+        source:         "AnalyzeView.qml"
+    }
 }
 
 

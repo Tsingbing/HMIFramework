@@ -8,7 +8,7 @@ Flickable {
     boundsBehavior: Flickable.StopAtBounds
     clip:           true
 
-    property color indicatorColor: qgcPal.text
+    property color indicatorColor: hmiPal.text
 
     Component.onCompleted: {
         var indicatorComponent = Qt.createComponent("HMIFlickableVerticalIndicator.qml")

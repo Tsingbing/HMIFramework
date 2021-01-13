@@ -4,6 +4,7 @@ MainToolBar                             1.0 MainToolBar.qml
 HMIButton                               1.0 HMIButton.qml
 HMICheckBox                             1.0 HMICheckBox.qml
 HMIComboBox                             1.0 HMIComboBox.qml
+HMIColoredImage                         1.0 HMIColoredImage.qml
 HMIFlickable                            1.0 HMIFlickable.qml
 HMIGroupBox                             1.0 HMIGroupBox.qml
 HMILabel                                1.0 HMILabel.qml

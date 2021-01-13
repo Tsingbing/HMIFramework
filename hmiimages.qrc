@@ -5,5 +5,9 @@
         <file alias="zcwjj3/page3.png">src/ui/toolbar/images/ZCWJJ3/page3.png</file>
         <file alias="zcwjj3/page2.png">src/ui/toolbar/images/ZCWJJ3/page2.png</file>
         <file alias="zcwjj3/page1.png">src/ui/toolbar/images/ZCWJJ3/page1.png</file>
+        <file alias="Analyze.svg">src/ui/toolbar/images/Analyze.svg</file>
+        <file alias="Gears.svg">src/ui/toolbar/images/Gears.svg</file>
+        <file alias="PaperPlane.svg">src/ui/toolbar/images/PaperPlane.svg</file>
+        <file alias="Plan.svg">src/ui/toolbar/images/Plan.svg</file>
     </qresource>
 </RCC>

@@ -16,13 +16,13 @@ import HMI.ScreenTools   1.0
 GroupBox {
     id: control
 
-    HMIPalette { id: qgcPal; colorGroupEnabled: enabled }
+    HMIPalette { id: hmiPal; colorGroupEnabled: enabled }
 
     background: Rectangle {
         y:      control.topPadding - control.padding
         width:  parent.width
         height: parent.height - control.topPadding + control.padding
-        color:  qgcPal.windowShade
+        color:  hmiPal.windowShade
     }
 
     label: HMILabel {

@@ -32,7 +32,7 @@ Button {
 
     background: Rectangle {
         anchors.fill: parent
-        color:  button.checked ? qgcPal.buttonHighlight : Qt.rgba(0,0,0,0)
+        color:  button.checked ? hmiPal.buttonHighlight : Qt.rgba(0,0,0,0)
     }
 
     contentItem: Row {
@@ -40,11 +40,11 @@ Button {
         anchors.verticalCenter: button.verticalCenter
         HMIColoredImage {
             id:                     _icon
-            height:                 ScreenTools.defaultFontPixelHeight * 2
-            width:                  height
+            height:                 ScreenTools.defaultFontPixelHeight
+            width:                  height * 2
             sourceSize.height:      parent.height
             fillMode:               Image.PreserveAspectFit
-            color:                  logo ? "transparent" : (button.checked ? qgcPal.buttonHighlightText : qgcPal.buttonText)
+            color:                  logo ? "transparent" : (button.checked ? hmiPal.buttonHighlightText : hmiPal.buttonText)
             source:                 button.icon.source
             anchors.verticalCenter: parent.verticalCenter
         }
@@ -52,7 +52,7 @@ Button {
             id:                     _label
             visible:                text !== ""
             text:                   button.text
-            color:                  button.checked ? qgcPal.buttonHighlightText : qgcPal.buttonText
+            color:                  button.checked ? hmiPal.buttonHighlightText : hmiPal.buttonText
             anchors.verticalCenter: parent.verticalCenter
         }
     }
