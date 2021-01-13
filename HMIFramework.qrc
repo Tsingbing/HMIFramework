@@ -49,6 +49,10 @@
         <file alias="AnalyzeView.qml">src/ui/AnalyzeView.qml</file>
         <file alias="PlanView.qml">src/ui/PlanView.qml</file>
         <file alias="SetupView.qml">src/ui/SetupView.qml</file>
+        <file alias="GeneralSettings.qml">src/ui/preferences/GeneralSettings.qml</file>
+        <file alias="HelpSettings.qml">src/ui/preferences/HelpSettings.qml</file>
+        <file alias="HMI/Controls/HMIFlickableHorizontalIndicator.qml">src/QmlControls/HMIFlickableHorizontalIndicator.qml</file>
+        <file alias="HMI/Controls/HMIFlickableVerticalIndicator.qml">src/QmlControls/HMIFlickableVerticalIndicator.qml</file>
     </qresource>
     <qresource prefix="/toolbar">
         <file alias="MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>

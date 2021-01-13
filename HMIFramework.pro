@@ -1,7 +1,10 @@
-QT       += core gui
+QT += core gui
 QT += serialbus
 QT += quick
 QT += qml
+
+QT += svg
+QTPLUGIN += qtvirtualkeyboardplugin
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,10 +21,12 @@ DEFINES += ORG_NAME=\"\\\"umltech.org\\\"\"
 DEFINES += GIT_VERSION=\"\\\"$$GIT_VERSION\\\"\"
 
 # 设置构建目录
+DESTDIR = $${OUT_PWD}/bin
 OBJECTS_DIR  = $${OUT_PWD}/build/obj
 MOC_DIR      = $${OUT_PWD}/build/moc
 UI_DIR       = $${OUT_PWD}/build/ui
 RCC_DIR      = $${OUT_PWD}/build/rcc
+QMLCACHE_DIR = $${OUT_PWD}/build/qmlcache
 
 # 设置版本号（从git获取）
 exists ($$PWD/.git) {

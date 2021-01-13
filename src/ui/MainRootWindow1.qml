@@ -76,13 +76,7 @@ ApplicationWindow {
         settingsWindow.visible  = false
         setupWindow.visible     = false
         analyzeWindow.visible   = false
-        //flightView.visible      = false
         planView.visible  = false
-        //        if(isPlanView) {
-        //            toolbar.source  = _planToolbar
-        //        } else {
-        //            toolbar.source  = _mainToolbar
-        //        }
     }
 
     function showPlanView() {
@@ -184,7 +178,8 @@ ApplicationWindow {
         id:             setupWindow
         height:         mainWindow.height
         visible:        false
-        source:         "SetupView.qml"
+        //source:         "SetupView.qml"
+        source:         "AppSettings.qml"
     }
 
     //-------------------------------------------------------------------------
@@ -194,6 +189,7 @@ ApplicationWindow {
         //anchors.fill:   parent
         height:         mainWindow.height
         visible:        false
+
         source:         "AnalyzeView.qml"
     }
 }

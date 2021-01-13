@@ -63,7 +63,7 @@ void XApplication::_initForAppBoot()
     //QQuick UI 界面显示
     _qmlAppEngine = new QQmlApplicationEngine(this);
     _qmlAppEngine->addImportPath("qrc:/qml");
-    _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow1.qml")));
+    _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow.qml")));
 
     //QWidget UI 界面显示
     //    dlg = new Dialog2();

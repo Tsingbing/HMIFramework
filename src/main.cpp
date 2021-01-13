@@ -4,6 +4,7 @@
 
 int main(int argc, char* argv[])
 {
+    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
     XApplication* app = new XApplication(argc, argv);
     Q_CHECK_PTR(app);
 

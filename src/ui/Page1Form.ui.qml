@@ -1,6 +1,9 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+
+import HMI 1.0
 import HMI.ScreenTools 1.0
+import HMI.Controls 1.0
 
 Page {
     width: 800
@@ -33,6 +36,16 @@ Page {
             x: 673
             y: 552
             text: qsTr("Switch")
+        }
+
+        HMITextField {
+            id: textEdit
+            x: 222
+            y: 162
+            width: 118
+            height: 21
+            text: qsTr("Text Edit")
+            font.pixelSize: 12
         }
     }
 }

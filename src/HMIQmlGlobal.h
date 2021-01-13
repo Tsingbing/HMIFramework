@@ -18,6 +18,8 @@ public:
     Q_PROPERTY(SettingsManager* settingsManager READ settingsManager CONSTANT)
     Q_PROPERTY(QString appName READ appName CONSTANT)
 
+    Q_PROPERTY(qreal zOrderTopMost READ zOrderTopMost CONSTANT) ///< z order for top most items, toolbar, main window sub view
+
     // Property accesors
     QString          appName() { return XApp()->applicationName(); }
     VehicleManager*  vehicleManager() { return _vehicleManager; }
@@ -25,9 +27,12 @@ public:
     // Overrides from Tool
     virtual void setToolbox(Toolbox* toolbox);
 
+    qreal zOrderTopMost() const { return 1000; }
+
 private:
     VehicleManager*  _vehicleManager  = nullptr;
     SettingsManager* _settingsManager = nullptr;
+    qreal            m_zOrderTopMost;
 };
 
 #endif // HMIQMLGLOBAL_H

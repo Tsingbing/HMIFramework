@@ -20,7 +20,7 @@ import HMI.ScreenTools   1.0
 Rectangle {
     id:     settingsView
     color:  hmiPal.window
-    z:      1//QGroundControl.zOrderTopMost
+    z:      HMI.zOrderTopMost
 
     readonly property real _defaultTextHeight:  ScreenTools.defaultFontPixelHeight
     readonly property real _defaultTextWidth:   ScreenTools.defaultFontPixelWidth
@@ -65,32 +65,34 @@ Rectangle {
                 visible:                true
             }
 
-//            Repeater {
-//                model:  QGroundControl.corePlugin.settingsPages
-//                HMIButton {
-//                    height:             _buttonHeight
-//                    text:               modelData.title
-//                    exclusiveGroup:     panelActionGroup
-//                    Layout.fillWidth:   true
+            HMITextField {
+                Layout.fillWidth:       true
+                text:                   qsTr("sss")
+                visible:                true
+            }
+            HMIButton {
+                height:             _buttonHeight
+                text:               "General"
+                Layout.fillWidth:   true
 
-//                    onClicked: {
-//                        if (mainWindow.preventViewSwitch()) {
-//                            return
-//                        }
-//                        if (__rightPanel.source !== modelData.url) {
-//                            __rightPanel.source = modelData.url
-//                        }
-//                        checked = true
+                onClicked: {
+//                    if (mainWindow.preventViewSwitch()) {
+//                        return
 //                    }
+                    if (__rightPanel.source !== "qrc:/qml/GeneralSettings.qml") {
+                        __rightPanel.source = "qrc:/qml/GeneralSettings.qml"
+                    }
+                    checked = true
+                }
 
-//                    Component.onCompleted: {
-//                        if(_first) {
-//                            _first = false
-//                            checked = true
-//                        }
-//                    }
-//                }
-//            }
+                Component.onCompleted: {
+                    if(_first) {
+                        _first = false
+                        checked = true
+                    }
+                }
+            }
+
         }
     }
 
