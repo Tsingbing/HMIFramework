@@ -79,9 +79,31 @@ Rectangle {
 //                    if (mainWindow.preventViewSwitch()) {
 //                        return
 //                    }
-                    if (__rightPanel.source !== "qrc:/qml/GeneralSettings.qml") {
-                        __rightPanel.source = "qrc:/qml/GeneralSettings.qml"
+                    //if (__rightPanel.source !== "GeneralSettings.qml") {
+                        __rightPanel.source = "GeneralSettings.qml"
+                    //}
+                    checked = true
+                }
+
+                Component.onCompleted: {
+                    if(_first) {
+                        _first = false
+                        checked = true
                     }
+                }
+            }
+            HMIButton {
+                height:             _buttonHeight
+                text:               "Help"
+                Layout.fillWidth:   true
+
+                onClicked: {
+//                    if (mainWindow.preventViewSwitch()) {
+//                        return
+//                    }
+                    //if (__rightPanel.source !== "HelpSettings.qml") {
+                        __rightPanel.source = "HelpSettings.qml"
+                    //}
                     checked = true
                 }
 

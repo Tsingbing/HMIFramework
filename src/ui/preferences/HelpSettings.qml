@@ -1,8 +1,8 @@
 /****************************************************************************
  *
- * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
+ * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.HMI.org>
  *
- * QGroundControl is licensed according to the terms in the file
+ * HMI is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
  *
  ****************************************************************************/
@@ -10,10 +10,10 @@
 import QtQuick          2.3
 import QtQuick.Layouts  1.11
 
-import QGroundControl               1.0
-import QGroundControl.Controls      1.0
-import QGroundControl.Palette       1.0
-import QGroundControl.ScreenTools   1.0
+import HMI               1.0
+import HMI.Controls      1.0
+import HMI.Palette       1.0
+import HMI.ScreenTools   1.0
 
 Rectangle {
     color:          qgcPal.window
@@ -21,11 +21,12 @@ Rectangle {
 
     readonly property real _margins: ScreenTools.defaultFontPixelHeight
 
-    QGCPalette { id: qgcPal; colorGroupEnabled: true }
+    HMIPalette { id: qgcPal; colorGroupEnabled: true }
 
-    QGCFlickable {
+    HMIFlickable {
         anchors.margins:    _margins
         anchors.fill:       parent
+        width:              grid.width
         contentWidth:       grid.width
         contentHeight:      grid.height
         clip:               true
@@ -34,24 +35,24 @@ Rectangle {
             id:         grid
             columns:    2
 
-            QGCLabel { text: qsTr("QGroundControl User Guide") }
-            QGCLabel {
+            HMILabel { text: qsTr("HMI User Guide") }
+            HMILabel {
                 linkColor:          qgcPal.text
-                text:               "<a href=\"https://docs.qgroundcontrol.com\">https://docs.qgroundcontrol.com</a>"
+                text:               "<a href=\"https://docs.HMI.com\">https://docs.HMI.com</a>"
                 onLinkActivated:    Qt.openUrlExternally(link)
             }
 
-            QGCLabel { text: qsTr("PX4 Users Discussion Forum") }
-            QGCLabel {
+            HMILabel { text: qsTr("CAR Users Discussion Forum") }
+            HMILabel {
                 linkColor:          qgcPal.text
-                text:               "<a href=\"http://discuss.px4.io/c/qgroundcontrol\">http://discuss.px4.io/c/qgroundcontrol</a>"
+                text:               "<a href=\"http://discuss.px4.io/c/HMI\">http://discuss.px4.io/c/HMI</a>"
                 onLinkActivated:    Qt.openUrlExternally(link)
             }
 
-            QGCLabel { text: qsTr("ArduPilot Users Discussion Forum") }
-            QGCLabel {
+            HMILabel { text: qsTr("car Users Discussion Forum") }
+            HMILabel {
                 linkColor:          qgcPal.text
-                text:               "<a href=\"https://discuss.ardupilot.org/c/ground-control-software/qgroundcontrol\">https://discuss.ardupilot.org/c/ground-control-software/qgroundcontrol</a>"
+                text:               "<a href=\"https://discuss.HMI.org/c/HMI-software/HMI\">https://discuss.HMI.org/c/HMI-software/HMI</a>"
                 onLinkActivated:    Qt.openUrlExternally(link)
             }
         }

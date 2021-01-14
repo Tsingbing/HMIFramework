@@ -15,7 +15,7 @@ ApplicationWindow {
     visible: true
     width: 800
     height: 600
-    title: qsTr("Hello World")
+    title: qsTr("HMI")
 
     Component.onCompleted: {
         //console.info(globals._appFontPointSize.value)
@@ -115,19 +115,31 @@ ApplicationWindow {
 
     //-------------------------------------------------------------------------
     /// Main, full window background
+//    background: Item {
+//        id:             rootBackground
+//        anchors.fill:   parent
+
+//        Image {
+//            id: image
+//            anchors.rightMargin: 0
+//            anchors.bottomMargin: 1
+//            anchors.leftMargin: 0
+//            anchors.topMargin: -1
+//            anchors.fill: parent
+//            source: "qrc:/qmlimages/main_set.jpg"
+//            fillMode: Image.PreserveAspectFit
+//        }
+//    }
+
+    //-------------------------------------------------------------------------
+    /// Main, full window background (Fly View)
     background: Item {
         id:             rootBackground
         anchors.fill:   parent
 
-        Image {
-            id: image
-            anchors.rightMargin: 0
-            anchors.bottomMargin: 1
-            anchors.leftMargin: 0
-            anchors.topMargin: -1
-            anchors.fill: parent
-            source: "qrc:/qmlimages/main_set.jpg"
-            fillMode: Image.PreserveAspectFit
+        Rectangle {
+            anchors.fill:   parent
+            color:          "#222222"
         }
     }
 
@@ -158,7 +170,7 @@ ApplicationWindow {
     /// Plan View
     Loader {
         id:             planView
-        height:         mainWindow.height
+        anchors.fill:   parent
         visible:        false
         source:         "PlanView.qml"
     }
@@ -167,7 +179,7 @@ ApplicationWindow {
     /// Settings
     Loader {
         id:             settingsWindow
-        height:         mainWindow.height
+        anchors.fill:   parent
         visible:        false
         source:         "AppSettings.qml"
     }
@@ -176,7 +188,7 @@ ApplicationWindow {
     /// Setup
     Loader {
         id:             setupWindow
-        height:         mainWindow.height
+        anchors.fill:   parent
         visible:        false
         //source:         "SetupView.qml"
         source:         "AppSettings.qml"
@@ -186,8 +198,8 @@ ApplicationWindow {
     /// Analyze
     Loader {
         id:             analyzeWindow
-        //anchors.fill:   parent
-        height:         mainWindow.height
+        anchors.fill:   parent
+        //height:         mainWindow.height
         visible:        false
 
         source:         "AnalyzeView.qml"
