@@ -100,6 +100,7 @@ Item {
     Connections {
         target: HMI.settingsManager.appSettings.appFontPointSize
         onValueChanged: {
+            //console.info("_setBasePointSize")
             _setBasePointSize(HMI.settingsManager.appSettings.appFontPointSize.value)
         }
     }

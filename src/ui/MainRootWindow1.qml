@@ -72,30 +72,30 @@ ApplicationWindow {
         return _rgPreventViewSwitch[_rgPreventViewSwitch.length - 1]
     }
 
-    function viewSwitch(isPlanView) {
+    function viewSwitch() {
         settingsWindow.visible  = false
         setupWindow.visible     = false
         analyzeWindow.visible   = false
-        planView.visible  = false
+        flyView.visible  = false
     }
 
-    function showPlanView() {
-        viewSwitch(false)
-        planView.visible = true
+    function showFlyView() {
+        viewSwitch()
+        flyView.visible = true
     }
 
     function showAnalyzeView() {
-        viewSwitch(false)
+        viewSwitch()
         analyzeWindow.visible = true
     }
 
     function showSetupView() {
-        viewSwitch(false)
+        viewSwitch()
         setupWindow.visible = true
     }
 
     function showSettingsView() {
-        viewSwitch(false)
+        viewSwitch()
         settingsWindow.visible = true
     }
 
@@ -149,7 +149,7 @@ ApplicationWindow {
     footer: ToolBar {
         x: 200
         width:          parent.width/2
-        height:         ScreenTools.toolbarHeight *2
+        height:         ScreenTools.toolbarHeight * 2
         visible:        true
         background:     Rectangle {
             color:  "transparent"	//transparent:透明  // qgcPal.globalTheme === HMIPalette.Light ? HMI.corePlugin.options.toolbarBackgroundLight : HMI.corePlugin.options.toolbarBackgroundDark
@@ -169,7 +169,7 @@ ApplicationWindow {
     //-------------------------------------------------------------------------
     /// Plan View
     Loader {
-        id:             planView
+        id:             flyView
         anchors.fill:   parent
         visible:        false
         source:         "PlanView.qml"
@@ -201,7 +201,6 @@ ApplicationWindow {
         anchors.fill:   parent
         //height:         mainWindow.height
         visible:        false
-
         source:         "AnalyzeView.qml"
     }
 }

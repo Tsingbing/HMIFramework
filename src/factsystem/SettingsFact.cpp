@@ -2,12 +2,12 @@
 #include <QDebug>
 #include <QSettings>
 
-SettingsFact::SettingsFact(QObject *parent)
+SettingsFact::SettingsFact(QObject* parent)
     : Fact(parent)
 {
 }
 
-SettingsFact::SettingsFact(QString settingsGroup, FactMetaData *metaData, QObject *parent)
+SettingsFact::SettingsFact(QString settingsGroup, FactMetaData* metaData, QObject* parent)
     : Fact(metaData->name(), metaData->type(), parent)
     , _settingsGroup(settingsGroup)
 {
@@ -53,6 +53,6 @@ void SettingsFact::_rawValueChanged(QVariant value)
     }
 
     settings.setValue(_name, value);
-
+    emit valueChanged(value);
     qDebug() << "SettingsFact::_rawValueChanged";
 }

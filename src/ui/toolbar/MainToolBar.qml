@@ -24,7 +24,7 @@ Item {
 
     Component.onCompleted: {
         //-- TODO: Get this from the actual state
-        flyButton.checked = true
+        //flyButton.checked = true
     }
 
     /// Bottom single pixel divider
@@ -136,7 +136,7 @@ Item {
                         //                        }
                         buttonRow.clearAllChecks()
                         checked = true
-                        //                        mainWindow.showFlyView()
+                        mainWindow.showFlyView()
 
                         //                        // Easter Egg mechanism
                         //                        _clickCount++

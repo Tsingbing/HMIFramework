@@ -40,7 +40,7 @@ Button {
         anchors.verticalCenter: button.verticalCenter
         HMIColoredImage {
             id:                     _icon
-            height:                 ScreenTools.defaultFontPixelHeight
+            height:                 ScreenTools.defaultFontPixelHeight * 1.2
             width:                  height * 2
             sourceSize.height:      parent.height
             fillMode:               Image.PreserveAspectFit
