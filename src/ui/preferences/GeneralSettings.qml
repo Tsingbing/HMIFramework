@@ -13,7 +13,7 @@ import HMI.ScreenTools           1.0
 import HMI.Palette               1.0
 //import HMI.Controllers           1.0
 import HMI.SettingsManager       1.0
-
+import HMI.FactControls          1.0
 Rectangle {
     id:                 _root
     color:              hmiPal.window
@@ -98,6 +98,7 @@ Rectangle {
                             onClicked: {
                                 if (_appFontPointSize.value > _appFontPointSize.min) {
                                     _appFontPointSize.value = _appFontPointSize.value - 1
+                                    _appFontPointSize.valueChanged(_appFontPointSize.value)
                                 }
                             }
                         }
@@ -107,6 +108,12 @@ Rectangle {
                             text:                   (HMI.settingsManager.appSettings.appFontPointSize.value / ScreenTools.platformFontPointSize * 100).toFixed(0) + "%"
                             horizontalAlignment:    Text.AlignHCenter
                             anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        FactTextField {
+                            //Width:  ScreenTools.defaultFontPixelWidth * 12
+                            fact:                   HMI.settingsManager.appSettings.appFontPointSize
+                            visible:                true
                         }
                         Text {
 
@@ -120,6 +127,7 @@ Rectangle {
                             onClicked: {
                                 if (_appFontPointSize.value < _appFontPointSize.max) {
                                     _appFontPointSize.value = _appFontPointSize.value + 1
+                                    _appFontPointSize.valueChanged(_appFontPointSize.value)
                                 }
                             }
                         }

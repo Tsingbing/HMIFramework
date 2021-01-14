@@ -53,6 +53,11 @@
         <file alias="HelpSettings.qml">src/ui/preferences/HelpSettings.qml</file>
         <file alias="HMI/Controls/HMIFlickableHorizontalIndicator.qml">src/QmlControls/HMIFlickableHorizontalIndicator.qml</file>
         <file alias="HMI/Controls/HMIFlickableVerticalIndicator.qml">src/QmlControls/HMIFlickableVerticalIndicator.qml</file>
+        <file alias="HMI/FactControls/FactLabel.qml">src/factsystem/FactControls/FactLabel.qml</file>
+        <file alias="HMI/FactControls/FactTextField.qml">src/factsystem/FactControls/FactTextField.qml</file>
+        <file alias="HMI/FactControls/FactValueSlider.qml">src/factsystem/FactControls/FactValueSlider.qml</file>
+        <file alias="HMI/FactControls/qmldir">src/QmlControls/HMI/FactControls/qmldir</file>
+        <file alias="HMI/Controls/ParameterEditorDialog.qml">src/QmlControls/ParameterEditorDialog.qml</file>
     </qresource>
     <qresource prefix="/toolbar">
         <file alias="MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>

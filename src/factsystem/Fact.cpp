@@ -255,7 +255,7 @@ void Fact::_sendValueChangedSignal(QVariant value)
     if (_sendValueChangedSignals)
     {
         emit valueChanged(value);
-        qDebug() << "sendValueChangedSignalsChanged";
+        //qDebug() << "sendValueChangedSignalsChanged";
         _deferredValueChangeSignal = false;
     }
     else
@@ -270,7 +270,7 @@ void Fact::sendDeferredValueChangedSignal(void)
     {
         _deferredValueChangeSignal = false;
         emit valueChanged(cookedValue());
-        qDebug() << "sendDeferredValueChangedSignal";
+        //qDebug() << "sendDeferredValueChangedSignal";
     }
 }
 
@@ -309,7 +309,7 @@ void Fact::setCookedValue(const QVariant& value)
     {
         qWarning() << kMissingMetadata << name();
     }
-    qWarning() << "setCookedValue" << name();
+    //qWarning() << "setCookedValue" << name();
 }
 
 void Fact::setMetaData(FactMetaData* metaData, bool setDefaultFromMetaData)
@@ -320,6 +320,16 @@ void Fact::setMetaData(FactMetaData* metaData, bool setDefaultFromMetaData)
         setRawValue(rawDefaultValue());
     }
     emit valueChanged(cookedValue());
+}
+
+QString Fact::cookedMaxString() const
+{
+    return _variantToString(cookedMax(), decimalPlaces());
+}
+
+QVariant Fact::cookedMinString() const
+{
+    return _variantToString(cookedMin(), decimalPlaces());
 }
 
 QString Fact::_variantToString(const QVariant& variant, int decimalPlaces) const

@@ -10,6 +10,10 @@
 class Fact : public QObject
 {
     Q_OBJECT
+    QString m_maxString;
+
+    QVariant m_minString;
+
 public:
     Fact(QObject* parent = nullptr);
     Fact(QString name, FactMetaData::ValueType_t type, QObject* parent = nullptr);
@@ -23,9 +27,12 @@ public:
     Q_PROPERTY(QVariant value READ cookedValue WRITE setCookedValue NOTIFY valueChanged)
     Q_PROPERTY(QVariant rawValue READ rawValue WRITE setRawValue NOTIFY rawValueChanged)
     Q_PROPERTY(QVariant max READ cookedMax CONSTANT)
+    Q_PROPERTY(QString maxString READ cookedMaxString CONSTANT)
     Q_PROPERTY(QVariant min READ cookedMin CONSTANT)
+    Q_PROPERTY(QVariant minString READ cookedMinString CONSTANT)
     Q_PROPERTY(QVariant defaultValue READ cookedDefaultValue CONSTANT)
     Q_PROPERTY(QString defaultValueString READ cookedDefaultValueString CONSTANT)
+    Q_PROPERTY(bool defaultValueAvailable READ defaultValueAvailable CONSTANT)
 
     QString                   name(void) const;
     FactMetaData::ValueType_t type(void) const;
@@ -47,6 +54,8 @@ public:
     QString                   cookedValueString(void) const;
     QStringList               enumStrings(void) const;
     QVariantList              enumValues(void) const;
+    QString                   cookedMaxString() const;
+    QVariant                  cookedMinString() const;
 
     void setRawValue(const QVariant& value);
     void setCookedValue(const QVariant& value);

@@ -99,6 +99,69 @@ ApplicationWindow {
         settingsWindow.visible = true
     }
 
+    //-------------------------------------------------------------------------
+    //-- Global complex dialog
+
+    /// Shows a QGCViewDialogContainer based dialog
+    ///     @param component The dialog contents
+    ///     @param title Title for dialog
+    ///     @param charWidth Width of dialog in characters
+    ///     @param buttons Buttons to show in dialog using StandardButton enum
+
+    readonly property int showDialogFullWidth:      -1  ///< Use for full width dialog
+    readonly property int showDialogDefaultWidth:   40  ///< Use for default dialog width
+
+    function showComponentDialog(component, title, charWidth, buttons) {
+        if (mainWindowDialog.visible) {
+            console.warn(("showComponentDialog called while dialog is already visible"))
+            return
+        }
+        var dialogWidth = charWidth === showDialogFullWidth ? mainWindow.width : ScreenTools.defaultFontPixelWidth * charWidth
+        mainWindowDialog.width = dialogWidth
+        mainWindowDialog.dialogComponent = component
+        mainWindowDialog.dialogTitle = title
+        mainWindowDialog.dialogButtons = buttons
+        mainWindow.pushPreventViewSwitch()
+        mainWindowDialog.open()
+        if (buttons & StandardButton.Cancel || buttons & StandardButton.Close || buttons & StandardButton.Discard || buttons & StandardButton.Abort || buttons & StandardButton.Ignore) {
+            mainWindowDialog.closePolicy = Popup.NoAutoClose;
+            mainWindowDialog.interactive = false;
+        } else {
+            mainWindowDialog.closePolicy = Popup.CloseOnEscape | Popup.CloseOnPressOutside;
+            mainWindowDialog.interactive = true;
+        }
+    }
+
+    Drawer {
+        id:             mainWindowDialog
+        y:              0
+        height:         mainWindow.height /*- mainWindow.header.height*/
+        edge:           Qt.RightEdge
+        interactive:    false
+
+        background: Rectangle {
+            color:  hmiPal.windowShadeDark
+        }
+        property var    dialogComponent: null
+        property var    dialogButtons: null
+        property string dialogTitle: ""
+        Loader {
+            id:             dlgLoader
+            anchors.fill:   parent
+            onLoaded: {
+                item.setupDialogButtons()
+            }
+        }
+        onOpened: {
+            dlgLoader.source = "HMI/Controls/HMIViewDialogContainer.qml"
+        }
+        onClosed: {
+            //console.log("View switch ok")
+            mainWindow.popPreventViewSwitch()
+            dlgLoader.source = ""
+        }
+    }
+
 
     //-------------------------------------------------------------------------
     //-- Global Scope Variables
@@ -115,21 +178,21 @@ ApplicationWindow {
 
     //-------------------------------------------------------------------------
     /// Main, full window background
-//    background: Item {
-//        id:             rootBackground
-//        anchors.fill:   parent
+    //    background: Item {
+    //        id:             rootBackground
+    //        anchors.fill:   parent
 
-//        Image {
-//            id: image
-//            anchors.rightMargin: 0
-//            anchors.bottomMargin: 1
-//            anchors.leftMargin: 0
-//            anchors.topMargin: -1
-//            anchors.fill: parent
-//            source: "qrc:/qmlimages/main_set.jpg"
-//            fillMode: Image.PreserveAspectFit
-//        }
-//    }
+    //        Image {
+    //            id: image
+    //            anchors.rightMargin: 0
+    //            anchors.bottomMargin: 1
+    //            anchors.leftMargin: 0
+    //            anchors.topMargin: -1
+    //            anchors.fill: parent
+    //            source: "qrc:/qmlimages/main_set.jpg"
+    //            fillMode: Image.PreserveAspectFit
+    //        }
+    //    }
 
     //-------------------------------------------------------------------------
     /// Main, full window background (Fly View)

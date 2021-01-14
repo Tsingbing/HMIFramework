@@ -30,7 +30,7 @@ HMIToolInsets                           1.0 HMIToolInsets.qml
 HMIViewDialog                           1.0 HMIViewDialog.qml
 HMIViewDialogContainer                  1.0 HMIViewDialogContainer.qml
 HMIViewMessage                          1.0 HMIViewMessage.qml
-
+ParameterEditorDialog                   1.0 ParameterEditorDialog.qml
 
 
 

@@ -53,6 +53,6 @@ void SettingsFact::_rawValueChanged(QVariant value)
     }
 
     settings.setValue(_name, value);
-    emit valueChanged(value);
-    qDebug() << "SettingsFact::_rawValueChanged";
+
+    //qDebug() << "SettingsFact::_rawValueChanged";
 }

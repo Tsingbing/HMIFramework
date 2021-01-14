@@ -1,6 +1,6 @@
 /****************************************************************************
  *
- * (c) 2009-2020 HMI PROJECT <http://www.HMI.org>
+ * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
  * HMI is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
@@ -15,20 +15,16 @@ import HMI.Controls      1.0
 import HMI.Palette       1.0
 import HMI.ScreenTools   1.0
 
-Drawer {
-    edge:           Qt.RightEdge
-    interactive:    false
-
-    property var    dialogComponent
-    property string dialogTitle
-    property var    dialogButtons:        StandardButton.NoButton
+Item {
+    anchors.fill:   parent
 
     property real   _defaultTextHeight: _textMeasure.contentHeight
     property real   _defaultTextWidth:  _textMeasure.contentWidth
 
-    function setupDialogButtons(buttons) {
+    function setupDialogButtons() {
         _acceptButton.visible = false
         _rejectButton.visible = false
+        var buttons = mainWindowDialog.dialogButtons
         // Accept role buttons
         if (buttons & StandardButton.Ok) {
             _acceptButton.text = qsTr("Ok")
@@ -85,32 +81,16 @@ Drawer {
             _rejectButton.text = qsTr("Abort")
             _rejectButton.visible = true
         }
-
-        if (buttons & StandardButton.Cancel || buttons & StandardButton.Close || buttons & StandardButton.Discard || buttons & StandardButton.Abort || buttons & StandardButton.Ignore) {
-            closePolicy = Popup.NoAutoClose;
-            interactive = false;
-        } else {
-            closePolicy = Popup.CloseOnEscape | Popup.CloseOnPressOutside;
-            interactive = true;
-        }
     }
 
     Connections {
         target: _dialogComponentLoader.item
         onHideDialog: {
-            Qt.inputMethod.hide()
-            close()
+            mainWindowDialog.close()
         }
     }
 
-    Component.onCompleted: setupDialogButtons(dialogButtons)
-
     HMILabel { id: _textMeasure; text: "X"; visible: false }
-
-
-    background: Rectangle {
-        color:  qgcPal.windowShadeDark
-    }
 
     // This is the main dialog panel
     Item {
@@ -120,10 +100,11 @@ Drawer {
             id:             _header
             width:          parent.width
             height:         _acceptButton.visible ? _acceptButton.height : _rejectButton.height
-            color:          qgcPal.windowShade
+            color:          hmiPal.windowShade
             HMILabel {
+                id:                 titleLabel
                 x:                  _defaultTextWidth
-                text:               dialogTitle
+                text:               mainWindowDialog.dialogTitle
                 height:             parent.height
                 verticalAlignment:	Text.AlignVCenter
             }
@@ -154,7 +135,7 @@ Drawer {
             anchors.right:      parent.right
             anchors.top:        _spacer.bottom
             anchors.bottom:     parent.bottom
-            sourceComponent:    dialogComponent
+            sourceComponent:    mainWindowDialog.dialogComponent
             focus:              true
             property bool acceptAllowed: _acceptButton.visible
             property bool rejectAllowed: _rejectButton.visible
