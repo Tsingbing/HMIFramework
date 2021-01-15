@@ -16,14 +16,14 @@ import HMI.ScreenTools   1.0
 
 Switch {
     id: _root
-    HMIPalette { id:qgcPal; colorGroupEnabled: true }
+    HMIPalette { id:hmiPal; colorGroupEnabled: true }
     style: SwitchStyle {
         groove:     Rectangle {
             implicitWidth:  ScreenTools.defaultFontPixelWidth * 6
             implicitHeight: ScreenTools.defaultFontPixelHeight
-            color:          (control.checked && control.enabled) ? qgcPal.colorGreen : qgcPal.colorGrey
+            color:          (control.checked && control.enabled) ? hmiPal.colorGreen : hmiPal.colorGrey
             radius:         3
-            border.color:   qgcPal.button
+            border.color:   hmiPal.button
             border.width:   1
         }
     }

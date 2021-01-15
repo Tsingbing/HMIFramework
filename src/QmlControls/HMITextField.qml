@@ -8,7 +8,7 @@ import HMI.ScreenTools   1.0
 
 TextField {
     id:                 root
-    textColor:          qgcPal.textFieldText
+    textColor:          hmiPal.textFieldText
     implicitHeight:     ScreenTools.implicitTextFieldHeight
     activeFocusOnPress: true
     antialiasing:       true
@@ -25,7 +25,7 @@ TextField {
     Component.onCompleted: selectAllIfActiveFocus()
     onActiveFocusChanged: selectAllIfActiveFocus()
 
-    HMIPalette { id: qgcPal; colorGroupEnabled: enabled }
+    HMIPalette { id: hmiPal; colorGroupEnabled: enabled }
 
     onEditingFinished: {
         if (ScreenTools.isMobile) {
@@ -69,7 +69,7 @@ TextField {
                 anchors.fill:           parent
                 border.width:           enabled ? 1 : 0
                 border.color:           root.activeFocus ? "#47b" : "#999"
-                color:                  qgcPal.textField
+                color:                  hmiPal.textField
             }
 
             RowLayout {
@@ -115,7 +115,7 @@ TextField {
                     HMILabel {
                         id:                 helpLabel
                         anchors.centerIn:   parent
-                        color:              qgcPal.textField
+                        color:              hmiPal.textField
                         text:               qsTr("?")
                     }
                 }

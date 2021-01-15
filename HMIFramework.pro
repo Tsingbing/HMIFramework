@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 DEFINES += APPLICATION_NAME=\"\\\"HMIFramework\\\"\"
 DEFINES += ORG_NAME=\"\\\"umltech.org\\\"\"
-DEFINES += GIT_VERSION=\"\\\"$$GIT_VERSION\\\"\"
 
 # 设置构建目录
 DESTDIR = $${OUT_PWD}/bin
@@ -57,6 +56,7 @@ exists ($$PWD/.git) {
     MAC_BUILD       = 0
 }
 
+DEFINES += GIT_VERSION=\"\\\"$$GIT_VERSION\\\"\"
 
 INCLUDEPATH += .
 

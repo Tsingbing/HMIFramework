@@ -87,7 +87,7 @@ Popup {
         setupDialogButtons(dialogComponentLoader.item.buttons)
     }
 
-    HMIPalette { id: qgcPal; colorGroupEnabled: parent.enabled }
+    HMIPalette { id: hmiPal; colorGroupEnabled: parent.enabled }
 
     function setupDialogButtons(buttons) {
         acceptButton.visible = false
@@ -164,7 +164,7 @@ Popup {
     Rectangle {
         width:  titleRowLayout.width
         height: titleRowLayout.height
-        color:  qgcPal.windowShade
+        color:  hmiPal.windowShade
     }
 
     ColumnLayout {

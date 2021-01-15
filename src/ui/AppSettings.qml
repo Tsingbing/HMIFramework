@@ -65,11 +65,6 @@ Rectangle {
                 visible:                true
             }
 
-            HMITextField {
-                Layout.fillWidth:       true
-                text:                   qsTr("sss")
-                visible:                true
-            }
             HMIButton {
                 height:             _buttonHeight
                 text:               "General"

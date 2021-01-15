@@ -10,7 +10,7 @@ import HMI.FactSystem    1.0
 Rectangle {
     height: _itemHeight
     width:  _totalSlots * _itemWidth
-    color:  qgcPal.textField
+    color:  hmiPal.textField
 
     property Fact   fact:               undefined
     property int    digitCount:         4           ///< The minimum number of digits to show for each value
@@ -37,8 +37,8 @@ Rectangle {
     property var    _model:                 fact.valueSliderModel()
     property var    _fact:                  fact
 
-    HMIPalette { id: qgcPal; colorGroupEnabled: parent.enabled }
-    HMIPalette { id: qgcPalDisabled; colorGroupEnabled: false }
+    HMIPalette { id: hmiPal; colorGroupEnabled: parent.enabled }
+    HMIPalette { id: hmiPalDisabled; colorGroupEnabled: false }
 
     function firstVisibleIndex() {
         return valueListView.contentX / _itemWidth
@@ -90,7 +90,7 @@ Rectangle {
             verticalAlignment:      Text.AlignVCenter
             horizontalAlignment:    Text.AlignHCenter
             text:                   value + " " + _units
-            color:                  qgcPal.textFieldText
+            color:                  hmiPal.textFieldText
 
             MouseArea {
                 anchors.fill:   parent
@@ -120,7 +120,7 @@ Rectangle {
         id:         leftOverlay
         width:      _itemWidth * _prevIncrementSlots
         height:     _itemHeight
-        color:      qgcPal.textField
+        color:      hmiPal.textField
         opacity:    0.5
     }
 
@@ -128,7 +128,7 @@ Rectangle {
         width:          _itemWidth * _nextIncrementSlots
         height:         _itemHeight
         anchors.right:  parent.right
-        color:          qgcPal.textField
+        color:          hmiPal.textField
         opacity:        0.5
     }
 
@@ -138,7 +138,7 @@ Rectangle {
         width:          _itemWidth + (_borderWidth * 2)
         height:         _itemHeight + (_borderWidth * 2)
         border.width:   _borderWidth
-        border.color:   qgcPal.brandingBlue
+        border.color:   hmiPal.brandingBlue
         color:          "transparent"
 
         readonly property int _borderWidth: 3

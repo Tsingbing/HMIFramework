@@ -242,6 +242,63 @@ QVariantList Fact::enumValues() const
     }
 }
 
+int Fact::enumIndex()
+{
+    static const double accuracy = 1.0 / 1000000.0;
+    if (_metaData)
+    {
+        //-- Only enums have an index
+        if (_metaData->enumValues().count())
+        {
+            int index = 0;
+            for (QVariant enumValue : _metaData->enumValues())
+            {
+                if (enumValue == rawValue())
+                {
+                    return index;
+                }
+                //-- Float comparissons don't always work
+                if (type() == FactMetaData::valueTypeFloat || type() == FactMetaData::valueTypeDouble)
+                {
+                    double diff = fabs(enumValue.toDouble() - rawValue().toDouble());
+                    if (diff < accuracy)
+                    {
+                        return index;
+                    }
+                }
+                index++;
+            }
+            // Current value is not in list, add it manually
+            _metaData->addEnumInfo(tr("Unknown: %1").arg(rawValue().toString()), rawValue());
+            emit enumsChanged();
+            return index;
+        }
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+    }
+    return -1;
+}
+
+QString Fact::enumStringValue()
+{
+    if (_metaData)
+    {
+        int enumIndex = this->enumIndex();
+        if (enumIndex >= 0 && enumIndex < _metaData->enumStrings().count())
+        {
+            return _metaData->enumStrings()[ enumIndex ];
+        }
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+    }
+
+    return QString();
+}
+
 void Fact::setSendValueChangedSignals(bool sendValueChangedSignals)
 {
     if (sendValueChangedSignals != _sendValueChangedSignals)
@@ -320,6 +377,37 @@ void Fact::setMetaData(FactMetaData* metaData, bool setDefaultFromMetaData)
         setRawValue(rawDefaultValue());
     }
     emit valueChanged(cookedValue());
+}
+
+void Fact::setEnumIndex(int index)
+{
+    if (_metaData)
+    {
+        setCookedValue(_metaData->enumValues()[ index ]);
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+    }
+}
+
+void Fact::setEnumStringValue(const QString& value)
+{
+    int index = valueIndex(value);
+    if (index != -1)
+    {
+        setCookedValue(_metaData->enumValues()[ index ]);
+    }
+}
+
+int Fact::valueIndex(const QString& value)
+{
+    if (_metaData)
+    {
+        return _metaData->enumStrings().indexOf(value);
+    }
+    qWarning() << kMissingMetadata << name();
+    return -1;
 }
 
 QString Fact::cookedMaxString() const

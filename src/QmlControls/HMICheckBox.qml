@@ -6,11 +6,11 @@ import HMI.Palette       1.0
 import HMI.ScreenTools   1.0
 
 CheckBox {
-    property color  textColor:          _qgcPal.text
+    property color  textColor:          _hmiPal.text
     property bool   textBold:           false
     property real   textFontPointSize:  ScreenTools.defaultFontPointSize
 
-    property var    _qgcPal: HMIPalette { colorGroupEnabled: enabled }
+    property var    _hmiPal: HMIPalette { colorGroupEnabled: enabled }
     property bool   _noText: text === ""
 
     activeFocusOnPress: true
@@ -39,8 +39,8 @@ CheckBox {
             implicitHeight: implicitWidth
             Rectangle {
                 anchors.fill:   parent
-                color:          control.enabled ? "white" : _qgcPal.text
-                border.color:   _qgcPal.text
+                color:          control.enabled ? "white" : _hmiPal.text
+                border.color:   _hmiPal.text
                 border.width:   1
                 opacity:        control.checkedState === Qt.PartiallyChecked ? 0.5 : 1
                 HMIColoredImage {

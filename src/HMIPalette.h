@@ -68,13 +68,13 @@
 
  Usage:
 
-        import QGroundControl.Palette 1.0
+        import HMI.Palette 1.0
 
         Rectangle {
             anchors.fill:   parent
-            color:          qgcPal.window
+            color:          hmiPal.window
 
-            HMIPalette { id: qgcPal: colorGroupEnabled: enabled }
+            HMIPalette { id: hmiPal: colorGroupEnabled: enabled }
         }
 */
 

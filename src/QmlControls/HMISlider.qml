@@ -32,9 +32,9 @@ Slider {
             Rectangle {
                 radius:         height / 2
                 anchors.fill:   parent
-                color:          qgcPal.button
+                color:          hmiPal.button
                 border.width:   1
-                border.color:   qgcPal.buttonText
+                border.color:   hmiPal.buttonText
             }
 
             Item {
@@ -51,7 +51,7 @@ Slider {
 
                 Rectangle {
                     anchors.fill:   parent
-                    color:          qgcPal.colorBlue
+                    color:          hmiPal.colorBlue
                     border.color:   Qt.darker(color, 1.2)
                     radius:         height/2
                 }
@@ -60,8 +60,8 @@ Slider {
 
         handle: Rectangle {
             anchors.centerIn: parent
-            color:          qgcPal.button
-            border.color:   qgcPal.buttonText
+            color:          hmiPal.button
+            border.color:   hmiPal.buttonText
             border.width:   1
             implicitWidth:  _radius * 2
             implicitHeight: _radius * 2
@@ -75,7 +75,7 @@ Slider {
                 anchors.centerIn:   parent
                 font.family:        ScreenTools.normalFontFamily
                 font.pointSize:     ScreenTools.smallFontPointSize
-                color:              qgcPal.buttonText
+                color:              hmiPal.buttonText
             }
         }
     }

@@ -10,8 +10,8 @@ RadioButton {
     font.family:    ScreenTools.normalFontFamily
     font.pointSize: ScreenTools.defaultFontPointSize
 
-    property color  textColor:  _qgcPal.text
-    property var    _qgcPal:    HMIPalette { colorGroupEnabled: enabled }
+    property color  textColor:  _hmiPal.text
+    property var    _hmiPal:    HMIPalette { colorGroupEnabled: enabled }
     property bool   _noText:    text === ""
 
     indicator: Rectangle {

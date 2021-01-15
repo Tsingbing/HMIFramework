@@ -39,7 +39,7 @@ HMIViewDialog {
 
     //ParameterEditorController { id: controller; }
 
-    HMIPalette { id: qgcPal; colorGroupEnabled: true }
+    HMIPalette { id: hmiPal; colorGroupEnabled: true }
 
     function accept() {
         if (bitmaskColumn.visible && !manualEntry.checked) {
@@ -108,7 +108,7 @@ HMIViewDialog {
                 id:         validationError
                 width:      parent.width
                 wrapMode:   Text.WordWrap
-                color:      qgcPal.warningText
+                color:      hmiPal.warningText
             }
 
             RowLayout {
@@ -255,7 +255,7 @@ HMIViewDialog {
                 Rectangle {
                     height: 1
                     width:  ScreenTools.defaultFontPixelWidth * 5
-                    color:  qgcPal.text
+                    color:  hmiPal.text
                     anchors.verticalCenter: _advanced.verticalCenter
                 }
 
@@ -267,7 +267,7 @@ HMIViewDialog {
                 Rectangle {
                     height: 1
                     width:  ScreenTools.defaultFontPixelWidth * 5
-                    color:  qgcPal.text
+                    color:  hmiPal.text
                     anchors.verticalCenter: _advanced.verticalCenter
                 }
             }

@@ -37,7 +37,7 @@ XApplication::XApplication(int& argc, char* argv[])
 
     setApplicationName(APPLICATION_NAME);
     setOrganizationName(ORG_NAME);
-    setApplicationVersion(QString(GIT_VERSION));
+    this->setApplicationVersion(QString(GIT_VERSION));
 
     // 设置 settings 格式
     QSettings::setDefaultFormat(QSettings::IniFormat);
@@ -46,6 +46,8 @@ XApplication::XApplication(int& argc, char* argv[])
 
     _toolbox = new Toolbox(this);
     _toolbox->setChildToolboxes();
+
+    setLanguage();
 }
 
 XApplication::~XApplication()
@@ -92,6 +94,14 @@ QQuickItem* XApplication::mainRootWindow()
         _mainRootWindow = reinterpret_cast<QQuickItem*>(_rootQmlObject());
     }
     return _mainRootWindow;
+}
+
+void XApplication::setLanguage()
+{
+    _locale = QLocale::system();
+    qDebug() << "System reported locale:" << _locale << _locale.name();
+    int langID = toolbox()->settingsManager()->appSettings()->language()->rawValue().toInt();
+    qDebug() << "System language()->rawValue():" << langID;
 }
 
 QObject* XApplication::_rootQmlObject()

@@ -16,12 +16,13 @@ import HMI.Palette       1.0
 import HMI.ScreenTools   1.0
 
 Rectangle {
-    color:          qgcPal.window
+    color:          hmiPal.window
     anchors.fill:   parent
 
     readonly property real _margins: ScreenTools.defaultFontPixelHeight
 
-    HMIPalette { id: qgcPal; colorGroupEnabled: true }
+    HMIPalette { id: 
+            hmiPal; colorGroupEnabled: true }
 
     HMIFlickable {
         anchors.margins:    _margins
@@ -37,21 +38,21 @@ Rectangle {
 
             HMILabel { text: qsTr("HMI User Guide") }
             HMILabel {
-                linkColor:          qgcPal.text
+                linkColor:          hmiPal.text
                 text:               "<a href=\"https://docs.HMI.com\">https://docs.HMI.com</a>"
                 onLinkActivated:    Qt.openUrlExternally(link)
             }
 
             HMILabel { text: qsTr("CAR Users Discussion Forum") }
             HMILabel {
-                linkColor:          qgcPal.text
+                linkColor:          hmiPal.text
                 text:               "<a href=\"http://discuss.px4.io/c/HMI\">http://discuss.px4.io/c/HMI</a>"
                 onLinkActivated:    Qt.openUrlExternally(link)
             }
 
             HMILabel { text: qsTr("car Users Discussion Forum") }
             HMILabel {
-                linkColor:          qgcPal.text
+                linkColor:          hmiPal.text
                 text:               "<a href=\"https://discuss.HMI.org/c/HMI-software/HMI\">https://discuss.HMI.org/c/HMI-software/HMI</a>"
                 onLinkActivated:    Qt.openUrlExternally(link)
             }

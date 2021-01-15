@@ -34,7 +34,7 @@ T.ComboBox {
     property bool   sizeToContents: false
     property string alternateText:  ""
 
-    property var    _qgcPal:            HMIPalette { colorGroupEnabled: enabled }
+    property var    _hmiPal:            HMIPalette { colorGroupEnabled: enabled }
     property real   _largestTextWidth:  0
     property real   _popupWidth:        sizeToContents ? _largestTextWidth + itemDelegateMetrics.leftPadding + itemDelegateMetrics.rightPadding : control.width
     property bool   _onCompleted:       false
@@ -85,12 +85,12 @@ T.ComboBox {
         contentItem: Text {
             text:                   _text
             font:                   control.font
-            color:                  control.currentIndex === index ? _qgcPal.buttonHighlightText : _qgcPal.buttonText
+            color:                  control.currentIndex === index ? _hmiPal.buttonHighlightText : _hmiPal.buttonText
             verticalAlignment:      Text.AlignVCenter
         }
 
         background: Rectangle {
-            color:                  control.currentIndex === index ? _qgcPal.buttonHighlight : _qgcPal.button
+            color:                  control.currentIndex === index ? _hmiPal.buttonHighlight : _hmiPal.button
         }
 
         highlighted:                control.highlightedIndex === index
@@ -103,7 +103,7 @@ T.ComboBox {
         height:                 ScreenTools.defaultFontPixelWidth
         width:                  height
         source:                 "/qmlimages/arrow-down.png"
-        color:                  _qgcPal.text
+        color:                  _hmiPal.text
     }
 
     // The label of the button
@@ -117,15 +117,15 @@ T.ComboBox {
             anchors.horizontalCenter:   centeredLabel ? parent.horizontalCenter : undefined
             text:                       control.alternateText === "" ? control.currentText : control.alternateText
             font:                       control.font
-            color:                      _qgcPal.text
+            color:                      _hmiPal.text
         }
     }
 
     background: Rectangle {
         implicitWidth:  ScreenTools.implicitComboBoxWidth
         implicitHeight: ScreenTools.implicitComboBoxHeight
-        color:          _qgcPal.window
-        border.color:   _qgcPal.text
+        color:          _hmiPal.window
+        border.color:   _hmiPal.text
     }
 
     popup: T.Popup {
@@ -147,7 +147,7 @@ T.ComboBox {
                 width:          parent.width
                 height:         parent.height
                 color:          "transparent"
-                border.color:   _qgcPal.text
+                border.color:   _hmiPal.text
             }
 
             T.ScrollIndicator.vertical: ScrollIndicator { }

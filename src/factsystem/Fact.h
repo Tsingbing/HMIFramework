@@ -2,10 +2,10 @@
 #define FACT_H
 
 #include "FactMetaData.h"
-
 #include <QObject>
 #include <QString>
 #include <QVariant>
+#include <cmath>
 
 class Fact : public QObject
 {
@@ -34,6 +34,11 @@ public:
     Q_PROPERTY(QString defaultValueString READ cookedDefaultValueString CONSTANT)
     Q_PROPERTY(bool defaultValueAvailable READ defaultValueAvailable CONSTANT)
 
+    Q_PROPERTY(int enumIndex READ enumIndex WRITE setEnumIndex NOTIFY valueChanged)
+    Q_PROPERTY(QStringList enumStrings READ enumStrings NOTIFY enumsChanged)
+    Q_PROPERTY(QString enumStringValue READ enumStringValue WRITE setEnumStringValue NOTIFY valueChanged)
+    Q_PROPERTY(QVariantList enumValues READ enumValues NOTIFY enumsChanged)
+
     QString                   name(void) const;
     FactMetaData::ValueType_t type(void) const;
     QString                   shortDescription(void) const;
@@ -54,11 +59,16 @@ public:
     QString                   cookedValueString(void) const;
     QStringList               enumStrings(void) const;
     QVariantList              enumValues(void) const;
+    int                       enumIndex();
+    QString                   enumStringValue(void); // This is not const, since an unknown value can modify the enum lists
     QString                   cookedMaxString() const;
     QVariant                  cookedMinString() const;
 
     void setRawValue(const QVariant& value);
     void setCookedValue(const QVariant& value);
+    void setEnumIndex(int enumIndex);
+    void setEnumStringValue(const QString& value);
+    int  valueIndex(const QString& value);
 
     // The following methods allow you to defer sending of the valueChanged signals in order to
     // implement rate limited signalling for ui performance. Used by FactGroup for example.
@@ -76,7 +86,11 @@ public:
 
     FactMetaData* metaData() { return _metaData; }
 
+public slots:
+
 signals:
+    void enumsChanged(void);
+
     void valueChanged(QVariant value);
     void rawValueChanged(QVariant value);
     void sendValueChangedSignalsChanged(bool sendValueChangedSignals);

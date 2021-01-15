@@ -3,4 +3,4 @@ Module HMI.FactControls
 FactLabel               1.0 FactLabel.qml
 FactTextField           1.0 FactTextField.qml
 FactValueSlider         1.0 FactValueSlider.qml
-
+FactComboBox            1.0 FactComboBox.qml

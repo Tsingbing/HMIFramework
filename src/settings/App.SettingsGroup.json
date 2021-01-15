@@ -12,8 +12,17 @@
     "name": "language",
     "shortDesc": "Language",
     "type": "uint32",
-    "enumStrings": "System,български (Bulgarian),中文 (Chinese),Nederlands (Dutch),English,Suomi (Finnish),Français (French),Deutsche (German),Ελληνικά (Greek), עברית (Hebrew),Italiano (Italian),日本人 (Japanese),한국어 (Korean),Norsk (Norwegian),Polskie (Polish),Português (Portuguese),Pусский (Russian),Español (Spanish),Svenska (Swedish),Türk (Turkish),Azerbaijani (Azerbaijani)",
-    "enumValues": "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-    "default": 3
+    "enumStrings": "System,中文 (Chinese),English",
+    "enumValues": "0,1,2",
+    "default": 2
+},
+{
+    "name":             "indoorPalette",
+    "shortDescription": "Application color scheme",
+    "longDescription":  "The color scheme for the user interface.",
+    "type":             "uint32",
+    "enumStrings":      "Indoor,Outdoor",
+    "enumValues":       "1,0",
+    "defaultValue":     0
 }
 ]

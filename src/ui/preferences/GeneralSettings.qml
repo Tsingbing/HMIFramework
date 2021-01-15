@@ -41,95 +41,175 @@ Rectangle {
                 id:                         settingsColumn
                 anchors.horizontalCenter:   parent.horizontalCenter
 
+                Item { width: 1; height: _margins }
+
                 HMILabel {
-                    id:         unitsSectionLabel
-                    text:       qsTr("Units")
+                    id:         miscSectionLabel
+                    text:       qsTr("Miscellaneous")
                     visible:    true
                 }
                 Rectangle {
-                    Layout.preferredHeight: unitsGrid.height + (_margins * 2)
-                    Layout.preferredWidth:  unitsGrid.width + (_margins * 2)
-                    color:                  hmiPal.windowShade
-                    visible:                true
+                    Layout.preferredWidth:  Math.max(comboGrid.width, miscCol.width) + (_margins * 2)
+                    Layout.preferredHeight: (pathRow.visible ? pathRow.y + pathRow.height : miscColItem.y + miscColItem.height)  + (_margins * 2)
                     Layout.fillWidth:       true
+                    color:                  hmiPal.windowShade
+                    visible:                miscSectionLabel.visible
 
-                    GridLayout {
-                        id:                         unitsGrid
-                        anchors.topMargin:          _margins
-                        anchors.top:                parent.top
-                        Layout.fillWidth:           false
-                        anchors.horizontalCenter:   parent.horizontalCenter
-                        flow:                       GridLayout.TopToBottom
-                        rows:                       4
+                    Item {
+                        id:                 comboGridItem
+                        anchors.margins:    _margins
+                        anchors.top:        parent.top
+                        anchors.left:       parent.left
+                        anchors.right:      parent.right
+                        height:             comboGrid.height
 
-                        Repeater {
-                            model: [ qsTr("Distance"), qsTr("Area"), qsTr("Speed"), qsTr("Temperature") ]
-                            HMILabel { text: modelData }
+                        GridLayout {
+                            id:                         comboGrid
+                            anchors.horizontalCenter:   parent.horizontalCenter
+                            columns:                    2
+
+                            HMILabel {
+                                text:           qsTr("Language")
+                                visible: true
+                            }
+                            FactComboBox {
+                                Layout.preferredWidth:  _comboFieldWidth
+                                fact:                   HMI.settingsManager.appSettings.language
+                                indexModel:             false
+                                visible:                true
+                            }
+
+                            HMILabel {
+                                text:           qsTr("Color Scheme")
+                                visible: true
+                            }
+                            FactComboBox {
+                                Layout.preferredWidth:  _comboFieldWidth
+                                fact:                   HMI.settingsManager.appSettings.indoorPalette
+                                indexModel:             false
+                                visible:                true
+                            }
+
+                            HMILabel {
+                                text:                           qsTr("UI Scaling")
+                                visible:                        true
+                                Layout.alignment:               Qt.AlignVCenter
+                            }
+                            Item {
+                                width:                          _comboFieldWidth
+                                height:                         baseFontEdit.height * 1.5
+                                visible:                        true
+                                Layout.alignment:               Qt.AlignVCenter
+                                Row {
+                                    spacing:                    ScreenTools.defaultFontPixelWidth
+                                    anchors.verticalCenter:     parent.verticalCenter
+                                    HMIButton {
+                                        width:                  height
+                                        height:                 baseFontEdit.height * 1.5
+                                        text:                   "-"
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        onClicked: {
+                                            if (_appFontPointSize.value > _appFontPointSize.min) {
+                                                _appFontPointSize.value = _appFontPointSize.value - 1
+                                                _appFontPointSize.valueChanged(_appFontPointSize.value)
+                                            }
+                                        }
+                                    }
+                                    HMILabel {
+                                        id:                     baseFontEdit
+                                        width:                  ScreenTools.defaultFontPixelWidth * 6
+                                        text:                   (HMI.settingsManager.appSettings.appFontPointSize.value / ScreenTools.platformFontPointSize * 100).toFixed(0) + "%"
+                                        horizontalAlignment:    Text.AlignHCenter
+                                        anchors.verticalCenter: parent.verticalCenter
+                                    }
+                                    FactTextField {
+                                        //Width:  ScreenTools.defaultFontPixelWidth * 12
+                                        fact:                   HMI.settingsManager.appSettings.appFontPointSize
+                                        visible:                true
+                                    }
+
+                                    HMIButton {
+                                        width:                  height
+                                        height:                 baseFontEdit.height * 1.5
+                                        text:                   "+"
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        onClicked: {
+                                            if (_appFontPointSize.value < _appFontPointSize.max) {
+                                                _appFontPointSize.value = _appFontPointSize.value + 1
+                                                _appFontPointSize.valueChanged(_appFontPointSize.value)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        //                        Repeater {
-                        //                            model:  [ QGroundControl.settingsManager.unitsSettings.distanceUnits, QGroundControl.settingsManager.unitsSettings.areaUnits, QGroundControl.settingsManager.unitsSettings.speedUnits, QGroundControl.settingsManager.unitsSettings.temperatureUnits ]
-                        //                            FactComboBox {
-                        //                                Layout.preferredWidth:  _comboFieldWidth
-                        //                                fact:                   modelData
-                        //                                indexModel:             false
-                        //                            }
-                        //                        }
                     }
-                }
 
-                HMILabel {
-                    text:                           qsTr("UI Scaling")
-                    visible:                        true
-                    Layout.alignment:               Qt.AlignVCenter
-                }
-                Item {
-                    width:                          _comboFieldWidth
-                    height:                         baseFontEdit.height * 1.5
-                    visible:                        true
-                    Layout.alignment:               Qt.AlignVCenter
-                    Row {
-                        spacing:                    ScreenTools.defaultFontPixelWidth
-                        anchors.verticalCenter:     parent.verticalCenter
-                        HMIButton {
-                            width:                  height
-                            height:                 baseFontEdit.height * 1.5
-                            text:                   "-"
-                            anchors.verticalCenter: parent.verticalCenter
-                            onClicked: {
-                                if (_appFontPointSize.value > _appFontPointSize.min) {
-                                    _appFontPointSize.value = _appFontPointSize.value - 1
-                                    _appFontPointSize.valueChanged(_appFontPointSize.value)
+                    Item {
+                        id:                 miscColItem
+                        anchors.margins:    _margins
+                        anchors.left:       parent.left
+                        anchors.right:      parent.right
+                        anchors.top:        comboGridItem.bottom
+                        anchors.topMargin:  ScreenTools.defaultFontPixelHeight
+                        height:             miscCol.height
+
+                        ColumnLayout {
+                            id:                         miscCol
+                            anchors.horizontalCenter:   parent.horizontalCenter
+                            spacing:                    _margins
+
+                            RowLayout {
+                                visible: true//HMI.settingsManager.appSettings.batteryPercentRemainingAnnounce.visible
+
+                                HMICheckBox {
+                                    id:         announcePercentCheckbox
+                                    text:       qsTr("Announce battery lower than")
+                                    //checked:    _percentRemainingAnnounce.value !== 0
+                                    onClicked: {
+                                        if (checked) {
+                                            _percentRemainingAnnounce.value = _percentRemainingAnnounce.defaultValueString
+                                        } else {
+                                            _percentRemainingAnnounce.value = 0
+                                        }
+                                    }
                                 }
+                                //                                FactTextField {
+                                //                                    fact:                   _percentRemainingAnnounce
+                                //                                    Layout.preferredWidth:  _valueFieldWidth
+                                //                                    enabled:                announcePercentCheckbox.checked
+                                //                                }
                             }
                         }
-                        HMILabel {
-                            id:                     baseFontEdit
-                            width:                  ScreenTools.defaultFontPixelWidth * 6
-                            text:                   (HMI.settingsManager.appSettings.appFontPointSize.value / ScreenTools.platformFontPointSize * 100).toFixed(0) + "%"
-                            horizontalAlignment:    Text.AlignHCenter
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
+                    }
 
-                        FactTextField {
-                            //Width:  ScreenTools.defaultFontPixelWidth * 12
-                            fact:                   HMI.settingsManager.appSettings.appFontPointSize
-                            visible:                true
-                        }
-                        Text {
+                    //-----------------------------------------------------------------
+                    //-- Save path
+                    RowLayout {
+                        id:                 pathRow
+                        anchors.margins:    _margins
+                        anchors.left:       parent.left
+                        //anchors.right:      parent.right
+                        anchors.top:        miscColItem.bottom
+                        visible:            true
 
+                        HMILabel { text: qsTr("Load/Save Path") }
+                        HMITextField {
+                            //Layout.fillWidth:   true
+                            readOnly:           true
+                            text:               "_savePath.rawValue"
                         }
-
                         HMIButton {
-                            width:                  height
-                            height:                 baseFontEdit.height * 1.5
-                            text:                   "+"
-                            anchors.verticalCenter: parent.verticalCenter
-                            onClicked: {
-                                if (_appFontPointSize.value < _appFontPointSize.max) {
-                                    _appFontPointSize.value = _appFontPointSize.value + 1
-                                    _appFontPointSize.valueChanged(_appFontPointSize.value)
-                                }
-                            }
+                            text:       qsTr("Browse")
+                            onClicked:  savePathBrowseDialog.openForLoad()
+                            //                            HMIFileDialog {
+                            //                                id:             savePathBrowseDialog
+                            //                                title:          qsTr("Choose the location to save/load files")
+                            //                                folder:         _savePath.rawValue
+                            //                                selectExisting: true
+                            //                                selectFolder:   true
+                            //                                onAcceptedForLoad: _savePath.rawValue = file
+                            //                            }
                         }
                     }
                 }
@@ -156,43 +236,9 @@ Rectangle {
                         anchors.horizontalCenter:   parent.horizontalCenter
 
                         HMILabel {
-                            text:           qsTr("Indoor Imssssssssssssssssssssssssssssssssage")
+                            text:           qsTr("一人我饮酒醉醉醉醉醉醉醉醉醉醉把那家人成双对")
                             visible:        true
                         }
-                        //                        HMITextField {
-                        //                            readOnly:           true
-                        //                            Layout.fillWidth:   true
-                        //                            text:               "_userBrandImageIndoor.valueString.replace"
-                        //                        }
-                        //                        HMIButton {
-                        //                            text:       qsTr("Browse")
-                        //                            onClicked:  userBrandImageIndoorBrowseDialog.openForLoad()
-
-                        //                        }
-
-                        //                        HMILabel {
-                        //                            text:       qsTr("Outdoor Image")
-                        //                            visible:    true
-                        //                        }
-                        //                        HMITextField {
-                        //                            readOnly:           true
-                        //                            Layout.fillWidth:   true
-                        //                            text:               " _userBrandImageOutdoor.valueString.replace"
-                        //                        }
-                        //                        HMIButton {
-                        //                            text:       qsTr("Browse")
-                        //                            onClicked:  userBrandImageOutdoorBrowseDialog.openForLoad()
-
-                        //                        }
-                        //                        HMIButton {
-                        //                            text:               qsTr("Reset Default Brand Image")
-                        //                            Layout.columnSpan:  3
-                        //                            Layout.alignment:   Qt.AlignHCenter
-                        //                            onClicked:  {
-                        //                                _userBrandImageIndoor.rawValue = ""
-                        //                                _userBrandImageOutdoor.rawValue = ""
-                        //                            }
-                        //                        }
                     }
                 }
 
@@ -203,7 +249,7 @@ Rectangle {
                     Layout.alignment:   Qt.AlignHCenter
                 }
                 HMILabel {
-                    text:               "HMI.qgcVersion"
+                    text:               HMI.hmiVersion
                     Layout.alignment:   Qt.AlignHCenter
                 }
             } // settingsColumn

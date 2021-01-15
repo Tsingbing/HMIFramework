@@ -17,8 +17,23 @@ ApplicationWindow {
     height: 600
     title: qsTr("HMI")
 
+    //-------------------------------------------------------------------------
+    //-- Global Scope Variables
+    QtObject {
+        id: globals
+
+        readonly property var activeVehicle : HMI.vehicleManager.activeVehicle
+        property Fact fact: activeVehicle.supplyVoltageFact
+        property Fact fact1: activeVehicle.rotatingSpeedFact
+        property Fact languageFact: HMI.settingsManager.appSettings.language
+        property Fact _appFontPointSize: HMI.settingsManager.appSettings.appFontPointSize
+        property bool se:  ScreenTools.isMobile
+        property var se1:  HMI.vehicleManager.id
+    }
+
     Component.onCompleted: {
-        //console.info(globals._appFontPointSize.value)
+        console.info(globals._appFontPointSize.value)
+        console.info(globals.languageFact.enumStrings)
     }
 
 
@@ -164,19 +179,6 @@ ApplicationWindow {
 
 
     //-------------------------------------------------------------------------
-    //-- Global Scope Variables
-    QtObject {
-        id: globals
-
-        readonly property var activeVehicle : HMI.vehicleManager.activeVehicle
-        property Fact fact: activeVehicle.supplyVoltageFact
-        property Fact fact1: activeVehicle.rotatingSpeedFact
-        property Fact _appFontPointSize: HMI.settingsManager.appSettings.appFontPointSize
-        property bool se:  ScreenTools.isMobile
-        property var se1:  HMI.vehicleManager.id
-    }
-
-    //-------------------------------------------------------------------------
     /// Main, full window background
     //    background: Item {
     //        id:             rootBackground
@@ -202,7 +204,7 @@ ApplicationWindow {
 
         Rectangle {
             anchors.fill:   parent
-            color:          "#222222"
+            color: hmiPal.globalTheme === HMIPalette.Light ? "#FFFFFF" : "#212529"
         }
     }
 
@@ -212,10 +214,10 @@ ApplicationWindow {
     footer: ToolBar {
         x: 200
         width:          parent.width/2
-        height:         ScreenTools.toolbarHeight * 2
+        height:         ScreenTools.toolbarHeight * 1.2
         visible:        true
         background:     Rectangle {
-            color:  "transparent"	//transparent:透明  // qgcPal.globalTheme === HMIPalette.Light ? HMI.corePlugin.options.toolbarBackgroundLight : HMI.corePlugin.options.toolbarBackgroundDark
+            color: hmiPal.globalTheme === HMIPalette.Light ? "#FFFFFF" : "#212529"
         }
         Loader {
             id:             toolbar

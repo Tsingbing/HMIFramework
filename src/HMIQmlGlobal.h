@@ -7,6 +7,7 @@
 #include "VehicleManager.h"
 #include "XApplication.h"
 #include <QObject>
+
 class HMIQmlGlobal : public Tool
 {
     Q_OBJECT
@@ -17,7 +18,7 @@ public:
     Q_PROPERTY(VehicleManager* vehicleManager READ vehicleManager CONSTANT)
     Q_PROPERTY(SettingsManager* settingsManager READ settingsManager CONSTANT)
     Q_PROPERTY(QString appName READ appName CONSTANT)
-
+    Q_PROPERTY(QString hmiVersion READ hmiVersion CONSTANT)
     Q_PROPERTY(qreal zOrderTopMost READ zOrderTopMost CONSTANT) ///< z order for top most items, toolbar, main window sub view
 
     // Property accesors
@@ -29,10 +30,15 @@ public:
 
     qreal zOrderTopMost() const { return 1000; }
 
+    QString hmiVersion() const
+    {
+        QString versionStr = XApp()->applicationVersion();
+        return versionStr;
+    }
+
 private:
     VehicleManager*  _vehicleManager  = nullptr;
     SettingsManager* _settingsManager = nullptr;
-    qreal            m_zOrderTopMost;
 };
 
 #endif // HMIQMLGLOBAL_H

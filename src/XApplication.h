@@ -25,7 +25,9 @@ public:
     void                 _initForAppBoot(); ///< 初始化
     void                 _initCommon();
     QQuickItem*          mainRootWindow();
-    uint64_t             msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
+
+    void     setLanguage();
+    uint64_t msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
 
     /// Shutdown the application object
     void _shutdown();
@@ -40,6 +42,8 @@ private:
     QDialog*      dlg             = nullptr;
 
     QQmlApplicationEngine* _qmlAppEngine = nullptr;
+
+    QLocale _locale;
 };
 
 XApplication* XApp(void);
