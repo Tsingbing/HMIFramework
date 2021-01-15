@@ -42,12 +42,13 @@ HMIViewDialog {
     HMIPalette { id: hmiPal; colorGroupEnabled: true }
 
     function accept() {
-        if (bitmaskColumn.visible && !manualEntry.checked) {
+/*        if (bitmaskColumn.visible && !manualEntry.checked) {
             fact.value = bitmaskValue();
             fact.valueChanged(fact.value)
             valueChanged()
             hideDialog();
-        } else if (factCombo.visible && !manualEntry.checked) {
+        } else*/
+        if (factCombo.visible && !manualEntry.checked) {
             fact.enumIndex = factCombo.currentIndex
             valueChanged()
             hideDialog()
@@ -273,15 +274,15 @@ HMIViewDialog {
             }
 
             // Checkbox to allow manual entry of enumerated or bitmask parameters
-            HMICheckBox {
-                id:         manualEntry
-                visible:    _advanced.checked && (factCombo.visible || bitmaskColumn.visible)
-                text:       qsTr("Manual Entry")
+//            HMICheckBox {
+//                id:         manualEntry
+//                visible:    _advanced.checked && (factCombo.visible || bitmaskColumn.visible)
+//                text:       qsTr("Manual Entry")
 
-                onClicked: {
-                    valueField.text = fact.valueString
-                }
-            }
+//                onClicked: {
+//                    valueField.text = fact.valueString
+//                }
+//            }
 
 //            HMIButton {
 //                text:           qsTr("Set RC to Param...")

@@ -42,6 +42,7 @@ public:
     ValueType_t type(void) const { return _type; }
     QString     name(void) const { return _name; }
     QString     shortDescription(void) const { return _shortDescription; }
+    QString     longDescription(void) const { return _longDescription; }
     QString     rawUnits(void) const { return _rawUnits; }
     QVariant    rawMax(void) const { return _rawMax; }
     QVariant    rawMin(void) const { return _rawMin; }
@@ -60,6 +61,7 @@ public:
     void addEnumInfo(const QString& name, const QVariant& value);
     void setName(const QString& name) { _name = name; }
     void setShortDescription(const QString& shortDescription) { _shortDescription = shortDescription; }
+    void setLongDescription(const QString& longDescription) { _longDescription = longDescription; }
     void setRawUnits(const QString& rawUnits) { _rawUnits = rawUnits; }
     void setRawMax(const QVariant& rawMax);
     void setRawMin(const QVariant& rawMin);
@@ -73,6 +75,9 @@ public:
     ///     @参数 errorString: 如果转换失败，将显示错误字符串，因为用户可见，所以值是处理后的值
     /// @returns false：转换失败，赋值errorString
     bool convertAndValidateRaw(const QVariant& rawValue, bool convertOnly, QVariant& typedValue, QString& errorString);
+
+    /// Same as convertAndValidateRaw except for cookedValue input
+    bool convertAndValidateCooked(const QVariant& cookedValue, bool convertOnly, QVariant& typedValue, QString& errorString);
 
     static const int kDefaultDecimalPlaces = 3;  ///< Default value for decimal places if not specified/known
     static const int kUnknownDecimalPlaces = -1; ///< Number of decimal places to specify is not known
@@ -92,6 +97,7 @@ private:
     ValueType_t  _type;                  ///< must be first for correct constructor init
     QString      _name;                  ///< 名称
     QString      _shortDescription;      ///< 简介
+    QString      _longDescription;       ///< 详细介绍
     QString      _rawUnits;              ///< 原始值单位
     QVariant     _rawMax;                ///< 原始值最大值
     QVariant     _rawMin;                ///< 原始值最小值
@@ -104,6 +110,7 @@ private:
     static const char* _typeJsonKey;
     static const char* _nameJsonKey;
     static const char* _shortDescriptionJsonKey;
+    static const char* _longDescriptionJsonKey;
     static const char* _unitsJsonKey;
     static const char* _minJsonKey;
     static const char* _maxJsonKey;

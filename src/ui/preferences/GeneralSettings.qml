@@ -6,7 +6,6 @@ import QtQuick.Layouts          1.2
 
 import HMI                       1.0
 import HMI.FactSystem            1.0
-//import HMI.FactControls          1.0
 import HMI.Controls              1.0
 import HMI.ScreenTools           1.0
 //import HMI.MultiVehicleManager   1.0
@@ -14,6 +13,7 @@ import HMI.Palette               1.0
 //import HMI.Controllers           1.0
 import HMI.SettingsManager       1.0
 import HMI.FactControls          1.0
+
 Rectangle {
     id:                 _root
     color:              hmiPal.window
@@ -122,11 +122,6 @@ Rectangle {
                                         horizontalAlignment:    Text.AlignHCenter
                                         anchors.verticalCenter: parent.verticalCenter
                                     }
-                                    FactTextField {
-                                        //Width:  ScreenTools.defaultFontPixelWidth * 12
-                                        fact:                   HMI.settingsManager.appSettings.appFontPointSize
-                                        visible:                true
-                                    }
 
                                     HMIButton {
                                         width:                  height
@@ -144,6 +139,8 @@ Rectangle {
                             }
                         }
                     }
+
+
 
                     Item {
                         id:                 miscColItem
@@ -236,13 +233,22 @@ Rectangle {
                         anchors.horizontalCenter:   parent.horizontalCenter
 
                         HMILabel {
-                            text:           qsTr("一人我饮酒醉醉醉醉醉醉醉醉醉醉把那家人成双对")
+                            text:           qsTr("一人我饮酒醉醉醉醉醉醉醉醉醉醉把那乐乐成双对")
                             visible:        true
                         }
                     }
                 }
 
                 Item { width: 1; height: _margins }
+
+                FactTextField {
+                    //Width:  ScreenTools.defaultFontPixelWidth * 12
+                    fact:                   HMI.settingsManager.appSettings.appFontPointSize
+                    Layout.alignment:   Qt.AlignHCenter
+                    visible:                true
+                }
+
+                Item { width: 1; height: _margins * 6 }
 
                 HMILabel {
                     text:               qsTr("%1 Version").arg(HMI.appName)

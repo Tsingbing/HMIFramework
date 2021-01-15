@@ -33,6 +33,24 @@ Fact::Fact(FactMetaData* metaData, QObject* parent)
     setMetaData(metaData, true /* setDefaultFromMetaData */);
 }
 
+QString Fact::validate(const QString& cookedValue, bool convertOnly)
+{
+    if (_metaData)
+    {
+        QVariant typedValue;
+        QString  errorString;
+
+        _metaData->convertAndValidateCooked(cookedValue, convertOnly, typedValue, errorString);
+
+        return errorString;
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return QString("Internal error: Meta data pointer missing");
+    }
+}
+
 QString Fact::name() const
 {
     return _name;
@@ -48,6 +66,19 @@ QString Fact::shortDescription() const
     if (_metaData)
     {
         return _metaData->shortDescription();
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return QString();
+    }
+}
+
+QString Fact::longDescription() const
+{
+    if (_metaData)
+    {
+        return _metaData->longDescription();
     }
     else
     {

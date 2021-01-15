@@ -32,10 +32,9 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        console.info(globals._appFontPointSize.value)
-        console.info(globals.languageFact.enumStrings)
+        //console.info(globals._appFontPointSize.value)
+        //console.info(globals.languageFact.enumStrings)
     }
-
 
     property var                _rgPreventViewSwitch:       [ false ]
     readonly property real      _topBottomMargins:          ScreenTools.defaultFontPixelHeight * 0.5
@@ -92,11 +91,17 @@ ApplicationWindow {
         setupWindow.visible     = false
         analyzeWindow.visible   = false
         flyView.visible  = false
+        planView.visible  = false
     }
 
     function showFlyView() {
         viewSwitch()
         flyView.visible = true
+    }
+
+    function showPlanView() {
+        viewSwitch()
+        planView.visible = true
     }
 
     function showAnalyzeView() {
@@ -232,14 +237,21 @@ ApplicationWindow {
 
 
     //-------------------------------------------------------------------------
-    /// Plan View
+    /// fly View
     Loader {
         id:             flyView
         anchors.fill:   parent
         visible:        false
+        source:         "FlyView.qml"
+    }
+    //-------------------------------------------------------------------------
+    /// Plan View
+    Loader {
+        id:             planView
+        anchors.fill:   parent
+        visible:        false
         source:         "PlanView.qml"
     }
-
     //-------------------------------------------------------------------------
     /// Settings
     Loader {

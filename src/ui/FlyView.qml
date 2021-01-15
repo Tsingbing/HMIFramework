@@ -37,7 +37,6 @@ Rectangle {
         //__rightPanel.source = QGroundControl.corePlugin.settingsPages[QGroundControl.corePlugin.defaultSettings].url
     }
 
-
     HMIFlickable {
         id:                 buttonList
         width:              buttonColumn.width
@@ -50,7 +49,7 @@ Rectangle {
         flickableDirection: Flickable.VerticalFlick
         clip:               true
 
-
+        ExclusiveGroup { id: panelActionGroup }
 
         ColumnLayout {
             id:         buttonColumn
@@ -60,44 +59,38 @@ Rectangle {
 
             HMILabel {
                 Layout.fillWidth:       true
-                text:                   qsTr("Application Settings")
+                text:                   qsTr("FlyView")
                 wrapMode:               Text.WordWrap
                 horizontalAlignment:    Text.AlignHCenter
                 visible:                true
             }
-            ExclusiveGroup { id: panelActionGroup }
 
-            Repeater {
-                model: ListModel {
-                    ListElement{title: "Gerneral"; url: "GeneralSettings.qml"}
-                    ListElement{title: "Help"; url: "HelpSettings.qml"}
-                }
+//            Repeater {
+//                model:  QGroundControl.corePlugin.settingsPages
+//                HMIButton {
+//                    height:             _buttonHeight
+//                    text:               modelData.title
+//                    exclusiveGroup:     panelActionGroup
+//                    Layout.fillWidth:   true
 
-                HMIButton {
-                    height:             _buttonHeight
-                    text:               title
-                    exclusiveGroup:     panelActionGroup
-                    Layout.fillWidth:   true
+//                    onClicked: {
+//                        if (mainWindow.preventViewSwitch()) {
+//                            return
+//                        }
+//                        if (__rightPanel.source !== modelData.url) {
+//                            __rightPanel.source = modelData.url
+//                        }
+//                        checked = true
+//                    }
 
-                    onClicked: {
-                        if (mainWindow.preventViewSwitch()) {
-                            return
-                        }
-                        if (__rightPanel.source !== url) {
-                            __rightPanel.source = url
-                        }
-                        checked = true
-
-                    }
-
-                    Component.onCompleted: {
-                        if(_first) {
-                            _first = false
-                            checked = true
-                        }
-                    }
-                }
-            }
+//                    Component.onCompleted: {
+//                        if(_first) {
+//                            _first = false
+//                            checked = true
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 

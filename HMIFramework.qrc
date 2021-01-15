@@ -59,6 +59,7 @@
         <file alias="HMI/FactControls/qmldir">src/QmlControls/HMI/FactControls/qmldir</file>
         <file alias="HMI/Controls/ParameterEditorDialog.qml">src/QmlControls/ParameterEditorDialog.qml</file>
         <file alias="HMI/FactControls/FactComboBox.qml">src/factsystem/FactControls/FactComboBox.qml</file>
+        <file alias="FlyView.qml">src/ui/FlyView.qml</file>
     </qresource>
     <qresource prefix="/toolbar">
         <file alias="MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>

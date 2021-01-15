@@ -98,10 +98,8 @@ QQuickItem* XApplication::mainRootWindow()
 
 void XApplication::setLanguage()
 {
-    _locale = QLocale::system();
-    qDebug() << "System reported locale:" << _locale << _locale.name();
+    _locale    = QLocale::system();
     int langID = toolbox()->settingsManager()->appSettings()->language()->rawValue().toInt();
-    qDebug() << "System language()->rawValue():" << langID;
 }
 
 QObject* XApplication::_rootQmlObject()

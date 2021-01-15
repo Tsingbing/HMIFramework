@@ -102,9 +102,9 @@ Item {
                     //text: "设置"
                     icon.source:        "/qmlimages/Gears.svg"
                     onClicked: {
-                        //                        if (mainWindow.preventViewSwitch()) {
-                        //                            return
-                        //                        }
+                        if (mainWindow.preventViewSwitch()) {
+                            return
+                        }
                         buttonRow.clearAllChecks()
                         checked = true
                         mainWindow.showSetupView()
@@ -117,9 +117,9 @@ Item {
                     Layout.fillHeight:  true
                     icon.source:        "/qmlimages/Plan.svg"
                     onClicked: {
-                        //                        if (mainWindow.preventViewSwitch()) {
-                        //                            return
-                        //                        }
+                        if (mainWindow.preventViewSwitch()) {
+                            return
+                        }
                         buttonRow.clearAllChecks()
                         checked = true
                         mainWindow.showPlanView()
@@ -131,9 +131,9 @@ Item {
                     Layout.fillHeight:  true
                     icon.source:        "/qmlimages/PaperPlane.svg"
                     onClicked: {
-                        //                        if (mainWindow.preventViewSwitch()) {
-                        //                            return
-                        //                        }
+                        if (mainWindow.preventViewSwitch()) {
+                            return
+                        }
                         buttonRow.clearAllChecks()
                         checked = true
                         mainWindow.showFlyView()
@@ -149,9 +149,9 @@ Item {
                     icon.source:        "/qmlimages/Analyze.svg"
                     visible:            true
                     onClicked: {
-                        //                        if (mainWindow.preventViewSwitch()) {
-                        //                            return
-                        //                        }
+                        if (mainWindow.preventViewSwitch()) {
+                            return
+                        }
                         buttonRow.clearAllChecks()
                         checked = true
                         mainWindow.showAnalyzeView()

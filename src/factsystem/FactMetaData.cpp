@@ -12,6 +12,7 @@ const char* FactMetaData::_decimalPlacesJsonKey    = "decimalPlaces";
 const char* FactMetaData::_nameJsonKey             = "name";
 const char* FactMetaData::_typeJsonKey             = "type";
 const char* FactMetaData::_shortDescriptionJsonKey = "shortDesc";
+const char* FactMetaData::_longDescriptionJsonKey  = "longDesc";
 const char* FactMetaData::_unitsJsonKey            = "units";
 const char* FactMetaData::_defaultValueJsonKey     = "default";
 const char* FactMetaData::_minJsonKey              = "min";
@@ -133,6 +134,7 @@ FactMetaData* FactMetaData::createFromJsonObject(const QJsonObject& json, QMap<Q
         {_nameJsonKey, QJsonValue::String, true},
         {_typeJsonKey, QJsonValue::String, true},
         {_shortDescriptionJsonKey, QJsonValue::String, false},
+        {_longDescriptionJsonKey, QJsonValue::String, false},
         {_unitsJsonKey, QJsonValue::String, false},
         {_decimalPlacesJsonKey, QJsonValue::Double, false},
         {_minJsonKey, QJsonValue::Double, false},
@@ -186,6 +188,7 @@ FactMetaData* FactMetaData::createFromJsonObject(const QJsonObject& json, QMap<Q
 
     metaData->setDecimalPlaces(json[ _decimalPlacesJsonKey ].toInt(0));
     metaData->setShortDescription(json[ _shortDescriptionJsonKey ].toString());
+    metaData->setLongDescription(json[ _longDescriptionJsonKey ].toString());
 
     if (json.contains(_unitsJsonKey))
     {
@@ -404,6 +407,101 @@ bool FactMetaData::convertAndValidateRaw(const QVariant& rawValue, bool convertO
             convertOk  = true;
             typedValue = QVariant(rawValue.toBool());
             break;
+    }
+
+    if (!convertOk)
+    {
+        errorString += tr("Invalid number");
+    }
+
+    return convertOk && errorString.isEmpty();
+}
+
+bool FactMetaData::convertAndValidateCooked(const QVariant& cookedValue, bool convertOnly, QVariant& typedValue, QString& errorString)
+{
+    bool convertOk = false;
+
+    errorString.clear();
+
+    switch (type())
+    {
+        case FactMetaData::valueTypeInt8:
+        case FactMetaData::valueTypeInt16:
+        case FactMetaData::valueTypeInt32:
+            typedValue = QVariant(cookedValue.toInt(&convertOk));
+            if (!convertOnly && convertOk)
+            {
+                if (cookedMin() > typedValue || typedValue > cookedMax())
+                {
+                    errorString = tr("Value must be within %1 and %2").arg(cookedMin().toInt()).arg(cookedMax().toInt());
+                }
+            }
+            break;
+        case FactMetaData::valueTypeInt64:
+            typedValue = QVariant(cookedValue.toLongLong(&convertOk));
+            if (!convertOnly && convertOk)
+            {
+                if (cookedMin() > typedValue || typedValue > cookedMax())
+                {
+                    errorString = tr("Value must be within %1 and %2").arg(cookedMin().toInt()).arg(cookedMax().toInt());
+                }
+            }
+            break;
+        case FactMetaData::valueTypeUint8:
+        case FactMetaData::valueTypeUint16:
+        case FactMetaData::valueTypeUint32:
+            typedValue = QVariant(cookedValue.toUInt(&convertOk));
+            if (!convertOnly && convertOk)
+            {
+                if (cookedMin() > typedValue || typedValue > cookedMax())
+                {
+                    errorString = tr("Value must be within %1 and %2").arg(cookedMin().toUInt()).arg(cookedMax().toUInt());
+                }
+            }
+            break;
+        case FactMetaData::valueTypeUint64:
+            typedValue = QVariant(cookedValue.toULongLong(&convertOk));
+            if (!convertOnly && convertOk)
+            {
+                if (cookedMin() > typedValue || typedValue > cookedMax())
+                {
+                    errorString = tr("Value must be within %1 and %2").arg(cookedMin().toUInt()).arg(cookedMax().toUInt());
+                }
+            }
+            break;
+        case FactMetaData::valueTypeFloat:
+            typedValue = QVariant(cookedValue.toFloat(&convertOk));
+            if (!convertOnly && convertOk)
+            {
+                if (cookedMin() > typedValue || typedValue > cookedMax())
+                {
+                    errorString = tr("Value must be within %1 and %2").arg(cookedMin().toFloat()).arg(cookedMax().toFloat());
+                }
+            }
+            break;
+        //case FactMetaData::valueTypeElapsedTimeInSeconds:
+        case FactMetaData::valueTypeDouble:
+            typedValue = QVariant(cookedValue.toDouble(&convertOk));
+            if (!convertOnly && convertOk)
+            {
+                if (cookedMin() > typedValue || typedValue > cookedMax())
+                {
+                    errorString = tr("Value must be within %1 and %2").arg(cookedMin().toDouble()).arg(cookedMax().toDouble());
+                }
+            }
+            break;
+        case FactMetaData::valueTypeString:
+            convertOk  = true;
+            typedValue = QVariant(cookedValue.toString());
+            break;
+        case FactMetaData::valueTypeBool:
+            convertOk  = true;
+            typedValue = QVariant(cookedValue.toBool());
+            break;
+            //        case FactMetaData::valueTypeCustom:
+            //            convertOk  = true;
+            //            typedValue = QVariant(cookedValue.toByteArray());
+            //            break;
     }
 
     if (!convertOk)

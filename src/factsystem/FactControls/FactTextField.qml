@@ -26,14 +26,14 @@ HMITextField {
 
     onEditingFinished: {
 
-        //var errorString = fact.validate(text, false /* convertOnly */)
-        //if (errorString === "") {
+        var errorString = fact.validate(text, false /* convertOnly */)
+        if (errorString === "") {
             fact.value = text
             _textField.updated()
-        //} else {
-            //_validateString = text
-            //mainWindow.showComponentDialog(validationErrorDialogComponent, qsTr("Invalid Value"), mainWindow.showDialogDefaultWidth, StandardButton.Save | StandardButton.Cancel)
-        //}
+        } else {
+            _validateString = text
+            mainWindow.showComponentDialog(validationErrorDialogComponent, qsTr("Invalid Value"), mainWindow.showDialogDefaultWidth, StandardButton.Save | StandardButton.Cancel)
+        }
     }
 
     onHelpClicked: mainWindow.showComponentDialog(helpDialogComponent, qsTr("Value Details"), mainWindow.showDialogDefaultWidth, StandardButton.Save | StandardButton.Cancel)

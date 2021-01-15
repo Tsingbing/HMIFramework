@@ -38,10 +38,17 @@ public:
     Q_PROPERTY(QStringList enumStrings READ enumStrings NOTIFY enumsChanged)
     Q_PROPERTY(QString enumStringValue READ enumStringValue WRITE setEnumStringValue NOTIFY valueChanged)
     Q_PROPERTY(QVariantList enumValues READ enumValues NOTIFY enumsChanged)
+    Q_PROPERTY(QString longDescription READ longDescription CONSTANT)
+
+    /// @brief Convert and validate value
+    /// @param cookedValue: Value to convert and validate
+    /// @param convertOnly true: validate type conversion only, false: validate against meta data as well
+    Q_INVOKABLE QString validate(const QString& cookedValue, bool convertOnly);
 
     QString                   name(void) const;
     FactMetaData::ValueType_t type(void) const;
     QString                   shortDescription(void) const;
+    QString                   longDescription(void) const;
     int                       decimalPlaces(void) const;
     QVariant                  rawDefaultValue(void) const;
     QVariant                  cookedDefaultValue(void) const;
