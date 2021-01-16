@@ -1,8 +1,7 @@
-QT += core gui
+QT += core gui concurrent
 QT += serialbus
 QT += quick
 QT += qml
-
 QT += svg
 QTPLUGIN += qtvirtualkeyboardplugin
 
@@ -70,8 +69,10 @@ INCLUDEPATH += \
     src/ui
 
 SOURCES += \
+    src/HMILoggingCategory.cc \
     src/HMIPalette.cc \
     src/HMIQmlGlobal.cpp \
+    src/QmlControls/AppMessages.cc \
     src/QmlControls/ScreenToolsController.cc \
     src/Tool.cpp \
     src/Toolbox.cpp \
@@ -97,8 +98,10 @@ SOURCES += \
     src/vehicles/VehicleManager.cpp
 
 HEADERS += \
+    src/HMILoggingCategory.h \
     src/HMIPalette.h \
     src/HMIQmlGlobal.h \
+    src/QmlControls/AppMessages.h \
     src/QmlControls/ScreenToolsController.h \
     src/Tool.h \
     src/Toolbox.h \

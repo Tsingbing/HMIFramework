@@ -182,27 +182,8 @@ ApplicationWindow {
         }
     }
 
-
     //-------------------------------------------------------------------------
     /// Main, full window background
-    //    background: Item {
-    //        id:             rootBackground
-    //        anchors.fill:   parent
-
-    //        Image {
-    //            id: image
-    //            anchors.rightMargin: 0
-    //            anchors.bottomMargin: 1
-    //            anchors.leftMargin: 0
-    //            anchors.topMargin: -1
-    //            anchors.fill: parent
-    //            source: "qrc:/qmlimages/main_set.jpg"
-    //            fillMode: Image.PreserveAspectFit
-    //        }
-    //    }
-
-    //-------------------------------------------------------------------------
-    /// Main, full window background (Fly View)
     background: Item {
         id:             rootBackground
         anchors.fill:   parent

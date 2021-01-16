@@ -1,10 +1,15 @@
-﻿#include <QApplication>
+﻿#include "AppMessages.h"
+#include <QApplication>
 #include <QDebug>
 #include <XApplication.h>
 
 int main(int argc, char* argv[])
 {
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+
+    // install the message handler
+    AppMessages::installHandler();
+
     XApplication* app = new XApplication(argc, argv);
     Q_CHECK_PTR(app);
 

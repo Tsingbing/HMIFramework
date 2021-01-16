@@ -10,6 +10,7 @@ import HMI.ScreenTools 1.0
 import HMI.Controls      1.0
 import HMI.SettingsManager 1.0
 
+
 ApplicationWindow {
     id: window
     visible: true
@@ -25,8 +26,8 @@ ApplicationWindow {
         console.info(globals.activeVehicle.id)
         console.info(globals.activeVehicle.supplyVoltageFact.valueString)
         console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
-       */ console.info(globals._appFontPointSize.value)
-
+        console.info(globals._appFontPointSize.value)
+        */
     }
 
     //-------------------------------------------------------------------------

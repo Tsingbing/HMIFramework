@@ -1,6 +1,7 @@
 ﻿#ifndef XAPPLICATION_H
 #define XAPPLICATION_H
 
+#include "HMILoggingCategory.h"
 #include <QApplication>
 #include <QElapsedTimer>
 #include <QMetaMethod>
@@ -29,6 +30,9 @@ public:
     void     setLanguage();
     uint64_t msecsSinceBoot(void) { return _msecsElapsedTime.elapsed(); }
 
+    /// @brief Returns true if Qt debug output should be logged to a file
+    bool logOutput(void) { return _logOutput; }
+
     /// Shutdown the application object
     void _shutdown();
 
@@ -42,8 +46,8 @@ private:
     QDialog*      dlg             = nullptr;
 
     QQmlApplicationEngine* _qmlAppEngine = nullptr;
-
-    QLocale _locale;
+    bool                   _logOutput    = false; ///< true: Log Qt debug output to file
+    QLocale                _locale;
 };
 
 XApplication* XApp(void);

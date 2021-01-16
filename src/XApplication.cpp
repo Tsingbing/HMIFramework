@@ -1,4 +1,5 @@
 ﻿#include "XApplication.h"
+#include "AppMessages.h"
 #include "Dialog2.h"
 #include "Fact.h"
 #include "FactMetaData.h"
@@ -8,6 +9,7 @@
 #include "Toolbox.h"
 #include <QDebug>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QSettings>
 
 XApplication* XApplication::_app = nullptr;
@@ -65,6 +67,7 @@ void XApplication::_initForAppBoot()
     //QQuick UI 界面显示
     _qmlAppEngine = new QQmlApplicationEngine(this);
     _qmlAppEngine->addImportPath("qrc:/qml");
+    _qmlAppEngine->rootContext()->setContextProperty("debugMessageModel", AppMessages::getModel());
     _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow1.qml")));
 
     //QWidget UI 界面显示

@@ -50,8 +50,6 @@ Rectangle {
         flickableDirection: Flickable.VerticalFlick
         clip:               true
 
-
-
         ColumnLayout {
             id:         buttonColumn
             spacing:    _verticalMargin
@@ -70,7 +68,9 @@ Rectangle {
             Repeater {
                 model: ListModel {
                     ListElement{title: "Gerneral"; url: "GeneralSettings.qml"}
+                    ListElement{title: "Console"; url: "qrc:/qml/HMI/Controls/AppMessages.qml"}
                     ListElement{title: "Help"; url: "HelpSettings.qml"}
+
                 }
 
                 HMIButton {
