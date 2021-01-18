@@ -21,6 +21,9 @@ public:
     XApplication(int& argc, char* argv[]);
     ~XApplication();
 
+    /// Show a non-modal message to the user
+    void showMessage(const QString& message);
+
     static XApplication* _app; ///< 单例，直接被XApp()返回引用。
     Toolbox*             toolbox(void) { return _toolbox; }
     void                 _initForAppBoot(); ///< 初始化

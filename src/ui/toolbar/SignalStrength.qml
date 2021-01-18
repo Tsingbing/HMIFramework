@@ -2,7 +2,7 @@
  *
  * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
- * QGroundControl is licensed according to the terms in the file
+ * HMI is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
  *
  ****************************************************************************/
@@ -10,14 +10,14 @@
 
 /**
  * @file
- *   @brief QGC Main Tool Signal Strength
+ *   @brief HMI Main Tool Signal Strength
  *   @author Gus Grubba <gus@auterion.com>
  */
 
 import QtQuick 2.3
 
-import QGroundControl.Controls  1.0
-import QGroundControl.Palette   1.0
+import HMI.Controls  1.0
+import HMI.Palette   1.0
 
 Item {
     id:     signalRoot
@@ -27,7 +27,7 @@ Item {
     property real size:     50
     property real percent:  0
 
-    QGCPalette { id: qgcPal }
+    HMIPalette { id: qgcPal }
 
     function getIcon() {
         if (percent < 20)
@@ -43,7 +43,7 @@ Item {
         return "/qmlimages/Signal100.svg"
     }
 
-    QGCColoredImage {
+    HMIColoredImage {
         source:             getIcon()
         fillMode:           Image.PreserveAspectFit
         anchors.fill:       parent

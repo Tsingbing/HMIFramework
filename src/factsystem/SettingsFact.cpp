@@ -24,7 +24,6 @@ SettingsFact::SettingsFact(QString settingsGroup, FactMetaData* metaData, QObjec
     if (metaData->defaultValueAvailable())
     {
         QVariant rawDefaultValue = metaData->rawDefaultValue();
-
         if (_visible)
         {
             QVariant typedValue;
@@ -53,6 +52,6 @@ void SettingsFact::_rawValueChanged(QVariant value)
     }
 
     settings.setValue(_name, value);
-
+    //emit rawValueChanged();
     //qDebug() << "SettingsFact::_rawValueChanged";
 }

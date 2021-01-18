@@ -1,2 +1,14 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/res">
+        <file alias="ArrowDown.svg">resources/ArrowDown.svg</file>
+        <file alias="ArrowRight.svg">resources/ArrowRight.svg</file>
+        <file alias="camera.svg">resources/camera.svg</file>
+        <file alias="cancel.svg">resources/cancel.svg</file>
+        <file alias="check.svg">resources/check.svg</file>
+        <file alias="gear-black.svg">resources/gear-black.svg</file>
+        <file alias="gear-white.svg">resources/gear-white.svg</file>
+        <file alias="TrashDelete.svg">resources/TrashDelete.svg</file>
+        <file alias="XDelete.svg">resources/XDelete.svg</file>
+        <file alias="XDeleteBlack.svg">resources/XDeleteBlack.svg</file>
+    </qresource>
+</RCC>

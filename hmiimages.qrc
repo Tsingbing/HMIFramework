@@ -11,5 +11,23 @@
         <file alias="Plan.svg">src/ui/toolbar/images/Plan.svg</file>
         <file alias="arrow-down.png">src/QmlControls/arrow-down.png</file>
         <file alias="checkbox-check.svg">src/QmlControls/checkbox-check.svg</file>
+        <file alias="Armed.svg">src/ui/toolbar/images/Armed.svg</file>
+        <file alias="Battery.svg">src/ui/toolbar/images/Battery.svg</file>
+        <file alias="Connect.svg">src/ui/toolbar/images/Connect.svg</file>
+        <file alias="Disarmed.svg">src/ui/toolbar/images/Disarmed.svg</file>
+        <file alias="Disconnect.svg">src/ui/toolbar/images/Disconnect.svg</file>
+        <file alias="Gps.svg">src/ui/toolbar/images/Gps.svg</file>
+        <file alias="Hamburger.svg">src/ui/toolbar/images/Hamburger.svg</file>
+        <file alias="Megaphone.svg">src/ui/toolbar/images/Megaphone.svg</file>
+        <file alias="roi.svg">src/ui/toolbar/images/roi.svg</file>
+        <file alias="RTK.svg">src/ui/toolbar/images/RTK.svg</file>
+        <file alias="Signal0.svg">src/ui/toolbar/images/Signal0.svg</file>
+        <file alias="Signal20.svg">src/ui/toolbar/images/Signal20.svg</file>
+        <file alias="Signal40.svg">src/ui/toolbar/images/Signal40.svg</file>
+        <file alias="Signal60.svg">src/ui/toolbar/images/Signal60.svg</file>
+        <file alias="Signal80.svg">src/ui/toolbar/images/Signal80.svg</file>
+        <file alias="Signal100.svg">src/ui/toolbar/images/Signal100.svg</file>
+        <file alias="Yield.svg">src/ui/toolbar/images/Yield.svg</file>
+
     </qresource>
 </RCC>

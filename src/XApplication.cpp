@@ -62,6 +62,26 @@ XApplication::~XApplication()
     _app = nullptr;
 }
 
+void XApplication::showMessage(const QString& message)
+{
+    // PreArm messages are handled by Vehicle and shown in Map
+    if (message.startsWith(QStringLiteral("PreArm")) || message.startsWith(QStringLiteral("preflight"), Qt::CaseInsensitive))
+    {
+        return;
+    }
+    QObject* rootQmlObject = _rootQmlObject();
+    if (rootQmlObject)
+    {
+        QVariant varReturn;
+        QVariant varMessage = QVariant::fromValue(message);
+        QMetaObject::invokeMethod(_rootQmlObject(), "showMessage", Q_RETURN_ARG(QVariant, varReturn), Q_ARG(QVariant, varMessage));
+    }
+    else
+    {
+        qWarning() << "Internal error";
+    }
+}
+
 void XApplication::_initForAppBoot()
 {
     //QQuick UI 界面显示
@@ -69,7 +89,6 @@ void XApplication::_initForAppBoot()
     _qmlAppEngine->addImportPath("qrc:/qml");
     _qmlAppEngine->rootContext()->setContextProperty("debugMessageModel", AppMessages::getModel());
     _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow1.qml")));
-
     //QWidget UI 界面显示
     //    dlg = new Dialog2();
     //    Q_CHECK_PTR(dlg);

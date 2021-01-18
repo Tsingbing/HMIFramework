@@ -3,7 +3,7 @@
 
 bool CanLink::Connect()
 {
-    qDebug() << "CONNECT CALLED";
+    //qDebug() << "CONNECT CALLED";
     Disconnect();
 
     QCanBusDevice::CanBusError error;
@@ -27,7 +27,7 @@ void CanLink::Disconnect()
 
 CanLink::CanLink() {}
 
-void CanLink::writeCanFrame(const QCanBusFrame &frame)
+void CanLink::writeCanFrame(const QCanBusFrame& frame)
 {
     if (!_port)
         return;
@@ -51,7 +51,7 @@ void CanLink::_readBytes()
 ///     @param[out] error if failed
 ///     @param[out] error string if failed
 /// @return success/fail
-bool CanLink::_hardwareConnect(QCanBusDevice::CanBusError &error, QString &errorString)
+bool CanLink::_hardwareConnect(QCanBusDevice::CanBusError& error, QString& errorString)
 {
     _port = QCanBus::instance()->createDevice(QStringLiteral("socketcan"), QStringLiteral("can0"),
                                               &errorString);

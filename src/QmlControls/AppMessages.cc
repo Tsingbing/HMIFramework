@@ -113,7 +113,7 @@ void AppLogModel::threadsafeLog(const QString message)
             _logFile.setFileName(saveFilePath);
             if (!_logFile.open(QIODevice::WriteOnly | QIODevice::Text))
             {
-                //XApp()->showMessage(tr("Open console log output file failed %1 : %2").arg(_logFile.fileName()).arg(_logFile.errorString()));
+                XApp()->showMessage(tr("Open console log output file failed %1 : %2").arg(_logFile.fileName()).arg(_logFile.errorString()));
             }
         }
     }

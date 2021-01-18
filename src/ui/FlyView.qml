@@ -18,8 +18,9 @@ import HMI.Controls      1.0
 import HMI.ScreenTools   1.0
 
 Rectangle {
-    id:     settingsView
-    color:  hmiPal.window
+    id:     flyView
+    color:  "#66B660"
+    anchors.fill: parent
     z:      HMI.zOrderTopMost
 
     readonly property real _defaultTextHeight:  ScreenTools.defaultFontPixelHeight
@@ -37,86 +38,51 @@ Rectangle {
         //__rightPanel.source = QGroundControl.corePlugin.settingsPages[QGroundControl.corePlugin.defaultSettings].url
     }
 
-    HMIFlickable {
-        id:                 buttonList
-        width:              buttonColumn.width
-        anchors.topMargin:  _verticalMargin
-        anchors.top:        parent.top
-        anchors.bottom:     parent.bottom
-        anchors.leftMargin: _horizontalMargin
-        anchors.left:       parent.left
-        contentHeight:      buttonColumn.height + _verticalMargin
-        flickableDirection: Flickable.VerticalFlick
-        clip:               true
-
-        ExclusiveGroup { id: panelActionGroup }
-
-        ColumnLayout {
-            id:         buttonColumn
-            spacing:    _verticalMargin
-
-            property real _maxButtonWidth: 0
-
-            HMILabel {
-                Layout.fillWidth:       true
-                text:                   qsTr("FlyView")
-                wrapMode:               Text.WordWrap
-                horizontalAlignment:    Text.AlignHCenter
-                visible:                true
-            }
-
-//            Repeater {
-//                model:  QGroundControl.corePlugin.settingsPages
-//                HMIButton {
-//                    height:             _buttonHeight
-//                    text:               modelData.title
-//                    exclusiveGroup:     panelActionGroup
-//                    Layout.fillWidth:   true
-
-//                    onClicked: {
-//                        if (mainWindow.preventViewSwitch()) {
-//                            return
-//                        }
-//                        if (__rightPanel.source !== modelData.url) {
-//                            __rightPanel.source = modelData.url
-//                        }
-//                        checked = true
-//                    }
-
-//                    Component.onCompleted: {
-//                        if(_first) {
-//                            _first = false
-//                            checked = true
-//                        }
-//                    }
-//                }
-//            }
-        }
-    }
-
     Rectangle {
-        id:                     divider
-        anchors.topMargin:      _verticalMargin
-        anchors.bottomMargin:   _verticalMargin
-        anchors.leftMargin:     _horizontalMargin
-        anchors.left:           buttonList.right
-        anchors.top:            parent.top
-        anchors.bottom:         parent.bottom
-        width:                  1
+        id:                     background
+        anchors.left:           flyView.right
+        anchors.top:            flyView.top
+        anchors.bottom:         flyView.bottom
+        //anchors.right:          flyView.right
+        width:                  800
+
         color:                  hmiPal.windowShade
+            Image {
+                id: image
+                z: 5
+                anchors.fill:   parent
+                source: "qrc:/qmlimages/main_set.jpg"
+                fillMode: Image.PreserveAspectFit
+            }
     }
 
-    //-- Panel Contents
-    Loader {
-        id:                     __rightPanel
-        anchors.leftMargin:     _horizontalMargin
-        anchors.rightMargin:    _horizontalMargin
-        anchors.topMargin:      _verticalMargin
-        anchors.bottomMargin:   _verticalMargin
-        anchors.left:           divider.right
-        anchors.right:          parent.right
-        anchors.top:            parent.top
-        anchors.bottom:         parent.bottom
-    }
+//    HMIFlickable {
+//        id:                 buttonList
+//        width:              buttonColumn.width
+//        anchors.topMargin:  _verticalMargin
+//        anchors.top:        parent.top
+//        anchors.bottom:     parent.bottom
+//        anchors.leftMargin: _horizontalMargin
+//        anchors.left:       parent.left
+//        contentHeight:      buttonColumn.height + _verticalMargin
+//        flickableDirection: Flickable.VerticalFlick
+//        clip:               true
+
+//        ExclusiveGroup { id: panelActionGroup }
+
+//        ColumnLayout {
+//            id:         buttonColumn
+//            spacing:    _verticalMargin
+
+//            property real _maxButtonWidth: 0
+
+//            HMILabel {
+//                Layout.fillWidth:       true
+//                text:                   qsTr("FlyView.qml")
+//                wrapMode:               Text.WordWrap
+//                horizontalAlignment:    Text.AlignHCenter
+//                visible:                true
+//            }
+//        }
+//    }
 }
-

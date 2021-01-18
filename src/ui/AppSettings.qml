@@ -87,7 +87,6 @@ Rectangle {
                             __rightPanel.source = url
                         }
                         checked = true
-
                     }
 
                     Component.onCompleted: {

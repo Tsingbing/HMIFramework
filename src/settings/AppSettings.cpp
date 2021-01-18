@@ -60,7 +60,7 @@ Fact* AppSettings::language()
     if (!_languageFact)
     {
         _languageFact = _createSettingsFact(languageName);
-        qDebug() << _languageFact->enumStrings();
+        //qDebug() << _languageFact->enumStrings();
     }
     return _languageFact;
 }

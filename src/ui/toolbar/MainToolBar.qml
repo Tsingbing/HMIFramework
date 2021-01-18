@@ -24,7 +24,8 @@ Item {
 
     Component.onCompleted: {
         //-- TODO: Get this from the actual state
-        //flyButton.checked = true
+        flyButton.checked = true
+        mainWindow.showFlyView()
     }
 
     /// Bottom single pixel divider
@@ -97,6 +98,23 @@ Item {
                 //                }
 
                 HMIToolBarButton {
+                    id:                 flyButton
+                    Layout.fillHeight:  true
+                    icon.source:        "/qmlimages/PaperPlane.svg"
+                    visible: true
+                    onClicked: {
+                        if (mainWindow.preventViewSwitch()) {
+                            return
+                        }
+                        buttonRow.clearAllChecks()
+                        checked = true
+                        mainWindow.showFlyView()
+
+                    }
+
+
+                }
+                HMIToolBarButton {
                     id:                 setupButton
                     Layout.fillHeight:  true
                     //text: "设置"
@@ -126,22 +144,7 @@ Item {
                     }
                 }
 
-                HMIToolBarButton {
-                    id:                 flyButton
-                    Layout.fillHeight:  true
-                    icon.source:        "/qmlimages/PaperPlane.svg"
-                    onClicked: {
-                        if (mainWindow.preventViewSwitch()) {
-                            return
-                        }
-                        buttonRow.clearAllChecks()
-                        checked = true
-                        mainWindow.showFlyView()
 
-                    }
-
-
-                }
 
                 HMIToolBarButton {
                     id:                 analyzeButton
@@ -164,27 +167,14 @@ Item {
                     visible:            activeVehicle
                 }
 
-                //                Rectangle {
-                //                    Layout.margins:     ScreenTools.defaultFontPixelHeight / 2
-                //                    Layout.fillHeight:  true
-                //                    width:              1
-                //                    color:              hmiPal.text
-                //                    visible:            activeVehicle
-                //                }
-
-                //                Item {
-                //                    Layout.fillHeight:  true
-                //                    width:              ScreenTools.defaultFontPixelWidth / 2
-                //                    visible:            activeVehicle
-                //                }
             }
 
-            //            Loader {
-            //                id:                 toolbarIndicators
-            //                Layout.fillHeight:  true
-            //                source:             "/toolbar/MainToolBarIndicators.qml"
-            //                visible:            activeVehicle && !communicationLost
-            //            }
+//            Loader {
+//                id:                 toolbarIndicators
+//                Layout.fillHeight:  true
+//                source:             "/toolbar/MainToolBarIndicators.qml"
+//                visible:            true
+//            }
         }
     }
 

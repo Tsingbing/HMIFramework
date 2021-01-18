@@ -2,7 +2,7 @@
  *
  * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
- * QGroundControl is licensed according to the terms in the file
+ * HMI is licensed according to the terms in the file
  * COPYING.md in the root of the source code directory.
  *
  ****************************************************************************/
@@ -12,11 +12,11 @@ import QtQuick          2.3
 import QtQuick.Controls 1.2
 import QtQuick.Layouts  1.2
 
-import QGroundControl                       1.0
-import QGroundControl.Controls              1.0
-import QGroundControl.MultiVehicleManager   1.0
-import QGroundControl.ScreenTools           1.0
-import QGroundControl.Palette               1.0
+import HMI                       1.0
+import HMI.Controls              1.0
+//import HMI.MultiVehicleManager   1.0
+import HMI.ScreenTools           1.0
+import HMI.Palette               1.0
 
 //-------------------------------------------------------------------------
 //-- Message Indicator
@@ -57,7 +57,7 @@ Item {
         visible:            activeVehicle && activeVehicle.messageCount > 0 && _isMessageImportant
     }
 
-    QGCColoredImage {
+    HMIColoredImage {
         anchors.fill:       parent
         source:             "/qmlimages/Megaphone.svg"
         sourceSize.height:  height

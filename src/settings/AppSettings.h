@@ -18,15 +18,15 @@ public:
     Q_PROPERTY(QString crashSavePath READ crashSavePath NOTIFY savePathsChanged)
 
 public:
-    Fact*              indoorPalette();
-    static const char* indoorPaletteName;
-    Fact*              appFontPointSize();
-    Fact*              language();
-    QString            crashSavePath();
+    Fact*   indoorPalette();
+    Fact*   appFontPointSize();
+    Fact*   language();
+    QString crashSavePath();
 
     static const char* name;
     static const char* settingsGroup;
     static const char* appFontPointSizeName;
+    static const char* indoorPaletteName;
     static const char* languageName;
 
     // Child directories of savePath for specific file types

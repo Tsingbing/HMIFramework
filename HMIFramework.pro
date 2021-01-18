@@ -138,7 +138,8 @@ else: unix:!android: target.path = /home/root/client
 
 RESOURCES += \
     HMIFramework.qrc \
-    hmiimages.qrc
+    hmiimages.qrc \
+    hmiresources.qrc
 
 QML_IMPORT_PATH += $$PWD/src/QmlControls
 

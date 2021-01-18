@@ -378,6 +378,7 @@ void Fact::setRawValue(const QVariant& value)
                 //-- Must be in this order
                 // emit _containerRawValueChanged(rawValue());
                 emit rawValueChanged(_rawValue);
+                qDebug() << "setRawValue";
             }
         }
     }

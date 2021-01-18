@@ -19,10 +19,10 @@
 },
 {
     "name":             "savePath",
-    "shortDescription": "Application save directory",
-    "longDescription":  "Directory to which all data files  are saved/loaded from",
+    "shortDesc":        "Application save directory",
+    "longDesc":         "Directory to which all data files  are saved/loaded from",
     "type":             "string",
-    "defaultValue":     ""
+    "default":          ""
 },
 {
     "name":             "indoorPalette",
@@ -31,6 +31,6 @@
     "type":             "uint32",
     "enumStrings":      "Day,Night",
     "enumValues":       "0,1",
-    "defaultValue":     0
+    "default":          1
 }
 ]
