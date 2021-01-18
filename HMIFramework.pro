@@ -2,8 +2,11 @@ QT += core gui concurrent
 QT += serialbus
 QT += quick
 QT += qml
-QT += svg
-QTPLUGIN += qtvirtualkeyboardplugin
+
+static {
+    QT += svg
+    QTPLUGIN += qtvirtualkeyboardplugin
+}
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

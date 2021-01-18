@@ -20,25 +20,7 @@ Page {
         width: 800
         height: 600
         fillMode: Image.PreserveAspectFit
-        source: "qrc:/qmlimages/zcwjj3/page1.png"
-
-        Label {
-            id: label
-            x: 340
-            y: 47
-            width: 120
-            height: 51
-            color: "#1c75ce"
-            text: qsTr("主参数")
-            font.pointSize: ScreenTools.largeFontPointSize
-        }
-
-        Switch {
-            id: element
-            x: 673
-            y: 552
-            text: qsTr("Switch")
-        }
+        source: "qrc:/qmlimages/zcwjj3/page1.jpg"
 
         FactTextField {
             id: textEdit

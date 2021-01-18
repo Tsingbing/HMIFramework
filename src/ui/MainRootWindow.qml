@@ -3,6 +3,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Dialogs  1.3
 import QtQuick.Window 2.12
 import QtQuick.Layouts  1.11
+import QtQuick.VirtualKeyboard 2.4
 
 import HMI 1.0
 import HMI.FactSystem 1.0
@@ -12,7 +13,7 @@ import HMI.SettingsManager 1.0
 
 
 ApplicationWindow {
-    id: window
+    id: mainWindow
     visible: true
     width: 800
     height: 600
@@ -54,6 +55,7 @@ ApplicationWindow {
         }
 
         Page1Form {
+
         }
         Page2Form {
         }
@@ -65,18 +67,52 @@ ApplicationWindow {
 
     footer: HMITabBar{
         id: bar
-        x: 200
+        //x: 200
         height: 98
-        width: parent.width/2
+        width: parent.width
         background: Rectangle
         {
             color : "transparent"	//transparent:透明
         }
         Component.onCompleted: {
-            myModel.append({ "modelText": "消息", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Chat_MsgRecord.svg", "modelSrcG": "qrc:/images/Chat_MsgRecordG.svg"})
-            myModel.append({ "modelText": "联系人", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Chat_FriendManager.svg", "modelSrcG": "qrc:/images/Chat_FriendManagerG.svg"})
-            myModel.append({ "modelText": "发现", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Mobile_Find.svg", "modelSrcG": "qrc:/images/Mobile_FindG.svg"})
-            myModel.append({ "modelText": "我", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Main_P2PChat.svg", "modelSrcG": "qrc:/images/Main_P2PChatG.svg"})
+            myModel.append({ "modelText": " ", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Chat_MsgRecord.svg", "modelSrcG": "qrc:/images/Chat_MsgRecordG.svg"})
+            myModel.append({ "modelText": " ", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Chat_FriendManager.svg", "modelSrcG": "qrc:/images/Chat_FriendManagerG.svg"})
+            myModel.append({ "modelText": " ", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Mobile_Find.svg", "modelSrcG": "qrc:/images/Mobile_FindG.svg"})
+            myModel.append({ "modelText": " ", "modelColor": "#FFFFFF", "modelColorG": "#148014", "modelSrc": "qrc:/images/Main_P2PChat.svg", "modelSrcG": "qrc:/images/Main_P2PChatG.svg"})
+        }
+    }
+
+
+    InputPanel {
+        id: inputPanel
+        z: 99
+        x: (mainWindow.width-inputPanel.width)*0.5
+        y: mainWindow.height
+        width:mainWindow.width
+
+
+        states: State {
+            name: "visible"
+            when: inputPanel.active
+            PropertyChanges {
+                target: inputPanel
+                y: mainWindow.height - inputPanel.height
+            }
+        }
+        transitions: Transition {
+            from: ""
+            to: "visible"
+            reversible: true
+            //设置键盘弹出效果
+            ParallelAnimation {
+                NumberAnimation {
+                    properties: "y"
+                    //过渡时间
+                    duration: 100
+                    //弹出效果
+                    easing.type: Easing.InOutQuad
+                }
+            }
         }
     }
 }

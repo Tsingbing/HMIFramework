@@ -14,14 +14,6 @@ Page {
         width: 800
         height: 600
         fillMode: Image.PreserveAspectFit
-        source: "qrc:/qmlimages/zcwjj3/page3.png"
-
-        Label {
-            x: 303
-            y: 30
-            color: "#1177dd"
-            text: qsTr("You are on Page3.")
-            font.pointSize: 18
-        }
+        source: "qrc:/qmlimages/zcwjj3/page3.jpg"
     }
 }

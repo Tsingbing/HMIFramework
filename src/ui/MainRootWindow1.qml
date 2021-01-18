@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.4
 import QtQuick.Dialogs  1.3
 import QtQuick.Window 2.12
+import QtQuick.VirtualKeyboard 2.4
 
 import HMI 1.0
 import HMI.Palette 1.0
@@ -459,7 +460,37 @@ ApplicationWindow {
             indicatorDropdown.currentIndicator = null
         }
     }
+    InputPanel {
+        id: inputPanel
+        z: 99
+        x: (mainWindow.width-inputPanel.width)*0.5
+        y: mainWindow.height
+        width:mainWindow.width
 
+        states: State {
+            name: "visible"
+            when: inputPanel.active
+            PropertyChanges {
+                target: inputPanel
+                y: mainWindow.height - inputPanel.height
+            }
+        }
+        transitions: Transition {
+            from: ""
+            to: "visible"
+            reversible: true
+            //设置键盘弹出效果
+            ParallelAnimation {
+                NumberAnimation {
+                    properties: "y"
+                    //过渡时间
+                    duration: 100
+                    //弹出效果
+                    easing.type: Easing.InOutQuad
+                }
+            }
+        }
+    }
 }
 
 

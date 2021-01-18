@@ -12,16 +12,6 @@ Page {
         x: 0
         y: 0
         fillMode: Image.PreserveAspectFit
-        source: "qrc:/qmlimages/zcwjj3/page4.png"
-
-        Label {
-            x: 271
-            y: 41
-            width: 241
-            color: "#1477da"
-            text: qsTr("You are on Page4.")
-            styleColor: "#11a1e1"
-            font.pointSize: 21
-        }
+        source: "qrc:/qmlimages/zcwjj3/page4.jpg"
     }
 }

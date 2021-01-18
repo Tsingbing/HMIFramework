@@ -10,6 +10,7 @@
 import QtQuick                      2.11
 import QtQuick.Controls             2.4
 import QtQuick.Dialogs              1.3
+import QtQuick.VirtualKeyboard 2.4
 
 import HMI.Controls      1.0
 import HMI.Palette       1.0
@@ -140,5 +141,39 @@ Item {
             property bool acceptAllowed: _acceptButton.visible
             property bool rejectAllowed: _rejectButton.visible
         }
+
+//        InputPanel {
+//            id: inputPanel
+//            z: 99
+//            x: 0
+//            y: parent.height/2
+//            width: parent.width
+
+
+//            states: State {
+//                name: "visible"
+//                when: inputPanel.active
+//                PropertyChanges {
+//                    target: inputPanel
+//                    y: mainWindow.height - inputPanel.height
+//                }
+//            }
+//            transitions: Transition {
+//                from: ""
+//                to: "visible"
+//                reversible: true
+//                //设置键盘弹出效果
+//                ParallelAnimation {
+//                    NumberAnimation {
+//                        properties: "y"
+//                        //过渡时间
+//                        duration: 100
+//                        //弹出效果
+//                        easing.type: Easing.InOutQuad
+//                    }
+//                }
+//            }
+//        }
+
     }
 }

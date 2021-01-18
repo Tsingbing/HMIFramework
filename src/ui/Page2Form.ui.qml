@@ -13,19 +13,6 @@ Page {
 
     title: qsTr("Page 2")
 
-    Component.onCompleted: {
-
-        //mainWindow.showFullScreen()
-
-
-        /* 测试代码
-        globals.activeVehicle.forceArm();
-        console.info(globals.activeVehicle.id)
-        console.info(globals.activeVehicle.supplyVoltageFact.valueString)
-        console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
-        console.info(globals._appFontPointSize.value)*/
-    }
-
     //-------------------------------------------------------------------------
     //-- Global Scope Variables
     QtObject {
@@ -42,54 +29,47 @@ Page {
         x: 0
         y: 0
         fillMode: Image.PreserveAspectFit
-        source: "qrc:/qmlimages/zcwjj3/page2.png"
+        source: "qrc:/qmlimages/zcwjj3/page2.jpg"
 
-        Label {
-            x: 305
-            y: 32
-            width: 205
-            height: 27
-            color: "#106ac4"
-            text: qsTr("You are on Page 2.")
-            font.pointSize: 18
-        }
-
-        HMISwitch {
+        Switch {
             id: element5
-            x: 440
-            y: 140
+            x: 463
+            y: 143
+            height: 30
+            width: 50
             checked: globals._fact ? globals._fact.value : false
             onClicked: globals._fact.value = checked ? 1 : 0
         }
 
-        HMISwitch {
+        Switch {
             id: element
-            x: 440
-            y: 189
+            x: 450
+            y: 190
         }
 
-        HMISwitch {
+        Switch {
             id: element1
-            x: 440
-            y: 241
+            x: 450
+            y: 244
         }
 
-        HMISwitch {
+        Switch {
             id: element2
-            x: 440
-            y: 293
+            x: 451
+            y: 294
         }
 
-        HMISwitch {
+        Switch {
             id: element3
-            x: 440
+            x: 451
             y: 347
         }
 
-        HMISwitch {
+        Switch {
             id: element4
-            x: 440
-            y: 399
+            x: 451
+            y: 401
+            topPadding: 6
         }
     }
 }
