@@ -34,7 +34,7 @@ HMIViewDialog {
     property real   _editFieldWidth:            ScreenTools.defaultFontPixelWidth * 20
     property bool   _longDescriptionAvailable:  fact.longDescription != ""
     //property bool   _editingParameter:          fact.componentId != 0
-    property bool   _allowForceSave:            HMI.corePlugin.showAdvancedUI || !_editingParameter
+    property bool   _allowForceSave:            false//HMI.corePlugin.showAdvancedUI || !_editingParameter
     property bool   _allowDefaultReset:         fact.defaultValueAvailable
 
     //ParameterEditorController { id: controller; }

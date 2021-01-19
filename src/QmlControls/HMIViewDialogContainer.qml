@@ -142,38 +142,6 @@ Item {
             property bool rejectAllowed: _rejectButton.visible
         }
 
-//        InputPanel {
-//            id: inputPanel
-//            z: 99
-//            x: 0
-//            y: parent.height/2
-//            width: parent.width
-
-
-//            states: State {
-//                name: "visible"
-//                when: inputPanel.active
-//                PropertyChanges {
-//                    target: inputPanel
-//                    y: mainWindow.height - inputPanel.height
-//                }
-//            }
-//            transitions: Transition {
-//                from: ""
-//                to: "visible"
-//                reversible: true
-//                //设置键盘弹出效果
-//                ParallelAnimation {
-//                    NumberAnimation {
-//                        properties: "y"
-//                        //过渡时间
-//                        duration: 100
-//                        //弹出效果
-//                        easing.type: Easing.InOutQuad
-//                    }
-//                }
-//            }
-//        }
 
     }
 }

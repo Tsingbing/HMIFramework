@@ -189,6 +189,38 @@ ApplicationWindow {
             mainWindow.popPreventViewSwitch()
             dlgLoader.source = ""
         }
+
+        InputPanel {
+            id: inputPanel
+            z: 99
+            x: parent.width - mainWindow.width
+            y: mainWindow.height
+            width:mainWindow.width
+
+            states: State {
+                name: "visible"
+                when: inputPanel.active
+                PropertyChanges {
+                    target: inputPanel
+                    y: mainWindow.height - inputPanel.height
+                }
+            }
+            transitions: Transition {
+                from: ""
+                to: "visible"
+                reversible: true
+                //设置键盘弹出效果
+                ParallelAnimation {
+                    NumberAnimation {
+                        properties: "y"
+                        //过渡时间
+                        duration: 100
+                        //弹出效果
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+        }
     }
 
     //-------------------------------------------------------------------------
@@ -460,37 +492,37 @@ ApplicationWindow {
             indicatorDropdown.currentIndicator = null
         }
     }
-    InputPanel {
-        id: inputPanel
-        z: 99
-        x: (mainWindow.width-inputPanel.width)*0.5
-        y: mainWindow.height
-        width:mainWindow.width
+//    InputPanel {
+//        id: inputPanel
+//        z: 99
+//        x: (mainWindow.width-inputPanel.width)*0.5
+//        y: mainWindow.height
+//        width:mainWindow.width
 
-        states: State {
-            name: "visible"
-            when: inputPanel.active
-            PropertyChanges {
-                target: inputPanel
-                y: mainWindow.height - inputPanel.height
-            }
-        }
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-            //设置键盘弹出效果
-            ParallelAnimation {
-                NumberAnimation {
-                    properties: "y"
-                    //过渡时间
-                    duration: 100
-                    //弹出效果
-                    easing.type: Easing.InOutQuad
-                }
-            }
-        }
-    }
+//        states: State {
+//            name: "visible"
+//            when: inputPanel.active
+//            PropertyChanges {
+//                target: inputPanel
+//                y: mainWindow.height - inputPanel.height
+//            }
+//        }
+//        transitions: Transition {
+//            from: ""
+//            to: "visible"
+//            reversible: true
+//            //设置键盘弹出效果
+//            ParallelAnimation {
+//                NumberAnimation {
+//                    properties: "y"
+//                    //过渡时间
+//                    duration: 100
+//                    //弹出效果
+//                    easing.type: Easing.InOutQuad
+//                }
+//            }
+//        }
+//    }
 }
 
 

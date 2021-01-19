@@ -12,7 +12,7 @@ HMITextField {
     id: _textField
 
     text:       fact ? fact.valueString : ""
-    //unitsLabel: fact ? fact.units : ""
+    unitsLabel: fact ? fact.units : ""
     showUnits:  true
     showHelp:   true
 
