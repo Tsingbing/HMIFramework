@@ -16,6 +16,7 @@
 
 // Add Global logging categories (not class specific) here using HMI_LOGGING_CATEGORY
 HMI_LOGGING_CATEGORY(CanLog, "CanLog")
+HMI_LOGGING_CATEGORY(LocalizationLog, "LocalizationLog")
 //HMI_LOGGING_CATEGORY(FirmwareUpgradeVerboseLog, "FirmwareUpgradeVerboseLog")
 //HMI_LOGGING_CATEGORY(MissionCommandsLog, "MissionCommandsLog")
 //HMI_LOGGING_CATEGORY(MissionItemLog, "MissionItemLog")

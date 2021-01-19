@@ -8,6 +8,7 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QQuickItem>
+#include <QTranslator>
 
 class QQmlApplicationEngine;
 class Toolbox;
@@ -39,6 +40,9 @@ public:
     /// Shutdown the application object
     void _shutdown();
 
+signals:
+    void languageChanged(const QLocale locale);
+
 private:
     QObject* _rootQmlObject();
 
@@ -51,6 +55,14 @@ private:
     QQmlApplicationEngine* _qmlAppEngine = nullptr;
     bool                   _logOutput    = false; ///< true: Log Qt debug output to file
     QLocale                _locale;
+
+    QTranslator _QGCTranslator;
+    QTranslator _QGCTranslatorQt;
+    QTranslator _QGCTranslatorJson;
+
+    QTranslator _qgcTranslatorSourceCode; ///< translations for source code C++/Qml
+    QTranslator _qgcTranslatorJSON;       ///< translations for json files
+    QTranslator _qgcTranslatorQtLibs;     ///< tranlsations for Qt libraries
 };
 
 XApplication* XApp(void);

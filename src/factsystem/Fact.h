@@ -23,6 +23,7 @@ public:
 
     Q_PROPERTY(QString name READ name CONSTANT)
     Q_PROPERTY(QString shortDescription READ shortDescription CONSTANT)
+    Q_PROPERTY(QString units READ units CONSTANT)
     Q_PROPERTY(QString valueString READ cookedValueString NOTIFY valueChanged)
     Q_PROPERTY(QVariant value READ cookedValue WRITE setCookedValue NOTIFY valueChanged)
     Q_PROPERTY(QVariant rawValue READ rawValue WRITE setRawValue NOTIFY rawValueChanged)

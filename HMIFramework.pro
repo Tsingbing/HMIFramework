@@ -146,6 +146,13 @@ RESOURCES += \
 
 QML_IMPORT_PATH += $$PWD/src/QmlControls
 
-
 DISTFILES += \
     src/QmlControls/HMI/Specific/qmldir
+
+#-------------------------------------------------------------------------------------
+#
+# Localization
+#
+
+TRANSLATIONS += $$files($$PWD/localization/qgc*.ts)
+CONFIG+=lrelease embed_translations

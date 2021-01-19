@@ -78,6 +78,7 @@ QString AppSettings::crashSavePath()
 
 void AppSettings::_languageChanged()
 {
+    XApp()->setLanguage();
 }
 
 void AppSettings::_checkSavePathDirectories()

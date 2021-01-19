@@ -8,6 +8,12 @@
 #include <QJsonParseError>
 #include <QtMath>
 
+static const char* kDefaultCategory = QT_TRANSLATE_NOOP("FactMetaData", "Other");
+static const char* kDefaultGroup    = QT_TRANSLATE_NOOP("FactMetaData", "Misc");
+
+const char* FactMetaData::_jsonMetaDataDefinesName = "QGC.MetaData.Defines";
+const char* FactMetaData::_jsonMetaDataFactsName   = "QGC.MetaData.Facts";
+
 const char* FactMetaData::_decimalPlacesJsonKey    = "decimalPlaces";
 const char* FactMetaData::_nameJsonKey             = "name";
 const char* FactMetaData::_typeJsonKey             = "type";
@@ -78,7 +84,34 @@ QMap<QString, FactMetaData*> FactMetaData::createMapFromJsonFile(const QString& 
 
     QMap<QString /* define name */, QString /* define value */> defineMap;
 
-    if (doc.isArray())
+    //    if (doc.isArray())
+    //    {
+    //        factArray = doc.array();
+    //    }
+    //    else
+    //    {
+    //        qWarning() << "Json document is neither array nor object";
+    //        return metaDataMap;
+    //    }
+
+    if (doc.isObject())
+    {
+        // Check for Defines/Facts format
+        QString                            errorString;
+        QList<JsonHelper::KeyValidateInfo> keyInfoList = {
+            //{FactMetaData::_jsonMetaDataDefinesName, QJsonValue::Object, true},
+            {FactMetaData::_jsonMetaDataFactsName, QJsonValue::Array, true},
+        };
+        if (!JsonHelper::validateKeys(doc.object(), keyInfoList, errorString))
+        {
+            qWarning() << "Json document incorrect format:" << errorString;
+            return metaDataMap;
+        }
+
+        _loadJsonDefines(doc.object()[ FactMetaData::_jsonMetaDataDefinesName ].toObject(), defineMap);
+        factArray = doc.object()[ FactMetaData::_jsonMetaDataFactsName ].toArray();
+    }
+    else if (doc.isArray())
     {
         factArray = doc.array();
     }
@@ -623,4 +656,13 @@ QVariant FactMetaData::_maxForType() const
     }
 
     return QVariant();
+}
+
+void FactMetaData::_loadJsonDefines(const QJsonObject& jsonDefinesObject, QMap<QString, QString>& defineMap)
+{
+    for (const QString& defineName : jsonDefinesObject.keys())
+    {
+        QString mapKey      = _jsonMetaDataDefinesName + QString(".") + defineName;
+        defineMap[ mapKey ] = jsonDefinesObject[ defineName ].toString();
+    }
 }

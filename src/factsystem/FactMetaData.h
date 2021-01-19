@@ -94,6 +94,8 @@ private:
     QVariant _minForType(void) const; ///< 类型最小值
     QVariant _maxForType(void) const; ///< 类型最小值
 
+    static void _loadJsonDefines(const QJsonObject& jsonDefinesObject, QMap<QString, QString>& defineMap);
+
     ValueType_t  _type;                  ///< must be first for correct constructor init
     QString      _name;                  ///< 名称
     QString      _shortDescription;      ///< 简介
@@ -118,6 +120,9 @@ private:
     static const char* _defaultValueJsonKey;
     static const char* _enumStringsJsonKey;
     static const char* _enumValuesJsonKey;
+
+    static const char* _jsonMetaDataDefinesName;
+    static const char* _jsonMetaDataFactsName;
 };
 
 #endif // FACTMETADATA_H

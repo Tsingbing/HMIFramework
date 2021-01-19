@@ -67,9 +67,9 @@ Rectangle {
 
             Repeater {
                 model: ListModel {
-                    ListElement{title: "Gerneral"; url: "GeneralSettings.qml"}
-                    ListElement{title: "Console"; url: "qrc:/qml/HMI/Controls/AppMessages.qml"}
-                    ListElement{title: "Help"; url: "HelpSettings.qml"}
+                    ListElement{title: qsTr("Gerneral"); url: "GeneralSettings.qml"}
+                    ListElement{title: qsTr("Console"); url: "qrc:/qml/HMI/Controls/AppMessages.qml"}
+                    ListElement{title: qsTr("Help"); url: "HelpSettings.qml"}
 
                 }
 
