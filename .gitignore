@@ -13,6 +13,7 @@ X# This file is used to ignore files which are generated
 
 # QRC files
 qrc_**.cpp
+*_qmlcache.qrc
 
 *~
 *.autosave
