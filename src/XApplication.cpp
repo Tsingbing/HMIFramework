@@ -89,7 +89,7 @@ void XApplication::_initForAppBoot()
     _qmlAppEngine = new QQmlApplicationEngine(this);
     _qmlAppEngine->addImportPath("qrc:/qml");
     _qmlAppEngine->rootContext()->setContextProperty("debugMessageModel", AppMessages::getModel());
-    _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow1.qml")));
+    _qmlAppEngine->load(QUrl(QStringLiteral("qrc:/qml/MainRootWindow.qml")));
     //QWidget UI 界面显示
     //    dlg = new Dialog2();
     //    Q_CHECK_PTR(dlg);

@@ -10,7 +10,7 @@ import HMI.FactSystem 1.0
 import HMI.ScreenTools 1.0
 import HMI.Controls      1.0
 import HMI.SettingsManager 1.0
-
+import HMI.Palette 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -18,6 +18,9 @@ ApplicationWindow {
     width: 800
     height: 600
     title: qsTr("Stack")
+    readonly property real      defaultTextHeight:          ScreenTools.defaultFontPixelHeight
+    /// Default color palette used throughout the UI
+    HMIPalette { id: hmiPal; colorGroupEnabled: true }
 
     Component.onCompleted: {
         //mainWindow.showFullScreen()
@@ -29,6 +32,8 @@ ApplicationWindow {
         console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
         console.info(globals._appFontPointSize.value)
         */
+
+        //mainWindow.showMessageDialog(qsTr("Log Replay"), qsTr("xxxxx"))
     }
 
     //-------------------------------------------------------------------------
@@ -55,7 +60,6 @@ ApplicationWindow {
         }
 
         Page1Form {
-
         }
         Page2Form {
         }
@@ -68,7 +72,7 @@ ApplicationWindow {
     footer: HMITabBar{
         id: bar
         //x: 200
-        height: 98
+        height: 90
         width: parent.width
         background: Rectangle
         {
@@ -82,35 +86,122 @@ ApplicationWindow {
         }
     }
 
+    //-------------------------------------------------------------------------
+       //-- Global simple message dialog
 
-    InputPanel {
-        id: inputPanel
-        z: 99
-        x: (mainWindow.width-inputPanel.width)*0.5
-        y: mainWindow.height
-        width:mainWindow.width
+       function showMessageDialog(title, text) {
+           if(simpleMessageDialog.visible) {
+               simpleMessageDialog.close()
+           }
+           simpleMessageDialog.title = title
+           simpleMessageDialog.text  = text
+           simpleMessageDialog.open()
+
+       }
+
+       /// Saves main window position and size
+       MainWindowSavedState {
+           window: mainWindow
+       }
+
+       MessageDialog {
+           id:                 simpleMessageDialog
+           standardButtons:    StandardButton.Ok
+           modality:           Qt.ApplicationModal
+           visible:            false
+       }
 
 
-        states: State {
-            name: "visible"
-            when: inputPanel.active
-            PropertyChanges {
-                target: inputPanel
-                y: mainWindow.height - inputPanel.height
+    //-------------------------------------------------------------------------
+    //-- Global complex dialog
+
+    /// Shows a HMIViewDialogContainer based dialog
+    ///     @param component The dialog contents
+    ///     @param title Title for dialog
+    ///     @param charWidth Width of dialog in characters
+    ///     @param buttons Buttons to show in dialog using StandardButton enum
+
+    readonly property int showDialogFullWidth:      -1  ///< Use for full width dialog
+    readonly property int showDialogDefaultWidth:   40  ///< Use for default dialog width
+
+    function showComponentDialog(component, title, charWidth, buttons) {
+        if (mainWindowDialog.visible) {
+            console.warn(("showComponentDialog called while dialog is already visible"))
+            return
+        }
+        var dialogWidth = charWidth === showDialogFullWidth ? mainWindow.width : ScreenTools.defaultFontPixelWidth * charWidth
+        mainWindowDialog.width = dialogWidth
+        mainWindowDialog.dialogComponent = component
+        mainWindowDialog.dialogTitle = title
+        mainWindowDialog.dialogButtons = buttons
+        //mainWindow.pushPreventViewSwitch()
+        mainWindowDialog.open()
+        if (buttons & StandardButton.Cancel || buttons & StandardButton.Close || buttons & StandardButton.Discard || buttons & StandardButton.Abort || buttons & StandardButton.Ignore) {
+            mainWindowDialog.closePolicy = Popup.NoAutoClose;
+            mainWindowDialog.interactive = false;
+        } else {
+            mainWindowDialog.closePolicy = Popup.CloseOnEscape | Popup.CloseOnPressOutside;
+            mainWindowDialog.interactive = true;
+        }
+    }
+
+    Drawer {
+        id:             mainWindowDialog
+        y:              0
+        height:         mainWindow.height /*- mainWindow.header.height*/
+        edge:           Qt.RightEdge
+        interactive:    false
+
+        background: Rectangle {
+            color:  hmiPal.windowShadeDark
+        }
+        property var    dialogComponent: null
+        property var    dialogButtons: null
+        property string dialogTitle: ""
+        Loader {
+            id:             dlgLoader
+            anchors.fill:   parent
+            onLoaded: {
+                item.setupDialogButtons()
             }
         }
-        transitions: Transition {
-            from: ""
-            to: "visible"
-            reversible: true
-            //设置键盘弹出效果
-            ParallelAnimation {
-                NumberAnimation {
-                    properties: "y"
-                    //过渡时间
-                    duration: 100
-                    //弹出效果
-                    easing.type: Easing.InOutQuad
+        onOpened: {
+            dlgLoader.source = "HMI/Controls/HMIViewDialogContainer.qml"
+        }
+        onClosed: {
+            //console.log("View switch ok")
+            //mainWindow.popPreventViewSwitch()
+            dlgLoader.source = ""
+        }
+
+        InputPanel {
+            id: inputPanel
+            z: 99
+            x: parent.width - mainWindow.width
+            y: mainWindow.height
+            width:mainWindow.width
+
+            states: State {
+                name: "visible"
+                when: inputPanel.active
+                PropertyChanges {
+                    target: inputPanel
+                    y: mainWindow.height - inputPanel.height
+                }
+            }
+            transitions: Transition {
+                from: ""
+                to: "visible"
+                reversible: true
+                //设置键盘弹出效果
+                ParallelAnimation {
+                    NumberAnimation {
+                        properties: "y"
+                        //过渡时间
+                        duration: 100
+                        //弹出效果
+                        easing.type: Easing.InOutQuad
+                    }
                 }
             }
         }

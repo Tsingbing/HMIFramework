@@ -16,13 +16,19 @@ public:
 
     Q_PROPERTY(int id READ id CONSTANT)
     Q_PROPERTY(Fact* supplyVoltageFact READ supplyVoltageFact CONSTANT)
+    Q_PROPERTY(Fact* fuelLevelFact READ fuelLevelFact CONSTANT)
     Q_PROPERTY(Fact* rotatingSpeedFact READ rotatingSpeedFact CONSTANT)
+    Q_PROPERTY(Fact* waterTemperatureFact READ waterTemperatureFact CONSTANT)
+    Q_PROPERTY(Fact* oxygenConcentrationFact READ oxygenConcentrationFact CONSTANT)
+    Q_PROPERTY(Fact* mainPumpPressureFact READ mainPumpPressureFact CONSTANT)
+    Q_PROPERTY(Fact* combustibleGasConcentrationFact READ combustibleGasConcentrationFact CONSTANT)
+    Q_PROPERTY(Fact* ambientTemperaturenFact READ ambientTemperaturenFact CONSTANT)
+    Q_PROPERTY(Fact* xDegreeFact READ xDegreeFact CONSTANT)
+    Q_PROPERTY(Fact* yDegreeFact READ yDegreeFact CONSTANT)
+    Q_PROPERTY(Fact* workHoursFact READ workHoursFact CONSTANT)
+    Q_PROPERTY(Fact* oilTemperatureFact READ oilTemperatureFact CONSTANT)
 
     Q_INVOKABLE void forceArm();
-
-    Fact* carSpeedFact() { return &_carSpeedFact; }
-    Fact* oilPressureFact() { return &_oilPressureFact; }
-    Fact* airPressureFact() { return &_airPressureFact; }
 
     Fact* teleRSSIFact() { return &_teleRSSIFact; }
     Fact* supplyVoltageFact() { return &_supplyVoltageFact; }
@@ -32,17 +38,27 @@ public:
     Fact* mainPumpPressureFact() { return &_mainPumpPressureFact; }
     Fact* oxygenConcentrationFact() { return &_oxygenConcentrationFact; }
     Fact* combustibleGasConcentrationFact() { return &_combustibleGasConcentrationFact; }
-    Fact* AmbientTemperaturenFact() { return &_AmbientTemperaturenFact; }
-    Fact* XDegreeFact() { return &_XDegreeFact; }
-    Fact* YDegreeFact() { return &_YDegreeFact; }
+    Fact* ambientTemperaturenFact() { return &_ambientTemperaturenFact; }
+    Fact* xDegreeFact() { return &_xDegreeFact; }
+    Fact* yDegreeFact() { return &_yDegreeFact; }
     Fact* workHoursFact() { return &_workHoursFact; }
+    Fact* oilTemperatureFact() { return &_oilTemperatureFact; }
 
-    void sendFrontLightSwitch(bool b);
-    void sendBackLightSwitch(bool b);
-    void sendAlarmSwitch(bool b);
-    void sendPoChaiLockSwitch(bool b);
-    void sendWajueLockSwitch(bool b);
-    void sendPoChaiQuickSwitch(bool b);
+    Fact* frontLightFact() { return &_frontLightFact; }
+    Fact* backLightFact() { return &_backLightFact; }
+    Fact* alarmLightFact() { return &_alarmLightFact; }
+    Fact* poChaiLockFact() { return &_poChaiLockFact; }
+    Fact* wajueLockFact() { return &_wajueLockFact; }
+    Fact* poChaiQuickFact() { return &_poChaiQuickFact; }
+
+    Q_INVOKABLE void sendFrontLightSwitch(bool b);
+    Q_INVOKABLE void sendBackLightSwitch(bool b);
+    Q_INVOKABLE void sendAlarmSwitch(bool b);
+    Q_INVOKABLE void sendPoChaiLockSwitch(bool b);
+    Q_INVOKABLE void sendWajueLockSwitch(bool b);
+    Q_INVOKABLE void sendPoChaiQuickSwitch(bool b);
+    Q_INVOKABLE void sendReadControl(bool b);
+    Q_INVOKABLE void sendWriteControl(bool b);
 
     // Property accesors
     int id() { return _id; }
@@ -51,9 +67,9 @@ private slots:
     void _updateAllValues() override;
 
 private:
-    Fact _carSpeedFact;
-    Fact _oilPressureFact;
-    Fact _airPressureFact;
+    void _commonInit();
+
+private:
     Fact _teleRSSIFact;
     Fact _supplyVoltageFact;
     Fact _fuelLevelFact;
@@ -62,16 +78,22 @@ private:
     Fact _mainPumpPressureFact;
     Fact _oxygenConcentrationFact;
     Fact _combustibleGasConcentrationFact;
-    Fact _AmbientTemperaturenFact;
-    Fact _XDegreeFact;
-    Fact _YDegreeFact;
+    Fact _ambientTemperaturenFact;
+    Fact _xDegreeFact;
+    Fact _yDegreeFact;
     Fact _workHoursFact;
+    Fact _oilTemperatureFact;
+
+    QByteArray _switch = QByteArray::fromHex("0000000000000000");
+    Fact       _frontLightFact;
+    Fact       _backLightFact;
+    Fact       _alarmLightFact;
+    Fact       _poChaiLockFact;
+    Fact       _wajueLockFact;
+    Fact       _poChaiQuickFact;
 
     static int testValue;
 
-    static const char* _carSpeedFactName;
-    static const char* _oilPressureFactName;
-    static const char* _airPressureFactName;
     static const char* _teleRSSIFactName;
     static const char* _supplyVoltageFactName;
     static const char* _fuelLevelFactName;
@@ -80,10 +102,18 @@ private:
     static const char* _mainPumpPressureFactName;
     static const char* _oxygenConcentrationFactName;
     static const char* _combustibleGasConcentrationFactName;
-    static const char* _AmbientTemperaturenFactName;
-    static const char* _XDegreeFactName;
-    static const char* _YDegreeFactName;
+    static const char* _ambientTemperaturenFactName;
+    static const char* _xDegreeFactName;
+    static const char* _yDegreeFactName;
     static const char* _workHoursFactName;
+    static const char* _oilTemperatureFactName;
+
+    static const char* _frontLightFactName;
+    static const char* _backLightFactName;
+    static const char* _alarmLightFactName;
+    static const char* _poChaiLockFactName;
+    static const char* _wajueLockFactName;
+    static const char* _poChaiQuickFactName;
 
     static const int _vehicleUIUpdateRateMSecs = 100; //0: 立即刷新
     static const int _id                       = 100;

@@ -1,25 +1,5 @@
 [
     {
-        "name": "carSpeed",
-        "shortDesc": "车速",
-        "type": "uint8",
-        "decimalPlaces": 1,
-        "units": "km/h"
-    },
-    {
-        "name": "oilPressure",
-        "shortDesc": "机油压力",
-        "type": "uint32",
-        "units": "Mpa"
-    },
-    {
-        "name": "airPressure",
-        "shortDesc": "气压",
-        "type": "float",
-        "decimalPlaces": 2,
-        "units": "Mpa"
-    },
-    {
         "name": "teleRSSI",
         "shortDesc": "遥控通信强度",
         "type": "uint8",
@@ -76,20 +56,20 @@
         "units": "%"
     },
     {
-        "name": "AmbientTemperaturen",
+        "name": "ambientTemperaturen",
         "shortDesc": "环境温度",
         "type": "double",
         "decimalPlaces": 2,
         "units": "C"
     },
     {
-        "name": "XDegree",
+        "name": "xDegree",
         "shortDesc": "车辆横向倾角度数",
         "type": "uint8",
         "units": "deg"
     },
     {
-        "name": "YDegree",
+        "name": "yDegree",
         "shortDesc": "车辆纵向倾角度数",
         "type": "uint8",
         "units": "deg"
@@ -99,5 +79,47 @@
         "shortDesc": "车辆工作小时数",
         "type": "uint32",
         "units": "Hours"
+    },
+    {
+        "name": "oilTemperature",
+        "shortDesc": "液压油温度",
+        "type": "uint8",
+        "units": "C"
+    },
+    {
+        "name":             "frontLight",
+        "shortDescription": "前灯",
+        "type":             "bool",
+        "default":          false
+    },
+    {
+        "name":             "backLight",
+        "shortDescription": "前灯",
+        "type":             "bool",
+        "default":          false
+    },
+    {
+        "name":             "alarmLight",
+        "shortDescription": "声光报警灯",
+        "type":             "bool",
+        "default":          false
+    },
+    {
+        "name":             "poChaiLock",
+        "shortDescription": "破拆端锁定机构",
+        "type":             "bool",
+        "default":          false
+    },
+    {
+        "name":             "wajueLock",
+        "shortDescription": "挖掘端锁定机构",
+        "type":             "bool",
+        "default":          false
+    },
+    {
+        "name":             "poChaiQuick",
+        "shortDescription": "破拆端快换机构",
+        "type":             "bool",
+        "default":          false
     }
 ]

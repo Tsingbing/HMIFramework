@@ -37,32 +37,36 @@ Page {
             y: 143
             height: 30
             width: 50
-            checked: globals._fact ? globals._fact.value : false
-            onClicked: globals._fact.value = checked ? 1 : 0
+            checked: globals.frontLightFact ? globals.frontLightFact.value : false
+            onClicked: globals.activeVehicle.sendFrontLightSwitch(checked)
         }
 
         Switch {
             id: element
             x: 450
             y: 190
+            onClicked: globals.activeVehicle.sendBackLightSwitch(checked)
         }
 
         Switch {
             id: element1
             x: 450
             y: 244
+            onClicked: globals.activeVehicle.sendAlarmSwitch(checked)
         }
 
         Switch {
             id: element2
             x: 451
             y: 294
+            onClicked: globals.activeVehicle.sendPoChaiLockSwitch(checked)
         }
 
         Switch {
             id: element3
             x: 451
             y: 347
+            onClicked: globals.activeVehicle.sendWajueLockSwitch(checked)
         }
 
         Switch {
@@ -70,6 +74,7 @@ Page {
             x: 451
             y: 401
             topPadding: 6
+            onClicked: globals.activeVehicle.sendPoChaiQuickSwitch(checked)
         }
     }
 }

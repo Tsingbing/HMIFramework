@@ -26,7 +26,7 @@ TabBar {
             //property alias imageSource: image.source
             property alias textColor: text.color
 
-            height: bar.height
+            height: bar.height *2
             contentItem:Text{
                 id: text
                 text: modelText

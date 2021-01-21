@@ -1,7 +1,8 @@
 Module HMI.Controls
 
-AppMessages             1.0 AppMessages.qml
+AppMessages                             1.0 AppMessages.qml
 MainToolBar                             1.0 MainToolBar.qml
+MainWindowSavedState                    1.0 MainWindowSavedState.qml
 HMIButton                               1.0 HMIButton.qml
 HMICheckBox                             1.0 HMICheckBox.qml
 HMIComboBox                             1.0 HMIComboBox.qml

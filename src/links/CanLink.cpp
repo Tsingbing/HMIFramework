@@ -29,9 +29,10 @@ CanLink::CanLink() {}
 
 void CanLink::writeCanFrame(const QCanBusFrame& frame)
 {
+
     if (!_port)
         return;
-
+    qDebug() << "writeCanFrame";
     _port->writeFrame(frame);
 }
 

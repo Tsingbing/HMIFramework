@@ -251,7 +251,7 @@ HMIViewDialog {
             Row {
                 width:      parent.width
                 spacing:    ScreenTools.defaultFontPixelWidth / 2
-                visible:    showRCToParam || factCombo.visible || bitmaskColumn.visible
+                visible:    false//showRCToParam || factCombo.visible || bitmaskColumn.visible
 
                 Rectangle {
                     height: 1
