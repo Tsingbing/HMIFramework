@@ -27,6 +27,7 @@ public:
     Q_PROPERTY(Fact* yDegreeFact READ yDegreeFact CONSTANT)
     Q_PROPERTY(Fact* workHoursFact READ workHoursFact CONSTANT)
     Q_PROPERTY(Fact* oilTemperatureFact READ oilTemperatureFact CONSTANT)
+    Q_PROPERTY(Fact* allSwitchsFact READ allSwitchsFact CONSTANT)
 
     Q_INVOKABLE void forceArm();
 
@@ -50,6 +51,7 @@ public:
     Fact* poChaiLockFact() { return &_poChaiLockFact; }
     Fact* wajueLockFact() { return &_wajueLockFact; }
     Fact* poChaiQuickFact() { return &_poChaiQuickFact; }
+    Fact* allSwitchsFact() { return &_allSwitchsFact; }
 
     Q_INVOKABLE void sendFrontLightSwitch(bool b);
     Q_INVOKABLE void sendBackLightSwitch(bool b);
@@ -91,6 +93,7 @@ private:
     Fact       _poChaiLockFact;
     Fact       _wajueLockFact;
     Fact       _poChaiQuickFact;
+    Fact       _allSwitchsFact;
 
     static int testValue;
 
@@ -114,9 +117,9 @@ private:
     static const char* _poChaiLockFactName;
     static const char* _wajueLockFactName;
     static const char* _poChaiQuickFactName;
-
-    static const int _vehicleUIUpdateRateMSecs = 100; //0: 立即刷新
-    static const int _id                       = 100;
+    static const char* _allSwitchsFactName;
+    static const int   _vehicleUIUpdateRateMSecs = 100; //0: 立即刷新
+    static const int   _id                       = 100;
 
     CanLink* cl = nullptr;
 };

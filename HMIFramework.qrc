@@ -62,6 +62,7 @@
         <file alias="FlyView.qml">src/ui/FlyView.qml</file>
         <file alias="HMI/Controls/AppMessages.qml">src/QmlControls/AppMessages.qml</file>
         <file alias="HMI/Controls/MainWindowSavedState.qml">src/QmlControls/MainWindowSavedState.qml</file>
+        <file alias="HMI/FactControls/FactBitmask.qml">src/factsystem/FactControls/FactBitmask.qml</file>
     </qresource>
     <qresource prefix="/toolbar">
         <file alias="MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>

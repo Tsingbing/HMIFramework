@@ -34,6 +34,8 @@ public:
     FactMetaData(ValueType_t type, QObject* parent = 0);
     FactMetaData(FactMetaData::ValueType_t type, const QString name, QObject* parent);
 
+    typedef QMap<QString, QString> DefineMap_t;
+
     static QMap<QString, FactMetaData*> createMapFromJsonFile(const QString& jsonFilename, QObject* metaDataParent);
     static QMap<QString, FactMetaData*> createMapFromJsonArray(const QJsonArray jsonArray, QMap<QString, QString>& defineMap, QObject* metaDataParent);
 
@@ -56,6 +58,11 @@ public:
     QString      cookedUnits(void) const { return rawUnits(); }
     QStringList  enumStrings(void) const { return _enumStrings; }
     QVariantList enumValues(void) const { return _enumValues; }
+    QStringList  bitmaskStrings(void) const { return _bitmaskStrings; }
+    QVariantList bitmaskValues(void) const { return _bitmaskValues; }
+
+    /// Used to add new values to the bitmask lists after the meta data has been loaded
+    void addBitmaskInfo(const QString& name, const QVariant& value);
 
     /// Used to add new values to the enum lists after the meta data has been loaded
     void addEnumInfo(const QString& name, const QVariant& value);
@@ -68,12 +75,6 @@ public:
     void setDecimalPlaces(int decimalPlaces) { _decimalPlaces = decimalPlaces; }
     void setRawDefaultValue(const QVariant& rawDefaultValue);
 
-    /// 转换和校验数据
-    ///     @参数 rawValue: 要转换的值，可以是字符串
-    ///     @参数 convertOnly: true：仅转换为正确的类型，不针对元数据进行验证
-    ///     @参数 typeValue: 转换后的值
-    ///     @参数 errorString: 如果转换失败，将显示错误字符串，因为用户可见，所以值是处理后的值
-    /// @returns false：转换失败，赋值errorString
     bool convertAndValidateRaw(const QVariant& rawValue, bool convertOnly, QVariant& typedValue, QString& errorString);
 
     /// Same as convertAndValidateRaw except for cookedValue input
@@ -94,6 +95,10 @@ private:
     QVariant _minForType(void) const; ///< 类型最小值
     QVariant _maxForType(void) const; ///< 类型最小值
 
+    static bool _parseEnum(const QJsonObject& jsonObject, DefineMap_t defineMap, QStringList& rgDescriptions, QStringList& rgValues, QString& errorString);
+    static bool _parseValuesArray(const QJsonObject& jsonObject, QStringList& rgDescriptions, QList<double>& rgValues, QString& errorString);
+    static bool _parseBitmaskArray(const QJsonObject& jsonObject, QStringList& rgDescriptions, QList<double>& rgValues, QString& errorString);
+
     static void _loadJsonDefines(const QJsonObject& jsonDefinesObject, QMap<QString, QString>& defineMap);
 
     ValueType_t  _type;                  ///< must be first for correct constructor init
@@ -108,6 +113,8 @@ private:
     bool         _defaultValueAvailable; ///< 可获取默认值
     QStringList  _enumStrings;
     QVariantList _enumValues;
+    QStringList  _bitmaskStrings;
+    QVariantList _bitmaskValues;
 
     static const char* _typeJsonKey;
     static const char* _nameJsonKey;
@@ -120,6 +127,13 @@ private:
     static const char* _defaultValueJsonKey;
     static const char* _enumStringsJsonKey;
     static const char* _enumValuesJsonKey;
+
+    static const char* _enumValuesArrayJsonKey;
+    static const char* _enumBitmaskArrayJsonKey;
+    static const char* _enumValuesArrayValueJsonKey;
+    static const char* _enumValuesArrayDescriptionJsonKey;
+    static const char* _enumBitmaskArrayIndexJsonKey;
+    static const char* _enumBitmaskArrayDescriptionJsonKey;
 
     static const char* _jsonMetaDataDefinesName;
     static const char* _jsonMetaDataFactsName;

@@ -23,6 +23,7 @@ public:
 
     Q_PROPERTY(QString name READ name CONSTANT)
     Q_PROPERTY(QString shortDescription READ shortDescription CONSTANT)
+    Q_PROPERTY(QString longDescription READ longDescription CONSTANT)
     Q_PROPERTY(QString units READ units CONSTANT)
     Q_PROPERTY(QString valueString READ cookedValueString NOTIFY valueChanged)
     Q_PROPERTY(QVariant value READ cookedValue WRITE setCookedValue NOTIFY valueChanged)
@@ -39,7 +40,8 @@ public:
     Q_PROPERTY(QStringList enumStrings READ enumStrings NOTIFY enumsChanged)
     Q_PROPERTY(QString enumStringValue READ enumStringValue WRITE setEnumStringValue NOTIFY valueChanged)
     Q_PROPERTY(QVariantList enumValues READ enumValues NOTIFY enumsChanged)
-    Q_PROPERTY(QString longDescription READ longDescription CONSTANT)
+    Q_PROPERTY(QStringList bitmaskStrings READ bitmaskStrings NOTIFY bitmaskStringsChanged)
+    Q_PROPERTY(QVariantList bitmaskValues READ bitmaskValues NOTIFY bitmaskValuesChanged)
 
     /// @brief Convert and validate value
     /// @param cookedValue: Value to convert and validate
@@ -69,6 +71,8 @@ public:
     QVariantList              enumValues(void) const;
     int                       enumIndex();
     QString                   enumStringValue(void); // This is not const, since an unknown value can modify the enum lists
+    QStringList               bitmaskStrings(void) const;
+    QVariantList              bitmaskValues(void) const;
     QString                   cookedMaxString() const;
     QVariant                  cookedMinString() const;
 
@@ -98,7 +102,8 @@ public slots:
 
 signals:
     void enumsChanged(void);
-
+    void bitmaskStringsChanged(void);
+    void bitmaskValuesChanged(void);
     void valueChanged(QVariant value);
     void rawValueChanged(QVariant value);
     void sendValueChangedSignalsChanged(bool sendValueChangedSignals);

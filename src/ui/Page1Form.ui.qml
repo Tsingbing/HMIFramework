@@ -1,7 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
 
-
 import HMI 1.0
 import HMI.FactSystem 1.0
 import HMI.FactControls 1.0
@@ -21,6 +20,13 @@ Page {
         height: 600
         fillMode: Image.PreserveAspectFit
         source: "qrc:/qmlimages/zcwjj3/page1.jpg"
+        FactBitmask {
+            id: armingCheckBitmask
+            anchors.left: parent.left
+            anchors.right: parent.right
+            firstEntryIsAll: true
+            fact: HMI.vehicleManager.activeVehicle.allSwitchsFact
+        }
 
         FactLabel {
             id: label

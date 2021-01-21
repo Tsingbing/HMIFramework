@@ -330,6 +330,32 @@ QString Fact::enumStringValue()
     return QString();
 }
 
+QStringList Fact::bitmaskStrings() const
+{
+    if (_metaData)
+    {
+        return _metaData->bitmaskStrings();
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return QStringList();
+    }
+}
+
+QVariantList Fact::bitmaskValues() const
+{
+    if (_metaData)
+    {
+        return _metaData->bitmaskValues();
+    }
+    else
+    {
+        qWarning() << kMissingMetadata << name();
+        return QVariantList();
+    }
+}
+
 void Fact::setSendValueChangedSignals(bool sendValueChangedSignals)
 {
     if (sendValueChangedSignals != _sendValueChangedSignals)

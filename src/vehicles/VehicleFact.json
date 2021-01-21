@@ -121,5 +121,34 @@
         "shortDescription": "破拆端快换机构",
         "type":             "bool",
         "default":          false
+    },
+    {
+        "name":             "allSwitchs",
+        "shortDescription": "开关",
+        "type":             "int8",
+        "default":          0,
+        "bitmask": [
+        {
+          "index": 0,
+          "description": "开关1"
+        },
+        {
+          "index": 1,
+          "description": "开关2"
+        },
+        {
+          "index": 2,
+          "description": "开关3"
+        },
+        {
+          "index": 3,
+          "description": "开关9"
+        },
+        {
+          "index": 4,
+          "description": "开关5"
+        }
+        ]
     }
+
 ]

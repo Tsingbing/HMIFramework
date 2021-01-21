@@ -26,6 +26,14 @@ const char* FactMetaData::_maxJsonKey              = "max";
 const char* FactMetaData::_enumStringsJsonKey      = "enumStrings";
 const char* FactMetaData::_enumValuesJsonKey       = "enumValues";
 
+// This is the newer json format for enums and bitmasks. They are used by the new COMPONENT_INFORMATION parameter metadata for example.
+const char* FactMetaData::_enumValuesArrayJsonKey             = "values";
+const char* FactMetaData::_enumBitmaskArrayJsonKey            = "bitmask";
+const char* FactMetaData::_enumValuesArrayValueJsonKey        = "value";
+const char* FactMetaData::_enumValuesArrayDescriptionJsonKey  = "description";
+const char* FactMetaData::_enumBitmaskArrayIndexJsonKey       = "index";
+const char* FactMetaData::_enumBitmaskArrayDescriptionJsonKey = "description";
+
 FactMetaData::FactMetaData(QObject* parent)
     : QObject(parent)
     , _type(valueTypeInt32)
@@ -174,6 +182,8 @@ FactMetaData* FactMetaData::createFromJsonObject(const QJsonObject& json, QMap<Q
         {_maxJsonKey, QJsonValue::Double, false},
         {_enumValuesJsonKey, QJsonValue::String, false},
         {_enumStringsJsonKey, QJsonValue::String, false},
+        {_enumBitmaskArrayJsonKey, QJsonValue::Array, false},
+        {_enumValuesArrayJsonKey, QJsonValue::Array, false},
     };
     if (!JsonHelper::validateKeys(json, keyInfoList, errorString))
     {
@@ -193,32 +203,87 @@ FactMetaData* FactMetaData::createFromJsonObject(const QJsonObject& json, QMap<Q
 
     metaData->_name = json[ _nameJsonKey ].toString();
 
-    QStringList enumValues, enumStrings;
-    if (JsonHelper::parseEnum(json, defineMap, enumStrings, enumValues, errorString, metaData->name()))
+    QStringList   rgDescriptions;
+    QList<double> rgDoubleValues;
+    QStringList   rgStringValues;
+
+    bool foundBitmask = false;
+    if (!_parseValuesArray(json, rgDescriptions, rgDoubleValues, errorString))
     {
-        for (int i = 0; i < enumValues.count(); i++)
+        qWarning() << QStringLiteral("FactMetaData::createFromJsonObject _parseValueDescriptionArray for %1 failed. %2").arg(metaData->_name).arg(errorString);
+    }
+    if (rgDescriptions.isEmpty())
+    {
+        if (!_parseBitmaskArray(json, rgDescriptions, rgDoubleValues, errorString))
         {
-            QVariant enumVariant;
+            qWarning() << QStringLiteral("FactMetaData::createFromJsonObject _parseBitmaskArray for %1 failed. %2").arg(metaData->_name).arg(errorString);
+        }
+        foundBitmask = rgDescriptions.count() != 0;
+    }
+    if (rgDescriptions.isEmpty())
+    {
+        if (!_parseEnum(json, defineMap, rgDescriptions, rgStringValues, errorString))
+        {
+            qWarning() << QStringLiteral("FactMetaData::createFromJsonObject _parseEnum for %1 failed. %2").arg(metaData->_name).arg(errorString);
+        }
+    }
+
+    if (errorString.isEmpty() && rgDescriptions.count())
+    {
+        for (int i = 0; i < rgDescriptions.count(); i++)
+        {
+            QVariant rawValueVariant = rgDoubleValues.count() ? QVariant(rgDoubleValues[ i ]) : QVariant(rgStringValues[ i ]);
+            QVariant convertedValueVariant;
             QString  errorString;
 
-            if (metaData->convertAndValidateRaw(enumValues[ i ], false /* validate */, enumVariant, errorString))
+            if (foundBitmask)
             {
-                metaData->addEnumInfo(enumStrings[ i ], enumVariant);
+                metaData->addBitmaskInfo(rgDescriptions[ i ], rawValueVariant);
             }
             else
             {
-                qWarning() << "Invalid enum value, name:" << metaData->name()
-                           << " type:" << metaData->type()
-                           << " value:" << enumValues[ i ]
-                           << " error:" << errorString;
+                if (metaData->convertAndValidateRaw(rawValueVariant, false /* validate */, convertedValueVariant, errorString))
+                {
+                    metaData->addEnumInfo(rgDescriptions[ i ], convertedValueVariant);
+                }
+                else
+                {
+                    qWarning() << QStringLiteral("FactMetaData::createFromJsonObject convertAndValidateRaw on enum value for %1 failed.").arg(metaData->_name)
+                               << " type:" << metaData->type()
+                               << " value:" << rawValueVariant
+                               << " error:" << errorString;
+                }
             }
         }
     }
-    else
-    {
-        qWarning() << errorString;
-    }
 
+    //=--==========================================================================
+    //    QStringList enumValues, enumStrings;
+    //    if (JsonHelper::parseEnum(json, defineMap, enumStrings, enumValues, errorString, metaData->name()))
+    //    {
+    //        for (int i = 0; i < enumValues.count(); i++)
+    //        {
+    //            QVariant enumVariant;
+    //            QString  errorString;
+
+    //            if (metaData->convertAndValidateRaw(enumValues[ i ], false /* validate */, enumVariant, errorString))
+    //            {
+    //                metaData->addEnumInfo(enumStrings[ i ], enumVariant);
+    //            }
+    //            else
+    //            {
+    //                qWarning() << "Invalid enum value, name:" << metaData->name()
+    //                           << " type:" << metaData->type()
+    //                           << " value:" << enumValues[ i ]
+    //                           << " error:" << errorString;
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        qWarning() << errorString;
+    //    }
+    //===============================================================================
     metaData->setDecimalPlaces(json[ _decimalPlacesJsonKey ].toInt(0));
     metaData->setShortDescription(json[ _shortDescriptionJsonKey ].toString());
     metaData->setLongDescription(json[ _longDescriptionJsonKey ].toString());
@@ -309,6 +374,12 @@ int FactMetaData::decimalPlaces() const
 QVariant FactMetaData::rawDefaultValue() const
 {
     return _rawDefaultValue;
+}
+
+void FactMetaData::addBitmaskInfo(const QString& name, const QVariant& value)
+{
+    _bitmaskStrings << name;
+    _bitmaskValues << value;
 }
 
 void FactMetaData::addEnumInfo(const QString& name, const QVariant& value)
@@ -665,4 +736,116 @@ void FactMetaData::_loadJsonDefines(const QJsonObject& jsonDefinesObject, QMap<Q
         QString mapKey      = _jsonMetaDataDefinesName + QString(".") + defineName;
         defineMap[ mapKey ] = jsonDefinesObject[ defineName ].toString();
     }
+}
+
+bool FactMetaData::_parseEnum(const QJsonObject& jsonObject, DefineMap_t defineMap, QStringList& rgDescriptions, QStringList& rgValues, QString& errorString)
+{
+    rgDescriptions.clear();
+    rgValues.clear();
+    errorString.clear();
+
+    if (!jsonObject.contains(_enumStringsJsonKey))
+    {
+        return true;
+    }
+
+    QString strings = jsonObject.value(_enumStringsJsonKey).toString();
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    rgDescriptions = defineMap.value(strings, strings).split(",", QString::SkipEmptyParts);
+#else
+    rgDescriptions = defineMap.value(strings, strings).split(",", Qt::SkipEmptyParts);
+#endif
+
+    QString values = jsonObject.value(_enumValuesJsonKey).toString();
+#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
+    rgValues = defineMap.value(values, values).split(",", QString::SkipEmptyParts);
+#else
+    rgValues       = defineMap.value(values, values).split(",", Qt::SkipEmptyParts);
+#endif
+
+    if (rgDescriptions.count() != rgValues.count())
+    {
+        errorString = QStringLiteral("Enum strings/values count mismatch - strings:values %1:%2").arg(rgDescriptions.count()).arg(rgValues.count());
+        return false;
+    }
+
+    return true;
+}
+
+bool FactMetaData::_parseValuesArray(const QJsonObject& jsonObject, QStringList& rgDescriptions, QList<double>& rgValues, QString& errorString)
+{
+    rgDescriptions.clear();
+    rgValues.clear();
+    errorString.clear();
+
+    if (!jsonObject.contains(_enumValuesArrayJsonKey))
+    {
+        return true;
+    }
+
+    QList<JsonHelper::KeyValidateInfo> keyInfoList = {
+        {_enumValuesArrayDescriptionJsonKey, QJsonValue::String, true},
+        {_enumValuesArrayValueJsonKey, QJsonValue::Double, true},
+    };
+
+    const QJsonArray& rgValueDescription = jsonObject[ _enumValuesArrayJsonKey ].toArray();
+    for (int i = 0; i < rgValueDescription.count(); i++)
+    {
+        if (rgValueDescription[ i ].type() != QJsonValue::Object)
+        {
+            errorString = QStringLiteral("Value at index %1 in \"values\" array is not an object.").arg(i);
+            return false;
+        }
+
+        const QJsonObject& valueDescriptionObject = rgValueDescription[ i ].toObject();
+        if (!JsonHelper::validateKeys(valueDescriptionObject, keyInfoList, errorString))
+        {
+            errorString = QStringLiteral("Object at index %1 in \"values\" array failed validation '%2'.").arg(i).arg(errorString);
+            return false;
+        }
+
+        rgDescriptions.append(valueDescriptionObject[ _enumValuesArrayDescriptionJsonKey ].toString());
+        rgValues.append(valueDescriptionObject[ _enumValuesArrayValueJsonKey ].toDouble());
+    }
+
+    return true;
+}
+
+bool FactMetaData::_parseBitmaskArray(const QJsonObject& jsonObject, QStringList& rgDescriptions, QList<double>& rgValues, QString& errorString)
+{
+    rgDescriptions.clear();
+    rgValues.clear();
+    errorString.clear();
+
+    if (!jsonObject.contains(_enumBitmaskArrayJsonKey))
+    {
+        return true;
+    }
+
+    QList<JsonHelper::KeyValidateInfo> keyInfoList = {
+        {_enumBitmaskArrayDescriptionJsonKey, QJsonValue::String, true},
+        {_enumBitmaskArrayIndexJsonKey, QJsonValue::Double, true},
+    };
+
+    const QJsonArray& rgValueDescription = jsonObject[ _enumBitmaskArrayJsonKey ].toArray();
+    for (int i = 0; i < rgValueDescription.count(); i++)
+    {
+        if (rgValueDescription[ i ].type() != QJsonValue::Object)
+        {
+            errorString = QStringLiteral("Value at index %1 in \"values\" array is not an object.").arg(i);
+            return false;
+        }
+
+        const QJsonObject& valueDescriptionObject = rgValueDescription[ i ].toObject();
+        if (!JsonHelper::validateKeys(valueDescriptionObject, keyInfoList, errorString))
+        {
+            errorString = QStringLiteral("Object at index %1 in \"values\" array failed validation '%2'.").arg(i).arg(errorString);
+            return false;
+        }
+
+        rgDescriptions.append(valueDescriptionObject[ _enumBitmaskArrayDescriptionJsonKey ].toString());
+        rgValues.append(valueDescriptionObject[ _enumBitmaskArrayIndexJsonKey ].toDouble());
+    }
+
+    return true;
 }

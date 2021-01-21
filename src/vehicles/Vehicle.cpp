@@ -23,6 +23,7 @@ const char* Vehicle::_alarmLightFactName                  = "alarmLight";
 const char* Vehicle::_poChaiLockFactName                  = "poChaiLock";
 const char* Vehicle::_wajueLockFactName                   = "wajueLock";
 const char* Vehicle::_poChaiQuickFactName                 = "poChaiQuick";
+const char* Vehicle::_allSwitchsFactName                  = "allSwitchs";
 
 int Vehicle::testValue = 1; //测试用
 
@@ -47,6 +48,7 @@ Vehicle::Vehicle(QObject* parent)
     , _poChaiLockFact(_poChaiLockFactName, FactMetaData::valueTypeBool)
     , _wajueLockFact(_wajueLockFactName, FactMetaData::valueTypeBool)
     , _poChaiQuickFact(_poChaiQuickFactName, FactMetaData::valueTypeBool)
+    , _allSwitchsFact(_allSwitchsFactName, FactMetaData::valueTypeInt8)
 {
     _commonInit();
 }
@@ -73,6 +75,8 @@ void Vehicle::_commonInit()
     _addFact(&_poChaiLockFact, _poChaiLockFactName);
     _addFact(&_wajueLockFact, _wajueLockFactName);
     _addFact(&_poChaiQuickFact, _poChaiQuickFactName);
+    _addFact(&_allSwitchsFact, _allSwitchsFactName);
+
     cl = XApp()->toolbox()->linkManager()->canlink();
 }
 
