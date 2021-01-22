@@ -10,7 +10,7 @@ Flow {
     spacing: ScreenTools.defaultFontPixelWidth
 
     /// true: Checking the first entry will clear and disable all other entries
-    property bool firstEntryIsAll: false
+    property bool firstEntryIsAll: true
 
     property Fact fact: Fact { }
 
@@ -36,22 +36,22 @@ Flow {
                 var i;
                 var otherCheckbox;
                 if (checked) {
-                    if (firstEntryIsAll && index == 0) {
-                        for (i = 1; i < repeater.count; i++) {
-                            otherCheckbox = repeater.itemAt(i)
-                            fact.value &= ~fact.bitmaskValues[i]
-                            otherCheckbox.checked = false
-                            otherCheckbox.enabled = false
-                        }
-                    }
+//                    if (firstEntryIsAll && index == 0) {
+//                        for (i = 1; i < repeater.count; i++) {
+//                            otherCheckbox = repeater.itemAt(i)
+//                            fact.value &= ~fact.bitmaskValues[i]
+//                            otherCheckbox.checked = false
+//                            otherCheckbox.enabled = false
+//                        }
+//                    }
                     fact.value |= fact.bitmaskValues[index]
                 } else {
-                    if (firstEntryIsAll && index == 0) {
-                        for (i = 1; i < repeater.count; i++) {
-                            otherCheckbox = repeater.itemAt(i)
-                            otherCheckbox.enabled = true
-                        }
-                    }
+//                    if (firstEntryIsAll && index == 0) {
+//                        for (i = 1; i < repeater.count; i++) {
+//                            otherCheckbox = repeater.itemAt(i)
+//                            otherCheckbox.enabled = true
+//                        }
+//                    }
                     fact.value &= ~fact.bitmaskValues[index]
                 }
 

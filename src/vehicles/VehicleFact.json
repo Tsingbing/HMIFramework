@@ -129,23 +129,23 @@
         "default":          0,
         "bitmask": [
         {
-          "index": 0,
+          "index": 1,
           "description": "开关1"
         },
         {
-          "index": 1,
+          "index": 2,
           "description": "开关2"
         },
         {
-          "index": 2,
+          "index": 4,
           "description": "开关3"
         },
         {
-          "index": 3,
+          "index": 8,
           "description": "开关9"
         },
         {
-          "index": 4,
+          "index": 16,
           "description": "开关5"
         }
         ]
