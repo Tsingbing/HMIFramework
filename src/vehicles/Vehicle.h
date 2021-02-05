@@ -6,11 +6,21 @@
 #include <QCanBusFrame>
 #include <QObject>
 
+#define DECLARE_FACT(NAME)                                \
+public:                                                   \
+    Q_PROPERTY(Fact* NAME##Fact READ NAME##Fact CONSTANT) \
+    Fact* NAME##Fact();                                   \
+                                                          \
+private:                                                  \
+    Fact               _##NAME##Fact;                     \
+    static const char* _##NAME##Fact##Name;
+
 class CanLink;
 
 class Vehicle : public FactGroup
 {
     Q_OBJECT
+
 public:
     Vehicle(QObject* parent = nullptr);
 
@@ -122,6 +132,8 @@ private:
     static const int   _id                       = 100;
 
     CanLink* cl = nullptr;
+
+    DECLARE_FACT(lowerLimitRightTrackLowSpeed)
 };
 
 #endif // VEHICLE_H

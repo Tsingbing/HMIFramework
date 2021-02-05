@@ -29,7 +29,7 @@ void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
                              .arg(canbusframe.timeStamp().seconds(), 10, 10, QLatin1Char(' '))
                              .arg(canbusframe.timeStamp().microSeconds() / 100, 3, 10, QLatin1Char('0'));
 
-    //qCDebug(CanLog) << time << view;
+    qCDebug(CanLog) << time << view;
 
     quint32    frameId = canbusframe.frameId();
     QByteArray payload = canbusframe.payload();

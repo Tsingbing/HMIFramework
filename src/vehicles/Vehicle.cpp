@@ -4,6 +4,15 @@
 #include <QDebug>
 #include <QSettings>
 
+#define DEFINE_FACT(CLASS, NAME)                    \
+    const char* CLASS::_##NAME##Fact##Name = #NAME; \
+    Fact*       CLASS::NAME##Fact()                 \
+    {                                               \
+        return &_##NAME##Fact;                      \
+    }
+
+DEFINE_FACT(Vehicle, lowerLimitRightTrackLowSpeed)
+
 const char* Vehicle::_teleRSSIFactName                    = "teleRSSI";
 const char* Vehicle::_supplyVoltageFactName               = "supplyVoltage";
 const char* Vehicle::_fuelLevelFactName                   = "fuelLevel";
@@ -49,6 +58,7 @@ Vehicle::Vehicle(QObject* parent)
     , _wajueLockFact(_wajueLockFactName, FactMetaData::valueTypeBool)
     , _poChaiQuickFact(_poChaiQuickFactName, FactMetaData::valueTypeBool)
     , _allSwitchsFact(_allSwitchsFactName, FactMetaData::valueTypeInt8)
+    , _lowerLimitRightTrackLowSpeedFact(_lowerLimitRightTrackLowSpeedFactName, FactMetaData::valueTypeUint8)
 {
     _commonInit();
 }
@@ -76,6 +86,7 @@ void Vehicle::_commonInit()
     _addFact(&_wajueLockFact, _wajueLockFactName);
     _addFact(&_poChaiQuickFact, _poChaiQuickFactName);
     _addFact(&_allSwitchsFact, _allSwitchsFactName);
+    _addFact(&_lowerLimitRightTrackLowSpeedFact, _lowerLimitRightTrackLowSpeedFactName);
 
     cl = XApp()->toolbox()->linkManager()->canlink();
 }

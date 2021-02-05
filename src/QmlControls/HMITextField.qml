@@ -62,7 +62,7 @@ TextField {
             Rectangle {
                 anchors.fill:           parent
                 anchors.bottomMargin:   -1
-                color:                  "#44ffffff"
+                color:                   "#44ffffff"
             }
 
             Rectangle {
