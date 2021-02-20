@@ -19,6 +19,7 @@ DEFINE_FACT(Vehicle, upperLimitRightTrackHighSpeed)
 DEFINE_FACT(Vehicle, upperLimitRightTrackLowSpeed)
 DEFINE_FACT(Vehicle, upperLimitRightTrackFrettingSpeed)
 DEFINE_FACT(Vehicle, lowerLimitRightTrackSpeed)
+DEFINE_FACT(Vehicle, alarms)
 
 const char* Vehicle::_teleRSSIFactName                    = "teleRSSI";
 const char* Vehicle::_supplyVoltageFactName               = "supplyVoltage";
@@ -40,6 +41,7 @@ const char* Vehicle::_poChaiLockFactName                  = "poChaiLock";
 const char* Vehicle::_wajueLockFactName                   = "wajueLock";
 const char* Vehicle::_poChaiQuickFactName                 = "poChaiQuick";
 const char* Vehicle::_allSwitchsFactName                  = "allSwitchs";
+//const char* Vehicle::_alarmsFactName                      = "alarms";
 
 int Vehicle::testValue = 1; //测试用
 
@@ -73,6 +75,7 @@ Vehicle::Vehicle(QObject* parent)
     , _upperLimitRightTrackLowSpeedFact(_upperLimitRightTrackLowSpeedFactName, FactMetaData::valueTypeUint8)
     , _upperLimitRightTrackFrettingSpeedFact(_upperLimitRightTrackFrettingSpeedFactName, FactMetaData::valueTypeUint8)
     , _lowerLimitRightTrackSpeedFact(_lowerLimitRightTrackSpeedFactName, FactMetaData::valueTypeUint8)
+    , _alarmsFact(_alarmsFactName, FactMetaData::valueTypeInt8)
 {
     _commonInit();
 }
@@ -108,6 +111,7 @@ void Vehicle::_commonInit()
     _addFact(&_upperLimitRightTrackLowSpeedFact, _upperLimitRightTrackLowSpeedFactName);
     _addFact(&_upperLimitRightTrackFrettingSpeedFact, _upperLimitRightTrackFrettingSpeedFactName);
     _addFact(&_lowerLimitRightTrackSpeedFact, _lowerLimitRightTrackSpeedFactName);
+    _addFact(&_alarmsFact, _alarmsFactName);
 
     cl = XApp()->toolbox()->linkManager()->canlink();
 }

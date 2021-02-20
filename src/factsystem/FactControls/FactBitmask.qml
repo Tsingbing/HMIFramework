@@ -6,7 +6,7 @@ import HMI.Palette       1.0
 import HMI.Controls      1.0
 import HMI.ScreenTools   1.0
 
-Flow {
+Column {
     spacing: ScreenTools.defaultFontPixelWidth
 
     /// true: Checking the first entry will clear and disable all other entries
@@ -27,36 +27,69 @@ Flow {
         id:     repeater
         model:  fact ? fact.bitmaskStrings : []
 
-        HMICheckBox {
-            id:         checkbox
-            text:       modelData
-            checked:    fact.value & fact.bitmaskValues[index]
+        Row{
+            HMILabel {
+                id: label
+                text: "正常"
+                states: [
+                    State {
+                        name: "normal"
+                        PropertyChanges {
+                            target: label
+                            text: "正常"
+                        }
+                    },
+                    State {
+                        name: "alarm"
+                        PropertyChanges {
+                            target: label
+                            text :"报警"
+                            color: "red"
+                        }
+                    }
+                ]
+            }
 
-            onClicked: {
-                var i;
-                var otherCheckbox;
-                if (checked) {
-//                    if (firstEntryIsAll && index == 0) {
-//                        for (i = 1; i < repeater.count; i++) {
-//                            otherCheckbox = repeater.itemAt(i)
-//                            fact.value &= ~fact.bitmaskValues[i]
-//                            otherCheckbox.checked = false
-//                            otherCheckbox.enabled = false
-//                        }
-//                    }
-                    fact.value |= fact.bitmaskValues[index]
-                } else {
-//                    if (firstEntryIsAll && index == 0) {
-//                        for (i = 1; i < repeater.count; i++) {
-//                            otherCheckbox = repeater.itemAt(i)
-//                            otherCheckbox.enabled = true
-//                        }
-//                    }
-                    fact.value &= ~fact.bitmaskValues[index]
+            HMICheckBox {
+                id:         checkbox
+                text:       modelData
+                checked:    fact.value & fact.bitmaskValues[index]
+
+                onCheckedChanged: {
+                    if (checked)
+                        label.state = "normal";
+                    else
+                        label.state = "alarm";
                 }
 
-                console.info(fact.value)
+    //            onClicked: {
+    //                var i;
+    //                var otherCheckbox;
+    //                if (checked) {
+    ////                    if (firstEntryIsAll && index == 0) {
+    ////                        for (i = 1; i < repeater.count; i++) {
+    ////                            otherCheckbox = repeater.itemAt(i)
+    ////                            fact.value &= ~fact.bitmaskValues[i]
+    ////                            otherCheckbox.checked = false
+    ////                            otherCheckbox.enabled = false
+    ////                        }
+    ////                    }
+    //                    fact.value |= fact.bitmaskValues[index]
+    //                } else {
+    ////                    if (firstEntryIsAll && index == 0) {
+    ////                        for (i = 1; i < repeater.count; i++) {
+    ////                            otherCheckbox = repeater.itemAt(i)
+    ////                            otherCheckbox.enabled = true
+    ////                        }
+    ////                    }
+    //                    fact.value &= ~fact.bitmaskValues[index]
+    //                }
+
+    //                console.info(fact.value)
+    //            }
             }
         }
+
+
     }
 }

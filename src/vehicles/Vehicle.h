@@ -38,6 +38,7 @@ public:
     Q_PROPERTY(Fact* workHoursFact READ workHoursFact CONSTANT)
     Q_PROPERTY(Fact* oilTemperatureFact READ oilTemperatureFact CONSTANT)
     Q_PROPERTY(Fact* allSwitchsFact READ allSwitchsFact CONSTANT)
+    //Q_PROPERTY(Fact* alarmsFact READ alarmsFact CONSTANT)
 
     Q_INVOKABLE void forceArm();
 
@@ -62,6 +63,7 @@ public:
     Fact* wajueLockFact() { return &_wajueLockFact; }
     Fact* poChaiQuickFact() { return &_poChaiQuickFact; }
     Fact* allSwitchsFact() { return &_allSwitchsFact; }
+    //Fact* alarmsFact() { return &_alarmsFact; }
 
     Q_INVOKABLE void sendFrontLightSwitch(bool b);
     Q_INVOKABLE void sendBackLightSwitch(bool b);
@@ -105,6 +107,7 @@ private:
     Fact       _wajueLockFact;
     Fact       _poChaiQuickFact;
     Fact       _allSwitchsFact;
+    //Fact       _alarmsFact;
 
     static int testValue;
 
@@ -129,6 +132,7 @@ private:
     static const char* _wajueLockFactName;
     static const char* _poChaiQuickFactName;
     static const char* _allSwitchsFactName;
+    //static const char* _alarmsFactName;
     static const int   _vehicleUIUpdateRateMSecs = 100; //0: 立即刷新
     static const int   _id                       = 100;
 
@@ -141,6 +145,7 @@ private:
     DECLARE_FACT(upperLimitRightTrackLowSpeed)
     DECLARE_FACT(upperLimitRightTrackFrettingSpeed)
     DECLARE_FACT(lowerLimitRightTrackSpeed)
+    DECLARE_FACT(alarms)
 };
 
 #endif // VEHICLE_H

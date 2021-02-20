@@ -190,13 +190,52 @@
         },
         {
           "index": 8,
-          "description": "开关9"
+          "description": "开关4"
         },
         {
           "index": 16,
           "description": "开关5"
+        },
+        {
+          "index": 32,
+          "description": "开关6"
+        }
+        ]
+    },
+    {
+        "name":             "alarms",
+        "shortDesc": "警报",
+        "type":             "int8",
+        "default":          0,
+        "bitmask": [
+        {
+          "index": 1,
+          "description": "空气滤芯警报"
+        },
+        {
+          "index": 2,
+          "description": "预留"
+        },
+        {
+          "index": 4,
+          "description": "液压油污堵塞"
+        },
+        {
+          "index": 8,
+          "description": "发动机启动超时"
+        },
+        {
+          "index": 16,
+          "description": "传感器电源堵塞"
+        },
+        {
+          "index": 32,
+          "description": "挖掘动臂未到位"
+        },
+        {
+          "index": 64,
+          "description": "破拆动臂未到位"
         }
         ]
     }
-
 ]

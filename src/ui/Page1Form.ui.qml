@@ -21,13 +21,6 @@ Page {
         fillMode: Image.PreserveAspectFit
         source: "qrc:/qmlimages/zcwjj3/page1.jpg"
 
-        //        FactBitmask {
-        //            id: armingCheckBitmask
-        //            anchors.left: parent.left
-        //            anchors.right: parent.right
-        //            firstEntryIsAll: true
-        //            fact: HMI.vehicleManager.activeVehicle.allSwitchsFact
-        //        }
         FactLabel {
             id: label
             x: 210

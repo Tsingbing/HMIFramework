@@ -50,6 +50,7 @@ void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
         break;
         case 0x18ECFF1C:
         {
+            ve->alarmsFact()->setRawValue(QVariant(payload.at(0)));
             ve->xDegreeFact()->setRawValue(QVariant((payload.at(1) + (payload.at(2) << 8)) * 0.01));
             ve->yDegreeFact()->setRawValue(QVariant((payload.at(3) + (payload.at(4) << 8)) * 0.01));
             ve->rotatingSpeedFact()->setRawValue(QVariant((payload.at(5) + (payload.at(6) << 8))));
