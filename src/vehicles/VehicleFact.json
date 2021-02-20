@@ -88,83 +88,91 @@
     },
     {
         "name":             "frontLight",
-        "shortDescription": "前灯",
+        "shortDesc": "前灯",
         "type":             "bool",
         "default":          false
     },
     {
         "name":             "backLight",
-        "shortDescription": "前灯",
+        "shortDesc": "前灯",
         "type":             "bool",
         "default":          false
     },
     {
         "name":             "alarmLight",
-        "shortDescription": "声光报警灯",
+        "shortDesc": "声光报警灯",
         "type":             "bool",
         "default":          false
     },
     {
         "name":             "poChaiLock",
-        "shortDescription": "破拆端锁定机构",
+        "shortDesc": "破拆端锁定机构",
         "type":             "bool",
         "default":          false
     },
     {
         "name":             "wajueLock",
-        "shortDescription": "挖掘端锁定机构",
+        "shortDesc": "挖掘端锁定机构",
         "type":             "bool",
         "default":          false
     },
     {
         "name":             "poChaiQuick",
-        "shortDescription": "破拆端快换机构",
+        "shortDesc": "破拆端快换机构",
         "type":             "bool",
         "default":          false
     },
     {
         "name":             "upperLimitLeftTrackHighSpeed",
-        "shortDescription": "左履带高速上限速度",
+        "shortDesc": "左履带高速上限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
         "name":             "upperLimitLeftTrackLowSpeed",
-        "shortDescription": "左履带低速上限速度",
+        "shortDesc": "左履带低速上限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
-        "name":             "lowerLimitLeftTrackHighSpeed",
-        "shortDescription": "左履带高速下限速度",
+        "name":             "upperLimitLeftTrackFrettingSpeed",
+        "shortDesc": "左履带微动上限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
-        "name":             "lowerLimitLeftTrackLowSpeed",
-        "shortDescription": "左履带低速下限速度",
+        "name":             "lowerLimitLeftTrackSpeed",
+        "shortDesc": "左履带下限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
         "name":             "upperLimitRightTrackHighSpeed",
-        "shortDescription": "右履带高速上限速度",
+        "shortDesc": "右履带高速上限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
         "name":             "upperLimitRightTrackLowSpeed",
-        "shortDescription": "右履带低速上限速度",
+        "shortDesc": "右履带低速上限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
-        "name":             "lowerLimitRightTrackHighSpeed",
-        "shortDescription": "右履带高速下限速度",
+        "name":             "upperLimitRightTrackFrettingSpeed",
+        "shortDesc": "右履带微动上限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
-        "name":             "lowerLimitRightTrackLowSpeed",
-        "shortDescription": "右履带低速下限速度",
+        "name":             "lowerLimitRightTrackSpeed",
+        "shortDesc": "右履带下限速度",
         "type":             "uint8",
+        "units": "%"
     },
     {
         "name":             "allSwitchs",
-        "shortDescription": "开关",
+        "shortDesc": "开关",
         "type":             "int8",
         "default":          0,
         "bitmask": [

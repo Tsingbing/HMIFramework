@@ -72,6 +72,7 @@ public:
     Q_INVOKABLE void sendReadControl(bool b);
     Q_INVOKABLE void sendWriteControl(bool b);
 
+    Q_INVOKABLE void updateAllParams();
     // Property accesors
     int id() { return _id; }
 
@@ -132,8 +133,14 @@ private:
     static const int   _id                       = 100;
 
     CanLink* cl = nullptr;
-
-    DECLARE_FACT(lowerLimitRightTrackLowSpeed)
+    DECLARE_FACT(upperLimitLeftTrackHighSpeed)
+    DECLARE_FACT(upperLimitLeftTrackLowSpeed)
+    DECLARE_FACT(upperLimitLeftTrackFrettingSpeed)
+    DECLARE_FACT(lowerLimitLeftTrackSpeed)
+    DECLARE_FACT(upperLimitRightTrackHighSpeed)
+    DECLARE_FACT(upperLimitRightTrackLowSpeed)
+    DECLARE_FACT(upperLimitRightTrackFrettingSpeed)
+    DECLARE_FACT(lowerLimitRightTrackSpeed)
 };
 
 #endif // VEHICLE_H

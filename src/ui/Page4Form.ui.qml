@@ -7,6 +7,7 @@ Page {
     id: page
     width: 800
     height: 600
+    property alias button: button
     enabled: true
 
     title: qsTr("Page 4")
@@ -24,7 +25,7 @@ Page {
             x: 654
             y: 62
             text: qsTr("读")
-            //onClicked: globals.activeVehicle.sendReadControl(checked)
+            onClicked: globals.activeVehicle.sendReadControl(checked)
         }
 
         Switch {
@@ -32,7 +33,7 @@ Page {
             x: 559
             y: 62
             text: qsTr("写")
-            //onClicked: globals.activeVehicle.sendWriteControl(checked)
+            onClicked: globals.activeVehicle.sendWriteControl(checked)
         }
 
         Column {
@@ -45,25 +46,22 @@ Page {
 
             FactTextField {
                 id: textEdit
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.left: parent.left
                 anchors.leftMargin: 0
-                fact: globals.fact
-                //width: 118
-                //height: 21
+                fact: globals.activeVehicle.upperLimitLeftTrackHighSpeedFact
             }
 
             FactTextField {
                 id: textEdit2
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.left: parent.left
                 anchors.leftMargin: 0
-                font.wordSpacing: 0
-                fact: globals.activeVehicle.lowerLimitRightTrackLowSpeedFact
-                //width: 118
-                //height: 21
+                fact: globals.activeVehicle.upperLimitLeftTrackLowSpeedFact
             }
 
             FactTextField {
@@ -71,46 +69,48 @@ Page {
                 anchors.right: parent.right
                 anchors.left: parent.left
                 anchors.rightMargin: 0
-                //width: 118
-                //height: 21
-                font.pixelSize: 12
+                fact: globals.activeVehicle.upperLimitLeftTrackFrettingSpeedFact
+                font.pixelSize: 14
             }
 
             FactTextField {
                 id: textEdit4
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.left: parent.left
                 anchors.leftMargin: 0
-                //width: 118
-                //height: 21
+                fact: globals.activeVehicle.lowerLimitLeftTrackSpeedFact
             }
 
             FactTextField {
                 id: textEdit5
                 anchors.left: parent.left
                 anchors.leftMargin: 0
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
+                fact: globals.activeVehicle.upperLimitRightTrackHighSpeedFact
             }
 
             FactTextField {
                 id: textEdit6
                 anchors.left: parent.left
                 anchors.leftMargin: 0
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
+                fact: globals.activeVehicle.upperLimitRightTrackLowSpeedFact
             }
 
             FactTextField {
                 id: textEdit7
                 anchors.left: parent.left
                 anchors.leftMargin: 0
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
+                fact: globals.activeVehicle.upperLimitRightTrackFrettingSpeedFact
             }
         }
 
@@ -122,26 +122,26 @@ Page {
             height: 369
             FactTextField {
                 id: textEdit1
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
                 anchors.left: parent.left
+                fact: globals.activeVehicle.lowerLimitRightTrackSpeedFact
             }
 
             FactTextField {
                 id: textEdit8
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
-                font.wordSpacing: 0
                 anchors.left: parent.left
             }
 
             FactTextField {
                 id: textEdit9
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.left: parent.left
@@ -149,7 +149,7 @@ Page {
 
             FactTextField {
                 id: textEdit10
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
@@ -158,7 +158,7 @@ Page {
 
             FactTextField {
                 id: textEdit11
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
@@ -167,7 +167,7 @@ Page {
 
             FactTextField {
                 id: textEdit12
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
@@ -176,13 +176,23 @@ Page {
 
             FactTextField {
                 id: textEdit13
-                font.pixelSize: 12
+                font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 anchors.left: parent.left
             }
             spacing: 13
+        }
+
+        Button {
+            id: button
+            x: 107
+            y: 77
+            width: 83
+            height: 25
+            text: "设置"
+            onClicked: globals.activeVehicle.updateAllParams()
         }
     }
 }

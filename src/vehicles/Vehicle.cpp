@@ -11,7 +11,14 @@
         return &_##NAME##Fact;                      \
     }
 
-DEFINE_FACT(Vehicle, lowerLimitRightTrackLowSpeed)
+DEFINE_FACT(Vehicle, upperLimitLeftTrackHighSpeed)
+DEFINE_FACT(Vehicle, upperLimitLeftTrackLowSpeed)
+DEFINE_FACT(Vehicle, upperLimitLeftTrackFrettingSpeed)
+DEFINE_FACT(Vehicle, lowerLimitLeftTrackSpeed)
+DEFINE_FACT(Vehicle, upperLimitRightTrackHighSpeed)
+DEFINE_FACT(Vehicle, upperLimitRightTrackLowSpeed)
+DEFINE_FACT(Vehicle, upperLimitRightTrackFrettingSpeed)
+DEFINE_FACT(Vehicle, lowerLimitRightTrackSpeed)
 
 const char* Vehicle::_teleRSSIFactName                    = "teleRSSI";
 const char* Vehicle::_supplyVoltageFactName               = "supplyVoltage";
@@ -58,7 +65,14 @@ Vehicle::Vehicle(QObject* parent)
     , _wajueLockFact(_wajueLockFactName, FactMetaData::valueTypeBool)
     , _poChaiQuickFact(_poChaiQuickFactName, FactMetaData::valueTypeBool)
     , _allSwitchsFact(_allSwitchsFactName, FactMetaData::valueTypeInt8)
-    , _lowerLimitRightTrackLowSpeedFact(_lowerLimitRightTrackLowSpeedFactName, FactMetaData::valueTypeUint8)
+    , _upperLimitLeftTrackHighSpeedFact(_upperLimitLeftTrackHighSpeedFactName, FactMetaData::valueTypeUint8)
+    , _upperLimitLeftTrackLowSpeedFact(_upperLimitLeftTrackLowSpeedFactName, FactMetaData::valueTypeUint8)
+    , _upperLimitLeftTrackFrettingSpeedFact(_upperLimitLeftTrackFrettingSpeedFactName, FactMetaData::valueTypeUint8)
+    , _lowerLimitLeftTrackSpeedFact(_lowerLimitLeftTrackSpeedFactName, FactMetaData::valueTypeUint8)
+    , _upperLimitRightTrackHighSpeedFact(_upperLimitRightTrackHighSpeedFactName, FactMetaData::valueTypeUint8)
+    , _upperLimitRightTrackLowSpeedFact(_upperLimitRightTrackLowSpeedFactName, FactMetaData::valueTypeUint8)
+    , _upperLimitRightTrackFrettingSpeedFact(_upperLimitRightTrackFrettingSpeedFactName, FactMetaData::valueTypeUint8)
+    , _lowerLimitRightTrackSpeedFact(_lowerLimitRightTrackSpeedFactName, FactMetaData::valueTypeUint8)
 {
     _commonInit();
 }
@@ -86,7 +100,14 @@ void Vehicle::_commonInit()
     _addFact(&_wajueLockFact, _wajueLockFactName);
     _addFact(&_poChaiQuickFact, _poChaiQuickFactName);
     _addFact(&_allSwitchsFact, _allSwitchsFactName);
-    _addFact(&_lowerLimitRightTrackLowSpeedFact, _lowerLimitRightTrackLowSpeedFactName);
+    _addFact(&_upperLimitLeftTrackHighSpeedFact, _upperLimitLeftTrackHighSpeedFactName);
+    _addFact(&_upperLimitLeftTrackLowSpeedFact, _upperLimitLeftTrackLowSpeedFactName);
+    _addFact(&_upperLimitLeftTrackFrettingSpeedFact, _upperLimitLeftTrackFrettingSpeedFactName);
+    _addFact(&_lowerLimitLeftTrackSpeedFact, _lowerLimitLeftTrackSpeedFactName);
+    _addFact(&_upperLimitRightTrackHighSpeedFact, _upperLimitRightTrackHighSpeedFactName);
+    _addFact(&_upperLimitRightTrackLowSpeedFact, _upperLimitRightTrackLowSpeedFactName);
+    _addFact(&_upperLimitRightTrackFrettingSpeedFact, _upperLimitRightTrackFrettingSpeedFactName);
+    _addFact(&_lowerLimitRightTrackSpeedFact, _lowerLimitRightTrackSpeedFactName);
 
     cl = XApp()->toolbox()->linkManager()->canlink();
 }
@@ -158,6 +179,7 @@ void Vehicle::sendReadControl(bool b)
     QCanBusFrame frame = QCanBusFrame(frameId, _switch);
     cl->writeCanFrame(frame);
     qDebug() << _switch;
+
 }
 
 void Vehicle::sendWriteControl(bool b)
@@ -166,7 +188,24 @@ void Vehicle::sendWriteControl(bool b)
     _switch[ 7 ]       = b;
     QCanBusFrame frame = QCanBusFrame(frameId, _switch);
     cl->writeCanFrame(frame);
-    qDebug() << _switch;
+        qDebug() << _switch;
+}
+
+void Vehicle::updateAllParams()
+{
+        const uint frameId = 0x01801F0C;
+        QByteArray b;
+        b[0] = upperLimitLeftTrackHighSpeedFact()->cookedValue().toUInt();
+        b[1] = upperLimitLeftTrackLowSpeedFact()->cookedValue().toUInt();
+        b[2] = upperLimitLeftTrackFrettingSpeedFact()->cookedValue().toUInt();
+        b[3] = lowerLimitLeftTrackSpeedFact()->cookedValue().toUInt();
+        b[4] = upperLimitRightTrackHighSpeedFact()->cookedValue().toUInt();
+        b[5] = upperLimitRightTrackLowSpeedFact()->cookedValue().toUInt();
+        b[6] = upperLimitRightTrackFrettingSpeedFact()->cookedValue().toUInt();
+        b[7] = lowerLimitRightTrackSpeedFact()->cookedValue().toUInt();
+        QCanBusFrame frame = QCanBusFrame(frameId, b);
+        cl->writeCanFrame(frame);
+            qDebug() << b.toHex(':');
 }
 
 void Vehicle::_updateAllValues()

@@ -63,8 +63,16 @@ void CanLinkProtocol::receiveBytes(QCanBusFrame canbusframe)
             ve->oilTemperatureFact()->setRawValue(QVariant(payload.at(4) - 50));
         }
         break;
-        case 0x10F58101:
+        case 0x18EDFF1C:
         {
+            ve->upperLimitLeftTrackHighSpeedFact()->setRawValue(QVariant(payload.at(0)));
+            ve->upperLimitLeftTrackLowSpeedFact()->setRawValue(QVariant(payload.at(1)));
+            ve->upperLimitLeftTrackFrettingSpeedFact()->setRawValue(QVariant(payload.at(2)));
+            ve->lowerLimitLeftTrackSpeedFact()->setRawValue(QVariant(payload.at(3)));
+            ve->upperLimitRightTrackHighSpeedFact()->setRawValue(QVariant(payload.at(4)));
+            ve->upperLimitRightTrackLowSpeedFact()->setRawValue(QVariant(payload.at(5)));
+            ve->upperLimitRightTrackFrettingSpeedFact()->setRawValue(QVariant(payload.at(6)));
+            ve->lowerLimitRightTrackSpeedFact()->setRawValue(QVariant(payload.at(7)));
         }
         break;
     }
