@@ -1,4 +1,4 @@
-[
+﻿[
     {
         "name": "teleRSSI",
         "shortDesc": "遥控通信强度",
@@ -125,42 +125,42 @@
     {
         "name":             "upperLimitLeftTrackHighSpeed",
         "shortDescription": "左履带高速上限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "upperLimitLeftTrackLowSpeed",
         "shortDescription": "左履带低速上限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "lowerLimitLeftTrackHighSpeed",
         "shortDescription": "左履带高速下限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "lowerLimitLeftTrackLowSpeed",
         "shortDescription": "左履带低速下限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "upperLimitRightTrackHighSpeed",
         "shortDescription": "右履带高速上限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "upperLimitRightTrackLowSpeed",
         "shortDescription": "右履带低速上限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "lowerLimitRightTrackHighSpeed",
         "shortDescription": "右履带高速下限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "lowerLimitRightTrackLowSpeed",
         "shortDescription": "右履带低速下限速度",
-        "type":             "uint8",
+        "type":             "uint8"
     },
     {
         "name":             "allSwitchs",

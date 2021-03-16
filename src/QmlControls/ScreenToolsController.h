@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  *
  * (c) 2020-2021 HMI PROJECT <http://www.hmi.org>
  *
@@ -27,7 +27,7 @@ class ScreenToolsController : public QQuickItem
 public:
     ScreenToolsController();
     Q_PROPERTY(bool isMobile READ isMobile CONSTANT)
-    Q_PROPERTY(bool isLinux READ isLinux CONSTANT)
+    //Q_PROPERTY(bool isLinux READ isLinux CONSTANT)
     Q_PROPERTY(bool hasTouch READ hasTouch CONSTANT)
     Q_PROPERTY(QString fixedFontFamily READ fixedFontFamily CONSTANT)
     Q_PROPERTY(QString normalFontFamily READ normalFontFamily CONSTANT)

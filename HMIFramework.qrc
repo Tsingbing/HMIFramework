@@ -1,4 +1,4 @@
-<RCC>
+﻿<RCC>
     <qresource prefix="/json">
         <file alias="VehicleFact.json">src/vehicles/VehicleFact.json</file>
         <file alias="canData.json">src/links/canData.json</file>
@@ -7,67 +7,14 @@
     <qresource prefix="/qml">
         <file alias="HMI/ScreenTools/qmldir">src/QmlControls/HMI/ScreenTools/qmldir</file>
         <file alias="HMI/ScreenTools/ScreenTools.qml">src/QmlControls/ScreenTools.qml</file>
-        <file alias="HMI/FactSystem/qmldir">src/QmlControls/HMI/FactSystem/qmldir</file>
-        <file alias="MainRootWindow.qml">src/ui/MainRootWindow.qml</file>
-        <file alias="HMI/Controls/qmldir">src/QmlControls/HMI/Controls/qmldir</file>
-        <file alias="MainRootWindow1.qml">src/ui/MainRootWindow1.qml</file>
         <file alias="MainRootWindow2.qml">src/ui/MainRootWindow2.qml</file>
-        <file alias="Page1Form.ui.qml">src/ui/Page1Form.ui.qml</file>
-        <file alias="Page2Form.ui.qml">src/ui/Page2Form.ui.qml</file>
-        <file alias="Page3Form.ui.qml">src/ui/Page3Form.ui.qml</file>
-        <file alias="Page4Form.ui.qml">src/ui/Page4Form.ui.qml</file>
-        <file alias="HMI/Controls/HMITabBar.qml">src/ui/toolbar/HMITabBar.qml</file>
-        <file alias="HMI/Controls/HMIViewMessage.qml">src/QmlControls/HMIViewMessage.qml</file>
-        <file alias="HMI/Controls/HMIViewDialogContainer.qml">src/QmlControls/HMIViewDialogContainer.qml</file>
-        <file alias="HMI/Controls/HMIViewDialog.qml">src/QmlControls/HMIViewDialog.qml</file>
-        <file alias="HMI/Controls/HMIToolInsets.qml">src/QmlControls/HMIToolInsets.qml</file>
-        <file alias="HMI/Controls/HMIToolBarButton.qml">src/QmlControls/HMIToolBarButton.qml</file>
-        <file alias="HMI/Controls/HMITextField.qml">src/QmlControls/HMITextField.qml</file>
-        <file alias="HMI/Controls/HMITabButton.qml">src/QmlControls/HMITabButton.qml</file>
-        <file alias="HMI/Controls/HMISwitch.qml">src/QmlControls/HMISwitch.qml</file>
-        <file alias="HMI/Controls/HMISlider.qml">src/QmlControls/HMISlider.qml</file>
-        <file alias="HMI/Controls/HMIRadioButton.qml">src/QmlControls/HMIRadioButton.qml</file>
-        <file alias="HMI/Controls/HMIPopupDialogContainer.qml">src/QmlControls/HMIPopupDialogContainer.qml</file>
-        <file alias="HMI/Controls/HMIPopupDialog.qml">src/QmlControls/HMIPopupDialog.qml</file>
-        <file alias="HMI/Controls/HMIPipState.qml">src/QmlControls/HMIPipState.qml</file>
-        <file alias="HMI/Controls/HMIPipOverlay.qml">src/QmlControls/HMIPipOverlay.qml</file>
-        <file alias="HMI/Controls/HMIOptionsComboBox.qml">src/QmlControls/HMIOptionsComboBox.qml</file>
-        <file alias="HMI/Controls/HMIMovableItem.qml">src/QmlControls/HMIMovableItem.qml</file>
-        <file alias="HMI/Controls/HMIMouseArea.qml">src/QmlControls/HMIMouseArea.qml</file>
-        <file alias="HMI/Controls/HMIMenuSeparator.qml">src/QmlControls/HMIMenuSeparator.qml</file>
-        <file alias="HMI/Controls/HMIMenuItem.qml">src/QmlControls/HMIMenuItem.qml</file>
-        <file alias="HMI/Controls/HMIMenu.qml">src/QmlControls/HMIMenu.qml</file>
-        <file alias="HMI/Controls/HMIListView.qml">src/QmlControls/HMIListView.qml</file>
-        <file alias="HMI/Controls/HMILabel.qml">src/QmlControls/HMILabel.qml</file>
-        <file alias="HMI/Controls/HMIGroupBox.qml">src/QmlControls/HMIGroupBox.qml</file>
-        <file alias="HMI/Controls/HMIButton.qml">src/QmlControls/HMIButton.qml</file>
-        <file alias="HMI/Controls/HMICheckBox.qml">src/QmlControls/HMICheckBox.qml</file>
-        <file alias="HMI/Controls/HMIComboBox.qml">src/QmlControls/HMIComboBox.qml</file>
-        <file alias="HMI/Controls/HMIColoredImage.qml">src/QmlControls/HMIColoredImage.qml</file>
-        <file alias="HMI/Controls/HMIFlickable.qml">src/QmlControls/HMIFlickable.qml</file>
         <file alias="AppSettings.qml">src/ui/AppSettings.qml</file>
         <file alias="AnalyzeView.qml">src/ui/AnalyzeView.qml</file>
         <file alias="PlanView.qml">src/ui/PlanView.qml</file>
         <file alias="SetupView.qml">src/ui/SetupView.qml</file>
         <file alias="GeneralSettings.qml">src/ui/preferences/GeneralSettings.qml</file>
         <file alias="HelpSettings.qml">src/ui/preferences/HelpSettings.qml</file>
-        <file alias="HMI/Controls/HMIFlickableHorizontalIndicator.qml">src/QmlControls/HMIFlickableHorizontalIndicator.qml</file>
-        <file alias="HMI/Controls/HMIFlickableVerticalIndicator.qml">src/QmlControls/HMIFlickableVerticalIndicator.qml</file>
-        <file alias="HMI/FactControls/FactLabel.qml">src/factsystem/FactControls/FactLabel.qml</file>
-        <file alias="HMI/FactControls/FactTextField.qml">src/factsystem/FactControls/FactTextField.qml</file>
-        <file alias="HMI/FactControls/FactValueSlider.qml">src/factsystem/FactControls/FactValueSlider.qml</file>
-        <file alias="HMI/FactControls/qmldir">src/QmlControls/HMI/FactControls/qmldir</file>
-        <file alias="HMI/Controls/ParameterEditorDialog.qml">src/QmlControls/ParameterEditorDialog.qml</file>
-        <file alias="HMI/FactControls/FactComboBox.qml">src/factsystem/FactControls/FactComboBox.qml</file>
         <file alias="FlyView.qml">src/ui/FlyView.qml</file>
         <file alias="HMI/Controls/AppMessages.qml">src/QmlControls/AppMessages.qml</file>
-        <file alias="HMI/Controls/MainWindowSavedState.qml">src/QmlControls/MainWindowSavedState.qml</file>
-        <file alias="HMI/FactControls/FactBitmask.qml">src/factsystem/FactControls/FactBitmask.qml</file>
-    </qresource>
-    <qresource prefix="/toolbar">
-        <file alias="MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>
-        <file alias="MainToolBarIndicators.qml">src/ui/toolbar/MainToolBarIndicators.qml</file>
-        <file alias="BatteryIndicator.qml">src/ui/toolbar/BatteryIndicator.qml</file>
-        <file alias="SignalStrength.qml">src/ui/toolbar/SignalStrength.qml</file>
     </qresource>
 </RCC>

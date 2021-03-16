@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN" sourcelanguage="en_US">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AnalyzeView</name>
     <message>
@@ -45,22 +45,22 @@
     <message>
         <location filename="../src/ui/AppSettings.qml" line="61"/>
         <source>Application Settings</source>
-        <translation>设置</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/AppSettings.qml" line="70"/>
         <source>Gerneral</source>
-        <translation>常用</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/AppSettings.qml" line="71"/>
         <source>Console</source>
-        <translation>控制台</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/AppSettings.qml" line="72"/>
         <source>Help</source>
-        <translation>帮助</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -68,17 +68,17 @@
     <message>
         <location filename="../src/ui/toolbar/BatteryIndicator.qml" line="80"/>
         <source>Battery Status</source>
-        <translation>电池状态</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/toolbar/BatteryIndicator.qml" line="92"/>
         <source>Voltage:</source>
-        <translation>电压</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/toolbar/BatteryIndicator.qml" line="94"/>
         <source>Accumulated Consumption:</source>
-        <translation>累计耗电量</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -239,7 +239,7 @@
     <message>
         <location filename="../src/factsystem/FactMetaData.cpp" line="11"/>
         <source>Other</source>
-        <translation>其他</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/factsystem/FactMetaData.cpp" line="12"/>
@@ -260,13 +260,13 @@
         <location filename="../src/factsystem/FactMetaData.cpp" line="511"/>
         <location filename="../src/factsystem/FactMetaData.cpp" line="522"/>
         <source>Value must be within %1 and %2</source>
-        <translation type="unfinished">数值范围：%1-- %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/factsystem/FactMetaData.cpp" line="447"/>
         <location filename="../src/factsystem/FactMetaData.cpp" line="542"/>
         <source>Invalid number</source>
-        <translation type="unfinished">非法数值</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -274,12 +274,12 @@
     <message>
         <location filename="../src/factsystem/FactControls/FactTextField.qml" line="35"/>
         <source>Invalid Value</source>
-        <translation>非法数值</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/factsystem/FactControls/FactTextField.qml" line="39"/>
         <source>Value Details</source>
-        <translation>详细信息</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -287,7 +287,7 @@
     <message>
         <location filename="../src/factsystem/FactControls/FactValueSlider.qml" line="100"/>
         <source>Value Details</source>
-        <translation>详细信息</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -295,37 +295,37 @@
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="48"/>
         <source>Miscellaneous</source>
-        <translation>其他</translation>
+        <translation type="unfinished">其他</translation>
     </message>
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="72"/>
         <source>Language</source>
-        <translation>语言</translation>
+        <translation type="unfinished">语言</translation>
     </message>
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="83"/>
         <source>Color Scheme</source>
-        <translation>配色方案</translation>
+        <translation type="unfinished">颜色主题</translation>
     </message>
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="94"/>
         <source>UI Scaling</source>
-        <translation>页面</translation>
+        <translation type="unfinished">界面缩放</translation>
     </message>
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="164"/>
         <source>Announce battery lower than</source>
-        <translation>电压低于该电量是提示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="193"/>
         <source>Load/Save Path</source>
-        <translation>加载/保存路径</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="200"/>
         <source>Browse</source>
-        <translation>浏览</translation>
+        <translation type="unfinished">浏览</translation>
     </message>
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="236"/>
@@ -335,7 +335,7 @@
     <message>
         <location filename="../src/ui/preferences/GeneralSettings.qml" line="254"/>
         <source>%1 Version</source>
-        <translation type="unfinished">%1 版本</translation>
+        <translation type="unfinished">版本</translation>
     </message>
 </context>
 <context>
@@ -351,83 +351,83 @@
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="97"/>
         <source>Ok</source>
-        <translation type="unfinished">确定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="100"/>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="109"/>
         <source>Open</source>
-        <translation type="unfinished">打开</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="103"/>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="106"/>
         <source>Apply</source>
-        <translation type="unfinished">应用</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="112"/>
         <source>Save All</source>
-        <translation type="unfinished">保存全部</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="115"/>
         <source>Yes</source>
-        <translation type="unfinished">是</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="118"/>
         <source>Yes to All</source>
-        <translation type="unfinished">全是</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="121"/>
         <source>Retry</source>
-        <translation type="unfinished">重试</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="124"/>
         <source>Reset</source>
-        <translation type="unfinished">重置</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="127"/>
         <source>Restore to Defaults</source>
-        <translation type="unfinished">重置为默认值</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="130"/>
         <source>Ignore</source>
-        <translation type="unfinished">忽略</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="136"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="139"/>
         <source>Close</source>
-        <translation type="unfinished">关闭</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="142"/>
         <source>No</source>
-        <translation type="unfinished">否</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="145"/>
         <source>No to All</source>
-        <translation type="unfinished">全否</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIPopupDialogContainer.qml" line="148"/>
         <source>Abort</source>
-        <translation type="unfinished">中止</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -443,83 +443,83 @@
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="31"/>
         <source>Ok</source>
-        <translation>确定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="34"/>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="43"/>
         <source>Open</source>
-        <translation>打开</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="37"/>
         <source>Save</source>
-        <translation>保存</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="40"/>
         <source>Apply</source>
-        <translation>应用</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="46"/>
         <source>Save All</source>
-        <translation>保存全部</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="49"/>
         <source>Yes</source>
-        <translation>是</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="52"/>
         <source>Yes to All</source>
-        <translation>全是</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="55"/>
         <source>Retry</source>
-        <translation>重试</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="58"/>
         <source>Reset</source>
-        <translation>重置</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="61"/>
         <source>Restore to Defaults</source>
-        <translation>重置为默认值</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="64"/>
         <source>Ignore</source>
-        <translation>忽略</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="70"/>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="73"/>
         <source>Close</source>
-        <translation>关闭</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="76"/>
         <source>No</source>
-        <translation>否</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="79"/>
         <source>No to All</source>
-        <translation>全否</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/HMIViewDialogContainer.qml" line="82"/>
         <source>Abort</source>
-        <translation>中止</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -617,7 +617,7 @@
     <message>
         <location filename="../src/ui/numkeyboard.ui" line="202"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/numkeyboard.ui" line="235"/>
@@ -702,37 +702,37 @@
     <message>
         <location filename="../src/QmlControls/ParameterEditorDialog.qml" line="133"/>
         <source>Reset to default</source>
-        <translation>重置为默认值</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/ParameterEditorDialog.qml" line="207"/>
         <source>Min: </source>
-        <translation>最小：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/ParameterEditorDialog.qml" line="212"/>
         <source>Max: </source>
-        <translation>最大：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/ParameterEditorDialog.qml" line="217"/>
         <source>Default: </source>
-        <translation>默认：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/ParameterEditorDialog.qml" line="223"/>
         <source>Parameter name: </source>
-        <translation>参数名称：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/ParameterEditorDialog.qml" line="248"/>
         <source>Force save (dangerous!)</source>
-        <translation>强制保存（危险）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/QmlControls/ParameterEditorDialog.qml" line="265"/>
         <source>Advanced settings</source>
-        <translation>高级设置</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

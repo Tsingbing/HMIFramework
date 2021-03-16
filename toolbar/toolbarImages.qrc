@@ -1,0 +1,25 @@
+﻿<RCC>
+    <qresource prefix="/qmlimages">
+        <file alias="Analyze.svg">images/Analyze.svg</file>
+        <file alias="Gears.svg">images/Gears.svg</file>
+        <file alias="PaperPlane.svg">images/PaperPlane.svg</file>
+        <file alias="Plan.svg">images/Plan.svg</file>
+        <file alias="Armed.svg">images/Armed.svg</file>
+        <file alias="Battery.svg">images/Battery.svg</file>
+        <file alias="Connect.svg">images/Connect.svg</file>
+        <file alias="Disarmed.svg">images/Disarmed.svg</file>
+        <file alias="Disconnect.svg">images/Disconnect.svg</file>
+        <file alias="Gps.svg">images/Gps.svg</file>
+        <file alias="Hamburger.svg">images/Hamburger.svg</file>
+        <file alias="Megaphone.svg">images/Megaphone.svg</file>
+        <file alias="roi.svg">images/roi.svg</file>
+        <file alias="RTK.svg">images/RTK.svg</file>
+        <file alias="Signal0.svg">images/Signal0.svg</file>
+        <file alias="Signal20.svg">images/Signal20.svg</file>
+        <file alias="Signal40.svg">images/Signal40.svg</file>
+        <file alias="Signal60.svg">images/Signal60.svg</file>
+        <file alias="Signal80.svg">images/Signal80.svg</file>
+        <file alias="Signal100.svg">images/Signal100.svg</file>
+        <file alias="Yield.svg">images/Yield.svg</file>
+    </qresource>
+</RCC>

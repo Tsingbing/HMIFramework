@@ -1,0 +1,9 @@
+﻿<RCC>
+    <qresource prefix="/qml">
+        <file alias="Page1Form.ui.qml">qml/Page1Form.ui.qml</file>
+        <file alias="Page2Form.ui.qml">qml/Page2Form.ui.qml</file>
+        <file alias="Page3Form.ui.qml">qml/Page3Form.ui.qml</file>
+        <file alias="Page4Form.ui.qml">qml/Page4Form.ui.qml</file>
+        <file alias="MainRootWindow.qml">qml/MainRootWindow.qml</file>
+    </qresource>
+</RCC>

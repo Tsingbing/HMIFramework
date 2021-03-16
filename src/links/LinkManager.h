@@ -1,10 +1,10 @@
-#ifndef LINKMANAGER_H
+﻿#ifndef LINKMANAGER_H
 #define LINKMANAGER_H
 
-#include <QObject>
-#include "Tool.h"
 #include "CanLink.h"
 #include "CanLinkProtocol.h"
+#include "Tool.h"
+#include <QObject>
 
 /// @说明 管理通讯连接
 ///
@@ -14,17 +14,17 @@ class LinkManager : public Tool
 {
     Q_OBJECT
 public:
-    LinkManager(XApplication* app,Toolbox* toolbox);
+    LinkManager(XApplication* app, Toolbox* toolbox);
     ~LinkManager();
-    CanLink* canlink() {return _canlink;}
+    CanLink* canlink() { return _canlink; }
 
     ///< 覆写Tool函数
-    virtual void setToolbox(Toolbox *toolbox);
-private:
+    virtual void setToolbox(Toolbox* toolbox);
 
 private:
-    CanLink *_canlink = nullptr;
-    CanLinkProtocol *_canlinkProtocol = nullptr;
+private:
+    CanLink*         _canlink         = nullptr;
+    CanLinkProtocol* _canlinkProtocol = nullptr;
 };
 
 #endif // LINKMANAGER_H

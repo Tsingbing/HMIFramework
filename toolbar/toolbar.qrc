@@ -1,0 +1,8 @@
+﻿<RCC>
+    <qresource prefix="/toolbar">
+        <file>BatteryIndicator.qml</file>
+        <file>MainToolBar.qml</file>
+        <file>MainToolBarIndicators.qml</file>
+        <file>SignalStrength.qml</file>
+    </qresource>
+</RCC>

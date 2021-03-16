@@ -1,25 +1,37 @@
-QT += core gui concurrent
-QT += serialbus
-QT += quick
-QT += qml
+# -------------------------------------------------
+# HMI
+# Maintainer: xueqingbing
+# -------------------------------------------------
 
-static {
-    QT += svg
-    QTPLUGIN += qtvirtualkeyboardplugin
+CONFIG -= debug_and_release
+
+CONFIG(debug, debug|release) {
+    message(Debug flavor)
+    CONFIG += DebugBuild
+} else:CONFIG(release, debug|release) {
+    message(Release flavor)
+    CONFIG += ReleaseBuild
+} else {
+    error(Unsupported build flavor)
 }
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+DebugBuild {
+    DESTDIR  = $${OUT_PWD}/debug
+} else {
+    DESTDIR  = $${OUT_PWD}/release
+}
 
-# CONFIG += c++11
-
-DEFINES += QT_DEPRECATED_WARNINGS
-
-#
-# 品牌
-#
-
-DEFINES += APPLICATION_NAME=\"\\\"HMIFramework\\\"\"
-DEFINES += ORG_NAME=\"\\\"umltech.org\\\"\"
+win32 {
+    contains(QMAKE_TARGET.arch, x86_64) {
+        message("Windows build")
+        CONFIG += WindowsBuild
+        CONFIG += WarningsAsErrorsOn
+        DEFINES+=_CRT_SECURE_NO_WARNINGS
+        DEFINES += __STDC_LIMIT_MACROS
+    } else {
+        #error("Unsupported Windows toolchain, only Visual Studio 2017 64 bit is supported")
+    }
+}
 
 # 设置构建目录
 DESTDIR = $${OUT_PWD}/bin
@@ -37,7 +49,6 @@ exists ($$PWD/.git) {
     GIT_TIME     = $$system(git --git-dir $$PWD/.git --work-tree $$PWD show --oneline --format=\"%ci\" -s HEAD)
 
     # 设置设备标号
-
     contains(GIT_DESCRIBE, v[0-9]+.[0-9]+.[0-9]+) {
         # 发布版本 "vX.Y.Z"
         GIT_VERSION = $${GIT_DESCRIBE}
@@ -58,18 +69,55 @@ exists ($$PWD/.git) {
     MAC_BUILD       = 0
 }
 
+#
+# 品牌
+#
+
+DEFINES += APPLICATION_NAME=\"\\\"HMIFramework\\\"\"
+DEFINES += ORG_NAME=\"\\\"umltech.org\\\"\"
 DEFINES += GIT_VERSION=\"\\\"$$GIT_VERSION\\\"\"
+
+TARGET   = HMI
+TEMPLATE = app
+HMIROOT  = $$PWD
+
+DebugBuild {
+    CONFIG -= qtquickcompiler
+} else {
+    CONFIG += qtquickcompiler
+}
+
+
+QT += core gui concurrent
+QT += serialbus
+QT += quick
+QT += qml
+
+# Multimedia only used if QVC is enabled
+!contains (DEFINES, QGC_DISABLE_UVC) {
+    QT += \
+        multimedia
+}
+
+static {
+    QT += svg
+    QTPLUGIN += qtvirtualkeyboardplugin
+}
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+CONFIG += c++11
+
+DEFINES += QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += .
 
 INCLUDEPATH += \
     src \
-    src/factsystem \
     src/vehicles \
     src/settings \
     src/links \
-    src/QmlControls \
-    src/ui
+    src/QmlControls
 
 SOURCES += \
     src/HMILoggingCategory.cc \
@@ -80,12 +128,6 @@ SOURCES += \
     src/Tool.cpp \
     src/Toolbox.cpp \
     src/XApplication.cpp \
-    src/factsystem/Fact.cpp \
-    src/factsystem/FactGroup.cpp \
-    src/factsystem/FactMetaData.cpp \
-    src/factsystem/FactSystem.cc \
-    src/factsystem/JsonHelper.cc \
-    src/factsystem/SettingsFact.cpp \
     src/links/CanLink.cpp \
     src/links/CanLinkProtocol.cpp \
     src/links/LinkManager.cpp \
@@ -93,10 +135,6 @@ SOURCES += \
     src/settings/AppSettings.cpp \
     src/settings/SettingsGroup.cpp \
     src/settings/SettingsManager.cpp \
-    src/ui/Dialog2.cpp \
-    src/ui/MessageDialog.cpp \
-    src/ui/numkeyboard.cpp \
-    src/ui/softkeylineedit.cpp \
     src/vehicles/Vehicle.cpp \
     src/vehicles/VehicleManager.cpp
 
@@ -109,35 +147,21 @@ HEADERS += \
     src/Tool.h \
     src/Toolbox.h \
     src/XApplication.h \
-    src/factsystem/Fact.h \
-    src/factsystem/FactGroup.h \
-    src/factsystem/FactMetaData.h \
-    src/factsystem/FactSystem.h \
-    src/factsystem/JsonHelper.h \
-    src/factsystem/SettingsFact.h \
     src/links/CanLink.h \
     src/links/CanLinkProtocol.h \
     src/links/LinkManager.h \
     src/settings/AppSettings.h \
     src/settings/SettingsGroup.h \
     src/settings/SettingsManager.h \
-    src/ui/Dialog2.h \
-    src/ui/MessageDialog.h \
-    src/ui/numkeyboard.h \
-    src/ui/softkeylineedit.h \
     src/vehicles/Vehicle.h \
     src/vehicles/VehicleManager.h
 
-FORMS += \
-    src/ui/Dialog2.ui \
-    src/ui/MessageDialog.ui \
-    src/ui/numkeyboard.ui
 #
-TARGET = run
+#TARGET = run
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /home/root/client
-!isEmpty(target.path): INSTALLS += target
+#qnx: target.path = /tmp/$${TARGET}/bin
+#else: unix:!android: target.path = /home/root/client
+#!isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
     HMIFramework.qrc \
@@ -146,13 +170,16 @@ RESOURCES += \
 
 QML_IMPORT_PATH += $$PWD/src/QmlControls
 
-DISTFILES += \
-    src/QmlControls/HMI/Specific/qmldir
-
 #-------------------------------------------------------------------------------------
 #
 # Localization
 #
 
-TRANSLATIONS += $$files($$PWD/localization/qgc*.ts)
+TRANSLATIONS += $$files($$PWD/localization/qgc_*.ts)
 CONFIG+=lrelease embed_translations
+
+include($$PWD/inputnew/inputnew.pri)
+include($$PWD/factsystem/factsystem.pri)
+include($$PWD/qmlcontrols/qmlcontrols.pri)
+include($$PWD/toolbar/toolbar.pri)
+include($$PWD/HMI1/HMI1.pri)

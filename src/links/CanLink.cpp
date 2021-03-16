@@ -1,4 +1,4 @@
-#include "CanLink.h"
+﻿#include "CanLink.h"
 #include <QDebug>
 
 bool CanLink::Connect()
@@ -6,14 +6,14 @@ bool CanLink::Connect()
     //qDebug() << "CONNECT CALLED";
     Disconnect();
 
-    QCanBusDevice::CanBusError error;
-    QString                    errorString;
+    //QCanBusDevice::CanBusError error;
+    QString errorString;
 
-    if (!_hardwareConnect(error, errorString))
-    {
-        return false;
-    }
-    return true;
+    //    if (!_hardwareConnect(error, errorString))
+    //    {
+    //        return false;
+    //    }
+    return false;
 }
 
 void CanLink::Disconnect()
@@ -56,7 +56,7 @@ bool CanLink::_hardwareConnect(QCanBusDevice::CanBusError& error, QString& error
 {
     _port = QCanBus::instance()->createDevice(QStringLiteral("socketcan"), QStringLiteral("can0"),
                                               &errorString);
-    connect(_port, &QCanBusDevice::framesReceived, this, &CanLink::_readBytes);
+
     if (!_port)
     {
         error = _port->error();
@@ -66,6 +66,7 @@ bool CanLink::_hardwareConnect(QCanBusDevice::CanBusError& error, QString& error
     }
     else
     {
+        connect(_port, &QCanBusDevice::framesReceived, this, &CanLink::_readBytes);
         _port->connectDevice();
     }
     return true;

@@ -1,4 +1,5 @@
 ﻿#include "AppMessages.h"
+#include "Dialog2.h"
 #include <QApplication>
 #include <QDebug>
 #include <XApplication.h>
@@ -15,6 +16,11 @@ int main(int argc, char* argv[])
 
     app->_initCommon();
     app->_initForAppBoot();
+
+    //QWidget UI 界面显示
+    QDialog* dlg = new Dialog2();
+    Q_CHECK_PTR(dlg);
+    dlg->show();
 
     int exitCode = app->exec();
     app->_shutdown();

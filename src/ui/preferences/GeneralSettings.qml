@@ -1,4 +1,4 @@
-import QtQuick                  2.3
+﻿import QtQuick                  2.3
 import QtQuick.Controls         1.2
 import QtQuick.Controls.Styles  1.4
 import QtQuick.Dialogs          1.2
@@ -251,7 +251,7 @@ Rectangle {
                 Item { width: 1; height: _margins * 6 }
 
                 HMILabel {
-                    text:               qsTr("%1 Version").arg(HMI.appName)
+                    //text:               qsTr("%1 Version").arg(HMI.appName)
                     Layout.alignment:   Qt.AlignHCenter
                 }
                 HMILabel {

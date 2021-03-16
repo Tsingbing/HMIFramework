@@ -56,7 +56,7 @@ private:
     bool                   _logOutput    = false; ///< true: Log Qt debug output to file
     QLocale                _locale;
 
-    QTranslator _QGCTranslator;
+    QTranslator _QGCTranslatorSource;
     QTranslator _QGCTranslatorQt;
     QTranslator _QGCTranslatorJson;
 
