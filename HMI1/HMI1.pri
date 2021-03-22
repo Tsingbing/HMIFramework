@@ -7,8 +7,8 @@ FORMS    += \
 
 
 RESOURCES += \
-    $$PWD/qml.qrc \
-    $$PWD/images.qrc
+    $$PWD/hmi1images.qrc \
+    $$PWD/qml.qrc
 
 INCLUDEPATH += $$PWD
 

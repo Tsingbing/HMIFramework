@@ -1,0 +1,16 @@
+﻿<RCC>
+    <qresource prefix="/json"/>
+    <qresource prefix="/qml">
+        <file alias="HMI/ScreenTools/qmldir">qml/HMI/ScreenTools/qmldir</file>
+        <file alias="HMI/ScreenTools/ScreenTools.qml">qml/ScreenTools.qml</file>
+        <file alias="MainRootWindow1.qml">qml/MainRootWindow1.qml</file>
+        <file alias="AppSettings.qml">qml/AppSettings.qml</file>
+        <file alias="AnalyzeView.qml">qml/AnalyzeView.qml</file>
+        <file alias="PlanView.qml">qml/PlanView.qml</file>
+        <file alias="SetupView.qml">qml/SetupView.qml</file>
+        <file alias="GeneralSettings.qml">qml/preferences/GeneralSettings.qml</file>
+        <file alias="HelpSettings.qml">qml/preferences/HelpSettings.qml</file>
+        <file alias="FlyView.qml">qml/FlyView.qml</file>
+        <file alias="HMI/Controls/AppMessages.qml">qml/AppMessages.qml</file>
+    </qresource>
+</RCC>

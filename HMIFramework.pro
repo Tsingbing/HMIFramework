@@ -123,8 +123,6 @@ SOURCES += \
     src/HMILoggingCategory.cc \
     src/HMIPalette.cc \
     src/HMIQmlGlobal.cpp \
-    src/QmlControls/AppMessages.cc \
-    src/QmlControls/ScreenToolsController.cc \
     src/Tool.cpp \
     src/Toolbox.cpp \
     src/XApplication.cpp \
@@ -138,12 +136,15 @@ SOURCES += \
     src/vehicles/Vehicle.cpp \
     src/vehicles/VehicleManager.cpp
 
+#    src/QmlControls/AppMessages.h \
+#    src/QmlControls/ScreenToolsController.h \
+#    src/QmlControls/AppMessages.cc \
+#    src/QmlControls/ScreenToolsController.cc \
+
 HEADERS += \
     src/HMILoggingCategory.h \
     src/HMIPalette.h \
     src/HMIQmlGlobal.h \
-    src/QmlControls/AppMessages.h \
-    src/QmlControls/ScreenToolsController.h \
     src/Tool.h \
     src/Toolbox.h \
     src/XApplication.h \
@@ -164,9 +165,10 @@ HEADERS += \
 #!isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    HMIFramework.qrc \
-    hmiimages.qrc \
-    hmiresources.qrc
+    HMIFramework.qrc
+#    hmiresources.qrc \
+#    hmiimages.qrc \
+
 
 QML_IMPORT_PATH += $$PWD/src/QmlControls
 
@@ -183,3 +185,4 @@ include($$PWD/factsystem/factsystem.pri)
 include($$PWD/qmlcontrols/qmlcontrols.pri)
 include($$PWD/toolbar/toolbar.pri)
 include($$PWD/HMI1/HMI1.pri)
+include($$PWD/hmiQGC/hmiQGC.pri)

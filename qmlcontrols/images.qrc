@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/qmlimages">
+        <file alias="arrow-down.png">images/arrow-down.png</file>
+        <file alias="checkbox-check.svg">images/checkbox-check.svg</file>
+    </qresource>
+</RCC>

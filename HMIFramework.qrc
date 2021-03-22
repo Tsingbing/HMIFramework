@@ -1,20 +1,7 @@
 ﻿<RCC>
     <qresource prefix="/json">
         <file alias="VehicleFact.json">src/vehicles/VehicleFact.json</file>
-        <file alias="canData.json">src/links/canData.json</file>
         <file alias="App.SettingsGroup.json">src/settings/App.SettingsGroup.json</file>
     </qresource>
-    <qresource prefix="/qml">
-        <file alias="HMI/ScreenTools/qmldir">src/QmlControls/HMI/ScreenTools/qmldir</file>
-        <file alias="HMI/ScreenTools/ScreenTools.qml">src/QmlControls/ScreenTools.qml</file>
-        <file alias="MainRootWindow2.qml">src/ui/MainRootWindow2.qml</file>
-        <file alias="AppSettings.qml">src/ui/AppSettings.qml</file>
-        <file alias="AnalyzeView.qml">src/ui/AnalyzeView.qml</file>
-        <file alias="PlanView.qml">src/ui/PlanView.qml</file>
-        <file alias="SetupView.qml">src/ui/SetupView.qml</file>
-        <file alias="GeneralSettings.qml">src/ui/preferences/GeneralSettings.qml</file>
-        <file alias="HelpSettings.qml">src/ui/preferences/HelpSettings.qml</file>
-        <file alias="FlyView.qml">src/ui/FlyView.qml</file>
-        <file alias="HMI/Controls/AppMessages.qml">src/QmlControls/AppMessages.qml</file>
-    </qresource>
+    <qresource prefix="/qml"/>
 </RCC>

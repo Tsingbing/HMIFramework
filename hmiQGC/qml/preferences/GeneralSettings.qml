@@ -233,7 +233,7 @@ Rectangle {
                         anchors.horizontalCenter:   parent.horizontalCenter
 
                         HMILabel {
-                            text:           qsTr("一人我饮酒醉醉醉醉醉醉醉醉醉醉把那乐乐成双对")
+                            text:           qsTr("一人我饮酒醉醉醉醉醉醉醉醉醉醉把那乐乐睡")
                             visible:        true
                         }
                     }

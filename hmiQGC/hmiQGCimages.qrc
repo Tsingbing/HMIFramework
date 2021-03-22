@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/res">
         <file alias="ArrowDown.svg">resources/ArrowDown.svg</file>
         <file alias="ArrowRight.svg">resources/ArrowRight.svg</file>
         <file alias="camera.svg">resources/camera.svg</file>

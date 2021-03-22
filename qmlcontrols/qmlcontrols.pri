@@ -7,6 +7,7 @@ FORMS    += \
 
 
 RESOURCES += \
+    $$PWD/images.qrc \
     $$PWD/qmlcontrols.qrc
 
 INCLUDEPATH += $$PWD
