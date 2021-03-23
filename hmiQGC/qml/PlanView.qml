@@ -34,7 +34,7 @@ Rectangle {
 
     Component.onCompleted: {
         //-- Default Settings
-        //__rightPanel.source = QGroundControl.corePlugin.settingsPages[QGroundControl.corePlugin.defaultSettings].url
+        __rightPanel.source = "qrc:/qml/FlightDisplayViewUVC.qml"
     }
 
     HMIFlickable {
@@ -65,32 +65,35 @@ Rectangle {
                 visible:                true
             }
 
-//            Repeater {
-//                model:  QGroundControl.corePlugin.settingsPages
-//                HMIButton {
-//                    height:             _buttonHeight
-//                    text:               modelData.title
-//                    exclusiveGroup:     panelActionGroup
-//                    Layout.fillWidth:   true
+            Repeater {
+                model: ListModel {
+                    ListElement{title: qsTr("video"); url: "qrc:/qml/FlightDisplayViewUVC.qml"}
+                    ListElement{title: qsTr("map"); url: "qrc:/qml/HMI/FlightMap/FlightMap.qml"}
+                }
+                HMIButton {
+                    height:             _buttonHeight
+                    text:               title
+                    exclusiveGroup:     panelActionGroup
+                    Layout.fillWidth:   true
 
-//                    onClicked: {
-//                        if (mainWindow.preventViewSwitch()) {
-//                            return
-//                        }
-//                        if (__rightPanel.source !== modelData.url) {
-//                            __rightPanel.source = modelData.url
-//                        }
-//                        checked = true
-//                    }
+                    onClicked: {
+                        if (mainWindow.preventViewSwitch()) {
+                            return
+                        }
+                        if (__rightPanel.source !== url) {
+                            __rightPanel.source = url
+                        }
+                        checked = true
+                    }
 
-//                    Component.onCompleted: {
-//                        if(_first) {
-//                            _first = false
-//                            checked = true
-//                        }
-//                    }
-//                }
-//            }
+                    Component.onCompleted: {
+                        if(_first) {
+                            _first = false
+                            checked = true
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -117,7 +120,7 @@ Rectangle {
         anchors.right:          parent.right
         anchors.top:            parent.top
         anchors.bottom:         parent.bottom
-        source: "qrc:/qml/FlightDisplayViewUVC.qml"
     }
+
 }
 

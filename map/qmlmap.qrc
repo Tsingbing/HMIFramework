@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file alias="HMI/FlightMap/qmldir">HMI/FlightMap/qmldir</file>
+        <file alias="HMI/FlightMap/FlightMap.qml">FlightMap.qml</file>
+    </qresource>
+</RCC>

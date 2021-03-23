@@ -317,8 +317,7 @@ ApplicationWindow {
     /// Analyze
     Loader {
         id:             analyzeWindow
-        //anchors.fill:   parent
-        height:         mainWindow.height
+        anchors.fill:   parent
         visible:        false
         source:         "AnalyzeView.qml"
     }

@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  *
  * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
@@ -34,7 +34,7 @@ Rectangle {
 
     Component.onCompleted: {
         //-- Default Settings
-        //__rightPanel.source = QGroundControl.corePlugin.settingsPages[QGroundControl.corePlugin.defaultSettings].url
+        __rightPanel.source = "GeneralSettings.qml"
     }
 
 

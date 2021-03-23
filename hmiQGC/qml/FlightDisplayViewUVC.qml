@@ -16,7 +16,7 @@ Rectangle {
     id:                 _root
     width:              parent.width /2
     height:             parent.height /2
-    //color:              Qt.rgba(0,0,0,0.75)
+    color:              Qt.rgba(0,0,0,0.75)
     clip:               true
     anchors.centerIn:   parent
 
@@ -43,9 +43,11 @@ Rectangle {
             }
         }
     }
+
     VideoOutput {
         source:         camera
-        anchors.fill:   parent
+        width: parent.width /2
+        height: parent.height /2
         fillMode:       VideoOutput.PreserveAspectCrop
         visible:        true
     }
