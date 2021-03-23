@@ -9,7 +9,8 @@ import HMI.Palette 1.0
 import HMI.FactSystem 1.0
 import HMI.ScreenTools 1.0
 import HMI.Controls      1.0
-import HMI.SettingsManager 1.0
+//import HMI.SettingsManager 1.0
+import HMI.VideoManager 1.0
 
 ApplicationWindow {
     id:  mainWindow
@@ -34,7 +35,12 @@ ApplicationWindow {
 
     Component.onCompleted: {
         //console.info(globals._appFontPointSize.value)
-        //console.info(globals.languageFact.enumStrings)
+        console.info(HMI.appName)
+        console.info(HMI.videoManager)
+        console.info(HMI.settingsManager.appSettings.language.value)
+        console.info(HMI.vehicleManager)
+        console.info(HMI.videoManager.id)
+
         //showMessage("message")
         // showMessage("message1")
     }

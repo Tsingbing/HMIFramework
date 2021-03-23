@@ -94,10 +94,10 @@ QT += quick
 QT += qml
 
 # Multimedia only used if QVC is enabled
-!contains (DEFINES, QGC_DISABLE_UVC) {
+#!contains (DEFINES, QGC_DISABLE_UVC) {
     QT += \
         multimedia
-}
+#}
 
 static {
     QT += svg
@@ -135,11 +135,6 @@ SOURCES += \
     src/settings/SettingsManager.cpp \
     src/vehicles/Vehicle.cpp \
     src/vehicles/VehicleManager.cpp
-
-#    src/QmlControls/AppMessages.h \
-#    src/QmlControls/ScreenToolsController.h \
-#    src/QmlControls/AppMessages.cc \
-#    src/QmlControls/ScreenToolsController.cc \
 
 HEADERS += \
     src/HMILoggingCategory.h \
@@ -186,3 +181,4 @@ include($$PWD/qmlcontrols/qmlcontrols.pri)
 include($$PWD/toolbar/toolbar.pri)
 include($$PWD/HMI1/HMI1.pri)
 include($$PWD/hmiQGC/hmiQGC.pri)
+include($$PWD/video/video.pri)

@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  *
  * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
@@ -117,6 +117,7 @@ Rectangle {
         anchors.right:          parent.right
         anchors.top:            parent.top
         anchors.bottom:         parent.bottom
+        source: "qrc:/qml/FlightDisplayViewUVC.qml"
     }
 }
 

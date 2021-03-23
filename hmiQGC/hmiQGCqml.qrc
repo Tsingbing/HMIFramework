@@ -12,5 +12,6 @@
         <file alias="HelpSettings.qml">qml/preferences/HelpSettings.qml</file>
         <file alias="FlyView.qml">qml/FlyView.qml</file>
         <file alias="HMI/Controls/AppMessages.qml">qml/AppMessages.qml</file>
+        <file alias="FlightDisplayViewUVC.qml">qml/FlightDisplayViewUVC.qml</file>
     </qresource>
 </RCC>

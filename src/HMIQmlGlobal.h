@@ -1,4 +1,4 @@
-#ifndef HMIQMLGLOBAL_H
+﻿#ifndef HMIQMLGLOBAL_H
 #define HMIQMLGLOBAL_H
 
 #include "HMILoggingCategory.h"
@@ -6,6 +6,7 @@
 #include "Tool.h"
 #include "Toolbox.h"
 #include "VehicleManager.h"
+#include "VideoManager.h"
 #include "XApplication.h"
 #include <QObject>
 
@@ -18,6 +19,8 @@ public:
 
     Q_PROPERTY(VehicleManager* vehicleManager READ vehicleManager CONSTANT)
     Q_PROPERTY(SettingsManager* settingsManager READ settingsManager CONSTANT)
+    Q_PROPERTY(VideoManager* videoManager READ videoManager CONSTANT)
+
     Q_PROPERTY(QString appName READ appName CONSTANT)
     Q_PROPERTY(QString hmiVersion READ hmiVersion CONSTANT)
     Q_PROPERTY(qreal zOrderTopMost READ zOrderTopMost CONSTANT) ///< z order for top most items, toolbar, main window sub view
@@ -38,6 +41,8 @@ public:
     QString          appName() { return XApp()->applicationName(); }
     VehicleManager*  vehicleManager() { return _vehicleManager; }
     SettingsManager* settingsManager() { return _settingsManager; }
+    VideoManager*    videoManager() { return _videoManager; }
+
     // Overrides from Tool
     virtual void setToolbox(Toolbox* toolbox);
 
@@ -52,6 +57,7 @@ public:
 private:
     VehicleManager*  _vehicleManager  = nullptr;
     SettingsManager* _settingsManager = nullptr;
+    VideoManager*    _videoManager    = nullptr;
 };
 
 #endif // HMIQMLGLOBAL_H

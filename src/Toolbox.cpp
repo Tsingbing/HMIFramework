@@ -1,8 +1,9 @@
-#include "Toolbox.h"
+﻿#include "Toolbox.h"
 #include "FactSystem.h"
 #include "LinkManager.h"
 #include "SettingsManager.h"
 #include "VehicleManager.h"
+#include "VideoManager.h"
 #include "XApplication.h"
 
 Toolbox::Toolbox(XApplication* app)
@@ -12,6 +13,7 @@ Toolbox::Toolbox(XApplication* app)
     _linkManager     = new LinkManager(app, this);
     _vehicleManager  = new VehicleManager(app, this);
     _canLinkProtocol = new CanLinkProtocol(app, this);
+    _videoManager    = new VideoManager(app, this);
 }
 
 void Toolbox::setChildToolboxes()
@@ -22,4 +24,5 @@ void Toolbox::setChildToolboxes()
     _linkManager->setToolbox(this);
     _vehicleManager->setToolbox(this);
     _canLinkProtocol->setToolbox(this);
+    _videoManager->setToolbox(this);
 }

@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  *
  * (c) 2009-2020 QGROUNDCONTROL PROJECT <http://www.qgroundcontrol.org>
  *
@@ -19,6 +19,7 @@
 // Add Global logging categories (not class specific) here using Q_DECLARE_LOGGING_CATEGORY
 Q_DECLARE_LOGGING_CATEGORY(CanLog)
 Q_DECLARE_LOGGING_CATEGORY(LocalizationLog)
+Q_DECLARE_LOGGING_CATEGORY(VideoManagerLog)
 //Q_DECLARE_LOGGING_CATEGORY(FirmwareUpgradeVerboseLog)
 //Q_DECLARE_LOGGING_CATEGORY(MissionCommandsLog)
 //Q_DECLARE_LOGGING_CATEGORY(MissionItemLog)

@@ -94,13 +94,8 @@ void XApplication::_initForAppBoot()
 
 void XApplication::_initCommon()
 {
-    static const char* kRefOnly    = "Reference only";
-    static const char* kHMIVehicle = "HMI.Vehicle";
-
     qmlRegisterType<HMIPalette>("HMI.Palette", 1, 0, "HMIPalette");
-
-    qmlRegisterUncreatableType<Vehicle>(kHMIVehicle, 1, 0, "Vehicle", kRefOnly);
-    //qmlRegisterUncreatableType<SettingsManager>("HMI.SettingsManager", 1, 0, "SettingsManager", "Reference only");
+    qmlRegisterUncreatableType<Vehicle>("HMI.Vehicle", 1, 0, "Vehicle", "Reference only");
     // 注册 Qml Singletons
     qmlRegisterSingletonType<HMIQmlGlobal>("HMI", 1, 0, "HMI", HMIQmlGlobalSingletonFactory);
     qmlRegisterSingletonType<ScreenToolsController>("HMI.ScreenToolsController", 1, 0, "ScreenToolsController", screenToolsControllerSingletonFactory);

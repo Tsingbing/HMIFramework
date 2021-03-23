@@ -1,4 +1,4 @@
-#include "HMIQmlGlobal.h"
+﻿#include "HMIQmlGlobal.h"
 
 HMIQmlGlobal::HMIQmlGlobal(XApplication* app, Toolbox* toolbox)
     : Tool(app, toolbox)
@@ -15,4 +15,6 @@ void HMIQmlGlobal::setToolbox(Toolbox* toolbox)
 
     _vehicleManager  = toolbox->vehicleManager();
     _settingsManager = toolbox->settingsManager();
+    _videoManager    = toolbox->videoManager();
+    qDebug() << _videoManager->id();
 }

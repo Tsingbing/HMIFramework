@@ -1,4 +1,4 @@
-#ifndef TOOLBOX_H
+﻿#ifndef TOOLBOX_H
 #define TOOLBOX_H
 
 #include <QObject>
@@ -9,6 +9,7 @@ class VehicleManager;
 class LinkManager;
 class CanLinkProtocol;
 class SettingsManager;
+class VideoManager;
 
 class Toolbox : public QObject
 {
@@ -33,6 +34,11 @@ public:
     {
         return _settingsManager;
     }
+
+    VideoManager* videoManager()
+    {
+        return _videoManager;
+    }
 signals:
 
 private:
@@ -43,6 +49,7 @@ private:
     LinkManager*     _linkManager     = nullptr;
     CanLinkProtocol* _canLinkProtocol = nullptr;
     SettingsManager* _settingsManager = nullptr;
+    VideoManager*    _videoManager    = nullptr;
 
     friend class XApplication;
 };
