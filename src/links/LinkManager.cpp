@@ -29,5 +29,5 @@ void LinkManager::setToolbox(Toolbox* toolbox)
         qDebug() << "can0 Disconnect";
     }
 
-    connect(_canlink, &CanLink::canframesRecived, _canlinkProtocol, &CanLinkProtocol::receiveBytes);
+    //connect(_canlink, &CanLink::canframesRecived, _canlinkProtocol, &CanLinkProtocol::receiveBytes);
 }

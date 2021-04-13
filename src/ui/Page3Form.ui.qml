@@ -14,6 +14,7 @@ Page {
 
     title: qsTr("Page 3")
     property Fact fact: HMI.vehicleManager.activeVehicle.alarmsFact
+
     Image {
         id: image
         x: 0
@@ -66,16 +67,16 @@ Page {
                                     name: "normal"
                                     PropertyChanges {
                                         target: label
-                                        color: "green"
-                                        text: "正常"
+                                        color: "red"
+                                        text: "报警"
                                     }
                                 },
                                 State {
                                     name: "alarm"
                                     PropertyChanges {
                                         target: label
-                                        text: "报警"
-                                        color: "red"
+                                        text: "正常"
+                                        color: "blue"
                                     }
                                 }
                             ]

@@ -8,12 +8,14 @@ import HMI.FactControls 1.0
 import HMI.ScreenTools 1.0
 
 Page {
+    id: page
     width: 800
     height: 600
+    visible: true
 
     title: qsTr("Page 1")
-
-    //property fact rotatingSpeed: HMI.ve.getFactGroup("engine")->getFact("rotatingSpeed")
+    property var textVar: HMI.vehicleManager.activeVehicle.warningsStrings
+    property var textIndex: 0
     Image {
         id: image
         x: 0
@@ -21,59 +23,25 @@ Page {
         width: 800
         height: 600
         fillMode: Image.PreserveAspectFit
-        source: "qrc:/qmlimages/zcwjj3/page1.jpg"
-
-        //        HMIFlickable {
-        //            anchors.fill: parent
-        //            contentHeight: _column.height
-        //            flickableDirection: Flickable.VerticalFlick
-        //            clip: true
-
-        //            Column {
-        //                id: _column
-        //                width: 800
-        //                Repeater {
-        //                    model: HMI.vehicleManager.activeVehicle.factNames
-
-        //                    Loader {
-        //                        sourceComponent: largeValue
-        //                        property Fact fact: HMI.vehicleManager.activeVehicle.getFact(
-        //                                                modelData)
-        //                    }
-        //                }
-
-        //                Component {
-        //                    id: largeValue
-
-        //                    Column {
-        //                        width: _column.width
-        //                        HMILabel {
-        //                            width: parent.width
-        //                            horizontalAlignment: Text.AlignHCenter
-        //                            wrapMode: Text.WordWrap
-        //                            text: fact.shortDescription + fact.valueString
-        //                                  + (fact.units ? " (" + fact.units + ")" : "")
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
+        //source: "toolbar/images/ZCWJJ3/page11.jpg"
+        source: "qrc:/qmlimages/zcwjj3/Page11.jpg"
         FactLabel {
             id: label
-            x: 210
-            y: 132
-            width: 145
+            x: 67
+            y: 147 + 7
+            width: 83
             height: 24
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.batteryPowerFact
-            //text: qsTr("Label")
+            font.pointSize: 11
         }
 
         Row {
             id: row
-            x: 595
-            y: 65
+            x: 623
+            y: 3
             width: 169
-            height: 40
+            height: 36
 
             Switch {
                 id: element
@@ -81,6 +49,7 @@ Page {
                 height: 35
                 onClicked: {
                     globals.activeVehicle.sendJiesuo(checked)
+                    globals.activeVehicle.sendReadControl(1) //发送读参数命令
                     if (checked) {
                         label2.text = "解锁"
                         label2.color = "green"
@@ -103,122 +72,156 @@ Page {
 
         FactLabel {
             id: label1
-            x: 210
-            y: 184
-            width: 145
+            x: 67
+            y: 190 + 7
+            width: 83
             height: 24
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 11
             fact: HMI.vehicleManager.activeVehicle.supplyVoltageFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: fuelLevel
-            x: 210
-            y: 238
-            width: 145
+            x: 67
+            y: 231 + 7
+            width: 83
             height: 24
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 11
             fact: HMI.vehicleManager.activeVehicle.fuelLevelFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: rotatingSpeed
-            x: 210
-            y: 288
-            width: 145
-            height: 24
-            //fact: HMI.vehicleManager.activeVehicle.rotatingSpeedFact
+            x: 336
+            y: 5
+            width: 138
+            height: 28
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 19
             fact: HMI.vehicleManager.activeVehicle.engineFactGroup.rotatingSpeedFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: waterTemperature
-            x: 210
-            y: 344
-            width: 145
+            x: 659
+            y: 146 + 7
+            width: 74
             height: 24
+            font.pointSize: 11
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.waterTemperatureFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: mainPumpPressure
-            x: 210
-            y: 399
-            width: 145
+            x: 363
+            y: 421
+            width: 74
             height: 24
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.mainPumpPressureFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: oxygenConcentration
-            x: 210
-            y: 450
-            width: 145
+            x: 223
+            y: 421
+            width: 88
             height: 24
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.oxygenConcentrationFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: combustibleGasConcentration
-            x: 603
-            y: 132
-            width: 145
+            x: 486
+            y: 421
+            width: 73
             height: 24
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.combustibleGasConcentrationFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: ambientTemperaturen
-            x: 603
-            y: 184
-            width: 145
+            x: 108
+            y: 421
+            width: 82
             height: 24
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.ambientTemperaturenFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: xDegree
-            x: 603
-            y: 238
-            width: 145
+            x: 635
+            y: 406 + 4
+            width: 57
             height: 24
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 11
             fact: HMI.vehicleManager.activeVehicle.engineFactGroup.xDegreeFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: yDegree
-            x: 603
-            y: 288
-            width: 145
+            x: 635
+            y: 431 + 4
+            width: 57
             height: 24
+            font.pointSize: 11
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.engineFactGroup.yDegreeFact
-            //text: qsTr("Label")
         }
 
         FactLabel {
             id: workHours
-            x: 603
-            y: 344
-            width: 145
+            x: 660
+            y: 190 + 7
+            width: 70
             height: 24
+            font.pointSize: 11
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.workHoursFact
-            //text: qsTr("Label")
         }
         FactLabel {
             id: oilTemp
-            x: 603
-            y: 403
-            width: 145
+            x: 660
+            y: 231 + 7
+            width: 70
             height: 24
+            font.pointSize: 11
+            horizontalAlignment: Text.AlignHCenter
             fact: HMI.vehicleManager.activeVehicle.oilTemperatureFact
-            //text: qsTr("Label")
+        }
+
+        Label {
+            id: warnings
+            x: 250
+            y: 350
+            height: 40
+            width: 300
+            color: "red"
+            font.pointSize: 20
+            horizontalAlignment: Text.AlignHCenter
+            text: "报警列表"
+        }
+        Timer {
+            id: textTimer
+            interval: 1000
+            running: true
+            repeat: true
+            onTriggered: {
+                if (textIndex >= textVar.length) {
+                    warnings.text = ""
+                    textIndex = 0
+                    return
+                }
+                warnings.text = textVar[textIndex]
+                textIndex++
+            }
         }
     }
 }

@@ -48,18 +48,24 @@ ApplicationWindow {
         property bool se:  ScreenTools.isMobile
         //property var se1:  HMI.vehicleManager.id
         property string se1:  "HMI.vehicleManager.id"
+        property bool showMainUI: false
+    }
+
+    UserInput {
+        id: _user
+        anchors.fill: parent
     }
 
     SwipeView {
         id: view
         anchors.fill: parent
         currentIndex: bar.currentIndex
-
+        visible: globals.showMainUI
         Component.onCompleted:{
             contentItem.highlightMoveDuration = 100
         }
 
-        Page1Form {
+        Page11Form {
         }
         Page2Form {
         }
@@ -67,13 +73,15 @@ ApplicationWindow {
         }
         Page4Form {
         }
+
     }
 
     footer: HMITabBar{
         id: bar
         //x: 200
-        height: 90
+        height: 60
         width: parent.width
+        visible: globals.showMainUI
         background: Rectangle
         {
             color : "transparent"	//transparent:透明

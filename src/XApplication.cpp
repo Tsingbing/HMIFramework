@@ -1,4 +1,5 @@
-﻿#include "XApplication.h"
+﻿
+#include "XApplication.h"
 #include "AppMessages.h"
 #include "Dialog2.h"
 #include "Fact.h"

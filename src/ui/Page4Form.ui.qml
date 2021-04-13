@@ -19,23 +19,6 @@ Page {
         fillMode: Image.PreserveAspectFit
         source: "qrc:/qmlimages/zcwjj3/page4.jpg"
 
-        /*Fact*/
-        Switch {
-            id: readControl
-            x: 654
-            y: 62
-            text: qsTr("读")
-            onClicked: globals.activeVehicle.sendReadControl(checked)
-        }
-
-        Switch {
-            id: writeControl
-            x: 559
-            y: 62
-            text: qsTr("写")
-            onClicked: globals.activeVehicle.sendWriteControl(checked)
-        }
-
         Column {
             id: column
             x: 264
@@ -52,6 +35,9 @@ Page {
                 anchors.left: parent.left
                 anchors.leftMargin: 0
                 fact: globals.activeVehicle.upperLimitLeftTrackHighSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -62,6 +48,9 @@ Page {
                 anchors.left: parent.left
                 anchors.leftMargin: 0
                 fact: globals.activeVehicle.upperLimitLeftTrackLowSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -71,6 +60,9 @@ Page {
                 anchors.rightMargin: 0
                 fact: globals.activeVehicle.upperLimitLeftTrackFrettingSpeedFact
                 font.pixelSize: 14
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -81,6 +73,9 @@ Page {
                 anchors.left: parent.left
                 anchors.leftMargin: 0
                 fact: globals.activeVehicle.lowerLimitLeftTrackSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -90,7 +85,11 @@ Page {
                 font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
-                fact: globals.activeVehicle.upperLimitRightTrackHighSpeedFact
+                fact: globals.activeVehicle.upperLimitLeftTrackBackHighSpeedFact
+                //fact: globals.activeVehicle.upperLimitRightTrackHighSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -100,18 +99,25 @@ Page {
                 font.pixelSize: 14
                 anchors.right: parent.right
                 anchors.rightMargin: 0
-                fact: globals.activeVehicle.upperLimitRightTrackLowSpeedFact
+                fact: globals.activeVehicle.upperLimitLeftTrackBackLowSpeedFact
+                //fact: globals.activeVehicle.upperLimitRightTrackLowSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
-            FactTextField {
-                id: textEdit7
-                anchors.left: parent.left
-                anchors.leftMargin: 0
-                font.pixelSize: 14
-                anchors.right: parent.right
-                anchors.rightMargin: 0
-                fact: globals.activeVehicle.upperLimitRightTrackFrettingSpeedFact
-            }
+            //            FactTextField {
+            //                id: textEdit7
+            //                anchors.left: parent.left
+            //                anchors.leftMargin: 0
+            //                font.pixelSize: 14
+            //                anchors.right: parent.right
+            //                anchors.rightMargin: 0
+            //                fact: globals.activeVehicle.upperLimitRightTrackFrettingSpeedFact
+            //                onHelpClicked: {
+            //                    globals.activeVehicle.sendReadControl(0) //关读
+            //                }
+            //            }
         }
 
         Column {
@@ -127,9 +133,12 @@ Page {
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
                 anchors.left: parent.left
-                fact: globals.activeVehicle.lowerLimitRightTrackSpeedFact
-            }
+                fact: globals.activeVehicle.upperLimitRightTrackHighSpeedFact
 
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
+            }
             FactTextField {
                 id: textEdit8
                 font.pixelSize: 14
@@ -137,6 +146,10 @@ Page {
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
                 anchors.left: parent.left
+                fact: globals.activeVehicle.upperLimitRightTrackLowSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -145,6 +158,12 @@ Page {
                 anchors.right: parent.right
                 anchors.rightMargin: 0
                 anchors.left: parent.left
+
+                fact: globals.activeVehicle.upperLimitRightTrackFrettingSpeedFact
+
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -154,6 +173,11 @@ Page {
                 anchors.leftMargin: 0
                 anchors.rightMargin: 0
                 anchors.left: parent.left
+                fact: globals.activeVehicle.lowerLimitRightTrackSpeedFact
+
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -163,6 +187,10 @@ Page {
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 anchors.left: parent.left
+                fact: globals.activeVehicle.upperLimitRightTrackBackHighSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
             FactTextField {
@@ -172,8 +200,14 @@ Page {
                 anchors.rightMargin: 0
                 anchors.leftMargin: 0
                 anchors.left: parent.left
+                fact: globals.activeVehicle.upperLimitRightTrackBackLowSpeedFact
+                onHelpClicked: {
+                    globals.activeVehicle.sendReadControl(0) //关读
+                }
             }
 
+
+            /*
             FactTextField {
                 id: textEdit13
                 font.pixelSize: 14
@@ -182,24 +216,22 @@ Page {
                 anchors.leftMargin: 0
                 anchors.left: parent.left
             }
+            */
             spacing: 13
         }
 
         Button {
             id: button
-            x: 107
-            y: 77
+            x: 359
+            y: 36
             width: 83
-            height: 25
-            text: "设置"
+            height: 33
+            text: "保存"
+            font.weight: Font.Normal
+            font.bold: true
+            font.pointSize: 16
+            checked: false
             onClicked: globals.activeVehicle.updateAllParams()
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:4;anchors_height:400;anchors_width:200;anchors_x:263;anchors_y:125}D{i:12;anchors_height:400;anchors_width:200;anchors_x:263;anchors_y:125}
-}
-##^##*/
-

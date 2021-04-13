@@ -1,0 +1,32 @@
+[
+    {
+        "name": "rotatingSpeed",
+        "shortDesc": "发动机转速",
+        "type": "uint32",
+        "units": " RPM"
+    },
+    {
+        "name": "xDegree",
+        "shortDesc": "车辆横向倾角度数",
+        "type": "float",
+        "decimalPlaces": 1,
+        "units": "°"
+    },
+    {
+        "name": "yDegree",
+        "shortDesc": "车辆纵向倾角度数",
+        "type": "float",
+        "decimalPlaces": 1,
+        "units": "°"
+    },
+    {
+        "name":             "pochaiIsLock",
+        "shortDesc": "破拆锁定",
+        "type":             "bool"
+    },
+    {
+        "name":             "wajueIsLock",
+        "shortDesc": "挖掘锁定",
+        "type":             "bool"
+    }
+]

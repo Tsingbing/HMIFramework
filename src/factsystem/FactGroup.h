@@ -13,9 +13,17 @@ class FactGroup : public QObject
 public:
     FactGroup(int updateRateMsecs, const QString& metaDataFile, QObject* parent = 0);
 
+    Q_PROPERTY(QStringList factNames READ factNames CONSTANT)
+    Q_PROPERTY(QStringList factGroupNames READ factGroupNames CONSTANT)
+
     /// @return Fact for specified name, NULL if not found
-    Fact*       getFact(const QString& name);
+    Q_INVOKABLE Fact* getFact(const QString& name);
+
+    /// @return FactGroup for specified name, NULL if not found
+    Q_INVOKABLE FactGroup* getFactGroup(const QString& name);
+
     QStringList factNames(void) const { return _factNames; }
+    QStringList factGroupNames(void) const { return _nameToFactGroupMap.keys(); }
 
 signals:
     void factNamesChanged(void);
@@ -26,6 +34,7 @@ protected:
 
 protected:
     void _addFact(Fact* fact, const QString& name);
+    void _addFactGroup(FactGroup* factGroup, const QString& name);
     void _loadFromJsonArray(const QJsonArray jsonArray);
 
 protected slots:
@@ -37,6 +46,7 @@ private:
 
 protected:
     QMap<QString, Fact*>         _nameToFactMap;
+    QMap<QString, FactGroup*>    _nameToFactGroupMap;
     QMap<QString, FactMetaData*> _nameToFactMetaDataMap;
     QStringList                  _factNames;
 };

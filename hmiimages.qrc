@@ -28,5 +28,7 @@
         <file alias="Signal80.svg">src/ui/toolbar/images/Signal80.svg</file>
         <file alias="Signal100.svg">src/ui/toolbar/images/Signal100.svg</file>
         <file alias="Yield.svg">src/ui/toolbar/images/Yield.svg</file>
+        <file alias="zcwjj3/userPage.jpg">src/ui/toolbar/images/ZCWJJ3/userPage.jpg</file>
+        <file alias="zcwjj3/Page11.jpg">src/ui/toolbar/images/ZCWJJ3/page11.jpg</file>
     </qresource>
 </RCC>

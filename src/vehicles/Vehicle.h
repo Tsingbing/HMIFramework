@@ -5,6 +5,7 @@
 #include "Toolbox.h"
 #include <QCanBusFrame>
 #include <QObject>
+#include <QMap>
 
 #define DECLARE_FACT(NAME)                                \
 public:                                                   \
@@ -16,6 +17,36 @@ private:                                                  \
     static const char* _##NAME##Fact##Name;
 
 class CanLink;
+
+class EngineFactGroup : public FactGroup
+{
+    Q_OBJECT
+
+public:
+    EngineFactGroup(QObject* parent = nullptr);
+
+    Q_PROPERTY(Fact* rotatingSpeedFact READ rotatingSpeedFact CONSTANT)
+    Q_PROPERTY(Fact* xDegreeFact READ xDegreeFact CONSTANT)
+    Q_PROPERTY(Fact* yDegreeFact READ yDegreeFact CONSTANT)
+
+    Fact* rotatingSpeedFact() { return &_rotatingSpeedFact; }
+    Fact* xDegreeFact() { return &_xDegreeFact; }
+    Fact* yDegreeFact() { return &_yDegreeFact; }
+
+    static const char* _rotatingSpeedFactName;
+    static const char* _xDegreeFactName;
+    static const char* _yDegreeFactName;
+private slots:
+    void _updateAllValues() override;
+private:
+    Fact _rotatingSpeedFact;
+    Fact _xDegreeFact;
+    Fact _yDegreeFact;
+
+DECLARE_FACT(pochaiIsLock)
+DECLARE_FACT(wajueIsLock)
+
+};
 
 class Vehicle : public FactGroup
 {
@@ -38,7 +69,10 @@ public:
     Q_PROPERTY(Fact* workHoursFact READ workHoursFact CONSTANT)
     Q_PROPERTY(Fact* oilTemperatureFact READ oilTemperatureFact CONSTANT)
     Q_PROPERTY(Fact* allSwitchsFact READ allSwitchsFact CONSTANT)
+    Q_PROPERTY(QStringList warningsStrings READ warningsStrings NOTIFY warningsStringsChanged)
     //Q_PROPERTY(Fact* alarmsFact READ alarmsFact CONSTANT)
+
+    Q_PROPERTY(FactGroup* engineFactGroup READ engineFactGroup CONSTANT)
 
     Q_INVOKABLE void forceArm();
 
@@ -64,22 +98,33 @@ public:
     Fact* poChaiQuickFact() { return &_poChaiQuickFact; }
     Fact* allSwitchsFact() { return &_allSwitchsFact; }
     //Fact* alarmsFact() { return &_alarmsFact; }
+    FactGroup* engineFactGroup() { return &_engineFactGroup; }
 
     Q_INVOKABLE void sendFrontLightSwitch(bool b);
     Q_INVOKABLE void sendBackLightSwitch(bool b);
     Q_INVOKABLE void sendAlarmSwitch(bool b);
-    Q_INVOKABLE void sendPoChaiLockSwitch(bool b);
-    Q_INVOKABLE void sendWajueLockSwitch(bool b);
-    Q_INVOKABLE void sendPoChaiQuickSwitch(bool b);
+    Q_INVOKABLE void sendPoChaiLockSwitch(int b);
+    Q_INVOKABLE void sendWajueLockSwitch(int b);
+    Q_INVOKABLE void sendPoChaiQuickSwitch(int b);
     Q_INVOKABLE void sendReadControl(bool b);
     Q_INVOKABLE void sendWriteControl(bool b);
+    Q_INVOKABLE void sendJiesuo(bool b);
 
     Q_INVOKABLE void updateAllParams();
     // Property accesors
     int id() { return _id; }
 
+    QStringList warningsStrings() const
+    {
+        return _warningsStrings;
+    }
+
+signals:
+    void warningsStringsChanged(QStringList warningsStrings);
+
 private slots:
     void _updateAllValues() override;
+    void _canframesRecived(QCanBusFrame data);
 
 private:
     void _commonInit();
@@ -133,10 +178,11 @@ private:
     static const char* _poChaiQuickFactName;
     static const char* _allSwitchsFactName;
     //static const char* _alarmsFactName;
-    static const int   _vehicleUIUpdateRateMSecs = 100; //0: 立即刷新
+    static const int   _vehicleUIUpdateRateMSecs = 3000; //0: 立即刷新
     static const int   _id                       = 100;
 
     CanLink* cl = nullptr;
+    DECLARE_FACT(batteryPower)
     DECLARE_FACT(upperLimitLeftTrackHighSpeed)
     DECLARE_FACT(upperLimitLeftTrackLowSpeed)
     DECLARE_FACT(upperLimitLeftTrackFrettingSpeed)
@@ -146,6 +192,17 @@ private:
     DECLARE_FACT(upperLimitRightTrackFrettingSpeed)
     DECLARE_FACT(lowerLimitRightTrackSpeed)
     DECLARE_FACT(alarms)
+    DECLARE_FACT(upperLimitLeftTrackBackHighSpeed)
+    DECLARE_FACT(upperLimitLeftTrackBackLowSpeed)
+    DECLARE_FACT(upperLimitRightTrackBackHighSpeed)
+    DECLARE_FACT(upperLimitRightTrackBackLowSpeed)
+
+
+    static const char* _engineFactGroupName;
+    EngineFactGroup _engineFactGroup;
+
+    QStringList _warningsStrings;
+    QMap<QString, QString> _warningsStringsQMap;
 };
 
 #endif // VEHICLE_H

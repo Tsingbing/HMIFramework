@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/json">
         <file alias="VehicleFact.json">src/vehicles/VehicleFact.json</file>
-        <file alias="canData.json">src/links/canData.json</file>
         <file alias="App.SettingsGroup.json">src/settings/App.SettingsGroup.json</file>
+        <file alias="EngineFact.json">src/vehicles/EngineFact.json</file>
     </qresource>
     <qresource prefix="/qml">
         <file alias="HMI/ScreenTools/qmldir">src/QmlControls/HMI/ScreenTools/qmldir</file>
@@ -63,6 +63,8 @@
         <file alias="HMI/Controls/AppMessages.qml">src/QmlControls/AppMessages.qml</file>
         <file alias="HMI/Controls/MainWindowSavedState.qml">src/QmlControls/MainWindowSavedState.qml</file>
         <file alias="HMI/FactControls/FactBitmask.qml">src/factsystem/FactControls/FactBitmask.qml</file>
+        <file alias="UserInput.qml">src/ui/UserInput.qml</file>
+        <file alias="Page11Form.ui.qml">src/ui/Page11Form.ui.qml</file>
     </qresource>
     <qresource prefix="/toolbar">
         <file alias="MainToolBar.qml">src/ui/toolbar/MainToolBar.qml</file>

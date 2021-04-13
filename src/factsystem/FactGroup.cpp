@@ -1,4 +1,4 @@
-#include "FactGroup.h"
+﻿#include "FactGroup.h"
 #include "JsonHelper.h"
 
 #include <QDebug>
@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonParseError>
+#include <QQmlEngine>
 
 FactGroup::FactGroup(int updateRateMsecs, const QString& metaDataFile, QObject* parent)
     : QObject(parent)
@@ -19,9 +20,29 @@ Fact* FactGroup::getFact(const QString& name)
 {
     Fact* fact = nullptr;
 
+    if (name.contains("."))
+    {
+        QStringList parts = name.split(".");
+        if (parts.count() != 2)
+        {
+            qWarning() << "Only single level of hierarchy supported";
+            return nullptr;
+        }
+
+        FactGroup* factGroup = getFactGroup(parts[ 0 ]);
+        if (!factGroup)
+        {
+            qWarning() << "Unknown FactGroup" << parts[ 0 ];
+            return nullptr;
+        }
+
+        return factGroup->getFact(parts[ 1 ]);
+    }
+
     if (_nameToFactMap.contains(name))
     {
         fact = _nameToFactMap[ name ];
+        QQmlEngine::setObjectOwnership(fact, QQmlEngine::CppOwnership);
     }
     else
     {
@@ -29,6 +50,23 @@ Fact* FactGroup::getFact(const QString& name)
     }
 
     return fact;
+}
+
+FactGroup* FactGroup::getFactGroup(const QString& name)
+{
+    FactGroup* factGroup = nullptr;
+
+    if (_nameToFactGroupMap.contains(name))
+    {
+        factGroup = _nameToFactGroupMap[ name ];
+        QQmlEngine::setObjectOwnership(factGroup, QQmlEngine::CppOwnership);
+    }
+    else
+    {
+        qWarning() << "Unknown FactGroup" << name;
+    }
+
+    return factGroup;
 }
 
 void FactGroup::_addFact(Fact* fact, const QString& name)
@@ -46,6 +84,17 @@ void FactGroup::_addFact(Fact* fact, const QString& name)
     }
     _nameToFactMap[ name ] = fact;
     _factNames.append(name);
+}
+
+void FactGroup::_addFactGroup(FactGroup* factGroup, const QString& name)
+{
+    if (_nameToFactGroupMap.contains(name))
+    {
+        qWarning() << "Duplicate FactGroup" << name;
+        return;
+    }
+
+    _nameToFactGroupMap[ name ] = factGroup;
 }
 
 void FactGroup::_loadFromJsonArray(const QJsonArray jsonArray)

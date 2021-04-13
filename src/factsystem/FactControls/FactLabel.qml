@@ -8,5 +8,5 @@ import HMI.Controls 1.0
 
 HMILabel {
     property Fact fact: Fact { }
-    text: fact.valueString
+    text: fact.valueString + fact.units
 }
