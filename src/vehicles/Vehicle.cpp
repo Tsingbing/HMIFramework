@@ -100,7 +100,7 @@ Vehicle::Vehicle(QObject* parent)
     , _supplyVoltageFact(_supplyVoltageFactName, FactMetaData::valueTypeFloat)
     , _fuelLevelFact(_fuelLevelFactName, FactMetaData::valueTypeUint8)
     , _rotatingSpeedFact(_rotatingSpeedFactName, FactMetaData::valueTypeDouble)
-    , _waterTemperatureFact(_waterTemperatureFactName, FactMetaData::valueTypeUint8)
+    , _waterTemperatureFact(_waterTemperatureFactName, FactMetaData::valueTypeInt8)
     , _mainPumpPressureFact(_mainPumpPressureFactName, FactMetaData::valueTypeUint8)
     , _oxygenConcentrationFact(_oxygenConcentrationFactName, FactMetaData::valueTypeUint8)
     , _combustibleGasConcentrationFact(_combustibleGasConcentrationFactName, FactMetaData::valueTypeUint8)
@@ -349,6 +349,23 @@ void Vehicle::_updateAllValues()
       else
           _warningsStringsQMap.remove(_alarmsFact.bitmaskStrings().at(i));
     }
+    //水温过高
+    if(_waterTemperatureFact.cookedValue() > 102)
+       _warningsStringsQMap.insert(_waterTemperatureFact.shortDescription(), "水温过高");
+    else
+       _warningsStringsQMap.remove(_waterTemperatureFact.shortDescription());
+
+    //车载电源电压
+    if(_supplyVoltageFact.cookedValue() < 22)
+       _warningsStringsQMap.insert(_supplyVoltageFact.shortDescription(),"车载电源电压过低");
+    else
+       _warningsStringsQMap.remove(_supplyVoltageFact.shortDescription());
+
+    //燃油油位低
+    if(_fuelLevelFact.cookedValue() < 10)
+       _warningsStringsQMap.insert(_fuelLevelFact.shortDescription(),"燃油油位低");
+    else
+       _warningsStringsQMap.remove(_fuelLevelFact.shortDescription());
 
     _warningsStrings = _warningsStringsQMap.values();
 }

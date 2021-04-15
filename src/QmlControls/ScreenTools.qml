@@ -1,10 +1,10 @@
 pragma Singleton
 
-import QtQuick          2.12
+import QtQuick 2.12
 import QtQuick.Controls 1.2
-import QtQuick.Window   2.2
+import QtQuick.Window 2.2
 
-import HMI                       1.0
+import HMI 1.0
 import HMI.ScreenToolsController 1.0
 
 
@@ -30,70 +30,82 @@ Item {
     id: _screenTools
 
     //-- The point and pixel font size values are computed at runtime
-
-    property real defaultFontPointSize:     10
-    property real platformFontPointSize:    10
-
-    /// You can use this property to position ui elements in a screen resolution independent manner. Using fixed positioning values should not
-    /// be done. All positioning should be done using anchors or a ratio of the defaultFontPixelHeight and defaultFontPixelWidth values. This way
-    /// your ui elements will reposition themselves appropriately on varying screen sizes and resolutions.
-    property real defaultFontPixelHeight:   10
+    property real defaultFontPointSize: 10
+    property real platformFontPointSize: 10
 
     /// You can use this property to position ui elements in a screen resolution independent manner. Using fixed positioning values should not
     /// be done. All positioning should be done using anchors or a ratio of the defaultFontPixelHeight and defaultFontPixelWidth values. This way
     /// your ui elements will reposition themselves appropriately on varying screen sizes and resolutions.
-    property real defaultFontPixelWidth:    10
+    property real defaultFontPixelHeight: 10
+
+    /// You can use this property to position ui elements in a screen resolution independent manner. Using fixed positioning values should not
+    /// be done. All positioning should be done using anchors or a ratio of the defaultFontPixelHeight and defaultFontPixelWidth values. This way
+    /// your ui elements will reposition themselves appropriately on varying screen sizes and resolutions.
+    property real defaultFontPixelWidth: 10
 
     /// QFontMetrics::descent for default font at default point size
-    property real defaultFontDescent:       0
+    property real defaultFontDescent: 0
 
     /// The default amount of space in between controls in a dialog
     property real defaultDialogControlSpacing: defaultFontPixelHeight / 2
 
-    property real smallFontPointSize:       10
-    property real mediumFontPointSize:      10
-    property real largeFontPointSize:       10
+    property real smallFontPointSize: 10
+    property real mediumFontPointSize: 10
+    property real largeFontPointSize: 10
 
-    property real toolbarHeight:            0
+    property real toolbarHeight: 0
 
-    readonly property real smallFontPointRatio:      0.75
-    readonly property real mediumFontPointRatio:     1.25
-    readonly property real largeFontPointRatio:      1.5
+    readonly property real smallFontPointRatio: 0.75
+    readonly property real mediumFontPointRatio: 1.25
+    readonly property real largeFontPointRatio: 1.5
 
     property real realPixelDensity: {
         //-- If a plugin defines it, just use what it tells us
-//        if(HMI.corePlugin.options.devicePixelDensity != 0) {
-//            return HMI.corePlugin.options.devicePixelDensity
-//        }
+        //        if(HMI.corePlugin.options.devicePixelDensity != 0) {
+        //            return HMI.corePlugin.options.devicePixelDensity
+        //        }
         //-- Let's use what the system tells us
         return Screen.pixelDensity
     }
 
-    property bool isMobile:                         ScreenToolsController.isMobile
-    property bool isTinyScreen:                     (Screen.width / realPixelDensity) < 120 // 120mm
-    property bool isShortScreen:                    ((Screen.height / realPixelDensity) < 120) || (ScreenToolsController.isMobile && ((Screen.height / Screen.width) < 0.6))
-    property bool isHugeScreen:                     (Screen.width / realPixelDensity) >= (23.5 * 25.4) // 27" monitor
+    property bool isMobile: ScreenToolsController.isMobile
+    property bool isTinyScreen: (Screen.width / realPixelDensity) < 120 // 120mm
+    property bool isShortScreen: ((Screen.height / realPixelDensity) < 120)
+                                 || (ScreenToolsController.isMobile
+                                     && ((Screen.height / Screen.width) < 0.6))
+    property bool isHugeScreen: (Screen.width / realPixelDensity) >= (23.5 * 25.4) // 27" monitor
 
-    readonly property real minTouchMillimeters:     10      ///< Minimum touch size in millimeters
-    property real minTouchPixels:                   0       ///< Minimum touch size in pixels
+    readonly property real minTouchMillimeters: 10 ///< Minimum touch size in millimeters
+    property real minTouchPixels: 0 ///< Minimum touch size in pixels
 
     // The implicit heights/widths for our custom control set
-    property real implicitButtonWidth:              Math.round(defaultFontPixelWidth *  (isMobile ? 7.0 : 5.0))
-    property real implicitButtonHeight:             Math.round(defaultFontPixelHeight * (isMobile ? 2.0 : 1.6))
-    property real implicitCheckBoxHeight:           Math.round(defaultFontPixelHeight * (isMobile ? 2.0 : 1.0))
-    property real implicitRadioButtonHeight:        implicitCheckBoxHeight
-    property real implicitTextFieldHeight:          Math.round(defaultFontPixelHeight * (isMobile ? 2.0 : 1.6))
-    property real implicitComboBoxHeight:           Math.round(defaultFontPixelHeight * (isMobile ? 2.0 : 1.6))
-    property real implicitComboBoxWidth:            Math.round(defaultFontPixelWidth *  (isMobile ? 7.0 : 5.0))
-    property real comboBoxPadding:                  defaultFontPixelWidth
-    property real implicitSliderHeight:             isMobile ? Math.max(defaultFontPixelHeight, minTouchPixels) : defaultFontPixelHeight
+    property real implicitButtonWidth: Math.round(
+                                           defaultFontPixelWidth * (isMobile ? 7.0 : 5.0))
+    property real implicitButtonHeight: Math.round(
+                                            defaultFontPixelHeight * (isMobile ? 2.0 : 1.6))
+    property real implicitCheckBoxHeight: Math.round(
+                                              defaultFontPixelHeight * (isMobile ? 2.0 : 1.0))
+    property real implicitRadioButtonHeight: implicitCheckBoxHeight
+    property real implicitTextFieldHeight: Math.round(
+                                               defaultFontPixelHeight * (isMobile ? 2.0 : 1.6))
+    property real implicitComboBoxHeight: Math.round(
+                                              defaultFontPixelHeight * (isMobile ? 2.0 : 1.6))
+    property real implicitComboBoxWidth: Math.round(
+                                             defaultFontPixelWidth * (isMobile ? 7.0 : 5.0))
+    property real comboBoxPadding: defaultFontPixelWidth
+    property real implicitSliderHeight: isMobile ? Math.max(
+                                                       defaultFontPixelHeight,
+                                                       minTouchPixels) : defaultFontPixelHeight
     // It's not possible to centralize an even number of pixels, checkBoxIndicatorSize should be an odd number to allow centralization
-    property real checkBoxIndicatorSize:            2 * Math.floor(defaultFontPixelHeight * (isMobile ? 1.5 : 1.0) / 2) + 1
-    property real radioButtonIndicatorSize:         checkBoxIndicatorSize
+    property real checkBoxIndicatorSize: 2 * Math.floor(
+                                             defaultFontPixelHeight
+                                             * (isMobile ? 1.5 : 1.0) / 2) + 1
+    property real radioButtonIndicatorSize: checkBoxIndicatorSize
 
-    readonly property string normalFontFamily:      ScreenToolsController.normalFontFamily
-    readonly property string demiboldFontFamily:    ScreenToolsController.boldFontFamily
-    readonly property string fixedFontFamily:       ScreenToolsController.fixedFontFamily
+    readonly property string normalFontFamily: ScreenToolsController.normalFontFamily
+    readonly property string demiboldFontFamily: ScreenToolsController.boldFontFamily
+    readonly property string fixedFontFamily: ScreenToolsController.fixedFontFamily
+
     /* This mostly works but for some reason, reflowWidths() in SetupView doesn't change size.
        I've disabled (in release builds) until I figure out why. Changes require a restart for now.
     */
@@ -101,7 +113,8 @@ Item {
         target: HMI.settingsManager.appSettings.appFontPointSize
         onValueChanged: {
             //console.info("_setBasePointSize")
-            _setBasePointSize(HMI.settingsManager.appSettings.appFontPointSize.value)
+            _setBasePointSize(
+                HMI.settingsManager.appSettings.appFontPointSize.value)
         }
     }
 
@@ -110,7 +123,8 @@ Item {
     }
 
     function printScreenStats() {
-        console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: ' + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
+        console.log('ScreenTools: Screen.width: ' + Screen.width + ' Screen.height: '
+                    + Screen.height + ' Screen.pixelDensity: ' + Screen.pixelDensity)
     }
 
     /// Returns the current x position of the mouse in global screen coordinates.
@@ -126,54 +140,56 @@ Item {
     /// \private
     function _setBasePointSize(pointSize) {
         _textMeasure.font.pointSize = pointSize
-        defaultFontPointSize    = pointSize
-        defaultFontPixelHeight  = Math.round(_textMeasure.fontHeight/2.0)*2
-        defaultFontPixelWidth   = Math.round(_textMeasure.fontWidth/2.0)*2
-        defaultFontDescent      = ScreenToolsController.defaultFontDescent(defaultFontPointSize)
-        smallFontPointSize      = defaultFontPointSize  * _screenTools.smallFontPointRatio
-        mediumFontPointSize     = defaultFontPointSize  * _screenTools.mediumFontPointRatio
-        largeFontPointSize      = defaultFontPointSize  * _screenTools.largeFontPointRatio
-        minTouchPixels          = Math.round(minTouchMillimeters * realPixelDensity)
+        defaultFontPointSize = pointSize
+        defaultFontPixelHeight = Math.round(_textMeasure.fontHeight / 2.0) * 2
+        defaultFontPixelWidth = Math.round(_textMeasure.fontWidth / 2.0) * 2
+        defaultFontDescent = ScreenToolsController.defaultFontDescent(
+                    defaultFontPointSize)
+        smallFontPointSize = defaultFontPointSize * _screenTools.smallFontPointRatio
+        mediumFontPointSize = defaultFontPointSize * _screenTools.mediumFontPointRatio
+        largeFontPointSize = defaultFontPointSize * _screenTools.largeFontPointRatio
+        minTouchPixels = Math.round(minTouchMillimeters * realPixelDensity)
         if (minTouchPixels / Screen.height > 0.15) {
             // If using physical sizing takes up too much of the vertical real estate fall back to font based sizing
-            minTouchPixels      = defaultFontPixelHeight * 3
+            minTouchPixels = defaultFontPixelHeight * 3
         }
-        toolbarHeight           = isMobile ? minTouchPixels : defaultFontPixelHeight * 3
+        toolbarHeight = isMobile ? minTouchPixels : defaultFontPixelHeight * 3
         //toolbarHeight           = toolbarHeight * HMI.corePlugin.options.toolbarHeightMultiplier
     }
 
     Text {
-        id:     _defaultFont
-        text:   "X"
+        id: _defaultFont
+        text: "X"
     }
 
     Text {
-        id:     _textMeasure
-        text:   "X"
-        font.family:    normalFontFamily
-        property real   fontWidth:    contentWidth
-        property real   fontHeight:   contentHeight
+        id: _textMeasure
+        text: "X"
+        font.family: normalFontFamily
+        property real fontWidth: contentWidth
+        property real fontHeight: contentHeight
         Component.onCompleted: {
             //-- First, compute platform, default size
-            if(ScreenToolsController.isMobile) {
-                if((Screen.width / realPixelDensity) < 120) {
-                    platformFontPointSize = 11;
+            if (ScreenToolsController.isMobile) {
+                if ((Screen.width / realPixelDensity) < 120) {
+                    platformFontPointSize = 11
                 } else {
-                    platformFontPointSize = 14;
+                    platformFontPointSize = 14
                 }
             } else {
-                platformFontPointSize = _defaultFont.font.pointSize;
+                platformFontPointSize = _defaultFont.font.pointSize
             }
             //-- See if we are using a custom size
             var _appFontPointSizeFact = HMI.settingsManager.appSettings.appFontPointSize
             var baseSize = _appFontPointSizeFact.value
             //-- Sanity check
-            if(baseSize < _appFontPointSizeFact.min || baseSize > _appFontPointSizeFact.max) {
-                baseSize = platformFontPointSize;
+            if (baseSize < _appFontPointSizeFact.min
+                || baseSize > _appFontPointSizeFact.max) {
+                baseSize = platformFontPointSize
                 _appFontPointSizeFact.value = baseSize
             }
             //-- Set size saved in settings
-            _screenTools._setBasePointSize(baseSize);
+            _screenTools._setBasePointSize(baseSize)
         }
     }
 }
